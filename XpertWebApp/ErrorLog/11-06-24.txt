@@ -1,0 +1,512 @@
+
+New Log Entry : 
+06/11/2024 12:53:04
+===========================
+Date              :11 June 2024 12:53:04
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 500 (Internal Server Error).
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 105
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 12:54:01
+===========================
+Date              :11 June 2024 12:54:01
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 500 (Internal Server Error).
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 105
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 12:55:36
+===========================
+Date              :11 June 2024 12:55:36
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 13:48:47
+===========================
+Date              :11 June 2024 13:48:47
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.HomeController.<>c.<Login>b__3_0(JToken item) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 64
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 64
+=============================
+
+New Log Entry : 
+06/11/2024 13:49:33
+===========================
+Date              :11 June 2024 13:49:33
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.HomeController.<>c.<Login>b__3_0(JToken item) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 64
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 64
+=============================
+
+New Log Entry : 
+06/11/2024 13:56:43
+===========================
+Date              :11 June 2024 13:56:43
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 13:58:41
+===========================
+Date              :11 June 2024 13:58:41
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 13:59:06
+===========================
+Date              :11 June 2024 13:59:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:13:19
+===========================
+Date              :11 June 2024 14:13:19
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:15:17
+===========================
+Date              :11 June 2024 14:15:17
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:23:55
+===========================
+Date              :11 June 2024 14:23:55
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:25:24
+===========================
+Date              :11 June 2024 14:25:24
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:26:30
+===========================
+Date              :11 June 2024 14:26:30
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:31:30
+===========================
+Date              :11 June 2024 14:31:30
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:32:32
+===========================
+Date              :11 June 2024 14:32:32
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:43:14
+===========================
+Date              :11 June 2024 14:43:14
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 14:44:30
+===========================
+Date              :11 June 2024 14:44:30
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 15:20:42
+===========================
+Date              :11 June 2024 15:20:42
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: [{"Result":"false","Response":"Permission Denied"}]
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 109
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+06/11/2024 16:07:46
+===========================
+Date              :11 June 2024 16:07:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 98
+=============================
+
+New Log Entry : 
+06/11/2024 16:08:19
+===========================
+Date              :11 June 2024 16:08:19
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 98
+=============================
+
+New Log Entry : 
+06/11/2024 16:25:16
+===========================
+Date              :11 June 2024 16:25:16
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22jr1268%22,%22Password%22:%227XZzrPeq1YUnNKAsGsdevw==%22,%22User_Name%22:%22TAKHRO%20KI%20DHANI%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22B14-0758%22,%22Default_Location_Name%22:%22BMC%20NOT%20FOUND%22,%22Loc_Short_Name%22:null,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:26:42
+===========================
+Date              :11 June 2024 16:26:42
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22jr1268%22,%22Password%22:%227XZzrPeq1YUnNKAsGsdevw==%22,%22User_Name%22:%22TAKHRO%20KI%20DHANI%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22B14-0758%22,%22Default_Location_Name%22:%22BMC%20NOT%20FOUND%22,%22Loc_Short_Name%22:null,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:28:51
+===========================
+Date              :11 June 2024 16:28:51
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22jr1268%22,%22Password%22:%227XZzrPeq1YUnNKAsGsdevw==%22,%22User_Name%22:%22TAKHRO%20KI%20DHANI%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22B14-0758%22,%22Default_Location_Name%22:%22BMC%20NOT%20FOUND%22,%22Loc_Short_Name%22:null,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:29:19
+===========================
+Date              :11 June 2024 16:29:19
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=
+Req From          :http://localhost:49865/Report/DashBoard
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+06/11/2024 16:30:36
+===========================
+Date              :11 June 2024 16:30:36
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22jr0001%22,%22Password%22:%227XZzrPeq1YUnNKAsGsdevw==%22,%22User_Name%22:%22GADOTA%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22B14-0758%22,%22Default_Location_Name%22:%22BMC%20NOT%20FOUND%22,%22Loc_Short_Name%22:null,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:31:27
+===========================
+Date              :11 June 2024 16:31:27
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22ADMIN%22,%22Password%22:%22gz7oan5dw5kO7eTxdTUftw==%22,%22User_Name%22:%22Administrator%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22JAIPUR%22,%22Default_Location_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Loc_Short_Name%22:%22JAIPUR%22,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:32:03
+===========================
+Date              :11 June 2024 16:32:03
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22jr0001%22,%22Password%22:%227XZzrPeq1YUnNKAsGsdevw==%22,%22User_Name%22:%22GADOTA%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22B14-0758%22,%22Default_Location_Name%22:%22BMC%20NOT%20FOUND%22,%22Loc_Short_Name%22:null,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:32:28
+===========================
+Date              :11 June 2024 16:32:28
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22ADMIN%22,%22Password%22:%22gz7oan5dw5kO7eTxdTUftw==%22,%22User_Name%22:%22Administrator%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22JAIPUR%22,%22Default_Location_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Loc_Short_Name%22:%22JAIPUR%22,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+06/11/2024 16:33:09
+===========================
+Date              :11 June 2024 16:33:09
+User Name         :
+URL               :/User/Index
+Query String      :Guid=[{%22User_Code%22:%22jr1268%22,%22Password%22:%227XZzrPeq1YUnNKAsGsdevw==%22,%22User_Name%22:%22TAKHRO%20KI%20DHANI%22,%22InActive%22:%22N%22,%22Comp_Code%22:%22UDP%22,%22Comp_Name%22:%22Jaipur%20Zila%20Dugdh%20Utpadak%20Sahkari%20Sangh%20Ltd.%22,%22Default_Location%22:%22B14-0758%22,%22Default_Location_Name%22:%22BMC%20NOT%20FOUND%22,%22Loc_Short_Name%22:null,%22Result%22:%22true%22}]
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Illegal characters in path.
+Source            :mscorlib
+Line No           :   at System.IO.Path.LegacyNormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.NormalizePath(String path, Boolean fullCheck, Int32 maxPathLength, Boolean expandShortPaths)
+   at System.IO.Path.GetFullPathInternal(String path)
+   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================

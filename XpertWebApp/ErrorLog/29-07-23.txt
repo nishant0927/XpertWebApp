@@ -1,0 +1,14 @@
+
+New Log Entry : 
+07/29/2023 18:10:49
+===========================
+Date              :Saturday, July 29, 2023 6:10:49 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=43a13a9d-8e84-4e06-b202-a95b0106f599
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 86
+=============================

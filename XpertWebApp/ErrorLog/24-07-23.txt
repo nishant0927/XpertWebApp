@@ -1,0 +1,274 @@
+
+New Log Entry : 
+07/24/2023 09:49:10
+===========================
+Date              :Monday, July 24, 2023 9:49:10 AM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 105
+=============================
+
+New Log Entry : 
+07/24/2023 09:49:56
+===========================
+Date              :Monday, July 24, 2023 9:49:56 AM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 105
+=============================
+
+New Log Entry : 
+07/24/2023 14:38:47
+===========================
+Date              :Monday, July 24, 2023 2:38:47 PM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 106
+=============================
+
+New Log Entry : 
+07/24/2023 16:08:38
+===========================
+Date              :Monday, July 24, 2023 4:08:38 PM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :127.0.0.1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 106
+=============================
+
+New Log Entry : 
+07/24/2023 16:21:13
+===========================
+Date              :Monday, July 24, 2023 4:21:13 PM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :127.0.0.1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 106
+=============================
+
+New Log Entry : 
+07/24/2023 17:47:55
+===========================
+Date              :Monday, July 24, 2023 5:47:55 PM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 106
+=============================
+
+New Log Entry : 
+07/24/2023 17:48:27
+===========================
+Date              :Monday, July 24, 2023 5:48:27 PM
+User Name         :
+URL               :/home/GetLocation
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 106
+=============================
+
+New Log Entry : 
+07/24/2023 18:19:06
+===========================
+Date              :Monday, July 24, 2023 6:19:06 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (500) Internal Server Error.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 116
+=============================
+
+New Log Entry : 
+07/24/2023 18:19:39
+===========================
+Date              :Monday, July 24, 2023 6:19:39 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :There is a problem with the XML that was received from the network. See inner exception for more details.
+Source            :mscorlib
+Line No           :
+Server stack trace: 
+   at System.ServiceModel.Channels.HttpInput.DecodeBufferedMessage(ArraySegment`1 buffer, Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ReadBufferedMessage(Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DAL.MilkService.MilkProcurementSoap.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd)
+   at DAL.MilkService.MilkProcurementSoapClient.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd) in D:\XpertWebApp\DAL\Connected Services\MilkService\Reference.cs:line 1035
+   at XpertWebApp.Controllers.HomeController.Index() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 31
+=============================
+
+New Log Entry : 
+07/24/2023 19:20:54
+===========================
+Date              :Monday, July 24, 2023 7:20:54 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 116
+=============================
+
+New Log Entry : 
+07/24/2023 19:20:55
+===========================
+Date              :Monday, July 24, 2023 7:20:55 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :There is a problem with the XML that was received from the network. See inner exception for more details.
+Source            :mscorlib
+Line No           :
+Server stack trace: 
+   at System.ServiceModel.Channels.HttpInput.DecodeBufferedMessage(ArraySegment`1 buffer, Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ReadBufferedMessage(Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DAL.MilkService.MilkProcurementSoap.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd)
+   at DAL.MilkService.MilkProcurementSoapClient.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd) in D:\XpertWebApp\DAL\Connected Services\MilkService\Reference.cs:line 1035
+   at XpertWebApp.Controllers.HomeController.Index() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 31
+=============================
+
+New Log Entry : 
+07/24/2023 20:13:24
+===========================
+Date              :Monday, July 24, 2023 8:13:24 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :There is a problem with the XML that was received from the network. See inner exception for more details.
+Source            :mscorlib
+Line No           :
+Server stack trace: 
+   at System.ServiceModel.Channels.HttpInput.DecodeBufferedMessage(ArraySegment`1 buffer, Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ReadBufferedMessage(Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DAL.MilkService.MilkProcurementSoap.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd)
+   at DAL.MilkService.MilkProcurementSoapClient.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd) in D:\XpertWebApp\DAL\Connected Services\MilkService\Reference.cs:line 1035
+   at XpertWebApp.Controllers.HomeController.Index() in D:\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 31
+=============================
+
+New Log Entry : 
+07/24/2023 22:46:34
+===========================
+Date              :Monday, July 24, 2023 10:46:34 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :You must provide a request body if you set ContentLength>0 or SendChunked==true.  Do this by calling [Begin]GetRequestStream before [Begin]GetResponse.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at XpertWebApp.Controllers.HomeController.CallYourASMXWebMethod()
+=============================
+
+New Log Entry : 
+07/24/2023 22:46:36
+===========================
+Date              :Monday, July 24, 2023 10:46:36 PM
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :There is a problem with the XML that was received from the network. See inner exception for more details.
+Source            :mscorlib
+Line No           :
+Server stack trace: 
+   at System.ServiceModel.Channels.HttpInput.DecodeBufferedMessage(ArraySegment`1 buffer, Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ReadBufferedMessage(Stream inputStream)
+   at System.ServiceModel.Channels.HttpInput.ParseIncomingMessage(HttpRequestMessage httpRequestMessage, Exception& requestException)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at DAL.MilkService.MilkProcurementSoap.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd)
+   at DAL.MilkService.MilkProcurementSoapClient.CheckLoginDetails(String Key, String APPName, String APPVersion, String APPUserCode, String APPUserPwd, String UserID, String Pwd) in D:\XpertWebApp\DAL\Connected Services\MilkService\Reference.cs:line 1035
+   at XpertWebApp.Controllers.HomeController.Index()
+=============================

@@ -1,0 +1,1239 @@
+
+New Log Entry : 
+07/23/2024 12:01:08
+===========================
+Date              :23 July 2024 12:01:08
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 86
+=============================
+
+New Log Entry : 
+07/23/2024 12:05:53
+===========================
+Date              :23 July 2024 12:05:53
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 86
+=============================
+
+New Log Entry : 
+07/23/2024 12:05:54
+===========================
+Date              :23 July 2024 12:05:54
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+07/23/2024 12:07:34
+===========================
+Date              :23 July 2024 12:07:34
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+07/23/2024 12:12:40
+===========================
+Date              :23 July 2024 12:12:40
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 86
+=============================
+
+New Log Entry : 
+07/23/2024 12:17:35
+===========================
+Date              :23 July 2024 12:17:35
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 86
+=============================
+
+New Log Entry : 
+07/23/2024 12:19:15
+===========================
+Date              :23 July 2024 12:19:15
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 60
+=============================
+
+New Log Entry : 
+07/23/2024 12:32:35
+===========================
+Date              :23 July 2024 12:32:35
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (405) Method Not Allowed.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 92
+=============================
+
+New Log Entry : 
+07/23/2024 12:33:00
+===========================
+Date              :23 July 2024 12:33:00
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 12:43:04
+===========================
+Date              :23 July 2024 12:43:04
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 12:43:25
+===========================
+Date              :23 July 2024 12:43:25
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 12:43:25
+===========================
+Date              :23 July 2024 12:43:25
+User Name         :
+URL               :/User/Index
+Query String      :Guid=Error:%20WebException
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The given path's format is not supported.
+Source            :mscorlib
+Line No           :   at System.Security.Util.StringExpressionSet.CanonicalizePath(String path, Boolean needFullPath)
+   at System.Security.Util.StringExpressionSet.CreateListFromExpressions(String[] str, Boolean needFullPath)
+   at System.Security.Permissions.FileIOPermission.AddPathList(FileIOPermissionAccess access, AccessControlActions control, String[] pathListOrig, Boolean checkForDuplicates, Boolean needFullPath, Boolean copyPathList)
+   at System.Security.Permissions.FileIOPermission..ctor(FileIOPermissionAccess access, String path)
+   at System.Web.InternalSecurityPermissions.PathDiscovery(String path)
+   at System.Web.Hosting.HostingEnvironment.MapPath(VirtualPath virtualPath)
+   at System.Web.Hosting.HostingEnvironment.MapPath(String virtualPath)
+   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 35
+=============================
+
+New Log Entry : 
+07/23/2024 13:51:28
+===========================
+Date              :23 July 2024 13:51:28
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 13:51:38
+===========================
+Date              :23 July 2024 13:51:38
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 13:51:49
+===========================
+Date              :23 July 2024 13:51:49
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 13:55:34
+===========================
+Date              :23 July 2024 13:55:34
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 13:55:54
+===========================
+Date              :23 July 2024 13:55:54
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 13:56:38
+===========================
+Date              :23 July 2024 13:56:38
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 15:12:29
+===========================
+Date              :23 July 2024 15:12:29
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (405) Method Not Allowed.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 15:52:51
+===========================
+Date              :23 July 2024 15:52:51
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 16:11:20
+===========================
+Date              :23 July 2024 16:11:20
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 16:12:38
+===========================
+Date              :23 July 2024 16:12:38
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Invalid Key
+Source            :
+Line No           :
+=============================
+
+New Log Entry : 
+07/23/2024 16:23:23
+===========================
+Date              :23 July 2024 16:23:23
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+07/23/2024 16:23:23
+===========================
+Date              :23 July 2024 16:23:23
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Invalid Key
+Source            :
+Line No           :
+=============================
+
+New Log Entry : 
+07/23/2024 16:23:45
+===========================
+Date              :23 July 2024 16:23:45
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 16:32:34
+===========================
+Date              :23 July 2024 16:32:34
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 400 (Bad Request).
+Source            :DAL
+Line No           :   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 113
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 56
+=============================
+
+New Log Entry : 
+07/23/2024 16:33:31
+===========================
+Date              :23 July 2024 16:33:31
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 400 (Bad Request).
+Source            :DAL
+Line No           :   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 113
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 56
+=============================
+
+New Log Entry : 
+07/23/2024 16:42:21
+===========================
+Date              :23 July 2024 16:42:21
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 400 (Bad Request).
+Source            :DAL
+Line No           :   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 113
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 56
+=============================
+
+New Log Entry : 
+07/23/2024 16:51:32
+===========================
+Date              :23 July 2024 16:51:32
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 400 (Bad Request).
+Source            :DAL
+Line No           :   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 113
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 56
+=============================
+
+New Log Entry : 
+07/23/2024 16:59:48
+===========================
+Date              :23 July 2024 16:59:48
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 16:59:50
+===========================
+Date              :23 July 2024 16:59:50
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:00:09
+===========================
+Date              :23 July 2024 17:00:09
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:00:11
+===========================
+Date              :23 July 2024 17:00:11
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:06:05
+===========================
+Date              :23 July 2024 17:06:05
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:06:31
+===========================
+Date              :23 July 2024 17:06:31
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:17:33
+===========================
+Date              :23 July 2024 17:17:33
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:20:24
+===========================
+Date              :23 July 2024 17:20:24
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:20:45
+===========================
+Date              :23 July 2024 17:20:45
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:31:50
+===========================
+Date              :23 July 2024 17:31:50
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:32:16
+===========================
+Date              :23 July 2024 17:32:16
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:36:55
+===========================
+Date              :23 July 2024 17:36:55
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:37:22
+===========================
+Date              :23 July 2024 17:37:22
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:41:42
+===========================
+Date              :23 July 2024 17:41:42
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 17:42:08
+===========================
+Date              :23 July 2024 17:42:08
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 17:57:30
+===========================
+Date              :23 July 2024 17:57:30
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 18:08:02
+===========================
+Date              :23 July 2024 18:08:02
+User Name         :
+URL               :/DBT/GetData
+Query String      :
+Req From          :http://localhost:49865/DBT/DBTEntry?Guid=89dc09fc-118f-49bc-a674-be27c4d7d04a
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (405) Method Not Allowed.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.DBT.DBT.GetDBTEntryData(String code, String MCCCode, String guid, String VLCUploaderCode, String FromDate, String ToDate, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\DBT\DBT.cs:line 70
+=============================
+
+New Log Entry : 
+07/23/2024 18:08:02
+===========================
+Date              :23 July 2024 18:08:02
+User Name         :
+URL               :/DBT/GetData
+Query String      :
+Req From          :http://localhost:49865/DBT/DBTEntry?Guid=89dc09fc-118f-49bc-a674-be27c4d7d04a
+HostAddress       :::1
+Error Desc        :Error converting value 0 to type 'DAL.DBT.MPEntryPaymentCycle'. Path '', line 1, position 1.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.EnsureType(JsonReader reader, Object value, CultureInfo culture, JsonContract contract, Type targetType)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.DBTController.GetData(DateTime fromdate) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\DBTController.cs:line 48
+=============================
+
+New Log Entry : 
+07/23/2024 20:03:52
+===========================
+Date              :23 July 2024 20:03:52
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:03:57
+===========================
+Date              :23 July 2024 20:03:57
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:04:14
+===========================
+Date              :23 July 2024 20:04:14
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:04:55
+===========================
+Date              :23 July 2024 20:04:55
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=e784eafe-2ed2-499f-8e85-c31aaf793f2c
+Req From          :http://localhost:49865/User/Index?Guid=e784eafe-2ed2-499f-8e85-c31aaf793f2c
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+07/23/2024 20:06:51
+===========================
+Date              :23 July 2024 20:06:51
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:07:00
+===========================
+Date              :23 July 2024 20:07:00
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=27bbf23b-e57b-4a43-ba98-21a50e327694
+Req From          :http://localhost:49865/User/Index?Guid=27bbf23b-e57b-4a43-ba98-21a50e327694
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (405) Method Not Allowed.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Farmer.Farmer.MPGetList(String code, String MCCCode, String VLCUploaderCode, String guid, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 40
+=============================
+
+New Log Entry : 
+07/23/2024 20:12:27
+===========================
+Date              :23 July 2024 20:12:27
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:12:44
+===========================
+Date              :23 July 2024 20:12:44
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:14:00
+===========================
+Date              :23 July 2024 20:14:00
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=c48769ec-d4f1-4b75-a25a-5b09bbfab676
+Req From          :http://localhost:49865/User/Index?Guid=c48769ec-d4f1-4b75-a25a-5b09bbfab676
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+07/23/2024 20:29:42
+===========================
+Date              :23 July 2024 20:29:42
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 20:30:24
+===========================
+Date              :23 July 2024 20:30:24
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 20:30:44
+===========================
+Date              :23 July 2024 20:30:44
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 20:30:54
+===========================
+Date              :23 July 2024 20:30:54
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 20:32:06
+===========================
+Date              :23 July 2024 20:32:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 20:32:06
+===========================
+Date              :23 July 2024 20:32:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:32:06
+===========================
+Date              :23 July 2024 20:32:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:32:06
+===========================
+Date              :23 July 2024 20:32:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:32:06
+===========================
+Date              :23 July 2024 20:32:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 20:32:40
+===========================
+Date              :23 July 2024 20:32:40
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 20:33:46
+===========================
+Date              :23 July 2024 20:33:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 21:11:37
+===========================
+Date              :23 July 2024 21:11:37
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 21:18:01
+===========================
+Date              :23 July 2024 21:18:01
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The operation has timed out
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 96
+=============================
+
+New Log Entry : 
+07/23/2024 21:22:06
+===========================
+Date              :23 July 2024 21:22:06
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 21:31:19
+===========================
+Date              :23 July 2024 21:31:19
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 21:31:42
+===========================
+Date              :23 July 2024 21:31:42
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 21:32:59
+===========================
+Date              :23 July 2024 21:32:59
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 21:33:30
+===========================
+Date              :23 July 2024 21:33:30
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 21:39:10
+===========================
+Date              :23 July 2024 21:39:10
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 90
+=============================
+
+New Log Entry : 
+07/23/2024 21:40:57
+===========================
+Date              :23 July 2024 21:40:57
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 22:28:12
+===========================
+Date              :23 July 2024 22:28:12
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 404 (Not Found).
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 127
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 22:40:20
+===========================
+Date              :23 July 2024 22:40:20
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 404 (Not Found).
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 127
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+07/23/2024 22:41:28
+===========================
+Date              :23 July 2024 22:41:28
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=f1495476-33e7-4e84-990e-a76b95be3a97
+Req From          :http://localhost:49865/User/Index?Guid=f1495476-33e7-4e84-990e-a76b95be3a97
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[55].Gender', line 1, position 27780.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 33
+=============================
+
+New Log Entry : 
+07/23/2024 22:42:29
+===========================
+Date              :23 July 2024 22:42:29
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :HTTP request failed: Response status code does not indicate success: 404 (Not Found).
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 127
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================

@@ -1,0 +1,420 @@
+﻿@model DAL.Farmer.MPDetailModel
+@using DAL.Farmer
+@using Newtonsoft.Json
+@using System.Web.Hosting
+@using DAL.Common
+@using DAL.Models
+@{
+    ViewBag.Title = "NewRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string Guid = (Request.QueryString["Guid"] != null ? Request.QueryString["Guid"] : null);
+    CastCategory objcastCategory = JsonConvert.DeserializeObject<CastCategory>( System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/Cast/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/Cast/" + Guid + ".json")) : null );
+    DistrictList objDistrictList = JsonConvert.DeserializeObject<DistrictList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/District/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/District/" + Guid + ".json")) : null);
+    ZoneList objZoneList = JsonConvert.DeserializeObject<ZoneList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/Zone/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/Zone/" + Guid + ".json")) : null);
+    BlockList objBlockList = JsonConvert.DeserializeObject<BlockList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/Block/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/Block/" + Guid + ".json")) : null);
+    RevenueVillageList objRevenueVillageList = JsonConvert.DeserializeObject<RevenueVillageList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/RVillage/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/RVillage/" + Guid + ".json")) : null);
+    GramPanchayatList objGramPanchayatList = JsonConvert.DeserializeObject<GramPanchayatList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/GramPanchayat/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/GramPanchayat/" + Guid + ".json")) : null);
+    PanchayatSamitiList objPanchayatSamitiList = JsonConvert.DeserializeObject<PanchayatSamitiList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/PanchayatSamiti/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/PanchayatSamiti/" + Guid + ".json")) : null);
+    VidhanSabhaList objVidhanSabhaList = JsonConvert.DeserializeObject<VidhanSabhaList>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/VidhanSabha/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/Lists/VidhanSabha/" + Guid + ".json")) : null);
+    FixedParameter fixedParameter= JsonConvert.DeserializeObject<FixedParameter>(System.IO.File.Exists(HostingEnvironment.MapPath("~/App_Data/Farmer/" + Guid + ".json")) ? ReadWriteFile.ReadFile(HostingEnvironment.MapPath("~/App_Data/Farmer/" + Guid + ".json")) : null);
+}
+<div class="container-fluid dbt-entery-pg">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        @if (Model.MPData != null && Model.MPData.Count > 0)
+        {
+            <h1 class="h3 mb-0 text-gray-800">Update Farmer Detail</h1>
+        }
+        else
+        {
+            <h1 class="h3 mb-0 text-gray-800">New Farmer Registration</h1>
+        }
+    </div>
+    <div class="form">
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">MP Code:</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtmpcode" value="@Model.MPData[0].MP_CODE_VLC_UPLOADER" placeholder="Enter MP Code." onkeypress="return isNumberKey(event)" readonly />
+                    }
+                    else
+                    {
+                        if (string.Equals(fixedParameter.GetFixedParameter[0].Description, "1"))
+                        {
+                            <input type="text" class="form-control" id="txtmpcode" placeholder="Enter MP Code." onkeypress="return isNumberKey(event)" />
+
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="txtmpcode" placeholder="Enter MP Code." onkeypress="return isNumberKey(event)" readonly />
+
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">MP Name:</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtmpname" value="@Model.MPData[0].MP_NAME" placeholder="Enter MP Name." onkeypress="return isAlphaKeyWithSpace(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtmpname" placeholder="Enter MP Name." onkeypress="return isAlphaKeyWithSpace(event)" />
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="MPNameHindi" class="label-text">MP Name Hindi</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtmpnameHindi" value="@Model.MPData[0].MP_Name_Hindi" placeholder="Enter MP Name Hindi." onkeypress="return isAlphaKeyWithSpace(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtmpnameHindi" placeholder="Enter MP Name Hindi." onkeypress="return isAlphaKeyWithSpace(event)" />
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Father Name:</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtFatherName" value="@Model.MPData[0].Father_Name" placeholder="Enter Father Name." onkeypress="return isAlphaKeyWithSpace(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtFatherName" value="" placeholder="Enter Father Name." onkeypress="return isAlphaKeyWithSpace(event)" />
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Gender</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Gender." />*@
+                <select class="form-control form-control-user" id="ddlGender">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].Gender:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].Gender:"Select Gender")</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                </select>
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Mobile No.</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtMobile" value="@Model.MPData[0].Telphone" placeholder="Enter Mobile No." onkeypress="return isNumberKey(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtMobile" value="" placeholder="Enter Mobile No." onkeypress="return isNumberKey(event)" />
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Address</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtAddress" value="@Model.MPData[0].Add1" placeholder="Enter Address" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtAddress" value="" placeholder="Enter Address" />
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Aadhar Number:</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtAadharNo" value="@Model.MPData[0].AadharNo" placeholder="Enter Aadhar Number" onkeypress="return isNumberKey(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtAadharNo" value="" placeholder="Enter Aadhar Number" onkeypress="return isNumberKey(event)" />
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Jan Aadhar Number</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtJanAadharNo" value="@Model.MPData[0].Jan_Aadhar_No" placeholder="Enter Jan Aadhar Number" onkeypress="return isNumberKey(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtJanAadharNo" value="" placeholder="Enter Jan Aadhar Number" onkeypress="return isNumberKey(event)" />
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Bank IFSC Code:</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtIfscCode" value="@Model.MPData[0].IFCICode" placeholder="Enter Bank IFSC Code" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtIfscCode" value="" placeholder="Enter Bank IFSC Code" />
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Bank Name</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtBankName" value="@Model.MPData[0].BankName" placeholder="Enter Bank Name" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtBankName" value="" placeholder="Enter Bank Name" />
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Bank Account Number</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtAccountNo" value="@Model.MPData[0].AccountNO" placeholder="Enter Bank Account Number" onkeypress="return isNumberKey(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtAccountNo" value="" placeholder="Enter Bank Account Number" onkeypress="return isNumberKey(event)" />
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Cast Category</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Cast Category" />*@
+                <select class="form-control form-control-user" id="ddlcategory">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].CAST_CATEGORY_CODE:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].CAST_CATEGORY_CODE: "Select Cast Category")</option>
+
+                    @foreach (var item in objcastCategory.MPGetCastCategory)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+
+                </select>
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">District:</label>
+                    @*<input type="text" class="form-control" placeholder="Enter District" />*@
+                <select class="form-control form-control-user" id="ddlDistrict">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].DISTRICT_Code:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].DISTRICT_Code: "Select District")</option>
+                    @foreach (var item in objDistrictList.MPDistictList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Zone</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Zone" />*@
+                <select class="form-control form-control-user" id="ddlZone">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].Zone_Code:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].Zone_Code: "Select Zone")</option>
+
+                    @foreach (var item in objZoneList.MPZoneList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Block:</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Block" />*@
+                <select class="form-control form-control-user" id="ddlBlock">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].BLOCK_CODE:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].BLOCK_CODE: "Select Block")</option>
+
+                    @foreach (var item in objBlockList.MPBlockList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Revenue Villages</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Revenue Village." />*@
+                <select class="form-control form-control-user" id="ddlRvillage">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].REVENUE_VILLAGE_CODE:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].REVENUE_VILLAGE_CODE: "Select Revenue Village")</option>
+                    @foreach (var item in objRevenueVillageList.MPRevenueVillageList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Gram Panchayat:</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Gram Panchayat" />*@
+                <select class="form-control form-control-user" id="ddlGpanchayat">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].GRAMPANCHAYAT_CODE:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].GRAMPANCHAYAT_CODE: "Select Gram Panchayat")</option>
+
+                    @foreach (var item in objGramPanchayatList.MPGramPanchayatList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Panchayat Samiti</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Panchayat Samiti." />*@
+                <select class="form-control form-control-user" id="ddlPsamiti">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].PANCHAYAT_SAMITI_CODE:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].PANCHAYAT_SAMITI_CODE: "Select Panchayat Samiti")</option>
+
+                    @foreach (var item in objPanchayatSamitiList.MPPanchayatSamitiList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Vidhan Sabha:</label>
+                    @*<input type="text" class="form-control" placeholder="Enter Vidhan Sabha" />*@
+                <select class="form-control form-control-user" id="ddlVidhanSabha">
+                    <option value="@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].VIDHAN_SABHA_CODE:"0")" selected>@((Model.MPData != null && Model.MPData.Count > 0)?Model.MPData[0].VIDHAN_SABHA_CODE: "Select Vidhan Sabha")</option>
+
+                    @foreach (var item in objVidhanSabhaList.MPVidhanSabhaList)
+                    {
+                        <option value="@item.Code">@item.Name</option>
+                    }
+                </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row min-top">
+            <div class="col-lg-6 md-4">
+                <div class="form-input">
+                    <label for="code" class="label-text">Age</label>
+                    @if (Model.MPData != null && Model.MPData.Count > 0)
+                    {
+                        <input type="text" class="form-control" id="txtAge" value="@Model.MPData[0].Age" placeholder="Enter Age" onkeypress="return isNumberKey(event)" />
+                    }
+                    else
+                    {
+                        <input type="text" class="form-control" id="txtAge" value="" placeholder="Enter Age" onkeypress="return isNumberKey(event)" />
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 md-4">
+                @*<div class="form-input">
+                        <input type="checkbox" class="form-check" name="Inactive" id="Inactive" value="Inactive" />
+                        <label for="Inactive" class="form-check-input">Inactive</label>
+                    </div>*@
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="chkInactive">
+                    <label class="form-check-label label-text" for="chkInactive">
+                        Inactive
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (Model.MPData != null && Model.MPData.Count > 0)
+    {
+        <div class="dbt-e-pg-submit">
+            <a style="cursor:pointer" class="submit-btn" id="btnSubmit">Update</a>
+        </div>
+    }
+    else
+    {
+        <div class="dbt-e-pg-submit">
+            <a style="cursor:pointer" class="submit-btn" id="btnSubmit">Save</a>
+        </div>
+    }
+
+</div>
+<script src="~/Content/js/CustomScript/FarmerReg.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //$('#callaway_popup2').hide();
+
+    });
+    $('#btnSubmit').click(function (e) {
+        debugger;
+        if (Validate()) {
+            $('#callaway_popup2').show();
+            SaveMPMasterData();
+        }
+        
+    });
+    function Validate() {
+        var Status = true;
+        if ($('#txtmpname').val == "" && Status==true)
+        {
+            $('#txtmpname').focus();
+            ShowSweet2Message("warning", "Farmer Registration", "Please Enter MP Name");
+            Status = false;
+        }
+        else if ($('#txtIfscCode').val == "" && Status==true)
+        {
+            $('#txtIfscCode').focus();
+            ShowSweet2Message("warning", "Farmer Registration", "Please Enter Bank IFSC Code.");
+            Status = false;
+        }
+        else if ($('#txtAccountNo').val == "" && Status == true) {
+            $('#txtAccountNo').focus();
+            ShowSweet2Message("warning", "Farmer Registration", "Please Enter Bank Account No.");
+            Status = false;
+        }
+        return Status;
+    }
+   // $("#ddlDestination").val()
+
+
+</script>

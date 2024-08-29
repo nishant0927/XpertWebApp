@@ -1,0 +1,145 @@
+﻿@model DAL.VLC.CVMDBTEntry
+@{
+    ViewBag.Title = "DBTEntry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if(Session["Port"] != null){
+
+           
+<div class="container-fluid dbt-entery-pg">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">DBT Entry</h1>
+    </div>
+    <div class="dbt-e-pg-header1">
+        <div class="hd-text1">@(Model.VLCName!=null?Model.VLCName:"Null")[@(Model.VLC_UploderCode != null ? Model.VLC_UploderCode : "null")]</div>
+        <div class="hd-text2">Billed Qty [@(Model.BilledQty!=null?Model.BilledQty:"0")]</div>
+    </div>
+    <div class="dbt-e-pg-header2">
+        <div class="inner-box">
+            <div class="ib-text1">Farmer</div>
+            <div class="ib-text2"> @(Model.MPFarmer!=null?Model.MPFarmer:"null")</div>
+        </div>
+        <div class="inner-box">
+            <div class="ib-text1">Qty</div>
+            <div class="ib-text2">@(Model.MPQty!=null?Model.MPQty:"0")</div>
+        </div>
+        <div class="inner-box">
+            <div class="ib-text1">Amount</div>
+            <div class="ib-text2">@(Model.MPAmount!=null?Model.MPAmount:"0")</div>
+        </div>
+    </div>
+    <div class="dbt-e-pg-date-panel">
+        <div class="form-group">
+            <label>From Date</label>
+            <span class="input-position">
+                @*<span class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>*@
+                <input type="date" id="txtFromDate" class="input-c" placeholder="1-may-2023" onchange="handler(event);" />
+            </span>
+        </div>
+        <div class="form-group">
+            <label>To Date</label>
+            <span class="input-position">
+                @*<span class="icon"><i class="fa fa-calendar" aria-hidden="true"></i></span>*@
+                <input type="date" id="txtToDate" class="input-c" placeholder="31-may-2023" />
+            </span>
+        </div>
+    </div>
+    <div class="dbt-e-pg-search-panel">
+        <div class="form-group">
+            <span class="input-position">
+                <span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <input type="text" class="input-c" id="searchInput" placeholder="Search By Name or Code" />
+            </span>
+        </div>
+    </div>
+    @if (Model.Farmers != null)
+    {
+        <div class="dbt-e-pg-table-panel" id="searchableDiv">
+            <div class="tp-row">
+                <div class="com-box box1">
+                    <span class="hd-text">Farmer Code</span>
+                </div>
+                <div class="com-box box2">
+                    <span class="hd-text">Farmer Name</span>
+                </div>
+                <div class="com-box box3">
+                    <span class="hd-text">Father Name</span>
+                </div>
+                <div class="com-box box4">
+                    <span class="hd-text">Qty</span>
+                </div>
+            </div>
+            @foreach (var item in Model.Farmers)
+            {
+                <div class="tp-row tp-r">
+                    <div class="com-box box1">
+                        <span class="tp-text tp-v">@item.Code</span>
+                    </div>
+                    <div class="com-box box2">
+                        <span class="tp-text tp-v">@item.Farmer</span>
+                    </div>
+                    <div class="com-box box3">
+                        <span class="tp-text tp-v">@item.FatherName</span>
+                    </div>
+                    <div class="com-box box4">
+                        <input type="text" class="input-tp" value="@(item.Qty!=null?item.Qty:"")" onkeypress="return isNumberKeyWithDecimal(event)" />
+                    </div>
+                </div>
+            }
+            @*<div class="tp-row">
+                    <div class="com-box box1">
+                        <span class="tp-text">0402007</span>
+                    </div>
+                    <div class="com-box box2">
+                        <span class="tp-text">MAMTA CHOUDHARY 29</span>
+                    </div>
+                    <div class="com-box box3">
+                        <span class="tp-text">(SURESH KUMAR COUNDHARY)</span>
+                    </div>
+                    <div class="com-box box4">
+                        <input type="text" class="input-tp" />
+                    </div>
+                </div>
+                <div class="tp-row">
+                    <div class="com-box box1">
+                        <span class="tp-text">0402007</span>
+                    </div>
+                    <div class="com-box box2">
+                        <span class="tp-text">RAKESH KUMAR RASTOGI</span>
+                    </div>
+                    <div class="com-box box3">
+                        <span class="tp-text">(SURESH COUNDHARY)</span>
+                    </div>
+                    <div class="com-box box4">
+                        <input type="text" class="input-tp" />
+                    </div>
+                </div>*@
+        </div>
+        <div class="dbt-e-pg-submit">
+            <a href="#" class="submit-btn" id="btnSubmit">Submit</a>
+        </div>
+
+    }
+    <input type="hidden" id="hdnfdate" value="@(Model.FromDate!=null?Model.FromDate:"")" />
+    <input type="hidden" id="hdntdate" value="@(Model.ToDate!=null?Model.ToDate:"")" />
+</div>
+}
+<script src="~/Content/js/CustomScript/DBTEntry.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        debugger;
+       // $('#callaway_popup2').hide();
+        setFormDate();
+        setToDate();
+        SearchFun();
+    });
+    $('#btnSubmit').click(function (e) {
+        debugger;
+        //GetJsonData();
+        $('#callaway_popup2').show();
+        getValuesAsJson();
+    });
+</script>

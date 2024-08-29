@@ -1,0 +1,1306 @@
+﻿
+@{
+    ViewBag.Title = "Daily Qty Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+    .col-md-2 {
+        max-width: none;
+    }
+
+    .col-md-3 {
+        flex: 2 5 28% !important;
+        max-width: 41% !important;
+    }
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 6px 16px;
+        transition: 0.3s;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #3f6e8a;
+            color: white;
+        }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table {
+        table-layout: auto; /* This ensures that the table's layout is fixed */
+        width: 100%; /* Adjust the width as needed */
+    }
+
+    td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+    }
+
+    /*   table thead, tfoot {
+            position: sticky;
+            top: 0;
+            background-color: #1cc8c07a;
+            z-index: 1;
+            table-layout: auto !important;
+            width: auto !important;
+            font-size: 14px;
+            font-weight: bold;
+        }*/
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    /* .input-group {
+            margin-bottom: -23px;
+        }
+    */
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+            border-right: 0;
+            white-space: nowrap;
+
+            border-radius: 0;*/
+    /*vertical-align: top;
+            border-color: #d2d6de;
+            background-color: #fff;
+            border-right: 0;
+            display: table-cell;
+        }*/
+
+    /*table {
+            table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+            height: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+<div class="content-wrapper" style="margin-left:-8px!important;">
+    <section class="content-header">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content">
+        <div class="box">
+            <div class="row" style="margin-top: -18px; max-height: 16px;">
+                <div class="col-sm-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border" style="padding: 1px;margin-top: 14px;">
+                            <div class="row" style="margin-top:-14px;">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'divFilter')" id="defaultOpen">Filter</button>
+                                        <button class="tablinks" onclick="openTab(event,'requsetStatus')">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body-wrapper" style="height: 350px; margin-top:-12px;">
+            <div class="tabcontent" id="divFilter">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="box box-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>From Date</label>
+                                            <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>To Date</label>
+                                            <input type="date" class="form-control form-control-sm input" id="txtToDate" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control form-control-sm input" id="ddlStatus">
+                                                <option value="ALL">ALL</option>
+                                                <option value="Posted">Posted</option>
+                                                <option value="UnPosted">UnPosted</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2" style="display:none" id="divAllowFat">
+                                        <label>Allow Fat %</label>
+                                        <input type="text" class="form-control form-control-sm input" id="txtAllowFat" />
+                                    </div>
+                                    <div class="col-md-2" style="display:none" id="divAllowSNF">
+                                        <label>Allow SNF %</label>
+                                        <input type="text" class="form-control form-control-sm input" id="txtAllowSnf" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3" id="divMcc" style="display:none">
+                                        <div class="form-group" style="margin-top: -5px;">
+                                            <label>MCC</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-sm input" id="txtMccCode" />
+                                                <button class="btn btn-sm btn-primary" style="height: 30px; margin-top: -1px;" id="btnLoadMcc">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3" id="divTanker" style="display:none">
+                                        <div class="form-group" style="margin-top: -5px;">
+                                            <label>Tanker No</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control form-control-sm input" id="txtTankerNo" />
+                                                <button class="btn btn-sm btn-primary" style="height: 30px; margin-top: -1px;" id="loadTanker">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box">
+                            <div class="box box-body">
+                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
+
+                                    <div class="row">
+                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbSummary" style=" margin-left: 2px;">
+                                            <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Summary</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDetail" style=" margin-left: 7px;" checked>
+                                            <label style=" margin-left: 24px;">Details</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDock" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">Dock</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTranpoterGainLoss" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> Tranpoter Gain/Loss</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbBMCSummary" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">  BMC Summary</label>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTankerWise" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">  Tanker Wise</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbMultipleCollection" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> Multiple Collection</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbCollectionDate" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">  Collection Data</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbBMCTankerCollection" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> BMC/Tanker  Collection</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbRoutWiseCollection" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> Route Wise Collection</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDocDateWise" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> Dock Date Wise</label>
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDocShiftWise" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> Dock Shift Wise</label>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTranpoterGainLossSummary" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;"> Tranpoter Gain/Loss Summary</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row">
+                                    <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size:12px; width:11px!important;">Print</legend>
+                                            <input class="form-check-input" type="radio" name="print" id="rbBMCDoc" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">BMC Doc</label>
+                                            <input class="form-check-input" type="radio" name="print" id="rbDCSSummary" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">DCS Summary</label>
+                                            <input class="form-check-input" type="radio" name="print" id="rbDocSummary" style=" margin-left: 5px;">
+                                            <label style=" margin-left: 22px;">Doc Summary</label>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3" style="display:none" id="divShift">
+                                        <div class="form-group">
+                                            <label>Shift</label>
+                                            <select class="form-control form-control-sm input" id="ddlShift">
+                                                <option value="Both">Both</option>
+                                                <option value="Morning">Morning</option>
+                                                <option value="Evening">Evening</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabcontent" id="requsetStatus">
+                <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                    <table width="100%" class="table table-bordered table-hover no-footer dataTable" style="font-size: 12px;" id="tblRequestStatus">
+                        <thead id="theadRequestStatus">
+                        </thead>
+                        <tbody id="tbodyRequestStatus"></tbody>
+                    </table>
+                </div>
+                <div style="overflow-y: auto; text-align: right; height:52px; margin-top:4px;">
+                    <nav aria-label="Page navigation example" style="display: inline-flex!important;">
+                        <ul class="pagination justify-content-center" id="pagination">
+                        </ul>
+                    </nav>
+                    @*</div>*@
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer" style="margin-top: 61px;">
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
+            <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>
+            <button class="btn btn-sm btn-primary search-button" style="width: 139px!important;" id="btnExcel"> <i class="fa fa-download"></i> Generate Excel</button>
+
+        </div>
+
+        @*</div>*@
+        @*</div>*@
+
+    </section>
+</div>
+@Html.Partial("~/Views/DairySales/_ListData.cshtml")
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/adminlte/js/adminlte.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+    $(document).ready(function (){
+        openTab(null, 'divFilter');
+    });
+    function openTab(evt, tabId) {
+        // Hide all tab content
+        $(".tabcontent").hide();
+
+        // Remove "active" class from all tab links
+        $(".tablinks").removeClass("active");
+
+        // Show the current tab content and add "active" class to the clicked tab button
+        $("#" + tabId).show();
+        if (evt) {
+            $(evt.currentTarget).addClass("active");
+        }
+    }
+    $("#defaultOpen").addClass("active");
+  
+
+    $("#btnLoadMcc").on('click', function () {
+        var modalId = "AddModal";
+        var title = "Select MCC";
+
+        GetMCC(function (data) {
+            var header = Object.keys(data[0]).filter(function (key) {
+                return key !== "Result";
+            });
+
+            var processedData = data.map(function (row) {
+                var newRow = {};
+                header.forEach(function (key) {
+                    newRow[key] = row[key];
+                });
+                return newRow;
+            });
+            console.log("Header", header);
+            console.log("processedData", processedData);
+            AddDataModal(modalId, title, header, processedData, function (onAnchorClick) {
+
+                console.log("Selected values:", onAnchorClick);
+
+                $("#txtMccCode").val(onAnchorClick[0]);
+                // $("#txtRoutName").val(onAnchorClick[1]);
+
+            });
+        });
+    })
+
+
+
+    $("#loadTanker").on('click', function () {
+        var modalId = "AddModal";
+        var title = "Select Tanker";
+
+        GetTanker(function (data) {
+            var header = Object.keys(data[0]).filter(function (key) {
+                return key !== "Result";
+            });
+
+            var processedData = data.map(function (row) {
+                var newRow = {};
+                header.forEach(function (key) {
+                    newRow[key] = row[key];
+                });
+                return newRow;
+            });
+            console.log("Header", header);
+            console.log("processedData", processedData);
+            AddDataModal(modalId, title, header, processedData, function (onAnchorClick) {
+
+                console.log("Selected values:", onAnchorClick);
+
+                $("#txtTankerNo").val(onAnchorClick[0]);
+                // $("#txtRoutName").val(onAnchorClick[1]);
+
+            });
+        });
+    })
+
+    function GetMCC(callback) {
+        $.ajax({
+            url: '/Report/GetMccCode',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data && data.response) {
+                    var responseData = JSON.parse(data.response);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", result.responseText);
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+    }
+
+    function GetTanker(callback) {
+        $.ajax({
+            url: '/Report/GetTanker',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    var responseData = JSON.parse(data.responseData);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", result.responseText);
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+    }
+    $("#btnSearch").on('click', function () {
+        openTab(null, 'requsetStatus');
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtToDate").val();
+        var status = $("#ddlStatus").val();
+        var allowFat = $("#txtAllowFat").val() || 0;
+        var allowsnf = $("#txtAllowSnf").val() || 0;
+        //var allowFat = $("#txtAllowFat").val();
+        //var allowsnf = $("#txtAllowSnf").val();
+        var mccCode = $("#txtMccCode").val();
+        var tankerNo = $("#txtTankerNo").val();
+        var rdbSummary = $("#rbSummary").is(":checked");
+        var rdbDetails = $("#rbDetail").is(":checked");
+        var rbtnDock = $("#rbDock").is(":checked");
+        var rbtnTranpoterGainLoss = $("#rbTranpoterGainLoss").is(":checked");
+        var rbtnBmcSummary = $("#rbBMCSummary").is(":checked");
+        var rdbTankerWise = $("#rbTankerWise").is(":checked");
+        var rdbMultiple = $("#rbMultipleCollection").is(":checked");
+        var rdbCollectionWise = $("#rbCollectionDate").is(":checked");
+        var rbtnBMCTankerCollection = $("#rbBMCTankerCollection").is(":checked");
+        var rbtnRouteWise = $("#rbRoutWiseCollection").is(":checked");
+        var rbtnDockDateWise = $("#rbDocDateWise").is(":checked");
+        var rbtnDockShiftWise = $("#rbDocShiftWise").is(":checked");
+        var rbtnTranspoterGainlossSummary = $("#rbTranpoterGainLossSummary").is(":checked");
+        var isPickCLRInsteadOfSNF = false;
+        var fndArea = "";
+        var formId = "DAILY_QTY_R";
+        GetDailyQty(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection)
+
+    })
+    var allData = []; // Array to hold all data
+    var pageSize = 1000; // Number of records per page
+    var currentPage = 1; // Current page
+    var totalPages = 0; // Total number of pages
+
+    function GetDailyQty(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection) {
+
+        $.ajax({
+            url: '/Report/GetDailyQuantity',
+            type: 'GET',
+            dataType: 'json',
+            data: { rbtnTranpoterGainLoss: rbtnTranpoterGainLoss, rdbSummary: rdbSummary, rbtnDock: rbtnDock, rbtnDockDateWise: rbtnDockDateWise, rbtnDockShiftWise: rbtnDockShiftWise, rbtnBmcSummary: rbtnBmcSummary, rdbDetails: rdbDetails, fromDate: fromDate, toDate: toDate, formId: formId, status: status, fndArea: fndArea, mccCode: mccCode, isPickCLRInsteadOfSNF: isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary: rbtnTranspoterGainlossSummary, allowFat: allowFat, allowsnf: allowsnf, tankerNo: tankerNo, rdbTankerWise: rdbTankerWise, rbtnRouteWise: rbtnRouteWise, rdbCollectionWise: rdbCollectionWise, rdbMultiple: rdbMultiple, rbtnBMCTankerCollection: rbtnBMCTankerCollection },
+            success: function (data) {
+                if (data.success) {
+                    var responseData = JSON.parse(data.responseData);
+                    console.log("Response Data", responseData);
+
+                    if (responseData) {
+                        $('#divFilter').find('input, select, button').attr('disabled', true);
+                        allData = responseData;
+                        console.log("Data", allData);
+                        totalPages = Math.ceil(allData.length / pageSize);                      
+
+                        if ($("#rbDock").is(":checked") || $("#rbDocDateWise").is(":checked") || $("#rbDocShiftWise").is(":checked")) {
+                            SetTableFormationOFDock(currentPage);
+                        }
+                        else if ($("#rbMultipleCollection").is(":checked")) {
+                            SetTableFormationOFMultiple(currentPage);
+                        }
+                        else if ($("#rbCollectionDate").is(":checked")) {
+                            SetTableFormationOFCollection(currentPage);
+                        }
+                        else {
+                            SetTableFormation(currentPage);
+                        }
+                        renderPagination();
+                        //$('#tblRequestStatus').DataTable({
+                        //    'paging': false,
+                        //    'lengthChange': true,
+                        //    'searching': true,
+                        //    'ordering': true,
+                        //    'info': false,
+                        //    'autoWidth': false,
+                        //    'initComplete': function () {
+                        //        var table = this.api();
+
+                        //        // Add a text input to each header cell below the header text
+                        //        $('#tblRequestStatus thead th').each(function () {
+                        //            var title = $(this).text();
+                        //            $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                        //        });
+
+                        //        // Apply the search
+                        //        table.columns().every(function () {
+                        //            var column = this;
+
+                        //            $('input', column.header()).on('keyup change', function () {
+                        //                if (column.search() !== this.value) {
+                        //                    column
+                        //                        .search(this.value)
+                        //                        .draw();
+                        //                }
+                        //            });
+                        //        });
+                        //    }
+                        //});
+                    }
+                    else {
+                        ShowSweet2Message("warning", "Warning", data.responseText);
+                    }
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", data.responseText);
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+
+    }
+
+    function SetTableFormationOFDock(page) {
+        //console.log(responseData);
+        // $('#tblRequestStatus').DataTable().clear().destroy();
+        $("#theadRequestStatus").empty();
+        $("#tbodyRequestStatus").empty();
+        var start = (page - 1) * pageSize;
+        var end = start + pageSize;
+        var pagedData = allData.slice(start, end);
+        console.log("Page Data", pagedData);
+        var header = '<tr>';
+        header += '<th>S.No.</th>';
+        header += '<th>Date</th>';
+        header += '<th>Shift</th>';
+        header += '<th>Can</th>';
+        header += '<th>QTY</th>';
+        header += '<th>FAT %</th>';
+        header += '<th>SNF %</th>';
+        header += '<th>SNF KG</th>';
+        header += '<th>FAT KG</th>';
+        header += '<th>VLC Code</th>';
+        header += '<th>DCS Uploader Code</th>';
+        header += '<th>BMC Uploader Code</th>';
+        header += '<th>Area</th>';
+        header += '<th>Route No</th>';
+
+
+        //header += '<th>BMC Code</th>';
+        //header += '<th>BMC Name</th>';
+
+
+        //header += '<th>DCS Code</th>';
+        //header += '<th>DCS Name</th>';
+
+
+        //header += '<th>RATE</th>';
+        //header += '<th>Amt</th>';
+        header + '</tr>';
+        $("#theadRequestStatus").append(header);
+        // var DocData = JSON.parse(responseData);
+        $.each(pagedData, function (index, item) {
+            var tr = '<tr>';
+            tr += '<td>' + item.SNo + '</td>';
+            tr += '<td>' + item.SDate + '</td>';
+            tr += '<td>' + item.Shift + '</td>';
+            tr += '<td>' + item.Qty + '</td>';
+            tr += '<td>' + item.Milk_Wtd + '</td>';
+            tr += '<td>' + item.FAT + '</td>';
+            tr += '<td>' + item.SNF + '</td>';
+            tr += '<td>' + item.SNF_KG + '</td>';
+            tr += '<td>' + item.Fat_KG + '</td>';
+            tr += '<td>' + item.DCS_Code + '</td>';
+            tr += '<td>' + item.DCS_Uploader_Code + '</td>';
+            tr += '<td>' + item.BMC_Uploader_Code + '</td>';
+            tr += '<td>' + item.Area + '</td>';
+            tr += '<td>' + item.Route_Code + '</td>';
+            //tr += '<td>' + item.+'</td>';
+            //tr += '<td>' + item.+'</td>';
+            //tr += '<td>' + item.+'</td>';
+            //tr += '<td>' + item.+'</td>';
+            //tr += '<td>' + item.RATE+'</td>';
+            //tr += '<td>' + item.Amt + '</td>';
+            $("#tbodyRequestStatus").append(tr);
+        })
+    }
+    function SetTableFormationOFMultiple(page) {
+        $("#theadRequestStatus").empty();
+        $("#tbodyRequestStatus").empty();
+        var start = (page - 1) * pageSize;
+        var end = start + pageSize;
+        var pagedData = allData.slice(start, end);
+        var header = '<tr>';
+        header += '<th>Document No.</th>';
+        header += '<th>Document Date</th>';
+        header += '<th>MCC Code</th>';
+        header += '<th>MCC NAME</th>';
+        header += '<th>Uploader No.</th>';
+        header += '<th>Route Code</th>';
+        header += '<th>Route Description</th>';
+        header += '<th>Tanker No.</th>';
+        header += '<th>Vehicle No.</th>';
+        header += '<th>Entered Qty</th>';
+        header += '<th>FATKG</th>';
+        header += '<th>SNFKG</th>';
+        header += '<th>CLR</th>';
+        header += '<th>FAT</th>';
+        header += '<th>VLC Code</th>';
+        header += '<th>VLC Name</th>';
+        header += '<th>Uploader No.</th>';
+        header += '<th>Qty</th>';
+        header += '<th>FATKG</th>';
+        header += '<th>SNFKG</th>';
+        header += '<th>FAT%</th>';
+        header += '<th>SNF%</th>';
+        header += '<th>Qty</th>';
+        header += '<th>FATKG</th>';
+        header += '<th>SNFKG</th>';
+        header += '</tr>';
+
+        $("#theadRequestStatus").html(header);
+        $.each(pagedData, function (index, item) {
+            var tableBody = '<tr>';
+            tableBody += '<td>' + item.Document_No + '</td>';
+            tableBody += '<td>' + item.Document_Date + '</td>';
+            tableBody += '<td>' + item.MCC_Code + '</td>';
+            tableBody += '<td>' + item.MCC_NAME + '</td>';
+            tableBody += '<td>' + item.Mcc_Code_VLC_Uploader + '</td>';
+            tableBody += '<td>' + item.Route_Code + '</td>';
+            tableBody += '<td>' + item.ROUTE_NAME + '</td>';
+            tableBody += '<td>' + item.Tanker_No + '</td>';
+            tableBody += '<td>' + item.Vehicle_No + '</td>';
+            tableBody += '<td>' + item.Entered_Qty.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.Entered_FATKg.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.Entered_SNFKg.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.CLR.toFixed(0) + '</td>';
+            tableBody += '<td>' + item.FAT.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.VLC_Code + '</td>';
+            tableBody += '<td>' + item.VLC_Name + '</td>';
+            tableBody += '<td>' + item.VLC_Code_VLC_Uploader + '</td>';
+            tableBody += '<td>' + item.Qty.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.FATKG.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.SNFKG.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.DCS_FAT.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.DCS_SNF.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.Diff_Qty.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.Diff_FAT.toFixed(2) + '</td>';
+            tableBody += '<td>' + item.Diff_SNF.toFixed(2) + '</td>';
+            tableBody += '</tr>';
+            $("#tbodyRequestStatus").append(tableBody);
+        })
+
+    }
+    function SetTableFormationOFCollection(page) {
+        $("#theadRequestStatus").empty();
+        $("#tbodyRequestStatus").empty();
+        var start = (page - 1) * pageSize;
+        var end = start + pageSize;
+        var pagedData = allData.slice(start, end);
+        console.log("Page Data", pagedData);
+        var header = '<tr>';
+        header += '<th>Document No.</th>';
+        header += '<th>Document Date</th>';
+        header += '<th>MCC Code</th>';
+        header += '<th>MCC NAME</th>';
+        header += '<th>Uploader No.</th>';
+        header += '<th>Route Code</th>';
+        header += '<th>Route Description</th>';
+        header += '<th>Tanker No.</th>';
+        header += '<th>Vehicle No.</th>';
+        header += '<th>Entered Qty</th>';
+        header += '<th>FATKG</th>';
+        header += '<th>SNFKG</th>';
+        header += '<th>CLR</th>';
+        header += '<th>FAT</th>';
+        header += '<th>SNF%</th>';
+        header += '<th>VLC Code</th>';
+        header += '<th>VLC Name</th>';
+        header += '<th>Uploader No.</th>';
+        header += '<th>Collection Date</th>';
+        header += '<th>Qty</th>';
+        header += '<th>FAT</th>';
+        header += '<th>CLR</th>';
+        header += '<th>FATKG</th>';
+        header += '<th>SNFKG</th>';
+        header += '<th>SNF%</th>';
+        header += '</tr>';
+        $("#theadRequestStatus").html(header);
+        $.each(pagedData, function (index, item) {
+            tbody += '<tr>';
+            tbody += '<td>' + item.Document_No + '</td>';
+            tbody += '<td>' + item.Document_Date + '</td>';
+            tbody += '<td>' + item.MCC_Code + '</td>';
+            tbody += '<td>' + item.MCC_NAME + '</td>';
+            tbody += '<td>' + item.Mcc_Code_VLC_Uploader + '</td>';
+            tbody += '<td>' + item.Route_Code + '</td>';
+            tbody += '<td>' + item.ROUTE_NAME + '</td>';
+            tbody += '<td>' + item.Tanker_No + '</td>';
+            tbody += '<td>' + item.Vehicle_No + '</td>';
+            tbody += '<td>' + formatNumber(item.Entered_Qty, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.Entered_FATKg, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.Entered_SNFKg, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.CLR, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.DCS_FAT, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.DCS_SNFPER, "{0:n2}") + '</td>';
+            tbody += '<td>' + item.VLC_Code + '</td>';
+            tbody += '<td>' + item.VLC_Name + '</td>';
+            tbody += '<td>' + item.VLC_Code_VLC_Uploader + '</td>';
+            tbody += '<td>' + item.Collection_Date + '</td>';
+            tbody += '<td>' + formatNumber(item.Qty, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.FAT, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.SNF, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.FATKG, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.SNFKG, "{0:n2}") + '</td>';
+            tbody += '<td>' + formatNumber(item.SNFPER, "{0:n2}") + '</td>';
+            tbody += '</tr>';
+            $("#tbodyRequestStatus").append(tableBody);
+        });
+
+    }
+    function formatNumber(value, formatString) {
+        if (formatString === "{0:n2}") {
+            return parseFloat(value).toFixed(2);
+        }
+        return value;
+    }
+
+    function SetTableFormation(page) {
+        $("#theadRequestStatus").empty();
+        $("#tbodyRequestStatus").empty();
+        var start = (page - 1) * pageSize;
+        var end = start + pageSize;
+        var pagedData = allData.slice(start, end);
+        console.log("Page Data", pagedData);
+
+        var header = '<tr>';
+        var tbody = '';
+
+        if ($("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+
+            header += '<th>Document No</th>';
+            header += '<th>Document Date</th>';
+            header += '<th>Route Code</th>';
+            header += '<th>Route Name</th>';
+            header += '<th>Vehicle No</th>';
+        }
+
+            if ($("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+                header += '<th>Tanker No</th>';
+            }
+
+            if ($("#rbDetail").is(":checked")) {
+                header += '<th>MCC Code</th>';
+                header += '<th>MCC Name</th>';
+                header += '<th>Uploader No</th>';
+            }
+
+            if ($("#rbBMCSummary").is(":checked")) {
+                header += '<th>MCC Code</th>';
+                header += '<th>MCC Name</th>';
+                header += '<th>Uploader No</th>';
+            }
+
+            if ($("#rbSummary").is(":checked")) {
+                header += '<th>Qty</th>';
+                header += '<th>FAT %</th>';
+                header += '<th>SNF %</th>';
+                header += '<th>FAT KG</th>';
+                header += '<th>SNF KG</th>';
+            }
+
+             if ($("#rbTranpoterGainLoss").is(":checked") == true || $("#rbTranpoterGainLossSummary").is(":checked") == true) {
+                header += '<th>Qty</th>';
+                 header += '<th>FAT KG</th>';
+                 header += '<th>SNF KG</th>';
+                 header += '<th>FAT KG</th>';
+                 header += '<th>SNF KG</th>';
+                 header += '<th>Qty</th>';               
+            }
+            if ($("#rbDock").is(":checked")) {
+                header += '<th>Qty</th>';
+                header += '<th>FAT KG</th>';
+                header += '<th>SNF KG</th>';
+            }
+            if ($("#rbTankerWise").is(":checked")) {
+                header += '<th>Tankerno</th>';
+                header += '<th>Quantity</th>';
+                header += '<th>KGFAT</th>';
+                header += '<th>KGSNF</th>';
+                header += '<th>Quantity</th>';
+                header += '<th>KGFAT</th>';
+                header += '<th>KGSNF</th>';
+                header += '<th>Quantity</th>';
+                header += '<th>KGFAT</th>';
+                header += '<th>KGSNF</th>';
+            }
+            if ($("#rbTranpoterGainLoss").is(":checked") == false && $("#rbTranpoterGainLossSummary").is(":checked") == false && $("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+                header += '<th>Qty</th>';
+                header += '<th>FAT %</th>';
+                header += '<th>SNF %</th>';
+                header += '<th>FAT KG</th>';
+                header += '<th>SNF KG</th>';
+                header += '<th>FAT KG</th>';
+                header += '<th>SNF KG</th>';
+                header += '<th>FAT KG</th>';
+                header += '<th>SNF KG</th>';
+                header += '<th>Qty</th>';
+                header += '<th>FAT %</th>';
+                header += '<th>SNF %</th>';
+                header += '<th>Qty</th>';
+                header += '<th>FAT %</th>';
+                header += '<th>SNF %</th>';
+            }
+
+            if ($("#rbTranpoterGainLoss").is(":checked") || $("#rbTranpoterGainLossSummary").is(":checked")) {
+                header += '<th>Qty</th>';
+                header += '<th>FAT Difference</th>';
+                header += '<th>FAT KG to be Recovered</th>';
+                header += '<th>SNF Difference</th>';
+                header += '<th>SNF KG to be Recovered</th>';
+                header += '<th>Allow FAT Tolerence</th>';
+                header += '<th>FAT Amount Recovered</th>';
+                header += '<th>Allow SNF Tolerence</th>';
+                header += '<th>SNF Amount Recovered</th>';
+                header += '<th>AMOUNT</th>';
+            }
+            if ($("#rbSummary").is(":checked")) {
+                header += '<th>Qty</th>';
+                header += '<th>FAT %</th>';
+                header += '<th>SNF %</th>';
+                header += '<th>FAT KG</th>';
+                header += '<th>SNF KG</th>';
+            }
+
+            if ($("#rbRoutWiseCollection").is(":checked")) {
+                header += '<th>Route Code</th>';
+                header += '<th>Route Name</th>';
+                header += '<th>Quantity</th>';
+                header += '<th>%FAT</th>';
+                header += '<th>%SNF</th>';
+                header += '<th>KGFAT</th>';
+                header += '<th>KGSNF</th>';
+                header += '<th>Quantity</th>';
+                header += '<th>%FAT</th>';
+                header += '<th>%SNF</th>';
+                header += '<th>KGFAT</th>';
+                header += '<th>KGSNF</th>';
+                header += '<th>Quantity</th>';
+                header += '<th>KGFAT</th>';
+                header += '<th>KGSNF</th>';
+            }
+            header += '</tr>';
+            $("#theadRequestStatus").append(header);
+
+            $.each(pagedData, function (index, item) {
+                var row = '<tr>';
+
+                if ($("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+                    row += '<td>' + item.Document_No + '</td>';
+                    row += '<td>' + item.Document_Date + '</td>';
+                    row += '<td>' + item.Route_Code + '</td>';
+                    row += '<td>' + item.ROUTE_NAME + '</td>';
+                    row += '<td>' + item.Vehicle_No + '</td>';
+                }
+
+                if ($("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+                    row += '<td>' + item.Tanker_No + '</td>';
+                }
+
+                if ($("#rbDetail").is(":checked")) {
+                    row += '<td>' + item.MCC_Code + '</td>';
+                    row += '<td>' + item.MCC_NAME + '</td>';
+                    row += '<td>' + item.UploaderNo + '</td>';
+                }
+
+                if ($("#rbBMCSummary").is(":checked")) {
+                    row += '<td>' + item.MCC_Code + '</td>';
+                    row += '<td>' + item.MCC_NAME + '</td>';
+                    row += '<td>' + item.UploaderNo + '</td>';
+                }
+
+                if ($("#rbSummary").is(":checked")) {
+                    row += '<td>' + item.Entered_Qty + '</td>';
+                    row += '<td>' + item.Entered_FAT + '</td>';
+                    row += '<td>' + item.Entered_SNF + '</td>';
+                    row += '<td>' + item.Entered_FATKg + '</td>';
+                    row += '<td>' + item.Entered_SNFKg + '</td>';
+                }
+
+                if ($("#rbTranpoterGainLoss").is(":checked") == true || $("#rbTranpoterGainLossSummary").is(":checked") == true) {
+                    row += '<td>' + item.Entered_Qty + '</td>';
+                    row += '<td>' + item.Entered_FATKg + '</td>';
+                    row += '<td>' + item.Entered_SNFKg + '</td>';
+                    row += '<td>' + item.MCC_FATKG + '</td>';
+                    row += '<td>' + item.MCC_SNFKG + '</td>';
+                    row += '<td>' + item.MCC_Qty + '</td>';
+
+                }
+                if ($("#rbDock").is(":checked")) {
+                    row += '<td>' + item.Entered_Qty + '</td>';
+                    row += '<td>' + item.Entered_FATKg + '</td>';
+                    row += '<td>' + item.Entered_SNFKg + '</td>';
+
+                }
+                if ($("#rbTankerWise").is(":checked")) {
+                    row += '<td>' + item.Tanker_No + '</td>';
+                    row += '<td>' + item.MCC_Qty + '</td>';
+                    row += '<td>' + item.MCC_FATKG + '</td>';
+                    row += '<td>' + item.MCC_SNFKG + '</td>';
+                    row += '<td>' + item.Entered_Qty + '</td>';
+                    row += '<td>' + item.Entered_FATKg + '</td>';
+                    row += '<td>' + item.Entered_SNFKg + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
+                }
+                if ($("#rbTranpoterGainLoss").is(":checked") == false && $("#rbTranpoterGainLossSummary").is(":checked") == false && $("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+                    row += '<td>' + item.MCC_Qty + '</td>';
+                    row += '<td>' + item.MCC_FAT + '</td>';
+                    row += '<td>' + item.MCC_SNF + '</td>';
+                    row += '<td>' + item.MCC_FATKG + '</td>';
+                    row += '<td>' + item.MCC_SNFKG + '</td>';
+                    row += '<td>' + item.DCS_FATKG + '</td>';
+                    row += '<td>' + item.DCS_SNFKG + '</td>';
+                    row += '<td>' + item.Diff_FATKG + '</td>';
+                    row += '<td>' + item.Diff_SNFKG + '</td>';
+                    row += '<td>' + item.DCS_Qty + '</td>';
+                    row += '<td>' + item.DCS_FAT + '</td>';
+                    row += '<td>' + item.DCS_SNF + '</td>';
+                    row += '<td>' + item.Diff_Qty + '</td>';
+                    row += '<td>' + item.Diff_FAT + '</td>';
+                    row += '<td>' + item.Diff_SNF + '</td>';
+                }
+
+                if ($("#rbTranpoterGainLoss").is(":checked") || $("#rbTranpoterGainLossSummary").is(":checked")) {
+                    row += '<td>' + item.DiffMCCVsEntered_Qty + '</td>';
+                    row += '<td>' + item.DiffMCCVsEntered_FATKG + '</td>';
+                    row += '<td>' + item.FATKG_Recovered + '</td>';
+                    row += '<td>' + item.DiffMCCVsEntered_SNFKG + '</td>';
+                    row += '<td>' + item.SNFKG_Recovered + '</td>';
+                    row += '<td>' + item.FAT_Tolerence + '</td>';
+                    row += '<td>' + item.FAT_AMT + '</td>';
+                    row += '<td>' + item.SNF_Tolerence + '</td>';
+                    row += '<td>' + item.SNF_AMT + '</td>';
+                    row += '<td>' + item.AMOUNT + '</td>';
+                }
+                if ($("#rbSummary").is(":checked")) {
+                    row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_FATKG + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_SNFKG + '</td>';
+                }
+
+                if ($("#rbRoutWiseCollection").is(":checked")) {
+                    row += '<td>' + item.ROUTE_NO + '</td>';
+                    row += '<td>' + item.ROUTE_NAME + '</td>';
+                    row += '<td>' + item.MCC_Qty + '</td>';
+                    row += '<td>' + item.MCC_FAT_Per + '</td>';
+                    row += '<td>' + item.MCC_SNF_Per + '</td>';
+                    row += '<td>' + item.MCC_FATKG + '</td>';
+                    row += '<td>' + item.MCC_SNFKG + '</td>';
+                    row += '<td>' + item.Entered_Qty + '</td>';
+                    row += '<td>' + item.Entered_FAT_Per + '</td>';
+                    row += '<td>' + item.Entered_SNF_Per + '</td>';
+                    row += '<td>' + item.Entered_FATKg + '</td>';
+                    row += '<td>' + item.Entered_SNFKg + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
+                    row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
+                }
+
+                row += '</tr>';
+                tbody += row;
+            });
+
+            $("#tbodyRequestStatus").append(tbody);
+        
+    }
+
+
+    function renderPagination() {
+        var paginationHtml = '';
+
+        paginationHtml += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="changePage(' + (currentPage - 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&laquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHtml += '<li class="page-item ' + (i === currentPage ? 'active' : '') + '">';
+            paginationHtml += '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>';
+            paginationHtml += '</li>';
+        }
+
+        paginationHtml += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="changePage(' + (currentPage + 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&raquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+        $('#pagination').html(paginationHtml);
+    }
+    function changePage(page) {
+        if (page < 1 || page > totalPages || page === currentPage) return;
+        currentPage = page;
+
+        if ($("#rbDock").is(":checked") || $("#rbDocDateWise").is(":checked") || $("#rbDocShiftWise").is(":checked")) {
+            SetTableFormationOFDock(currentPage);
+        }
+        else if ($("#rbMultipleCollection").is(":checked")) {
+            SetTableFormationOFMultiple(currentPage);
+        }
+        else if ($("#rbCollectionDate").is(":checked")) {
+            SetTableFormationOFCollection(currentPage);
+        }
+        else {
+            SetTableFormation(currentPage);
+        }
+
+        /* SetTableFormationOFDock(page);*/
+    }
+
+
+    $(document).on('click', '.page-btn', function () {
+        var page = $(this).data('page');
+        currentPage = page;
+        SetTableFormationOFDock(page);
+    });
+
+
+    $("input[name='flexRadioDefault1']").click(function () {
+        if ($("#rbDock").is(":checked")) {
+            $("#divMcc").show();
+        }
+        else {
+            $("#divMcc").hide();
+        }
+        if ($("#rbTranpoterGainLoss").is(":checked") || $("#rbTranpoterGainLossSummary").is(":checked")) {
+            $("#divAllowFat").show();
+            $("#divAllowSNF").show();
+            $("#divTanker").show();
+        }
+        else {
+            $("#divAllowFat").hide();
+            $("#divAllowSNF").hide();
+            $("#divTanker").hide();
+        }
+
+    })
+
+    $("input[name='print']").click(function () {
+        if ($("#rbBMCDoc").is(":checked") || $("#rbDCSSummary").is(":checked") || $("#rbDocSummary").is(":checked")) {
+            $("#divMcc").show();
+            $("#divShift").show();
+        }
+        else {
+            $("#divMcc").hide();
+            $("#divShift").hide();
+        }
+    })
+    $("#btnReset").on('click', function () {
+        $("#theadRequestStatus").empty();
+        $("#tbodyRequestStatus").empty();
+        $('#divFilter').find('input, select, button').removeAttr('disabled');
+    })
+    $("#btnExcel").on('click', function () {
+        var pdf = false;
+        var excel = true;
+        if (allData.length > 0) {
+            const thead = document.getElementById('theadRequestStatus');
+
+            // Check if thead exists and has th elements
+            if (thead && thead.querySelectorAll('th').length > 0) {
+               
+                SendData(pdf, excel);
+               
+            } else {
+                alert("No headers found in the table.");
+            }
+        } else {
+            alert("No data available to export.");
+        }     
+       
+    })
+    $("#btnPdf").on('click', function () {
+        var pdf = true;
+        var excel = false;
+        if (allData.length > 0) {
+            const thead = document.getElementById('theadRequestStatus');
+
+            // Check if thead exists and has th elements
+            if (thead && thead.querySelectorAll('th').length > 0) {
+
+                SendData(pdf, excel);
+
+            } else {
+                alert("No headers found in the table.");
+            }
+        } else {
+            alert("No data available to export.");
+        }
+    })
+
+   
+
+
+    function SendData(pdf, excel) {
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtToDate").val();
+        var status = $("#ddlStatus").val();
+        var allowFat = $("#txtAllowFat").val() || 0;
+        var allowsnf = $("#txtAllowSnf").val() || 0;
+        //var allowFat = $("#txtAllowFat").val();
+        //var allowsnf = $("#txtAllowSnf").val();
+        var mccCode = $("#txtMccCode").val();
+        var tankerNo = $("#txtTankerNo").val();
+        var rdbSummary = $("#rbSummary").is(":checked");
+        var rdbDetails = $("#rbDetail").is(":checked");
+        var rbtnDock = $("#rbDock").is(":checked");
+        var rbtnTranpoterGainLoss = $("#rbTranpoterGainLoss").is(":checked");
+        var rbtnBmcSummary = $("#rbBMCSummary").is(":checked");
+        var rdbTankerWise = $("#rbTankerWise").is(":checked");
+        var rdbMultiple = $("#rbMultipleCollection").is(":checked");
+        var rdbCollectionWise = $("#rbCollectionDate").is(":checked");
+        var rbtnBMCTankerCollection = $("#rbBMCTankerCollection").is(":checked");
+        var rbtnRouteWise = $("#rbRoutWiseCollection").is(":checked");
+        var rbtnDockDateWise = $("#rbDocDateWise").is(":checked");
+        var rbtnDockShiftWise = $("#rbDocShiftWise").is(":checked");
+        var rbtnTranspoterGainlossSummary = $("#rbTranpoterGainLossSummary").is(":checked");
+        var isPickCLRInsteadOfSNF = false;
+        var fndArea = "";
+        var formId = "DAILY_QTY_R";
+        $.ajax({
+            url: '/Report/DailyQuantityExportToExcel',
+            type: 'GET',           
+            data: { rbtnTranpoterGainLoss: rbtnTranpoterGainLoss, rdbSummary: rdbSummary, rbtnDock: rbtnDock, rbtnDockDateWise: rbtnDockDateWise, rbtnDockShiftWise: rbtnDockShiftWise, rbtnBmcSummary: rbtnBmcSummary, rdbDetails: rdbDetails, fromDate: fromDate, toDate: toDate, formId: formId, status: status, fndArea: fndArea, mccCode: mccCode, isPickCLRInsteadOfSNF: isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary: rbtnTranspoterGainlossSummary, allowFat: allowFat, allowsnf: allowsnf, tankerNo: tankerNo, rdbTankerWise: rdbTankerWise, rbtnRouteWise: rbtnRouteWise, rdbCollectionWise: rdbCollectionWise, rdbMultiple: rdbMultiple, rbtnBMCTankerCollection: rbtnBMCTankerCollection, pdf: pdf, excel: excel },
+            
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                if (excel == true) {
+                    var url = URL.createObjectURL(response);
+                    var link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'Daily Qty Report.xlsx';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }
+                else if (pdf == true) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank');
+                }
+               
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the Excel file: " + error);
+            }
+        })
+    }
+</script>

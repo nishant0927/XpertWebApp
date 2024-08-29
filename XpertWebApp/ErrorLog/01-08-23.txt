@@ -1,0 +1,231 @@
+
+New Log Entry : 
+08/01/2023 13:49:22
+===========================
+Date              :Tuesday, August 1, 2023 1:49:22 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:49:32
+===========================
+Date              :Tuesday, August 1, 2023 1:49:32 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:49:38
+===========================
+Date              :Tuesday, August 1, 2023 1:49:38 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:49:46
+===========================
+Date              :Tuesday, August 1, 2023 1:49:46 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:49:51
+===========================
+Date              :Tuesday, August 1, 2023 1:49:51 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:50:24
+===========================
+Date              :Tuesday, August 1, 2023 1:50:24 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:50:34
+===========================
+Date              :Tuesday, August 1, 2023 1:50:34 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:50:38
+===========================
+Date              :Tuesday, August 1, 2023 1:50:38 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 13:50:42
+===========================
+Date              :Tuesday, August 1, 2023 1:50:42 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=ec2c4673-fd36-4215-864a-312b34156a61
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 22:39:07
+===========================
+Date              :Tuesday, August 1, 2023 10:39:07 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=30c8c143-acb1-4024-8455-02a3a3899436
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================
+
+New Log Entry : 
+08/01/2023 23:29:37
+===========================
+Date              :Tuesday, August 1, 2023 11:29:37 PM
+User Name         :
+URL               :/User/GetData
+Query String      :
+Req From          :http://localhost:49865/User/DBTEntry?Guid=30c8c143-acb1-4024-8455-02a3a3899436
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at XpertWebApp.Controllers.UserController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 107
+=============================

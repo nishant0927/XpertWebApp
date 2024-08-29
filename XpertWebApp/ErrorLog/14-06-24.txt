@@ -1,0 +1,48 @@
+
+New Log Entry : 
+06/14/2024 09:25:42
+===========================
+Date              :14 June 2024 09:25:42
+User Name         :
+URL               :/
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.GetAppLocation() in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 32
+=============================
+
+New Log Entry : 
+06/14/2024 09:25:53
+===========================
+Date              :14 June 2024 09:25:53
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.GetAppLocation() in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 32
+=============================
+
+New Log Entry : 
+06/14/2024 09:25:53
+===========================
+Date              :14 June 2024 09:25:53
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 86
+=============================

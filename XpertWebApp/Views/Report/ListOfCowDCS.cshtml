@@ -1,0 +1,530 @@
+﻿
+@{
+    ViewBag.Title = "List Of Cow DCS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+
+<style>
+    .search-button {
+        border-radius: 7px;
+        width: 115px;
+        height: 33px;
+        /* background-color: #3f6e8a; */
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+   
+</style>
+<div class="content-wrapper" style="margin-left:2px!important;">
+    <section class="content-header">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content" style="padding: 0px;">
+        <div class="box" style="margin-bottom: -31px!important;">
+            <div class="row" style="margin-top: 0px;">
+                <div class="col-sm-12">
+                    <div class="box box-info" style="margin-bottom: 0px!important;">
+                        <div class="box-header with-border" style="padding: 1px;">
+                            <div class="row mb-3" style="margin-top:7px;">
+                                <label for="txtMCCCode" class="col-sm-2 col-form-label" style="text-align: center;">MCC Code</label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm" id="txtMCCCode">
+                                        <div class="input-group-append">
+                                            <button id="btnloadData" class="btn btn-sm btn-primary">
+                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-2">
+                                    <button id="btnSearch" class="btn btn-sm btn-primary" style="text-align:right">>>></button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="box-body-wrapper" style="height: 360px; overflow-y: auto;">
+                        <div class="box-body">
+                            @*<div class="container">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade in active" id="requestApproval">*@
+                            <table class="table table-bordered table-hover" style="font-size: 12px;" id="tblData">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            SNo
+                                        </td>
+                                        <td>
+                                            DCS
+                                        </td>
+                                        <td>
+                                            DCS Name
+                                        </td>
+                                        <td>Apply Cow Price</td>
+                                        <td>Apply Cow Price Date</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyData">
+                                </tbody>
+                            </table>
+                            @*</div>
+                                    </div>
+                                </div>*@
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="container">
+                        <div class="box-footer">
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Export
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#" id="btnExcel">Excel</a>
+                                    <a class="dropdown-item" href="#" id="btnPdf">PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+
+
+
+
+
+<div class="modal fade bd-example-modal-lg" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 6px !important;border-bottom: 2px solid gray;background-color: darkgray;color:white;position: sticky; top: 0; z-index: 1000;">
+                <h5 class="modal-title" id="addColumnModalLabel">Request Analysis Entry</h5>
+                <button type="button" class="close clear" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbAll">
+                            <label class="form-check-label" for="rbAll">
+                                All
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbSelect">
+                            <label class="form-check-label" for="rbSelect">
+                                Select
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-sm btn-primary search-button" id="btnSelectAll">Select All</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-primary search-button" id="btnUnSelectAll">UnSelect All</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body-wrapper" style="height: 337px; overflow-y: auto;">
+                <div class="modal-body" style="width: 100%; margin-top: -14px; max-height: 400px;">
+
+                    <div class="container">
+
+                        <table id="tblMccCode" class="table table-bordered table-hover" style="font-size: 12px;">
+                            <thead style="position: sticky; top: 0; background-color: #f9f9f9; z-index: 1; table-layout: auto !important; width: auto !important;">
+                                <tr>
+                                    <th></th>
+                                    <th>CODE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyMCCCode"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="padding: 6px !important; border-top: 2px solid gray; background-color: darkgray;">
+                <button type="button" class="btn btn-primary btn-sm pull-left" id="btnSave">OK</button>
+                <button type="button" class="btn btn-secondary btn-sm clear" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        if ($("#txtMCCCode").val() == "") {
+            $("#txtMCCCode").val("All")
+        }
+    })
+    $("#btnloadData").on('click', function () {
+        GetItems();
+        $("#rbAll").attr("checked", "checked");
+        $("#modalCreate").modal('show');
+
+    })
+    if ($("#txtMCCCode").val() == "") {
+        $("#txtMCCCode").val("All")
+    }
+
+
+    $("input[name='flexRadioDefault']").click(function () {
+        if ($("#rbAll").is(":checked")) {
+            disable();
+        }
+        else {
+            enable();
+        }
+    })
+    function disable() {
+        $("#btnSelectAll").attr("disabled", "disabled");
+        $("#btnUnSelectAll").attr("disabled", "disabled");
+        $("#tblMccCode tbody input[type='checkbox']").attr("disabled", "disabled");
+        $("#tblMccCode tbody input[type='checkbox']").prop("checked", false);
+    }
+    function enable() {
+        $("#btnSelectAll").removeAttr("disabled");
+        $("#btnUnSelectAll").removeAttr("disabled");
+        $("#tblMccCode tbody input[type='checkbox']").removeAttr("disabled");
+    }
+
+    $("#btnSelectAll").click(function () {
+        $("#tblMccCode tbody input[type='checkbox']").prop("checked", true);
+    });
+
+    // Event listener for "Unselect All" button
+    $("#btnUnSelectAll").click(function () {
+        $("#tblMccCode tbody input[type='checkbox']").prop("checked", false);
+    });
+
+
+    function GetItems() {
+        $.ajax({
+            url: '/Report/GetMccCode',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data && data.response) {
+                    $("#tblMccCode tbody").empty();
+                    var responseData = JSON.parse(data.response);
+                    $.each(responseData, function (index, item) {
+                        var html = '<tr>';
+                        html += '<td><input type="checkbox" class="form-check-input" name="myCheckbox" value="checkboxValue" style="margin-left: 15px; width: 20px; height: 20px;"></td>';
+                        html += '<td>' + item.MCC_Code + '</td>';
+                        html += '</tr>';
+                        $("#tbodyMCCCode").append(html);
+                    })
+                    disable();
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                console.error(xhr.responseText);
+            }
+        });
+    }
+    $("#btnSave").on('click', function () {
+        $("#txtMCCCode").val(AddMccInTextBox());
+        // var mccNo = $("#txtMCCCode").val();
+        $("#modalCreate").modal('hide');
+        // loadListData(mccNo)
+    })
+
+    function AddMccInTextBox() {
+        var lst = [];
+        $("#tbodyMCCCode>tr").each(function (rowIndex, row) {
+            if ($(row).find('td:eq(0) input[type="checkbox"]').prop("checked")) {
+                var item = $(row).find('td:eq(1)').text();
+                lst.push(item)
+
+            }
+
+        })
+        return lst.join(", ");
+    }
+
+    function loadListData(mccNo) {
+        $.ajax({
+            url: '/Report/GetListOfCowInDCS',
+            type: 'GET',
+            dataType: 'json',
+            data: { mccNo: mccNo },
+            success: function (data) {
+                if (data && data.response) {
+                    $("#tblData tbody").empty();
+                    var responseData = JSON.parse(data.response);
+                    $.each(responseData, function (index, item) {
+                        var html = '<tr>';
+                        html += '<td>' + item.SNo + '</td>';
+                        html += '<td>' + item.DCS + '</td>';
+                        html += '<td>' + item.DCS_Name + '</td>';
+                        html += '<td>' + item.Apply_Cow_Price + '</td>';
+                        if (item.Apply_Cow_Price_Date == null) {
+                            html += '<td></td>';
+                        }
+                        else {
+                            html += '<td>' + item.Apply_Cow_Price_Date + '</td>';
+                        }
+
+                        html += '</tr>';
+                        $("#tbodyData").append(html);
+                    })
+
+                }
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                console.error(xhr.responseText);
+            }
+        });
+    }
+    $("#btnSearch").on('click', function () {
+        var mccNo = $("#txtMCCCode").val();
+        // $("#modalCreate").modal('hide');
+        loadListData(mccNo)
+    })
+
+    $("#btnExcel").on('click', function () {
+        var table = document.getElementById('tblData');
+        var workbook = XLSX.utils.table_to_book(table, { sheet: "List Of Cow DCS" });
+
+        // Access the first sheet
+        var sheet = workbook.Sheets["List Of Cow DCS"];
+
+        // Insert title at cell A1
+        // XLSX.utils.sheet_add_aoa(sheet, [["My Table Title"]], { origin: "A1" });
+
+        // Set the range to include the new title row
+        sheet['!ref'] = XLSX.utils.encode_range({
+            s: { c: 0, r: 0 },
+            e: XLSX.utils.decode_range(sheet['!ref']).e
+        });
+
+        // Shift existing table data down by one row
+        //var range = XLSX.utils.decode_range(sheet['!ref']);
+        //for (var R = range.e.r; R > 0; --R) {
+        //    for (var C = range.s.c; C <= range.e.c; ++C) {
+        //        var source_cell = XLSX.utils.encode_cell({ r: R - 1, c: C });
+        //        var target_cell = XLSX.utils.encode_cell({ r: R, c: C });
+        //        if (sheet[source_cell]) {
+        //            sheet[target_cell] = sheet[source_cell];
+        //            delete sheet[source_cell];
+        //        }
+        //    }
+        //}
+
+        // Set column widths
+        sheet['!cols'] = [
+            { wch: 5 }, // Width for "Name" column
+            { wch: 10 }, // Width for "Age" column
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 }
+        ];
+
+        // Generate Excel file and prompt user to download it
+        XLSX.writeFile(workbook, 'List Of Cow DCS.xlsx');
+    });
+
+    //$("#btnPdf").on('click', function () {
+
+    //    var headers = ['SNo', 'DCS', 'DCS Name', 'Apply Cow Price', 'Apply Cow Price Date'];
+    //    var data = [];
+    //    $('#tblData tbody tr').each(function () {
+    //        var row = [];
+    //        $(this).find('td').each(function () {
+    //            row.push($(this).text());
+    //        });
+    //        data.push(row);
+    //    });
+
+    //    console.log('Headers:', headers);
+    //    console.log('Data:', data);
+
+    //    // Create a container to hold the icon and title
+    //    var container = $('<div>').append(
+    //        $('<img>').attr('src', '/Content/img/SARALog512.png'), // Replace with your icon path
+    //        $('<h1>').text('My Table Title')
+    //    );
+
+    //    // Use html2canvas to capture the content of the container
+    //    html2canvas(container[0]).then(function (canvas) {
+    //        // Convert canvas to PDF using jsPDF
+    //        var imgData = canvas.toDataURL('image/png');
+    //        var doc = new jsPDF();
+    //        doc.addImage(imgData, 'PNG', 40, 30, 40, 40); // Adjust position and size as needed
+    //        doc.text('My Table Title', 40, 90); // Adjust position as needed
+
+    //        // Use autoTable to add the table to the PDF
+    //        doc.autoTable({
+    //            head: [headers],
+    //            body: data,
+    //            startY: 120, // Adjust as needed
+    //            margin: { top: 100, right: 40, bottom: 40, left: 40 },
+    //            theme: 'grid',
+    //            styles: {
+    //                fontSize: 10,
+    //                cellPadding: 2
+    //            },
+    //            columnStyles: {
+    //                0: { cellWidth: 50 },
+    //                1: { cellWidth: 50 },
+    //                2: { cellWidth: 'auto' },
+    //                3: { cellWidth: 'auto' },
+    //                4: { cellWidth: 'auto' },
+    //            },
+    //            tableWidth: 'wrap'
+    //        });
+
+    //        // Save the PDF
+    //        doc.save('table_data.pdf');
+    //    })
+    //})
+
+    $("#btnPdf").on('click', function () {
+        var headers = ['SNo', 'DCS', 'DCS Name', 'Apply Cow Price', 'Apply Cow Price Date'];
+        var data = [];
+        $('#tblData tbody tr').each(function () {
+            var row = [];
+            $(this).find('td').each(function () {
+                row.push($(this).text());
+            });
+            data.push(row);
+        });
+
+        console.log('Headers:', headers);
+        console.log('Data:', data);
+
+        // Use jsPDF to create a new document
+        const { jsPDF } = window.jspdf;
+        var doc = new jsPDF('p', 'pt');
+
+        // Function to add image and title to each page
+        function addHeader(doc) {
+            // Add company icon
+            var img = new Image();
+            img.src = '/Content/img/SARALog512.png'; // Replace 'company_logo.png' with the path to your company's logo
+            var companyIconHeight = 40; // Adjust as needed
+            var companyIconWidth = 30; // Adjust as needed
+            var iconX = 40; // Adjust as needed
+            var iconY = 30; // Adjust as needed
+            doc.addImage(img, 'PNG', iconX, iconY, companyIconWidth, companyIconHeight); // Adjust position as needed
+
+            // Add title to the PDF
+            var title = 'Sri Ganganagar Zila Dugdh Utpadak Sahakari Sangh Ltd, Hanumangarh, Rajasthan';
+            var titleFontSize = 12; // Adjust as needed
+            var titleX = doc.internal.pageSize.getWidth() / 2;
+            //var titleY = iconY + companyIconHeight + 10;
+            var titleY = 50; // Adjust as needed
+            doc.setFontSize(titleFontSize);
+            doc.text(title, titleX, titleY, { align: 'center' }); // Center align the title
+        }
+
+        // Function to add page number and date to the footer
+        function addFooter(doc, pageNumber, totalPages) {
+            var str = "Page " + pageNumber + " of " + totalPages;
+            var dateStr = "Print Date: " + new Date().toLocaleDateString();
+            doc.setFontSize(10);
+            var pageSize = doc.internal.pageSize;
+            var pageHeight = pageSize.height || pageSize.getHeight();
+            doc.text(str, pageSize.width - doc.getTextWidth(str) - 40, pageHeight - 30);
+            doc.text(dateStr, 40, pageHeight - 30);
+        }
+
+        // Use autoTable to add the table to the PDF
+        doc.autoTable({
+            head: [headers],
+            body: data,
+            startY: 80, // Space between title and table on the first page
+            margin: { top: 50, right: 40, bottom: 40, left: 40 },
+            theme: 'grid',
+            styles: {
+                fontSize: 10,
+                cellPadding: 2
+            },
+            columnStyles: {
+                0: { cellWidth: 50 },
+                1: { cellWidth: 50 },
+                2: { cellWidth: 'auto' },
+                3: { cellWidth: 'auto' },
+                4: { cellWidth: 'auto' }
+            },
+            tableWidth: 'wrap',
+            didDrawPage: function (data) {
+                // Add header to each page
+                addHeader(doc);
+                // Add footer to each page
+                var pageNumber = doc.internal.getCurrentPageInfo().pageNumber;
+                var totalPages = doc.internal.getNumberOfPages();
+                addFooter(doc, pageNumber, totalPages);
+            }
+        });
+
+        // Save the PDF
+        doc.save('table_data.pdf');
+    });
+
+    //$("#btnPdf").on('click', function () {
+    //    var mccNo = $("#txtMCCCode").val();
+    //    $.ajax({
+    //        url: "/Report/DownloadPdf",
+    //        type: "POST",
+    //        data: { mccNo: mccNo },
+    //        xhrFields: {
+    //            responseType: 'blob' // Set the expected response type to blob
+    //        },
+    //        success: function (data) {
+    //            var blob = new Blob([data], { type: 'application/pdf' });
+    //            var blobUrl = window.URL.createObjectURL(blob);
+    //            window.open(blobUrl, '_blank');
+    //        },
+
+    //        error: function (errorMessage) {
+    //            alert(errorMessage.responseText);
+    //        }
+    //    })
+    //})
+
+    $('#modalCreate').on('shown.bs.modal', function () {
+        // Calculate the width of the scrollbar
+        var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+        // Adjust the width of the table to accommodate the scrollbar
+        $('.table-fixed').css('width', 'calc(100% - ' + scrollbarWidth + 'px)');
+    });
+
+</script>
+

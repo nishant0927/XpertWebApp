@@ -1,0 +1,1138 @@
+﻿
+@{
+    ViewBag.Title = "Jan Aadhar Status Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/adminlte/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    /*#modalD .modal-body {
+        height: 400px;*/ /* Adjust as necessary */
+    /*overflow-y: auto;
+    }*/
+    .modal-dialog-expanded {
+        max-width: 100% !important;
+        /*height: 90vh !important;*/
+    }
+
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table thead, tfoot {
+        position: sticky;
+        top: 0;
+        background-color: #1cc8c07a;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    .input-group {
+        margin-bottom: -23px;
+    }
+
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+        background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+        border-right: 0;
+        white-space: nowrap;
+
+        border-radius: 0;*/
+    /*vertical-align: top;
+        border-color: #d2d6de;
+        background-color: #fff;
+        border-right: 0;
+        display: table-cell;
+    }*/
+
+    /*table {
+        table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+<div class="content-wrapper" style="margin-top: -23px!important; margin-left:7px!important;">
+    <section class="content-header" style="height: 23px; padding: 0px 15px 0 15px!important;">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content" style="padding: 0px;">
+        <div class="box" style="margin-bottom: -31px!important;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box box-info" style="margin-bottom: 0px!important;">
+                        <div class="box-header with-border" style="padding: 1px; height: 57px;">
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-left:19px;">
+                                    <div class="form-group">
+                                        <label class="control-label">From Date</label>
+                                        <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+                                    </div>
+                                </div>
+                                @*<div class="col-sm-2" style="margin-right:-25px;">
+                                        <div class="form-group">
+                                            <label>To Date</label>
+                                            <input type="date" class="form-control form-control-sm input" id="txtTodate" />
+                                        </div>
+                                    </div>*@
+
+                                <div class="col-sm-2" style="margin-right:-85px;">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Search" class="btn btn-primary btn-sm search-button" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" style=" margin-right:-85px;">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Search" class="btn btn-primary btn-sm search-button" id="btnReset">Reset</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary btn-sm dropdown-toggle search-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Export
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#" id="btnExcel">Excel</a>
+                                                <a class="dropdown-item" href="#" id="btnPdf">PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body-wrapper" style="height: 480px; overflow-y: auto; margin-top:-12px;">
+                        <div class="box-body">
+
+                            <div style="display:none" id="spinnerModal">Loading Data</div>
+                            <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color:black;" id="tblUnionWise">
+                                <thead class="header blue">
+                                    <tr>
+                                        <th>SNo</th>
+                                        <th>Union Name</th>
+                                        <th>Count Of Farmers</th>
+                                        <th>Count Of AADHAR</th>
+                                        <th>Count Of Unverified Farmer</th>
+                                        <th>Count Of verified Farmer</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody id="tbodyUnionWise"></tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+<div class="modal fade" id="modalD" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top:-27px!important;">
+    <div class="modal-dialog modal-lg" id="modal-dialog" style=" max-width: 100% !important;">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 6px !important; border-bottom: 2px solid gray; background-color: darkgray; color:white; position: sticky; top: 0; z-index: 1000;">
+                <h5 class="modal-title" id="addColumnModalLabel">Farmer Details</h5>
+                <button type="button" class="close clear" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @*<div class="box-body-wrapper" style="height: 423px;">*@
+            <div class="modal-body" style="width: 100%; margin-top: -14px; max-height: 400px;">
+                <input type="hidden" id="hddUnionName"/>
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table id="tblFarmerDetail" width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: black;">
+                        <thead class="header blue">
+                            <tr>
+                                <th>Union Name</th>
+                                <th>MP Code</th>
+                                <th>MP Name</th>
+                                <th>Father Name</th>
+                                <th>DCS Code</th>
+                                <th>DCS Name</th>
+                                <th>Jan Aadhar No.Verified</th>
+                                <th>Jan Aadhar No.</th>
+                                <th>Aadhar No.</th>
+                                <th>Telphone</th>
+                                <th>Bank Name</th>
+                                <th>IFSC Code</th>
+                                <th>Account NO.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyFarmerDetail"></tbody>
+                    </table>
+                </div>
+
+            </div>
+            @*<div class="record-info" style="text-align: left; margin-top: 23px;">
+                <span id="total-records">Total Records: 0</span> |
+                <span id="loaded-records">Records Loaded: 0</span>
+            </div>*@
+            <div style="overflow-y: auto; margin-top: 26px; text-align: right;">
+                <nav aria-label="Page navigation example" style="display: inline-flex!important;">
+                    <ul class="pagination justify-content-center" id="pagination">
+                    </ul>
+                </nav>
+                @*</div>*@
+            </div>
+            <div class="modal-footer" style="padding: 6px !important; border-top: 2px solid gray; background-color: darkgray; display: unset!important;">
+               
+               
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="dropdown text-left" style="margin-top:-18px;">
+                            <button class="btn btn-primary btn-sm dropdown-toggle search-button" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <a class="dropdown-item" href="#" id="btnExcelDetail">Excel</a>
+                                <a class="dropdown-item" href="#" id="btnPdfDetail">PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+            
+
+        </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<table id="yourTableId">
+    <thead>
+        <tr>
+            <th>Union Name</th>
+            <th>MP Code</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<div id="spinnerModal" style="display:none;">Loading...</div>
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var dd = String(today.getDate()).padStart(2, '0');
+        var formattedToday = `${yyyy}-${mm}-${dd}`; // Format as YYYY-MM-DD for date inputs
+        $("#txtFromDate").val(formattedToday);
+
+
+    })
+
+    function LoadData() {
+        $("#spinnerModal").attr("style", "display:inline-block;");
+        $.ajax({
+
+            url: '/Report/GetFarmerDetails',
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            //data: { fromDate: fromDate, toDate: toDate },
+            success: function (reponse) {
+                // $("#spinnerModal").modal('show');
+                if (reponse.success) {
+                    $("#spinnerModal").attr("style", "display:none;");
+                    $('#tblUnionWise').DataTable().clear().destroy();
+                    $('#tblUnionWise tbody').empty();
+                    $('#tblUnionWise tfoot').empty();
+                    console.log(reponse.farmerDetails);
+                    if (reponse.farmerDetails) {
+                        var tdcsCount = 0.00;
+                        var tfarmerCount = 0.00;
+                        var tDCSBilledQty = 0.00;
+                        var tFarmerQty = 0.00;
+                        var tAadhar = 0.00;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var data = JSON.parse(reponse.farmerDetails);
+                        $.each(data, function (index, item) {
+                            //if (item.Union_Contact_Person == null) {
+                            //    unionContPersion = '';
+                            //}
+                            //else {
+                            //    unionContPersion = item.Union_Contact_Person;
+                            //}
+                            //if (item.Union_Contact_PhoneNo == null) {
+                            //    unionContPersionNo = '';
+                            //}
+                            //else {
+                            //    unionContPersionNo = item.Union_Contact_PhoneNo;
+                            //}
+                            var row = '<tr>' +
+                                '<td style="text-align: right;">' + item.SNo + '</td>' +
+                                '<td class="tdUnion">' + item.Union_Name + '</td>' +
+                                '<td style="text-align: right;">' + item.Total_MP_Codes + '</td>' +
+                                '<td style="text-align: right;">' + item.JA_aadhar + '</td>' +
+                               
+
+                                '<td style="text-align: right;">' + item.Jan_Aadhar_Unverified_Count + '</td>' +
+                                '<td style="text-align: right;">' + item.Jan_Aadhar_Verified_Count + '</td>' +
+
+                                '</tr>';
+                            $('#tblUnionWise tbody').append(row);
+
+                            tfarmerCount += parseFloat(item.Total_MP_Codes);
+                            tAadhar += parseFloat(item.JA_aadhar);
+                            tDCSBilledQty += parseFloat(item.Jan_Aadhar_Unverified_Count);
+                            tFarmerQty += parseFloat(item.Jan_Aadhar_Verified_Count);
+                        });
+                        var footerRow = '<tr>' +
+                            '<td colspan="2">Total</td>' +
+
+                            '<td style="text-align: right;">' + tfarmerCount + '</td>' +
+                            '<td style="text-align: right;">' + tAadhar + '</td>' +
+                            '<td style="text-align: right;">' + tDCSBilledQty + '</td>' +
+                            '<td style="text-align: right;">' + tFarmerQty + '</td>' +
+
+                            '</tr>';
+                        $('#tblUnionWise tfoot').append(footerRow);
+                    }
+
+
+                    $('#tblUnionWise').DataTable({
+                        'paging': false,
+                        'lengthChange': true,
+                        'searching': true,
+                        'ordering': false,
+                        'info': false,
+                        'autoWidth': true,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var tdcsCount = 0.00;
+                            var tfarmerCount = 0.00;
+                            var tDCSBilledQty = 0.00;
+                            var tFarmerQty = 0.00;
+                            var tAadhar = 0.00;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+
+                                tfarmerCount += parseFloat(data[2]) || 0;
+                                tAadhar += parseFloat(data[3]) || 0;
+                                tDCSBilledQty += parseFloat(data[4]) || 0;
+                                tFarmerQty += parseFloat(data[5]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="2">Total</td>' +
+
+                                '<td style="text-align: right;">' + tfarmerCount + '</td>' +
+                                '<td style="text-align: right;">' + tAadhar + '</td>' +                                
+                                '<td style="text-align: right;">' + tDCSBilledQty + '</td>' +
+                                '<td style="text-align: right;">' + tFarmerQty + '</td>' +
+                                '</tr>'
+                            );
+                        },
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblUnionWise thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+
+
+
+
+
+
+                    })
+
+
+                }
+                else if (reponse.redirect) {
+                    $("#spinnerModal").modal('hide');
+                    window.location.href = data.redirect;
+                }
+                else {
+                    $("#spinnerModal").modal('hide');
+                    ShowSweet2Message("warning", "Error", reponse.responseText);
+                }
+            },
+            error: function (xhr, status, error) {
+                $("#spinnerModal").modal('hide');
+                var errorMessage = xhr.responseText || "Unknown error occurred.";
+                ShowSweet2Message("warning", "Error", errorMessage);
+            }
+        })
+
+    }
+
+
+    $("#btnSearch").on('click', function () {
+
+        LoadData();
+
+    })
+
+    var start = 0;
+    var length = 1000;
+    var totalRecords = 0;
+    var currentPage = 1;
+    var totalPages = 0;
+    var totalLoadedRecords = 0;
+    var isLoading = false;
+    var currentUnionName = '';
+
+    $('#tblUnionWise tbody').on('dblclick', 'tr', function () {
+        currentUnionName = $(this).find('td.tdUnion').text();
+        currentPage = 1;
+        totalLoadedRecords = 0;
+        loadMoreData();
+        $("#hddUnionName").val(currentUnionName);
+        //var modalDialog = document.getElementById('modal-dialog');
+        //modalDialog.classList.toggle('modal-dialog-expanded');
+       
+    });
+
+    function loadMoreData() {
+        if (isLoading) return;
+        isLoading = true;
+        $("#spinnerModal").show();
+
+        $.ajax({
+            url: '/Report/GetUnionByFarmerDetails',
+            type: 'POST',
+            dataType: "json",
+            data: { unionName: currentUnionName, start: (currentPage - 1) * length, length: length },
+            success: function (response) {
+                if (response.success) {
+                    $('#tblFarmerDetail').DataTable().clear().destroy();
+                    var data = response.data;
+                    var verifies = '';
+                    totalRecords = response.recordsTotal;
+                    totalPages = Math.ceil(totalRecords / length);
+                    $('#tblFarmerDetail tbody').empty();
+                    $.each(data, function (index, item) {
+                        if (item.Jan_Aadhar_No_Verified == 1) {
+                            verifies = "Yes";
+                        }
+                        else {
+                            verifies = "No";
+                        }
+                        var row = '<tr>' +
+                            '<td>' + item.Union_Name + '</td>' +
+                            '<td>' + item.MP_Code + '</td>' +
+                            '<td>' + item.MP_Name + '</td>' +
+                            '<td>' + item.Father_Name + '</td>' +
+                            '<td>' + item.VLC_Code_VLC_Uploader + '</td>' +
+                            '<td>' + item.VLC_Name + '</td>' +
+                            '<td>' + verifies + '</td>' +
+                            '<td>' + item.JA_janaadhaarId + '</td>' +
+                            '<td>' + item.JA_aadhar + '</td>' +
+                            '<td>' + item.Telphone + '</td>' +
+                            '<td>' + item.BankName + '</td>' +
+                            '<td>' + item.IFCICode + '</td>' +
+                            '<td>' + item.AccountNO + '</td>' +
+                            '</tr>';
+                        $('#tblFarmerDetail tbody').append(row);
+                    });
+                    totalLoadedRecords += data.length;
+                    isLoading = false;
+                    $('#tblFarmerDetail').DataTable({
+                        paging: false,
+                        lengthChange: true,
+                        searching: true,
+                        ordering: false,
+                        info: false,
+                        autoWidth: true,
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblFarmerDetail thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+                    });
+                    $("#modalD").modal('show');
+                    renderPagination();
+                    updateRecordInfo();
+                } else {
+                    $("#spinnerModal").hide();
+                    ShowSweet2Message("warning", "Error", response.responseText);
+                    console.log(response.responseText);
+                    $("#modalD").modal('hide');
+                    isLoading = false;
+                }
+            },
+            error: function (xhr, status, error) {
+                $("#spinnerModal").hide();
+                var errorMessage = xhr.responseText || "Unknown error occurred.";
+                ShowSweet2Message("warning", "Error", errorMessage);
+                $("#modalD").modal('hide');
+                console.log(errorMessage);
+                isLoading = false;
+            }
+        });
+    }
+
+    function renderPagination() {
+        var paginationHtml = '';
+
+        paginationHtml += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="changePage(' + (currentPage - 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&laquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHtml += '<li class="page-item ' + (i === currentPage ? 'active' : '') + '">';
+            paginationHtml += '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>';
+            paginationHtml += '</li>';
+        }
+
+        paginationHtml += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="changePage(' + (currentPage + 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&raquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+
+        $('#pagination').html(paginationHtml);
+    }
+
+    function changePage(page) {
+        if (page < 1 || page > totalPages || page === currentPage) return;
+
+        currentPage = page;
+        loadMoreData();
+        scrollToTop();
+        updateRecordInfo();
+    }
+
+    function scrollToTop() {
+        $('.table-responsive').scrollTop(0);
+        $('.table-responsive').scrollLeft(0);
+    }
+    function updateRecordInfo() {
+        var loadedRecords = $('#tblFarmerDetail tbody tr').length;
+        $('#total-records').text('Total Records: ' + totalRecords);
+        $('#loaded-records').text('Records Loaded: ' + totalLoadedRecords);
+    }
+
+    //$('#modalD .modal-body').on('scroll', function () {
+    //    var modalBody = $(this);
+    //    if (modalBody.scrollTop() + modalBody.innerHeight() >= modalBody[0].scrollHeight) {
+    //        loadMoreData();
+    //    }
+    //});
+
+
+
+    $("#btnReset").on('click', function () {
+        var modalDialog = document.getElementById('modal-dialog');
+        modalDialog.classList.toggle('modal-dialog-expanded');
+        $("#modalD").modal('show');
+    })
+    $('#btnExcel').click(function () {
+        var table = document.getElementById('tblUnionWise');
+        var workbook = XLSX.utils.table_to_book(table, { sheet: "Jan Aadhar Status Report" });
+
+        // Access the first sheet
+        var sheet = workbook.Sheets["Jan Aadhar Status Report"];
+
+        // Insert title at cell A1
+        // XLSX.utils.sheet_add_aoa(sheet, [["My Table Title"]], { origin: "A1" });
+
+        // Set the range to include the new title row
+        sheet['!ref'] = XLSX.utils.encode_range({
+            s: { c: 0, r: 0 },
+            e: XLSX.utils.decode_range(sheet['!ref']).e
+        });
+
+        sheet['!cols'] = [
+            { wch: 5 }, // Width for "Name" column
+            { wch: 10 }, // Width for "Age" column
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 }
+        ];
+
+        // Generate Excel file and prompt user to download it
+        XLSX.writeFile(workbook, 'Jan Aadhar Status Report.xlsx');
+    });
+
+
+
+
+    $('#btnPdf').click(function () {
+        var tableId = 'tblUnionWise'; // Table ID as a string
+        const { jsPDF } = window.jspdf;
+        var doc = new jsPDF('landscape');
+        const logo = '/Content/img/SARALog512.png'; // Replace with actual URL or base64 string
+        const logoWidth = 30; // Adjust the width as needed
+        const logoHeight = 10; // Adjust the height as needed
+        doc.addImage(logo, 'PNG', 10, 10, logoWidth, logoHeight);
+
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const headerText = 'Jan Aadhar Status Report';
+        const fromDate = $("#txtFromDate").val();
+        const dateText = 'Print Date: ' + ChangeformatDate(fromDate);
+        const headerTextWidth = doc.getTextWidth(headerText);
+        const headerTextX = (pageWidth - headerTextWidth) / 2;
+        // Adjust headerTextX to account for the logo
+        const adjustedHeaderTextX = Math.max(headerTextX, logoWidth + 20); // Ensure it doesn't overlap with the logo
+        doc.setFontSize(12);
+        doc.text(headerText, adjustedHeaderTextX, 22);
+        // Add the date text to the right of the header text
+        doc.setFontSize(12);
+        const dateTextWidth = doc.getTextWidth(dateText);
+        const dateTextX = adjustedHeaderTextX + headerTextWidth + 10; // Add an offset of 20 units for spacing
+        doc.text(dateText, dateTextX, 22);
+
+        const tableColumnStyle = {
+            'tblUnionWise': {
+                0: { cellWidth: 9, halign: 'right' },
+                1: { cellWidth: 'auto', halign: 'left' },
+                2: { cellWidth: 'auto', halign: 'right' },
+                3: { cellWidth: 'auto', halign: 'right' },
+                4: { cellWidth: 'auto', halign: 'right' },
+            }
+        };
+
+        const margin = 7; // 10 units margin on each side
+        const availableWidth = pageWidth - (2 * margin);
+        const columnStyles = tableColumnStyle[tableId] || {};
+
+        doc.autoTable({
+            startY: 30, // Start the table below the header
+            html: '#' + tableId,
+            headStyles: {
+                //fillColor: [0, 64, 128], // Red header background
+                textColor: [255, 255, 255], // White header text
+                fontSize: 8,
+                cellPadding: 1, // Adjust padding to reduce height
+                minCellHeight: 5, // Minimum height for header cells
+                lineWidth: 0.1, // Border width
+                lineColor: [0, 0, 0]
+            },
+            bodyStyles: {
+                fillColor: [240, 240, 240], // Light grey background for body cells
+                textColor: [0, 0, 0], // Black text for body cells
+                fontSize: 8,
+                cellPadding: 1, // Adjust padding to reduce height
+                minCellHeight: 5, // Minimum height for body cells
+                lineWidth: 0.1, // Border width
+                lineColor: [0, 0, 0] // Border color
+            },
+            styles: {
+                cellPadding: 1, // Cell padding
+                lineWidth: 0.1, // Border width for all cells
+                lineColor: [0, 0, 0]
+            },
+            columnStyles: columnStyles, // Apply generated column styles
+            margin: { top: 30, left: 5, right: 5 },
+        });
+
+        doc.save('Jan_Aadhar_Status_Report.pdf');
+    });
+
+
+    //$('#btnPdf').click(function () {
+    //    var tableId = document.getElementById('tblUnionWise');
+    //    const { jsPDF } = window.jspdf;
+    //    var doc = new jsPDF('landscape');
+    //    const logo = '/Content/img/SARALog512.png'; // Replace with actual URL or base64 string
+    //    const logoWidth = 30; // Adjust the width as needed
+    //    const logoHeight = 10; // Adjust the height as needed
+    //    doc.addImage(logo, 'PNG', 10, 10, logoWidth, logoHeight);
+
+    //    const pageWidth = doc.internal.pageSize.getWidth();
+    //    const headerText = 'Jan Aadhar Status Report';
+    //    const fromDate = $("#txtFromDate").val();
+
+    //    const dateText = 'Print Date: ' + ChangeformatDate(fromDate);
+    //    const headerTextWidth = doc.getTextWidth(headerText);
+    //    const headerTextX = (pageWidth - headerTextWidth) / 2;
+    //    // Adjust headerTextX to account for the logo
+    //    const adjustedHeaderTextX = Math.max(headerTextX, logoWidth + 20); // Ensure it doesn't overlap with the logo
+    //    doc.setFontSize(12);
+    //    doc.text(headerText, adjustedHeaderTextX, 22);
+    //    // Add the date text to the right of the header text
+    //    doc.setFontSize(12);
+    //    const dateTextWidth = doc.getTextWidth(dateText);
+    //    const dateTextX = adjustedHeaderTextX + headerTextWidth + 10; // Add an offset of 20 units for spacing
+    //    doc.text(dateText, dateTextX, 22);
+
+    //    const tableColumnStyle = {
+    //        'tblUnionWise': {
+    //            0: { cellWidth: 9, halign: 'right' },
+    //            1: { cellWidth: 40, halign: 'left' },
+    //            2: { cellWidth: 40, halign: 'right' },
+    //            3: { cellWidth: 30, halign: 'right' },
+    //            4: { cellWidth: 30, halign: 'right' },
+
+    //        }
+
+    //    }
+
+
+    //    const margin = 7; // 10 units margin on each side
+    //    const availableWidth = pageWidth - (2 * margin);
+    //    const columnStyles = tableColumnStyle[tableId] || {};
+    //    // Generate column styles based on the column count and available width
+    //     const columnStyles = generateColumnStyles(columnCount, availableWidth);
+    //    doc.autoTable({
+    //        startY: 30, // Start the table below the header
+    //        html: '#' + tableId,
+    //        headStyles: {
+    //            //fillColor: [0, 64, 128], // Red header background
+    //            textColor: [255, 255, 255], // White header text
+    //            fontSize: 8,
+    //            cellPadding: 1, // Adjust padding to reduce height
+    //            minCellHeight: 5, // Minimum height for header cells
+    //            lineWidth: 0.1, // Border width
+    //            lineColor: [0, 0, 0]
+    //        },
+    //        bodyStyles: {
+    //            fillColor: [240, 240, 240], // Light grey background for body cells
+    //            textColor: [0, 0, 0], // Black text for body cells
+    //            fontSize: 8,
+    //            cellPadding: 1, // Adjust padding to reduce height
+    //            minCellHeight: 5, // Minimum height for body cells
+    //            lineWidth: 0.1, // Border width
+    //            lineColor: [0, 0, 0] // Border color
+    //        },
+    //        styles: {
+    //            cellPadding: 1, // Cell padding
+    //            lineWidth: 0.1, // Border width for all cells
+    //            lineColor: [0, 0, 0]
+    //        },
+    //        columnStyles: columnStyles,// Apply generated column styles
+    //        margin: { top: 30, left: 5, right: 5 },
+
+    //    });
+
+    //    doc.save('Jan_Aadhar_Status_Report.pdf');
+    //});
+
+
+
+    function ChangeformatDate(dateString) {
+        var date = new Date(dateString);
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep",
+            "Oct", "Nov", "Dec"
+        ];
+
+        // Get the day, month, and year
+        var day = date.getDate().toString().padStart(2, '0');
+        var monthIndex = date.getMonth();
+        var month = monthNames[monthIndex];
+        var year = date.getFullYear();
+
+        // Format the date as dd-Mon-yyyy
+        var formattedDate = day + '-' + month + '-' + year;
+
+        return formattedDate;
+
+    }
+    $("#btnReset").on('click', function () {
+        $("#txtFromDate").val('');
+        $("#txtTodate").val('');
+        $('#tblUnionWise tbody').empty();
+
+    })
+
+    $("#btnExcelDetail").on('click', function () {
+        var unionName = $("#hddUnionName").val();
+        $.ajax({
+            url: '/Report/GetUnionByFarmerDataInExcel',
+            type: 'POST',
+            dataType: "json",
+            data: { unionName: unionName },
+            success: function (response) {
+                if (response.success) {
+                    // Create a link element
+                    var link = document.createElement('a');
+                    link.href = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' + response.fileContent;
+                    link.download = response.fileName;
+
+                    // Append to the DOM
+                    document.body.appendChild(link);
+
+                    // Trigger click event on the link to download the file
+                    link.click();
+
+                    // Remove the link from the DOM
+                    document.body.removeChild(link);
+                } else {
+                    alert('Error: ' + response.message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert('Error: ' + error);
+            }
+        })
+    })
+
+
+   
+    // function fetchData(unionName) {
+    //    $.ajax({
+    //        url: '/Report/GetUnionByFarmerDataInPDF',
+    //        type: 'POST',
+    //        dataType: "json",
+    //        data: { unionName: unionName },
+    //        success: function (data) {
+    //            $.each(data, function (index, innerArray) {
+    //                // Check if innerArray is an array and not empty
+    //                if ($.isArray(innerArray) && innerArray.length > 0) {
+    //                    // Initialize a string to store the values
+    //                    var values = '';
+
+    //                    // Iterate over elements in the innerArray and concatenate the values
+    //                    $.each(innerArray, function (i, value) {
+    //                        values += value + ' ';
+    //                    });
+
+    //                    console.log('Inner array values:', values.trim());
+    //                }
+    //                })
+    //        }
+    //    });
+
+    //    if (response.success) {
+    //        console.log('Data fetched successfully:', response.unionWiseFarmerDetails); // Debugging line
+    //        return response.unionWiseFarmerDetails;
+    //        console.log(response.unionWiseFarmerDetails);
+    //    } else {
+    //        throw new Error('Error: ' + response.message);
+    //    }
+    //}
+
+                function generatePDF(data) {
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF('landscape');
+
+                    const logo = '/Content/img/SARALog512.png'; // Replace with actual URL or base64 string
+                    const logoWidth = 30; // Adjust the width as needed
+                    const logoHeight = 10; // Adjust the height as needed
+
+                    const headerText = 'Union Wise Farmer Details';
+                    const fromDate = $("#txtFromDate").val(); // Replace with actual from date
+                    const toDate = "31-Dec-2022"; // Replace with actual to date
+                    const dateText = 'Date: ' + ChangeformatDate(fromDate) ;
+
+                    const pageWidth = doc.internal.pageSize.getWidth();
+
+                    function addHeader() {
+                        doc.addImage(logo, 'PNG', 10, 10, logoWidth, logoHeight);
+
+                        doc.setFontSize(12);
+                        const headerTextWidth = doc.getTextWidth(headerText);
+                        const adjustedHeaderTextX = (pageWidth - headerTextWidth) / 2;
+                        doc.text(headerText, adjustedHeaderTextX, 22);
+
+                        const dateTextWidth = doc.getTextWidth(dateText);
+                        const dateTextX = pageWidth - dateTextWidth - 10; // Adjust to fit to the right
+                        doc.text(dateText, dateTextX, 22);
+                    }
+
+                    addHeader();
+
+                    // Table headers
+                    const headers = [["S.No", "Union Name", "MP Code", "MP Name", "Father Name", "DCS Code", "DCS Name", "Jan Aadhar No.Verified", "Jan Aadhar No.", "Aadhar No.", "Telephone", "Bank Name", "IFSC Code", "Account NO."]];
+
+                    const rows = [];
+                    var lst = JSON.parse(data);
+                    lst.forEach((item, index) => {
+                        rows.push([
+                            index + 1,
+                            item.Union_Name,
+                            item.MP_Code,
+                            item.MP_Name,
+                            item.Father_Name,
+                            item.VLC_Code_VLC_Uploader,
+                            item.VLC_Name,
+                            item.Jan_Aadhar_No_Verified == 1 ? "Yes" : "No",
+                            item.JA_janaadhaarId,
+                            item.JA_aadhar,
+                            item.Telphone,
+                            item.BankName,
+                            item.IFCICode,
+                            item.AccountNO
+                        ]);
+                    });
+
+                    doc.autoTable({
+                        head: headers,
+                        body: rows,
+                        startY: 30,
+                        headStyles: {
+                            fillColor: [0, 64, 128], // Custom header background
+                            textColor: [255, 255, 255], // White header text
+                            fontSize: 10,
+                            cellPadding: 1, // Adjust padding to reduce height
+                            minCellHeight: 5, // Minimum height for header cells
+                            lineWidth: 0.1, // Border width
+                            lineColor: [0, 0, 0]
+                        },
+                        bodyStyles: {
+                            fillColor: [240, 240, 240], // Light grey background for body cells
+                            textColor: [0, 0, 0], // Black text for body cells
+                            fontSize: 10,
+                            cellPadding: 1, // Adjust padding to reduce height
+                            minCellHeight: 5, // Minimum height for body cells
+                            lineWidth: 0.1, // Border width
+                            lineColor: [0, 0, 0] // Border color
+                        },
+                        styles: {
+                            cellPadding: 1, // Cell padding
+                            lineWidth: 0.1, // Border width for all cells
+                            lineColor: [0, 0, 0]
+                        },
+                        columnStyles: {
+                            0: { cellWidth: 10 }, // S.No
+                            1: { cellWidth: 18 }, // Union Name
+                            2: { cellWidth: 20 }, // MP Code
+                            3: { cellWidth: 25 }, // MP Name
+                            4: { cellWidth: 25 }, // Father Name
+                            5: { cellWidth:10 }, // DCS Code
+                            6: { cellWidth:20 }, // DCS Name
+                            7: { cellWidth:10 }, // Jan Aadhar No.Verified
+                            8: { cellWidth: 22 }, // Jan Aadhar No.
+                            9: { cellWidth: 25 }, // Aadhar No.
+                            10: { cellWidth: 25 }, // Telephone
+                            11: { cellWidth: 30 }, // Bank Name
+                            12: { cellWidth: 25 }, // IFSC Code
+                            13: { cellWidth: 25 } // Account NO.
+                        },
+                        margin: { top: 35, left: 5, right: 5 },
+                        didDrawPage: function (data) {
+                            // Add the header text to each page
+                            addHeader();
+                        }
+                    });
+
+                    doc.save('UnionWiseFarmerDetails.pdf');
+                }
+
+
+                $("#btnPdfDetail").on('click', function () {
+                    var unionName = $("#hddUnionName").val(); // Replace with actual union name
+                    $.ajax({
+                        url: '/Report/GetUnionByFarmerDataInPDF',
+                        type: 'POST',
+                        dataType: "json",
+                        data: { unionName: unionName },
+                        success: function (data) {
+                            console.log("Data received from server:", data);
+                            if (data.success) {
+                                var unionWiseFarmerDetails = data.unionWiseFarmerDetails;
+                                console.log("Union wise farmer details:", unionWiseFarmerDetails);
+                                generatePDF(unionWiseFarmerDetails);
+                            //    if (Array.isArray(unionWiseFarmerDetails)) {
+                            //        generatePDF(unionWiseFarmerDetails);
+                            //    } else {
+                            //        console.error("unionWiseFarmerDetails is not an array:", unionWiseFarmerDetails);
+                            //        generatePDF(unionWiseFarmerDetails);
+                            //    }
+                            //} else {
+                            //    console.error("Data retrieval unsuccessful:", data);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("AJAX request failed:", status, error);
+                        }
+                    });
+                });
+
+</script>
+

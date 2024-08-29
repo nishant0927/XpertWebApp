@@ -1,0 +1,28 @@
+
+New Log Entry : 
+08/03/2023 13:25:25
+===========================
+Date              :Thursday, August 3, 2023 1:25:25 PM
+User Name         :
+URL               :/DBT/GetData
+Query String      :
+Req From          :http://localhost:49865/DBT/DBTEntry?Guid=7277cc9b-2974-44a9-8949-a33fa732fa7f
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.DBTController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\DBTController.cs:line 48
+=============================
+
+New Log Entry : 
+08/03/2023 13:32:40
+===========================
+Date              :Thursday, August 3, 2023 1:32:40 PM
+User Name         :
+URL               :/DBT/GetData
+Query String      :
+Req From          :http://localhost:49865/DBT/DBTEntry?Guid=7277cc9b-2974-44a9-8949-a33fa732fa7f
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.DBTController.GetData(DateTime fromdate) in D:\XpertWebApp\XpertWebApp\Controllers\DBTController.cs:line 48
+=============================

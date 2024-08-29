@@ -1,0 +1,1155 @@
+﻿
+@{
+    ViewBag.Title = "DBT Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/adminlte/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table thead, tfoot {
+        position: sticky;
+        top: 0;
+        background-color: #1cc8c07a;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    .input-group {
+        margin-bottom: -23px;
+    }
+
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+        background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+        border-right: 0;
+        white-space: nowrap;
+
+        border-radius: 0;*/
+    /*vertical-align: top;
+        border-color: #d2d6de;
+        background-color: #fff;
+        border-right: 0;
+        display: table-cell;
+    }*/
+
+    /*table {
+        table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+<div class="content-wrapper" style="margin-top: -23px!important; margin-left:7px!important;">
+    <section class="content-header" style="height: 23px; padding: 0px 15px 0 15px!important;">
+        <i>@ViewBag.Title</i>
+    </section>   
+    <section class="content" style="padding: 0px;">
+        <div class="box" style="margin-bottom: -31px!important;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box box-info" style="margin-bottom: 0px!important;">
+                        <div class="box-header with-border" style="padding: 1px; height: 57px;">
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-left:19px;">
+                                    <div class="form-group">
+                                        <label class="control-label">From Date</label>
+                                        <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" style="margin-right:-25px;">
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" class="form-control form-control-sm input" id="txtTodate" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="margin-right:-85px;">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Search" class="btn btn-primary btn-sm search-button" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" style=" margin-right:-85px;">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Search" class="btn btn-primary btn-sm search-button" id="btnReset">Reset</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary btn-sm dropdown-toggle search-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Export
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#" id="btnExcel">Excel</a>
+                                                <a class="dropdown-item" href="#" id="btnPdf">PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Export Analysed Request" class="btn btn-primary btn-sm search-button" id="btnExportAnalysisRequest" style="width: 164px;">Export Analysed Request</button>
+                                        <button type="button" value="Export Analysed Request" class="btn btn-primary btn-sm search-button" id="btnExportOpenRequest" style="width: 164px;"> Export Open Request</button>
+
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="box box-info" style="margin-bottom: 0px!important;">
+                        <div class="box-header" style="margin-top:-7px; height:44px;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'openRequest')" id="defaultOpen">Unoin Wise DBT Summary</button>
+                                        <button class="tablinks" onclick="openTab(event,'pendingAnalysed')">Unoin Wise DBT Mismatch Qty</button>
+                                        <button class="tablinks" onclick="openTab(event,'analysedRequest')">DBT Payment Status</button>
+                                        <button class="tablinks" onclick="openTab(event,'unionWiseLastDbt')">Union Wise Last DBT Jan Aadhar</button>                                       
+                                    </div>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-body-wrapper" style="height: 400px; overflow-y: auto; margin-top:-12px;">
+                       
+                        <!--<div class="modal" id="spinnerModal" tabindex="-1" role="dialog" aria-labelledby="spinnerModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document" style="margin-top: 262px !important; margin-right: 376px!important;">
+                                <div class="modal-content" style="width: 140%;">
+                                    <div class="modal-body text-center">-->
+                                        <!-- Spinner loader -->
+                                        <!--<div class="spinner-border text-primary" role="status">
+                                            <span class="sr-only text-lg-center">Loading...</span>
+                                        </div>
+                                        <p style="font-size:large;">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="box-body">
+
+                            @*<div class="container-fluid">*@
+                            @*<div class="tab-content">*@
+                            <div class="tabcontent" id="openRequest">
+                                <div style="display:none" id="spinnerModal">Loading Data</div>
+                                @*<div id="loadingMessage">Loading...</div>*@
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblUnionWise">
+                                    <thead class="header blue">
+
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                            <th>DCS Count</th>
+                                            <th>Farmer Count</th>
+                                            <th>DCS Billed Qty</th>
+                                            <th>Farmer Qty</th>
+                                            <th>NEFT Amt.</th>
+
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="tbodyUnionWise"></tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            <div class="tabcontent" id="pendingAnalysed">
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblRouteWise">
+                                    <thead>
+
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                            @*<th>DCS Count</th>*@
+                                            <th>Farmer Count</th>
+                                            <th>DCS Billed Qty</th>
+                                            <th>Farmer Qty</th>
+                                            <th>Mismatch Qty</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyRouteWise"></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+
+                            </div>
+                            <div class="tabcontent" id="analysedRequest">
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblDCSWise">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"></th>
+                                            <th colspan="2">Total</th>
+                                            <th colspan="2">Success</th>
+                                            <th colspan="2">Reject</th>
+                                            <th colspan="2">No Response</th>
+                                        </tr>
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                            <th>Farmer Count</th>
+                                            <th>NEFT Amt.</th>
+                                            <th>Farmer Count</th>
+                                            <th>NEFT Amt.</th>
+                                            <th>Farmer Count</th>
+                                            <th>NEFT Amt.</th>
+                                            <th>Farmer Count</th>
+                                            <th>NEFT Amt.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyDCSWise"></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+
+
+                            <div class="tabcontent" id="unionWiseLastDbt">
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblUnionWiseLastDbt">
+                                    <thead>
+
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                            <th>No. of Farmer</th>
+                                            <th>Jan Aadha Verified No.</th>
+                                            <th>Aadhar Verified</th>
+                                            <th>Last DBT Cycle</th>
+                                            <th>Last DBT Approved by RCDF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyUnionWiseLastDbt"></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                            @*</div>*@
+                            @*</div>*@
+
+                        </div>
+                    </div>
+                    @*<div class="container">*@
+                    <div class="box-footer">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+<script>
+    $(document).ready(function () {
+       
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var dd = String(today.getDate()).padStart(2, '0');
+        var formattedToday = `${yyyy}-${mm}-${dd}`; // Format as YYYY-MM-DD for date inputs
+        $("#txtFromDate").val(formattedToday);
+        $("#txtTodate").val(formattedToday);       
+        //LoadData($("#txtFromDate").val(), $("#txtTodate").val())
+       
+       // ReloadData();
+       
+    })
+    function LoadData(fromDate, toDate) {      
+        $("#spinnerModal").attr("style", "display:inline-block;");
+        $.ajax({
+
+            url: '/Report/GetDBTDashBoardData',
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            data: { fromDate: fromDate, toDate: toDate },
+            success: function (reponse) {
+               // $("#spinnerModal").modal('show');
+                if (reponse.success) {
+                    $("#spinnerModal").attr("style", "display:none;");
+                    $('#tblUnionWise').DataTable().clear().destroy();
+                    $('#tblRouteWise').DataTable().clear().destroy();
+                    $('#tblDCSWise').DataTable().clear().destroy();
+                    $('#tblUnionWiseLastDbt').DataTable().clear().destroy();
+                    $('#tblUnionWise tbody').empty();
+                    $('#tblUnionWise tfoot').empty();
+                    $('#tblRouteWise tbody').empty();
+                    $('#tblRouteWise tfoot').empty();
+                    $('#tblDCSWise tbody').empty();
+                    $('#tblUnionWiseLastDbt tbody').empty();
+                    $('#tblDCSWise tfoot').empty();
+                    $('#tblUnionWiseLastDbt tfoot').empty();
+                    console.log(reponse.lstDbtUnionWiseSummary);
+                    if (reponse.getUnionWiseDBTSummary) {
+                        var tdcsCount = 0.00;
+                        var tfarmerCount = 0.00;
+                        var tDCSBilledQty = 0.00;
+                        var tFarmerQty = 0.00;
+                        var tNeft = 0.00;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var data = JSON.parse(reponse.getUnionWiseDBTSummary);
+                        $.each(data, function (index, item) {
+                            if (item.Union_Contact_Person == null) {
+                                unionContPersion = '';
+                            }
+                            else {
+                                unionContPersion = item.Union_Contact_Person;
+                            }
+                            if (item.Union_Contact_PhoneNo == null) {
+                                unionContPersionNo = '';
+                            }
+                            else {
+                                unionContPersionNo = item.Union_Contact_PhoneNo;
+                            }
+                            var row = '<tr>' +
+                                '<td style="text-align: right;">' + item.SNo + '</td>' +
+                                '<td>' + item.Union_Name + '</td>' +
+                                '<td>' + unionContPersion + '</td>' +
+                                /*'<td>' + formatDate(item.Todate) + '</td>' +*/
+                                '<td style="text-align: right;">' + unionContPersionNo + '</td>' +
+                                '<td style="text-align: right;">' + item.DCS_Count + '</td>' +
+                                '<td style="text-align: right;">' + item.Farmer_Count + '</td>' +
+                                '<td style="text-align: right;">' + item.DCS_Billed_Qty + '</td>' +
+                                '<td style="text-align: right;">' + item.Farmer_Qty + '</td>' +
+                                '<td style="text-align: right;">' + item.NEFT_Amt + '</td>' +
+
+                                '</tr>';
+                            $('#tblUnionWise tbody').append(row);
+                            tdcsCount += parseFloat(item.DCS_Count);
+                            tfarmerCount += parseFloat(item.Farmer_Count);
+                            tDCSBilledQty += parseFloat(item.Farmer_Qty).toFixed(3);
+                            tFarmerQty += parseFloat(item.DCS_Billed_Qty).toFixed(3);
+                            tNeft += parseFloat(item.NEFT_Amount).toFixed(3);
+                        });
+                        var footerRow = '<tr>' +
+                            '<td colspan="4">Total</td>' +
+                            '<td style="text-align: right;">' + tdcsCount + '</td>' +
+                            '<td style="text-align: right;">' + tfarmerCount + '</td>' +
+                            '<td style="text-align: right;">' + tDCSBilledQty + '</td>' +
+                            '<td style="text-align: right;">' + tFarmerQty + '</td>' +
+                            '<td style="text-align: right;">' + tNeft + '</td>' +
+
+                            '</tr>';
+                        $('#tblUnionWise tfoot').append(footerRow);
+                    }
+
+
+
+                    if (reponse.getUnionWiseDBTMisMatchQty) {
+                        var tfarmerCount = 0.00;
+                        var tDCSBilledQty = 0.00;
+                        var tFarmerQty = 0.00;
+                        var tMismatch = 0.00;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var pendingRequest = JSON.parse(reponse.getUnionWiseDBTMisMatchQty);
+                        $.each(pendingRequest, function (index, item) {
+                            if (item.Union_Contact_Person == null) {
+                                unionContPersion = '';
+                            }
+                            else {
+                                unionContPersion = item.Union_Contact_Person;
+                            }
+                            if (item.Union_Contact_PhoneNo == null) {
+                                unionContPersionNo = '';
+                            }
+                            else {
+                                unionContPersionNo = item.Union_Contact_PhoneNo;
+                            }
+                            var tr = '<tr>';
+                            tr += '<td style="text-align: right;">' + item.SNO + '</td>';
+                            tr += '<td>' + item.Union_Name + '</td>';
+                            tr += '<td>' + unionContPersion + '</td>';
+                            /* tr += '<td>' + formatDate(item.Todate) + '</td>';*/
+                            tr += '<td style="text-align: right;">' + unionContPersionNo + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Farmer_count + '</td>';
+                            tr += '<td style="text-align: right;">' + item.DCS_Billed_Qty + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Farmer_Qty + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Mismatch_Qty + '</td>';
+                            tr += '</tr>';
+                            $("#tblRouteWise tbody").append(tr);
+
+
+                            tfarmerCount += parseFloat(item.Farmer_Count);
+                            tDCSBilledQty += parseFloat(item.DCS_Billed_Qty).toFixed(3);
+                            tFarmerQty += parseFloat(item.Farmer_Qty);
+                            tMismatch += parseFloat(item.MismatchQty).toFixed(3);
+                        })
+                        var footerRow = '<tr>' +
+                            '<td colspan="4">Total</td>' +
+
+                            '<td style="text-align: right;">' + tfarmerCount + '</td>' +
+                            '<td style="text-align: right;">' + tDCSBilledQty + '</td>' +
+                            '<td style="text-align: right;">' + tFarmerQty + '</td>' +
+                            '<td style="text-align: right;">' + tMismatch + '</td>' +
+
+                            '</tr>';
+                        $('#tblRouteWise tfoot').append(footerRow);
+                    }
+
+                    if (reponse.getDBTPaymentStatus) {
+                        var totalCount = 0;
+                        var totalAmount = 0;
+                        var totalSuccesCount = 0;
+                        var totalSuccessAmt = 0;
+                        var totalRejectCount = 0;
+                        var totalRejectAmt = 0;
+                        var totalNoResponseCount = 0;
+                        var totalNoResponseAmt = 0;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var analysedRequest = JSON.parse(reponse.getDBTPaymentStatus);
+                        $.each(analysedRequest, function (index, item) {
+                            if (item.Union_Contact_Person == null) {
+                                unionContPersion = '';
+                            }
+                            else {
+                                unionContPersion = item.Union_Contact_Person;
+                            }
+                            if (item.Union_Contact_PhoneNo == null) {
+                                unionContPersionNo = '';
+                            }
+                            else {
+                                unionContPersionNo = item.Union_Contact_PhoneNo;
+                            }
+                            var tr = '<tr>';
+                            tr += '<td style="text-align: right;">' + item.SNO + '</td>';
+                            tr += '<td>' + item.Union_Name + '</td>';
+                            tr += '<td>' + item.unionContPersion + '</td>';
+                            /* tr += '<td>' + formatDate(item.Todate) + '</td>';*/
+                            tr += '<td style="text-align: right;">' + item.unionContPersionNo + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Farmer_Count + '</td>';
+                            tr += '<td style="text-align: right;">' + item.NEFT_Amount + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Success_Farmer + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Success_Amount + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Failure_Farmer + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Failure_Amount + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Null_Farmer_Count + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Null_Farmer_Amount + '</td>';
+                            tr += '</tr>';
+                            $("#tblDCSWise tbody").append(tr);
+                            totalCount += parseFloat(item.Farmer_Count);
+                            totalAmount += parseFloat(item.NEFT_Amount);
+                            totalSuccesCount += parseFloat(item.Success_Farmer);
+                            totalSuccessAmt += parseFloat(item.Success_Amount);
+                            totalRejectCount += parseFloat(item.Failure_Farmer);
+                            totalRejectAmt += parseFloat(item.Failure_Amount);
+                            totalNoResponseCount += parseFloat(item.Null_Farmer_Count);
+                            totalNoResponseAmt += parseFloat(item.Null_Farmer_Amount);
+                        })
+                        var footerRow = '<tr>' +
+                            '<td colspan="4">Total</td>' +
+                            '<td style="text-align: right;">' + totalCount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalAmount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalSuccesCount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalSuccessAmt.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalRejectCount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalRejectAmt.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalNoResponseCount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalNoResponseAmt.toFixed(3) + '</td>' +
+
+                            '</tr>';
+                        $('#tblDCSWise tfoot').append(footerRow);
+                    }
+
+
+                    if (reponse.getUnionWiseLastDBTJanAadhars) {
+                        var totalCount = 0;
+                        var totalAmount = 0;
+                        var totalSuccesCount = 0;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var lastDBTApproveByRCDF=''
+                        var LastDBTJanAadhar = JSON.parse(reponse.getUnionWiseLastDBTJanAadhars);
+                        $.each(LastDBTJanAadhar, function (index, item) {
+                            if (item.Union_Contact_Person == null) {
+                                unionContPersion = '';
+                            }
+                            else {
+                                unionContPersion = item.Union_Contact_Person;
+                            }
+                            if (item.Union_Contact_PhoneNo == null) {
+                                unionContPersionNo = '';
+                            }
+                            else {
+                                unionContPersionNo = item.Union_Contact_PhoneNo;
+                            }
+                            if (item.Last_DBT_Approved_by_RCDF == null) {
+                                lastDBTApproveByRCDF = '';
+                            }
+                            else {
+                                lastDBTApproveByRCDF = item.Last_DBT_Approved_by_RCDF;
+                            }
+                            var tr = '<tr>';
+                            tr += '<td style="text-align: right;">' + item.SNo + '</td>';
+                            tr += '<td>' + item.Union_Name + '</td>';
+                            tr += '<td>' + unionContPersion + '</td>';
+                            /* tr += '<td>' + formatDate(item.Todate) + '</td>';*/
+                            tr += '<td style="text-align: right;">' + unionContPersionNo + '</td>';
+                            tr += '<td style="text-align: right;">' + item.No_Of_Farmer + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Jan_Aadhar_Verified_No + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Addhar_Verified + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Last_DBT_Cycle + '</td>';                            
+                            tr += '<td style="text-align: right;">' + lastDBTApproveByRCDF + '</td>';
+                            tr += '</tr>';
+                            $("#tblUnionWiseLastDbt tbody").append(tr);
+                            totalCount += parseFloat(item.No_Of_Farmer);
+                            totalAmount += parseFloat(item.Jan_Aadhar_Verified_No);
+                            totalSuccesCount += parseFloat(item.Addhar_Verified);
+
+                        })
+                        var footerRow = '<tr>' +
+                            '<td colspan="4">Total</td>' +
+                            '<td style="text-align: right;">' + totalCount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalAmount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + totalSuccesCount.toFixed(3) + '</td>' +
+                            '<td style="text-align: right;"></td>' +
+                            '<td style="text-align: right;"></td>' +
+
+                            '</tr>';
+                        $('#tblUnionWiseLastDbt tfoot').append(footerRow);
+                    }
+
+
+                    $('#tblUnionWise').DataTable({
+                        'paging': false,
+                        'lengthChange': true,
+                        'searching': true,
+                        'ordering': false,
+                        'info': false,
+                        'autoWidth': true,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var tdcsCount = 0.00;
+                            var tfarmerCount = 0.00;
+                            var tDCSBilledQty = 0.00;
+                            var tFarmerQty = 0.00;
+                            var tNeft = 0.00;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+                                tdcsCount += parseFloat(data[4]) || 0;
+                                tfarmerCount += parseFloat(data[5]) || 0;
+                                tDCSBilledQty += parseFloat(data[6]) || 0;
+                                tFarmerQty += parseFloat(data[7]) || 0;
+                                tNeft += parseFloat(data[8]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="4">Total</td>' +
+                                '<td style="text-align: right;">' + tdcsCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tfarmerCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tDCSBilledQty.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tFarmerQty.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tNeft.toFixed(3) + '</td>' +
+                                '</tr>'
+                            );
+                        },
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblUnionWise thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+
+
+
+
+
+
+                    })
+                    $('#tblRouteWise').DataTable({
+                        'paging': false,
+                        'lengthChange': false,
+                        'searching': true,
+                        'ordering': true,
+                        'info': false,
+                        'autoWidth': false,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var tfarmerCount = 0.00;
+                            var tDCSBilledQty = 0.00;
+                            var tFarmerQty = 0.00;
+                            var tMismatch = 0.00;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+
+                                tfarmerCount += parseFloat(data[4]) || 0;
+                                tDCSBilledQty += parseFloat(data[5]) || 0;
+                                tFarmerQty += parseFloat(data[6]) || 0;
+                                tMismatch += parseFloat(data[7]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="4">Total</td>' +
+                                '<td style="text-align: right;">' + tfarmerCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tDCSBilledQty.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tFarmerQty.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + tMismatch.toFixed(3) + '</td>' +
+                                '</tr>'
+                            );
+                        },
+
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblRouteWise thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+                        //"pageLength": 5,
+                        //"order": [[0, "asc"]],
+                        //"aLengthMenu": [5, 10, 25, 50, 100, 200, 300]
+
+                    })
+
+                    $('#tblDCSWise').DataTable({
+                        'paging': false,
+                        'lengthChange': false,
+                        'searching': true,
+                        'ordering': true,
+                        'info': false,
+                        'autoWidth': false,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var totalCount = 0;
+                            var totalAmount = 0;
+                            var totalSuccesCount = 0;
+                            var totalSuccessAmt = 0;
+                            var totalRejectCount = 0;
+                            var totalRejectAmt = 0;
+                            var totalNoResponseCount = 0;
+                            var totalNoResponseAmt = 0;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+                                totalCount += parseFloat(data[4]) || 0;
+                                totalAmount += parseFloat(data[5]) || 0;
+                                totalSuccesCount += parseFloat(data[6]) || 0;
+                                totalSuccessAmt += parseFloat(data[7]) || 0;
+                                totalRejectCount += parseFloat(data[8]) || 0;
+                                totalRejectAmt += parseFloat(data[9]) || 0;
+                                totalNoResponseCount += parseFloat(data[10]) || 0;
+                                totalNoResponseAmt += parseFloat(data[11]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="4">Total</td>' +
+                                '<td style="text-align: right;">' + totalCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalAmount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalSuccesCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalSuccessAmt.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalRejectCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalRejectAmt.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalNoResponseCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalNoResponseAmt.toFixed(3) + '</td>' +
+                                '</tr>'
+                            );
+                        },
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblDCSWise thead tr:eq(1) th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+
+                    })
+
+                    $('#tblUnionWiseLastDbt').DataTable({
+                        'paging': false,
+                        'lengthChange': false,
+                        'searching': true,
+                        'ordering': true,
+                        'info': false,
+                        'autoWidth': false,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var totalCount = 0;
+                            var totalAmount = 0;
+                            var totalSuccesCount = 0;
+
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+                                totalCount += parseFloat(data[4]) || 0;
+                                totalAmount += parseFloat(data[5]) || 0;
+                                totalSuccesCount += parseFloat(data[6]) || 0;
+
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="4">Total</td>' +
+                                '<td style="text-align: right;">' + totalCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalAmount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalSuccesCount.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;"></td>' +
+                                '<td style="text-align: right;"></td>' +
+                                '</tr>'
+                            );
+                        },
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblUnionWiseLastDbt thead  th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+
+                    })
+                }
+                else if (reponse.redirect) {
+                    $("#spinnerModal").modal('hide');
+                    window.location.href = data.redirect;
+                }
+                else {
+                    $("#spinnerModal").modal('hide');
+                    ShowSweet2Message("warning", "Error", reponse.responseText);
+                }
+            },
+            error: function (xhr, status, error) {
+                $("#spinnerModal").modal('hide');
+                var errorMessage = xhr.responseText || "Unknown error occurred.";
+                ShowSweet2Message("warning", "Error", errorMessage);
+            }
+        })
+
+    }
+
+    function ReloadData() {
+       
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var dd = String(today.getDate()).padStart(2, '0');
+        var formattedToday = `${yyyy}-${mm}-${dd}`; // Format as YYYY-MM-DD for date inputs
+       // $("#txtFromDate").val(formattedToday);
+       // $("#txtTodate").val(formattedToday);
+        LoadData(formattedToday, formattedToday);
+    }
+    function openTab(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+
+    $("#btnSearch").on('click', function () {      
+        $("#spinnerModal").attr("style", "display:inline-block;");
+       // $("#spinnerModal").modal('show');
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtTodate").val(); 
+        document.getElementById("defaultOpen").click();
+        LoadData(fromDate, toDate);
+        
+    })
+    $('#btnExcel').click(function () {
+        exportData('excel');
+    });
+
+    $('#btnPdf').click(function () {
+        exportData('pdf');
+    });
+
+
+
+    function exportData(format) {
+
+        var activeTab = document.querySelector('.tabcontent[style*="display: block"]');
+        if (activeTab) {
+            var table = activeTab.querySelector('table');
+            if (table) {
+                var tableId = table.getAttribute('id');
+                console.log('Active Tab ID:', tableId);
+
+                // Export logic based on format
+                if (format === 'excel') {
+                    exportTableToExcel(tableId);
+                } else if (format === 'pdf') {
+                    exportTableToPDF(tableId);
+                }
+            } else {
+                alert('No table found in the active tab.');
+            }
+        } else {
+            alert('No active tab found.');
+        }
+
+
+
+        //// Find the active tab content
+        //var activeTab = $('.tabcontent').attr("style", "display: block;");
+        ////var activeTab = $('.tab-pane.active');
+        //var table = activeTab.find('table');
+
+        //if (table.length) {
+        //    var tableId = table.attr('id');
+        //    console.log('Active Tab ID:', tableId);
+
+        //    // Export logic based on format
+        //    if (format === 'excel') {
+        //        exportTableToExcel(tableId);
+        //    } else if (format === 'pdf') {
+        //        exportTableToPDF(tableId);
+        //    }
+        //} else {
+        //    alert('No active tab with table found.');
+        //}
+    }
+
+    function exportTableToExcel(tableId) {
+        var table = document.getElementById(tableId);
+        var workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet 1" });
+
+        // Access the first sheet
+        var sheet = workbook.Sheets["Sheet 1"];
+
+        // Insert title at cell A1
+        // XLSX.utils.sheet_add_aoa(sheet, [["My Table Title"]], { origin: "A1" });
+
+        // Set the range to include the new title row
+        sheet['!ref'] = XLSX.utils.encode_range({
+            s: { c: 0, r: 0 },
+            e: XLSX.utils.decode_range(sheet['!ref']).e
+        });
+
+        // Set column widths
+        sheet['!cols'] = [
+            { wch: 5 }, // Width for "Name" column
+            { wch: 10 }, // Width for "Age" column
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 }
+        ];
+
+        // Generate Excel file and prompt user to download it
+        XLSX.writeFile(workbook, 'DBT Dashboard.xlsx');
+    }
+
+
+
+
+    function exportTableToPDF(tableId) {
+        const { jsPDF } = window.jspdf;
+
+        // Create a new jsPDF instance
+        var doc = new jsPDF('landscape');
+
+        const logo = '/Content/img/SARALog512.png'; // Replace with actual URL or base64 string
+
+        // Add the logo image
+        const logoWidth = 30; // Adjust the width as needed
+        const logoHeight = 10; // Adjust the height as needed
+        doc.addImage(logo, 'PNG', 10, 10, logoWidth, logoHeight);
+
+        // Add a header title
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const headerText = 'DBT Dashboard';
+        const fromDate = $("#txtFromDate").val();
+        const toDate = $("#txtTodate").val();
+        const dateText = 'Date: ' + ChangeformatDate(fromDate) + ' to ' + ChangeformatDate(toDate);
+
+        const headerTextWidth = doc.getTextWidth(headerText);
+        const headerTextX = (pageWidth - headerTextWidth) / 2;
+
+        // Adjust headerTextX to account for the logo
+        const adjustedHeaderTextX = Math.max(headerTextX, logoWidth + 20); // Ensure it doesn't overlap with the logo
+
+        doc.setFontSize(12);
+        doc.text(headerText, adjustedHeaderTextX, 22);
+
+        // Add the date text to the right of the header text
+        doc.setFontSize(12);
+        const dateTextWidth = doc.getTextWidth(dateText);
+        const dateTextX = adjustedHeaderTextX + headerTextWidth + 10; // Add an offset of 20 units for spacing
+        doc.text(dateText, dateTextX, 22);
+
+
+        doc.autoTable({
+            startY: 30, // Start the table below the header
+            html: '#' + tableId
+        });
+
+        // Save the generated PDF
+        doc.save('DBT_Dashboard.pdf');
+    }
+    function ChangeformatDate(dateString) {
+        var date = new Date(dateString);
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep",
+            "Oct", "Nov", "Dec"
+        ];
+
+        // Get the day, month, and year
+        var day = date.getDate().toString().padStart(2, '0');
+        var monthIndex = date.getMonth();
+        var month = monthNames[monthIndex];
+        var year = date.getFullYear();
+
+        // Format the date as dd-Mon-yyyy
+        var formattedDate = day + '-' + month + '-' + year;
+
+        return formattedDate;
+
+    }
+    $("#btnReset").on('click', function () {
+        $("#txtFromDate").val('');
+        $("#txtTodate").val('');
+        $('#tblUnionWise tbody').empty();
+        $('#tblUnionWise tfoot').empty();
+        $('#tblRouteWise tbody').empty();
+        $('#tblRouteWise tfoot').empty();
+        $('#tblDCSWise tbody').empty();
+        $('#tblDCSWise tfoot').empty();
+        $('#tblUnionWiseLastDbt tbody').empty();
+        $('#tblUnionWiseLastDbt tfoot').empty();
+    })
+</script>
+

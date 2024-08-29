@@ -1,0 +1,42 @@
+
+New Log Entry : 
+07/26/2023 13:30:16
+===========================
+Date              :Wednesday, July 26, 2023 1:30:16 PM
+User Name         :
+URL               :/User/Index
+Query String      :Guid=9ed78078-544f-4d4b-b01e-68e98e0d6231
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 26
+=============================
+
+New Log Entry : 
+07/26/2023 13:31:05
+===========================
+Date              :Wednesday, July 26, 2023 1:31:05 PM
+User Name         :
+URL               :/User/Index
+Query String      :Guid=a747d60d-6a4b-4516-8ddc-aac56bf504e3
+Req From          :http://localhost:49865/Home/Index
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.UserController.Index(String Guid) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 26
+=============================
+
+New Log Entry : 
+07/26/2023 16:56:37
+===========================
+Date              :Wednesday, July 26, 2023 4:56:37 PM
+User Name         :
+URL               :/User/VLCList
+Query String      :
+Req From          :
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.UserController.VLCList(String Guid) in D:\XpertWebApp\XpertWebApp\Controllers\UserController.cs:line 53
+=============================

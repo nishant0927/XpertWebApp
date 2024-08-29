@@ -1,0 +1,139 @@
+﻿<div class="modal fade bd-example-modal-lg" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 6px !important;border-bottom: 2px solid gray;background-color: darkgray;color:white;position: sticky; top: 0; z-index: 1000;">
+                <h5 class="modal-title" id="addmodalTitle"></h5>
+                <button type="button" class="close clear" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-check">                            
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbAll" checked="checked">
+                            <label class="form-check-label" for="rbAll">
+                                All
+                            </label>                           
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbSelect">
+                            <label class="form-check-label" for="rbSelect">
+                                Select
+                            </label>
+                        </div>
+                    </div>
+                    @*<div class="col-sm-8 text-right">
+                       
+                       
+                    </div>*@
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-sm btn-primary search-button" id="btnSelectAll">Select All</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-sm btn-primary search-button" id="btnUnSelectAll" style="width: 105px;">UnSelect All</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body-wrapper" style="height: 337px; overflow-y: auto;">
+                <div class="modal-body" style="width: 100%; margin-top: -14px; max-height: 400px;">
+
+                    <div class="container">
+
+                        <table width="100%" id="tblMccCode" class="table table-bordered table-hover" style="font-size: 12px;">
+                            <thead style="position: sticky; top: 0; background-color: #f9f9f9; z-index: 1; table-layout: auto !important; width: auto !important;">
+                                <tr id="tblheadermodal">
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyMCCCode"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer" style="padding: 6px !important; border-top: 2px solid gray; background-color: darkgray;">
+                <button type="button" class="btn btn-primary btn-sm pull-left" id="btnSave">OK</button>
+                <button type="button" class="btn btn-secondary btn-sm clear" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script>
+        $("#btnSelectAll").click(function () {
+            $("#tblMccCode tbody input[type='checkbox']").prop("checked", true);
+        });
+
+        // Event listener for "Unselect All" button
+        $("#btnUnSelectAll").click(function () {
+            $("#tblMccCode tbody input[type='checkbox']").prop("checked", false);
+        });
+        function AddMasterData(modalId, header, title, data) {
+            var modalTitle = document.getElementById('addmodalTitle');
+            modalTitle.innerText = title;
+
+            var modalHeaderRow = document.getElementById('tblheadermodal');
+            modalHeaderRow.innerHTML = '';
+            modalHeaderRow.innerHTML = header.map(function (columnName, index) {
+                if (index === 0) {
+                    return '<th></th>';  // No name and no search textbox for the first column
+                } else {
+                    return '<th style="text-align: left;">' + columnName + '<br><input type="text" class="column-search-input"></th>';
+                }
+            }).join('');
+            console.log('Header HTML:', modalHeaderRow.innerHTML);
+            // Build table rows
+            var rowsHtml = data.map(function (row) {
+                return '<tr><td><input type="checkbox" class="row-checkbox"></td>' + Object.values(row).map(function (cellValue) {
+                    return '<td>' + cellValue + '</td>';
+                }).join('') + '</tr>';
+            }).join('');
+
+            var modalBody = document.getElementById('tbodyMCCCode');
+            modalBody.innerHTML = rowsHtml;
+
+
+
+            modalHeaderRow.querySelectorAll('.column-search-input').forEach(function (input, columnIndex) {
+                input.addEventListener('input', function () {
+                    var searchText = this.value.trim().toLowerCase();
+                    var rows = modalBody.querySelectorAll('tr');
+
+                    rows.forEach(function (row) {
+                        var cellText = row.children[columnIndex + 1].textContent.trim().toLowerCase(); // Adjust index to skip checkbox column
+                        row.style.display = cellText.includes(searchText) ? '' : 'none';
+                    });
+                });
+            });
+
+
+            $('#' + modalId).modal('show');
+        }
+        function disable() {
+            $("#btnSelectAll").attr("disabled", "disabled");
+            $("#btnUnSelectAll").attr("disabled", "disabled");
+            $("#tblMccCode tbody input[type='checkbox']").attr("disabled", "disabled");
+            $("#tblMccCode tbody input[type='checkbox']").prop("checked", false);
+        }
+        function enable() {
+            $("#btnSelectAll").removeAttr("disabled");
+            $("#btnUnSelectAll").removeAttr("disabled");
+            $("#tblMccCode tbody input[type='checkbox']").removeAttr("disabled");
+        }
+        $("input[name='flexRadioDefault']").click(function () {
+            if ($("#rbAll").is(":checked")) {
+                disable();
+            }
+            else {
+                enable();
+            }
+        })
+</script>
+
+

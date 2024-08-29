@@ -1,0 +1,517 @@
+﻿
+@{
+    ViewBag.Title = "Demand";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/adminlte/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table thead, tfoot {
+        position: sticky;
+        top: 0;
+        background-color: #1cc8c07a;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    .input-group {
+        margin-bottom: -23px;
+    }
+
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+
+
+    th {
+        text-align: center;
+    }
+</style>
+<div class="content-wrapper" style="margin-top: -23px!important; margin-left:7px!important;">
+    <section class="content-header" style="height: 23px; padding: 0px 15px 0 15px!important;">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Demand Head</h3>
+            </div>
+            <div class="box-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtBookingNo" style="font-weight: bold;">Booking No.</label>
+                            <div class="input-group">
+                                <button class="btn btn-secondary btn-sm" type="button" id="btnFirst"><i class="fa fa-step-backward"></i></button>
+                                <button class="btn btn-secondary btn-sm" type="button" id="btnPrevious"><i class="fa fa-caret-left"></i></button>
+                                <input type="text" class="form-control form-control-sm input" id="txtBookingNo" />
+                                <button class="btn btn-secondary btn-sm" type="button" id="btnNext"><i class="fa fa-caret-right"></i></button>
+                                <button class="btn btn-secondary btn-sm" type="button" id="btnLast"><i class="fa fa-step-forward"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtBookingNo" style="font-weight: bold;">Date</label>
+                            <input type="text" class="form-control form-control-sm ml-2 input" id="txtDate" readonly style="max-width: 150px;" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label style="font-weight: bold;">Status</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" value="Pending" readonly style="max-width: 100px; font-weight:bold">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-sm ml-2">Get Quick Demand</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtRoutCode" style="font-weight: bold;">Route No</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" id="txtRoutCode" style="max-width: 22%;" />
+                                <button class="btn btn-primary btn-sm" type="button" id="btnLoadRout"><i class="fa fa-search"></i></button>
+                                <input type="text" class="form-control form-control-sm ml-2 input" id="txtRoutName" readonly />
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-md-1" style="max-width: 7%; margin-top: 27px;">
+                        <div class="form-group">
+                            <label style="font-weight: bold;"></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="timeOptions" id="rbMorning" checked>
+                                <label class="form-check-label" for="rbMorning">Morning</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="timeOptions" id="rbEvening">
+                                <label class="form-check-label" for="rbEvening">Evening</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top: 29px;">
+                        <div class="form-group">
+                            <label style="font-weight: bold;"></label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="productOptions" id="rbMilk" checked>
+                                <label class="form-check-label" for="rbMilk">Milk</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="productOptions" id="rbProduct">
+                                <label class="form-check-label" for="rbProduct">Product</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="productOptions" id="rbBoth">
+                                <label class="form-check-label" for="rbBoth">BOTH</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="max-width: 26%;">
+                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
+                            <legend style="font-weight: bold; padding: 0 10px; font-size:12px; width:11px!important;">Milk</legend>
+                            <table>
+                                <tr>
+                                    <td style="font-size: 12px;">Total Crate</td>
+                                    <td style="font-size: 12px;">
+                                        <input type="text" class="input form-control form-control-sm" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">Total Liter</td>
+                                    <td style="font-size: 12px;">
+                                        <input type="text" class="input form-control form-control-sm" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">Milk Amount</td>
+                                    <td style="font-size: 12px;">
+                                        <input type="text" class="input form-control form-control-sm" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-3" style="max-width: 26%;">
+                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
+                            <legend style="font-weight: bold; padding: 0 10px; font-size:12px; width:11px!important;">Product</legend>
+                            <table>
+                                <tr>
+                                    <td style="font-size: 12px;">Total count</td>
+                                    <td style="font-size: 12px;">
+                                        <input type="text" class="input" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 12px;">Total Amount</td>
+                                    <td style="font-size: 12px;">
+                                        <input type="text" class="input" />
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </fieldset>
+                        <table>
+                            <tr>
+                                <td style="font-size: 12px;">DCS Amount</td>
+                                <td style="font-size: 12px;">
+                                    <input type="text" class="input" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top: -98px;">
+                        <div class="form-group">
+                            <label for="txtCityCode" style="font-weight: bold;">City</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" id="txtCityCode" />
+                                @*<button class="btn btn-light btn-sm" type="button"><i class="fa fa-search"></i></button>*@
+                                <input type="text" class="form-control form-control-sm ml-2 input" id="txtCityName" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top: -42px;">
+                        <div class="form-group">
+                            <label for="txtLocationCode" style="font-weight: bold;">Location</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" id="txtLocationCode" />
+                                @*<button class="btn btn-light btn-sm" type="button"><i class="fa fa-search"></i></button>*@
+                                <input type="text" class="form-control form-control-sm ml-2 input" id="txtLocationName" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtVehicleCode" style="font-weight: bold;">Vehicle</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" id="txtVehicleCode" />
+                                <button class="btn btn-light btn-sm" type="button"><i class="fa fa-search"></i></button>
+                                <input type="text" class="form-control form-control-sm ml-2 input" id="txtVehicleName" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="txtTripNo" style="font-weight: bold;">Trip No.</label>
+                            <input type="text" class="form-control form-control-sm input" id="txtTripNo" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtCustomerCode" style="font-weight: bold;">Customer</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" id="txtCustomerCode" readonly />
+                                <input type="text" class="form-control form-control-sm input ml-2" id="txtCustomerName" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm input" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="chkMorningGatePass">
+                                <label class="form-check-label" for="chkMorningGatePass">Morning Gate Pass/Trucksheet Generated</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="chkMorningPosted">
+                                <label class="form-check-label" for="chkMorningPosted">Morning Posted</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtTransPorter" style="font-weight: bold;">Transporter</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm input" id="txtTransPorter" />
+                                <div class="form-check ml-2">
+                                    <input type="checkbox" class="form-check-input" id="chkIndividualCustomer">
+                                    <label class="form-check-label" for="chkIndividualCustomer">Individual Customer</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <input type="button" class="btn btn-primary btn-sm" value="Customer Search" id="btnCustomerSearch" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="chkEveningGatePass">
+                                <label class="form-check-label" for="chkEveningGatePass">Evening Gate Pass/Trucksheet Generated</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="chkEveningPosted">
+                                <label class="form-check-label" for="chkEveningPosted">Evening Posted</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@Html.Partial("~/Views/DairySales/_ListData.cshtml")
+<script>
+//const id = require("../../Scripts/adminlte/components/fullcalendar/dist/locale/id")
+
+    $("#btnLoadRout").on('click', function () {
+        var modalId = "AddModal";
+        var title = "Select Rout";
+
+        GetRout(function (data) {
+            var header = Object.keys(data[0]).filter(function (key) {
+                return key !== "Result";
+            });
+
+            var processedData = data.map(function (row) {
+                var newRow = {};
+                header.forEach(function (key) {
+                    newRow[key] = row[key];
+                });
+                return newRow;
+            });
+            console.log("Header", header);
+            console.log("processedData", processedData);
+            AddDataModal(modalId, title, header, processedData, function (onAnchorClick) {
+
+                console.log("Selected values:", onAnchorClick);
+                var routCode = onAnchorClick[0];
+                $("#txtRoutCode").val(onAnchorClick[0]);
+                $("#txtRoutName").val(onAnchorClick[1]);
+
+
+                var rbtnMorning = $("#rbMorning").is(":checked");
+                var fresh = $("#rbMilk").is(":checked");
+                var product = $("#rbProduct").is(":checked");
+                var both = $("#rbBoth").is(":checked");               
+                var navType = 5;
+                GetDocNo(routCode, rbtnMorning, fresh, product, both, navType)
+            });
+        });
+      
+    })
+
+    function GetRout(callback) {
+        $.ajax({
+            url: '/DairySales/GetRoutAsync',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    var responseData = JSON.parse(data.responseData);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", result.responseText);
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+    }
+
+    function GetDocNo(routCode, rbtnMorning, fresh, product, both, NavType) {
+        $.ajax({
+            url: '/DairySales/GetDocNo',
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            data: { routCode: routCode, rbtnMorning: rbtnMorning, fresh: fresh, product: product, both: both, NavType: NavType},
+            success: function (data) {
+                if (data.success) {
+                    var responseData = (data.DocNo)
+                    console.log(responseData);
+                    if (data.DocNo != "") {
+                        loadData(responseData, NavType)
+                    }
+                    else {
+                        $("#txtDate").prop("disabled", true);
+                    }
+                }
+            }
+        })
+
+    }
+
+    function loadData(docNo,NavType) {
+        $.ajax({
+            url: '/DairySales/LoadData',
+            type: 'GET',
+            dataType: "json",
+            async: false,
+            data: { strDocumentNo: docNo, NavType: NavType },
+            success: function (data) {
+                if (data.success) {
+                    var responseData = (data.DocNo)
+                    console.log(responseData);
+                    if (data.DocNo != "") {
+
+                    }
+                }
+            }
+        })
+    }
+</script>

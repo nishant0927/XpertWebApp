@@ -1,0 +1,1305 @@
+
+New Log Entry : 
+08/05/2024 10:59:59
+===========================
+Date              :05 August 2024 10:59:59
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 12:55:47
+===========================
+Date              :05 August 2024 12:55:47
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 13:05:45
+===========================
+Date              :05 August 2024 13:05:45
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 13:07:55
+===========================
+Date              :05 August 2024 13:07:55
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 13:46:38
+===========================
+Date              :05 August 2024 13:46:38
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 13:53:59
+===========================
+Date              :05 August 2024 13:53:59
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 14:25:08
+===========================
+Date              :05 August 2024 14:25:08
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 131
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 61
+=============================
+
+New Log Entry : 
+08/05/2024 15:42:35
+===========================
+Date              :05 August 2024 15:42:35
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'LoginData[0].Vendor_Code', line 1, position 116.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 112
+=============================
+
+New Log Entry : 
+08/05/2024 15:42:36
+===========================
+Date              :05 August 2024 15:42:36
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 15:43:20
+===========================
+Date              :05 August 2024 15:43:20
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :The remote server returned an error: (400) Bad Request.
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetResponse()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 97
+=============================
+
+New Log Entry : 
+08/05/2024 15:43:20
+===========================
+Date              :05 August 2024 15:43:20
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 15:46:30
+===========================
+Date              :05 August 2024 15:46:30
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: d. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 15:58:04
+===========================
+Date              :05 August 2024 15:58:04
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Input string was not in a correct format.
+Source            :mscorlib
+Line No           :   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Convert.ToDouble(String value, IFormatProvider provider)
+   at Newtonsoft.Json.JsonTextReader.ParseNumber()
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:05:22
+===========================
+Date              :05 August 2024 16:05:22
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'LoginData[0].Vendor_Code', line 1, position 116.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 112
+=============================
+
+New Log Entry : 
+08/05/2024 16:05:22
+===========================
+Date              :05 August 2024 16:05:22
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:07:44
+===========================
+Date              :05 August 2024 16:07:44
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Input string was not in a correct format.
+Source            :mscorlib
+Line No           :   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Convert.ToDouble(String value, IFormatProvider provider)
+   at Newtonsoft.Json.JsonTextReader.ParseNumber()
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:14:18
+===========================
+Date              :05 August 2024 16:14:18
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'LoginData[0].Vendor_Code', line 1, position 116.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 112
+=============================
+
+New Log Entry : 
+08/05/2024 16:14:18
+===========================
+Date              :05 August 2024 16:14:18
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unexpected character encountered while parsing value: E. Path '', line 0, position 0.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:18:45
+===========================
+Date              :05 August 2024 16:18:45
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Input string was not in a correct format.
+Source            :mscorlib
+Line No           :   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Convert.ToDouble(String value, IFormatProvider provider)
+   at Newtonsoft.Json.JsonTextReader.ParseNumber()
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:50:20
+===========================
+Date              :05 August 2024 16:50:20
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Input string was not in a correct format.
+Source            :mscorlib
+Line No           :   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Convert.ToDouble(String value, IFormatProvider provider)
+   at Newtonsoft.Json.JsonTextReader.ParseNumber()
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:50:52
+===========================
+Date              :05 August 2024 16:50:52
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=91c228b0-56f8-4fc9-ab46-c04b9e155e7f
+Req From          :http://localhost:49865/User/Index?Guid=91c228b0-56f8-4fc9-ab46-c04b9e155e7f
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+08/05/2024 16:55:19
+===========================
+Date              :05 August 2024 16:55:19
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Input string was not in a correct format.
+Source            :mscorlib
+Line No           :   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Convert.ToDouble(String value, IFormatProvider provider)
+   at Newtonsoft.Json.JsonTextReader.ParseNumber()
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.ReadInternal()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.Linq.JArray.Load(JsonReader reader)
+   at Newtonsoft.Json.Linq.JArray.Parse(String json)
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 57
+=============================
+
+New Log Entry : 
+08/05/2024 16:55:36
+===========================
+Date              :05 August 2024 16:55:36
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=52ae1584-b5f9-4827-a57e-fbe5d816676b
+Req From          :http://localhost:49865/User/Index?Guid=52ae1584-b5f9-4827-a57e-fbe5d816676b
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+08/05/2024 16:56:35
+===========================
+Date              :05 August 2024 16:56:35
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=52ae1584-b5f9-4827-a57e-fbe5d816676b
+Req From          :http://localhost:49865/User/Index?Guid=52ae1584-b5f9-4827-a57e-fbe5d816676b
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+08/05/2024 16:58:48
+===========================
+Date              :05 August 2024 16:58:48
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=52ae1584-b5f9-4827-a57e-fbe5d816676b
+Req From          :http://localhost:49865/User/Index?Guid=52ae1584-b5f9-4827-a57e-fbe5d816676b
+HostAddress       :::1
+Error Desc        :Object reference not set to an instance of an object.
+Source            :XpertWebApp
+Line No           :   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 29
+=============================
+
+New Log Entry : 
+08/05/2024 17:03:43
+===========================
+Date              :05 August 2024 17:03:43
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=e634863a-3a97-49c2-8228-88319793e17e
+Req From          :http://localhost:49865/User/Index?Guid=e634863a-3a97-49c2-8228-88319793e17e
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[58].Gender', line 1, position 29193.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 33
+=============================
+
+New Log Entry : 
+08/05/2024 17:06:29
+===========================
+Date              :05 August 2024 17:06:29
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=e634863a-3a97-49c2-8228-88319793e17e
+Req From          :http://localhost:49865/User/Index?Guid=e634863a-3a97-49c2-8228-88319793e17e
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[55].Gender', line 1, position 27780.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 33
+=============================
+
+New Log Entry : 
+08/05/2024 17:24:26
+===========================
+Date              :05 August 2024 17:24:26
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=71767269-9fe7-4b96-bd4d-6a1fac6bfe28
+Req From          :http://localhost:49865/User/Index?Guid=71767269-9fe7-4b96-bd4d-6a1fac6bfe28
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[49].Gender', line 1, position 24954.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 33
+=============================
+
+New Log Entry : 
+08/05/2024 17:45:43
+===========================
+Date              :05 August 2024 17:45:43
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=f7956f0b-a16a-49f5-8680-5353119fdfd1
+Req From          :http://localhost:49865/User/Index?Guid=f7956f0b-a16a-49f5-8680-5353119fdfd1
+HostAddress       :::1
+Error Desc        :Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[DAL.Farmer.FarmerModel]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'MPData', line 1, position 10.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid)
+=============================
+
+New Log Entry : 
+08/05/2024 17:54:51
+===========================
+Date              :05 August 2024 17:54:51
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=03290273-b36d-4adc-ac3a-ab30311414bb
+Req From          :http://localhost:49865/User/Index?Guid=03290273-b36d-4adc-ac3a-ab30311414bb
+HostAddress       :::1
+Error Desc        :Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[DAL.Farmer.MPDataList]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'MPData', line 1, position 10.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 34
+=============================
+
+New Log Entry : 
+08/05/2024 17:55:36
+===========================
+Date              :05 August 2024 17:55:36
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=03290273-b36d-4adc-ac3a-ab30311414bb
+Req From          :http://localhost:49865/User/Index?Guid=03290273-b36d-4adc-ac3a-ab30311414bb
+HostAddress       :::1
+Error Desc        :Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[DAL.Farmer.MPDataList]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'MPData', line 1, position 10.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 34
+=============================
+
+New Log Entry : 
+08/05/2024 18:03:03
+===========================
+Date              :05 August 2024 18:03:03
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=facd8cb2-2298-4be9-adef-c4b9c30cb7c9
+Req From          :http://localhost:49865/User/Index?Guid=facd8cb2-2298-4be9-adef-c4b9c30cb7c9
+HostAddress       :::1
+Error Desc        :Cannot deserialize the current JSON object (e.g. {"name":"value"}) into type 'System.Collections.Generic.List`1[DAL.Farmer.MPDataList]' because the type requires a JSON array (e.g. [1,2,3]) to deserialize correctly.
+To fix this error either change the JSON to a JSON array (e.g. [1,2,3]) or change the deserialized type so that it is a normal .NET type (e.g. not a primitive type like integer, not a collection type like an array or List<T>) that can be deserialized from a JSON object. JsonObjectAttribute can also be added to the type to force it to deserialize from a JSON object.
+Path 'MPData', line 1, position 10.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 34
+=============================
+
+New Log Entry : 
+08/05/2024 20:51:13
+===========================
+Date              :05 August 2024 20:51:13
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=2d315054-5cdd-4227-8727-a9eb2d6fa14c
+Req From          :http://localhost:49865/User/Index?Guid=2d315054-5cdd-4227-8727-a9eb2d6fa14c
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[0].MP_Name_Hindi', line 1, position 85.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 34
+=============================
+
+New Log Entry : 
+08/05/2024 21:04:18
+===========================
+Date              :05 August 2024 21:04:18
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=d92bd255-88c5-411c-8571-a4c7c1661155
+Req From          :http://localhost:49865/User/Index?Guid=d92bd255-88c5-411c-8571-a4c7c1661155
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[0].MP_Name_Hindi', line 1, position 85.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid)
+=============================
+
+New Log Entry : 
+08/05/2024 21:08:03
+===========================
+Date              :05 August 2024 21:08:03
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=e924854e-d198-4bd0-b270-aa223a365e14
+Req From          :http://localhost:49865/User/Index?Guid=e924854e-d198-4bd0-b270-aa223a365e14
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[0].MP_Name_Hindi', line 1, position 85.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 37
+=============================
+
+New Log Entry : 
+08/05/2024 21:15:48
+===========================
+Date              :05 August 2024 21:15:48
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=f9756630-b4e4-4ea8-9f62-80e480035e0b
+Req From          :http://localhost:49865/User/Index?Guid=f9756630-b4e4-4ea8-9f62-80e480035e0b
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'MPData[0].MP_Name_Hindi', line 1, position 85.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 37
+=============================
+
+New Log Entry : 
+08/05/2024 22:03:33
+===========================
+Date              :05 August 2024 22:03:33
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 91
+=============================
+
+New Log Entry : 
+08/05/2024 22:03:46
+===========================
+Date              :05 August 2024 22:03:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Location.Locations.CheckLoginDetails(String userId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\DAL\Location\Locations.cs:line 91
+=============================
+
+New Log Entry : 
+08/05/2024 22:10:51
+===========================
+Date              :05 August 2024 22:10:51
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:10:55
+===========================
+Date              :05 August 2024 22:10:55
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:10:59
+===========================
+Date              :05 August 2024 22:10:59
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:04
+===========================
+Date              :05 August 2024 22:11:04
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:08
+===========================
+Date              :05 August 2024 22:11:08
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:12
+===========================
+Date              :05 August 2024 22:11:12
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:16
+===========================
+Date              :05 August 2024 22:11:16
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:21
+===========================
+Date              :05 August 2024 22:11:21
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:25
+===========================
+Date              :05 August 2024 22:11:25
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetFixParameter(String code, String guid) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 251
+=============================
+
+New Log Entry : 
+08/05/2024 22:11:29
+===========================
+Date              :05 August 2024 22:11:29
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6&Code=0430414
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=b2d7b74d-35d2-4989-8f64-6947f9c275f6
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.MPMasterGetData(String code, String MPCode, String guid, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 96
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:16
+===========================
+Date              :05 August 2024 22:12:16
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:20
+===========================
+Date              :05 August 2024 22:12:20
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:25
+===========================
+Date              :05 August 2024 22:12:25
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:29
+===========================
+Date              :05 August 2024 22:12:29
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:33
+===========================
+Date              :05 August 2024 22:12:33
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:37
+===========================
+Date              :05 August 2024 22:12:37
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:42
+===========================
+Date              :05 August 2024 22:12:42
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:12:46
+===========================
+Date              :05 August 2024 22:12:46
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=35858460-98bb-4242-8588-20ff518107da&Code=
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=35858460-98bb-4242-8588-20ff518107da
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:13
+===========================
+Date              :05 August 2024 22:14:13
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:17
+===========================
+Date              :05 August 2024 22:14:17
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:21
+===========================
+Date              :05 August 2024 22:14:21
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:26
+===========================
+Date              :05 August 2024 22:14:26
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:30
+===========================
+Date              :05 August 2024 22:14:30
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:34
+===========================
+Date              :05 August 2024 22:14:34
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:38
+===========================
+Date              :05 August 2024 22:14:38
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:43
+===========================
+Date              :05 August 2024 22:14:43
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetListData(String code, String guid, String MethodName, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 191
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:47
+===========================
+Date              :05 August 2024 22:14:47
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.GetFixParameter(String code, String guid) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 251
+=============================
+
+New Log Entry : 
+08/05/2024 22:14:51
+===========================
+Date              :05 August 2024 22:14:51
+User Name         :
+URL               :/Farmer/NewRegistration
+Query String      :Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1&Code=337636
+Req From          :http://localhost:49865/Farmer/GetFarmerList?Guid=ad91fb05-b318-463f-9b61-1fd45d26cba1
+HostAddress       :::1
+Error Desc        :Unable to connect to the remote server
+Source            :System
+Line No           :   at System.Net.HttpWebRequest.GetRequestStream(TransportContext& context)
+   at System.Net.HttpWebRequest.GetRequestStream()
+   at DAL.Farmer.Farmer.MPMasterGetData(String code, String MPCode, String guid, String AppUserCode, String AppPwd) in D:\ERPTecxPert\XpertWebApp\DAL\Farmer\Farmer.cs:line 96
+=============================
+
+New Log Entry : 
+08/05/2024 23:32:36
+===========================
+Date              :05 August 2024 23:32:36
+User Name         :
+URL               :/Farmer/GetFarmerList
+Query String      :Guid=b43e0bb4-f34e-4ee7-82aa-ce1d01e803e7
+Req From          :http://localhost:49865/User/Index?Guid=b43e0bb4-f34e-4ee7-82aa-ce1d01e803e7
+HostAddress       :::1
+Error Desc        :Error reading string. Unexpected token: StartObject. Path 'mpData[49].Gender', line 1, position 24784.
+Source            :Newtonsoft.Json
+Line No           :   at Newtonsoft.Json.JsonReader.ReadAsStringInternal()
+   at Newtonsoft.Json.JsonTextReader.ReadAsString()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ReadForType(JsonReader reader, JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateList(IList list, JsonReader reader, JsonArrayContract contract, JsonProperty containerProperty, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateList(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, Object existingValue, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.SetPropertyValue(JsonProperty property, JsonConverter propertyConverter, JsonContainerContract containerContract, JsonProperty containerProperty, JsonReader reader, Object target)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value)
+   at XpertWebApp.Controllers.FarmerController.GetFarmerList(String Guid) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\FarmerController.cs:line 37
+=============================

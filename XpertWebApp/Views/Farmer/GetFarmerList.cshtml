@@ -1,0 +1,81 @@
+﻿@model DAL.Farmer.FarmerModel
+@{
+    ViewBag.Title = "Farmer List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string guid = (Request.QueryString["Guid"] != null ? Request.QueryString["Guid"] : null);
+
+}
+<div class="container-fluid dbt-entery-pg">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Farmer Lists</h1>
+    </div>
+    <div class="dbt-e-pg-add-new">
+        <a href="/Farmer/NewRegistration?Guid=@guid&Code=" class="add-new-btn"><i class="fa fa-plus-circle"></i></a>
+        
+    </div>
+    <div class="dbt-e-pg-search-panel">
+        <div class="form-group">
+            <span class="input-position">
+                <span class="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <input type="text" class="input-c" id="searchFarmer" placeholder="Search By Name or Code" />
+            </span>
+            
+        </div>
+       
+    </div>
+    @if (Model != null)
+    {
+        <div class="dbt-e-pg-table-panel" id="searchResult">
+            <div class="tp-row">
+                <div class="com-box box1">
+                    <span class="hd-text">Code</span>
+                </div>
+                <div class="com-box box2">
+                    <span class="hd-text">Name</span>
+                </div>
+                <div class="com-box box3">
+                    <span class="hd-text">Gender</span>
+                </div>
+                <div class="com-box box4">
+                    <span class="hd-text">Number</span>
+                </div>
+                <div class="com-box box5">
+                    <span class="hd-text">Status</span>
+                </div>
+            </div>
+            @foreach (var item in Model.MPData)
+            {
+                <div class="tp-row tp-r">
+                    <div class="com-box box1">
+
+                        <span class="tp-text tp-v"> <a href="/Farmer/NewRegistration?Guid=@guid&Code=@item.MP_Code">@item.MP_Code</a></span>
+
+                    </div>
+                    <div class="com-box box2">
+                        <span class="tp-text tp-v">@item.MP_Name</span>
+                    </div>
+                    <div class="com-box box3">
+                        <span class="tp-text tp-v">@item.Gender</span>
+                    </div>
+                    <div class="com-box box4">
+                        <span class="tp-text tp-v">@item.Telphone</span>
+                    </div>
+                    <div class="com-box box5">
+                        <span class="tp-text tp-v">@item.Status</span>
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
+</div>
+<script src="~/Content/js/CustomScript/FarmerReg.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+       // $('#callaway_popup2').hide();
+
+        SearchFun();
+    });
+</script>

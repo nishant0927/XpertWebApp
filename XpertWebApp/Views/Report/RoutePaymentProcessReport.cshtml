@@ -1,0 +1,811 @@
+﻿
+@{
+    ViewBag.Title = "Route Payment Process Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* .col-md-2 {
+        max-width: none;
+    }
+
+    .col-md-3 {
+        flex: 2 5 28% !important;
+        max-width: 41% !important;
+    }*/
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table {
+        table-layout: auto; /* This ensures that the table's layout is fixed */
+        width: 100%; /* Adjust the width as needed */
+    }
+
+    td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+    }
+
+    /*   table thead, tfoot {
+            position: sticky;
+            top: 0;
+            background-color: #1cc8c07a;
+            z-index: 1;
+            table-layout: auto !important;
+            width: auto !important;
+            font-size: 14px;
+            font-weight: bold;
+        }*/
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    /* .input-group {
+            margin-bottom: -23px;
+        }
+    */
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+            border-right: 0;
+            white-space: nowrap;
+
+            border-radius: 0;*/
+    /*vertical-align: top;
+            border-color: #d2d6de;
+            background-color: #fff;
+            border-right: 0;
+            display: table-cell;
+        }*/
+
+    /*table {
+            table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+            height: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+
+
+<div class="content-wrapper" style="margin-left:-8px!important;">
+    <section class="content-header">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content">
+        <div class="box">
+            <div class="row" style="margin-top: -18px; max-height: 16px;">
+                <div class="col-sm-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border" style="padding: 1px;margin-top: 14px;">
+                            <div class="row" style="margin-top:-14px;">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'divFilter')" id="defaultOpen">Filter</button>
+                                        <button class="tablinks" onclick="openTab(event,'requsetStatus')">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body-wrapper" style="margin-top:-12px;">
+            <div class="tabcontent" id="divFilter">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <div class="box box-body">
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width:fit-content;">Ledger Print</legend>
+                                            <div class="row" style="margin-top: -11px;">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtLedgerPrintFromDate" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtLedgerPrintToDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print" id="btnLedgerPrint" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">DCS Summary</legend>
+                                            <div class="row" style="margin-top: -11px;">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>Month</label>
+                                                        <input type="month" class="form-control form-control-sm input" id="txtMonth" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print" id="btnDCSSummary" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Daily Summary</legend>
+                                            <div class="row" style="margin-top: -11px;">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDailySummaryFromDate" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDailySummaryToDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print" id="btnDailySummaryPrint" />
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print2" id="btnDailySummaryPrint2" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+
+
+                                <!--second -->
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width:fit-content;">DCS Ledger Report</legend>
+                                            <div class="row" style="margin-top: -11px;">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDCSLedgerReportFromDate" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDCSLedgerReportToDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Area</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txtDCSLedgerReportAreaCode" />
+                                                            <button class="btn btn-primary btn-sm" type="button" id="btnLoadDCSLedgerReportArea"><i class="fa fa-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>MCC Code</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txtDCSLedgerReportMccCode">
+                                                            <div class="input-group-append">
+                                                                <button id="btnloadDCSLedgerReportMcc" class="btn btn-sm btn-primary">
+                                                                    <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Route Name</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txDCSLedgerReporttRouteCode">
+                                                            <div class="input-group-append">
+                                                                <button id="btnloadDCSLedgerReportRoute" class="btn btn-sm btn-primary">
+                                                                    <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:-15px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:210px;">
+                                                            <input class="form-check-input" type="radio" name="rbtDCSLedgerReport" id="rbtDCSLedgerReportRoute" style=" margin-left: 2px;">
+                                                            <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Route Wise</label>
+                                                            <input class="form-check-input" type="radio" name="rbtDCSLedgerReport" id="rbtDCSLedgerReportDCSWise" style=" margin-left: 7px;" checked>
+                                                            <label style=" margin-left: 24px;">DCS Wise</label>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print" id="btnDCSLedgerReport" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">yearly DCS Summary</legend>
+                                            <div class="row" style="margin-top: -11px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Finacial Year</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txtFinacialYear" />
+                                                            <button class="btn btn-primary btn-sm" type="button" id="btnLoadFinacialYear"><i class="fa fa-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtYearlyDCSFromDate" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtYearlyDCSToDate" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Area</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txtYearlyDCSAreaCode" />
+                                                            <button class="btn btn-primary btn-sm" type="button" id="btnLoadYearlyDCSArea"><i class="fa fa-search"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>MCC Code</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txtYearlyDCSMccCode">
+                                                            <div class="input-group-append">
+                                                                <button id="btnloadYearlyDCSMcc" class="btn btn-sm btn-primary">
+                                                                    <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="margin-top:-18px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>DCS</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control form-control-sm input" id="txtYearlyDCSDCSCode">
+                                                            <div class="input-group-append">
+                                                                <button id="btnloadYearlyDCSDCS" class="btn btn-sm btn-primary">
+                                                                    <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-top:-15px;">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:210px;">
+                                                            <input class="form-check-input" type="radio" name="rbtYearlyDCS" id="rbtYearlyDCSPDCS" style=" margin-left: 2px;">
+                                                            <label class="form-check-label" for="rbtYearlyDCSPDCS" style="margin-left: 20px;">PDCS</label>
+                                                            <input class="form-check-input" type="radio" name="rbtYearlyDCS" id="rbtYearlyDCSRegistered" style=" margin-left: 7px;">
+                                                            <label style=" margin-left: 24px;">Registered</label>
+                                                            <input class="form-check-input" type="radio" name="rbtYearlyDCS" id="rbtYearlyDCSAll" style=" margin-left: 7px;">
+                                                            <label style=" margin-left: 24px;">All</label>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print" id="btnYearlyDCSDPrint" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">DCS Wise Avg FAT SNF</legend>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDCSWiseAvgFatSnfFromDate" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDCSWiseAvgFatSnfToDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <input type="button" class="btn btn-sm btn-primary search-button" value="Print" id="btnDCSWiseAvgFatSnfPrint" />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </fieldset>
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:340px;">
+                                            <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Daily Gain Loss Report</legend>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+
+                                                    <div class="form-group">
+                                                        <label>From Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDailyGainLoassFromDate" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Date</label>
+                                                        <input type="date" class="form-control form-control-sm input" id="txtDailyGainLoassToDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle search-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Export
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#" id="btnDailyGainLoassExcel">Excel</a>
+                                                                <a class="dropdown-item" href="#" id="btnDailyGainLoassPdf">PDF</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        @*</div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tabcontent" id="requsetStatus">
+                <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                    <table width="100%" class="table table-bordered table-hover no-footer dataTable" style="font-size: 12px;" id="tblRequestStatus">
+                        <thead id="theadRequestStatus">
+                        </thead>
+                        <tbody id="tbodyRequestStatus"></tbody>
+                    </table>
+                </div>
+                <div style="overflow-y: auto; text-align: right; height:52px; margin-top:4px;">
+                    <nav aria-label="Page navigation example" style="display: inline-flex!important;">
+                        <ul class="pagination justify-content-center" id="pagination">
+                        </ul>
+                    </nav>
+                    @*</div>*@
+                </div>
+            </div>
+
+        </div>
+        @*<div class="box-footer" style="margin-top:61px;">
+                <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
+                <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
+                <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>
+                <button class="btn btn-sm btn-primary search-button" style="width: 139px!important;" id="btnExcel"> <i class="fa fa-download"></i> Generate Excel</button>
+
+            </div>*@
+
+        @*</div>*@
+        @*</div>*@
+
+    </section>
+</div>
+@Html.Partial("~/Views/Report/_MultipleSelectionPartialView.cshtml")
+@Html.Partial("~/Views/Report/_SingleSelectionPartialView.cshtml")
+
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/adminlte/js/adminlte.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+    $(document).ready(function () {
+        openTab(null, 'divFilter');
+        //LoadPaymentProcess();
+    });
+    function openTab(evt, tabId) {
+        // Hide all tab content
+        $(".tabcontent").hide();
+
+        // Remove "active" class from all tab links
+        $(".tablinks").removeClass("active");
+
+        // Show the current tab content and add "active" class to the clicked tab button
+        $("#" + tabId).show();
+        if (evt) {
+            $(evt.currentTarget).addClass("active");
+        }
+    }
+    $("#defaultOpen").addClass("active");
+
+
+    $("#btnLedgerPrint").on('click', function () {
+        var fromDate = $("#txtLedgerPrintFromDate").val();
+        var toDate = $("#txtLedgerPrintToDate").val();
+    });
+    $("#btnDCSSummary").on('click', function () {
+        var month = $("#txtMonth").val();
+        $.ajax({
+            url: '/Report/DailyQuantityExportToExcel',
+            type: 'GET',
+            data: {month:month},
+
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+               
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank');
+                
+
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the Excel file: " + error);
+            }
+        })
+    });
+    $("#btnDailySummaryPrint").on('click', function () {
+
+        var fromDate = $("#txtDailySummaryFromDate").val();
+        var toDate = $("#txtDailySummaryToDate").val();
+    });
+
+    $("#btnDailySummaryPrint2").on('click', function () {
+        var fromDate = $("#txtDailySummaryFromDate").val();
+        var tomDate = $("#txtDailySummaryToDate").val();
+    });
+    $("#btnDCSLedgerReport").on('click', function () {
+        var fromDate = $("#txtDCSLedgerReportFromDate").val();
+        var toDate = $("#txtDCSLedgerReportToDate").val();
+        var area = $("#txtDCSLedgerReportAreaCode").val();
+        var mcc = $("#txtDCSLedgerReportMccCode").val();
+        var routeName = $("#txDCSLedgerReporttRouteCode").val();
+        var routeWise = $("#rbtDCSLedgerReportRoute").is(":checked");
+        var dcsWise = $("#rbtDCSLedgerReportDCSWise").is(":checked");
+    });
+
+    $("#btnYearlyDCSDPrint").on('click', function () {
+        var finacialYear = $("#txtFinacialYear").val();
+        var fromDate = $("#txtYearlyDCSFromDate").val();
+        var toDate = $("#txtYearlyDCSToDate").val();
+        var area = $("#txtYearlyDCSAreaCode").val();
+        var mcc = $("#txtYearlyDCSMccCode").val();
+        var dcs = $("#txtYearlyDCSDCSCode").val();
+        var pDCS = $("#rbtYearlyDCSPDCS").is(":checked");
+        var registered = $("#rbtYearlyDCSRegistered").is(":checked");
+        var all = $("#rbtYearlyDCSAll").is(":checked");
+    });
+
+    $("#btnDCSWiseAvgFatSnfPrint").on('click', function () {
+        var fromDate = $("#txtDCSWiseAvgFatSnfFromDate").val();
+        var toDate = $("#txtDCSWiseAvgFatSnfToDate").val();
+    });
+
+    $("#btnDailyGainLoassExcel").on('click', function () {
+        var fromDate = $("#txtDailyGainLoassFromDate").val();
+        var toDate = $("#txtDailyGainLoassToDate").val();
+    });
+
+    $("#btnDailyGainLoassPdf").on('click', function () {
+        var fromDate = $("#txtDailyGainLoassFromDate").val();
+        var toDate = $("#txtDailyGainLoassToDate").val();
+    });
+
+
+    $("#btnloadDCSLedgerReportRoute").on('click', function () {
+        var modalId = "modalCreate";
+        var title = "Select Route";
+        var header = ['', 'CODE', 'Name'];
+        $("#modalCreate").data('source', 'route');
+        GetRoute(function (data) {
+            var filteredData = data.map(function (row) {
+                return {
+                    'CODE': row.Code,
+                    'Name': row.Name
+                }
+            });
+            AddMasterData(modalId, header, title, filteredData);
+            disable();
+        })
+    });
+
+    $("#btnloadDCSLedgerReportMcc").on('click', function () {
+
+        var modalId = "modalCreate";
+        var title = "Select MCC / BMC";
+        var header = ['', 'CODE', 'Name'];
+        $("#modalCreate").data('source', 'mcc');
+        GetMCC(function (data) {
+            var filteredData = data.map(function (row) {
+                return {
+                    'CODE': row.Code,
+                    'Name': row.Name
+                }
+            });
+            AddMasterData(modalId, header, title, filteredData);
+            disable();
+        })
+    });
+    $("#btnLoadDCSLedgerReportArea").on('click', function () {
+
+    });
+
+
+    $("#btnloadYearlyDCSDCS").on('click', function () {
+    });
+    $("#btnloadYearlyDCSMcc").on('click', function () {
+    });
+    $("#btnLoadYearlyDCSArea").on('click', function () {
+    });
+
+    $("#btnLoadFinacialYear").on('click', function () {
+    });
+
+    function GetMCC(callback) {
+        $.ajax({
+            url: '/Common/GetMcc',
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            success: function (reponse) {
+                if (reponse.lst) {
+                    var responseData = JSON.parse(reponse.lst);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", result.responseText);
+                }
+
+            },
+            error: function (errorMessage) {
+                ShowSweet2Message("warning", "Warning", errorMessage.responseText);
+            }
+        })
+    }
+    function GetRoute(callback) {
+        $.ajax({
+            url: '/Common/GetRoute',
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            success: function (reponse) {
+                if (reponse.lst) {
+                    var responseData = JSON.parse(reponse.lst);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", result.responseText);
+                }
+
+            },
+            error: function (errorMessage) {
+                ShowSweet2Message("warning", "Warning", errorMessage.responseText);
+            }
+        })
+    }
+</script>
+

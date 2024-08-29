@@ -1,0 +1,195 @@
+﻿@{ 
+    string guid = (Request.QueryString["Guid"] != null ? Request.QueryString["Guid"] : null);
+    var programCodes = Session["ProgramCodes"] as List<string>;
+
+}
+@if (Session["Port"] != null)
+{ 
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+        <div class="sidebar-brand-icon rotate-n-15">
+            @*<i class="fas fa-laugh-wink"></i>*@
+        </div>
+        <div class="sidebar-brand-text mx-3">Xpert <sup>ERP</sup></div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/User/Index?Guid=@guid">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetup"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Setup</span>
+        </a>
+        <div id="collapseSetup" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Setup:</h6>
+                @*<a class="collapse-item" href="/User/NewRegistration?Guid=@guid">
+                        <i class="fa fa-plus-circle"></i>
+                        New Registration
+                    </a>*@
+                <a class="collapse-item" href="/Farmer/GetFarmerList?Guid=@guid">
+                    <i class="fa fa-plus-circle"></i>
+                    Farmer Registration
+                </a>
+
+            </div>
+        </div>
+    </li>
+
+    @*<li class="nav-item active">
+            <a class="nav-link" href="/DBT/DBTEntry?Guid=@guid">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>DBT Entry</span>
+            </a>
+        </li>*@
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTranscation"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Transcation</span>
+        </a>
+        <div id="collapseTranscation" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Transcation:</h6>
+                <a class="collapse-item" href="/DBT/DBTEntry?Guid=@guid">
+                    <i class="fa fa-plus-circle"></i>
+                    DBT Entry
+                </a>
+
+
+            </div>
+        </div>
+    </li>
+    <hr class="sidebar-divider">
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReports"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Reports</span>
+        </a>
+        <div id="collapseReports" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Reports:</h6>
+                <a class="collapse-item" href="/DBT/DBTRegister?Guid=@guid">
+                    <i class="fa fa-file"></i>
+                    DBT Register
+                </a>
+                @*@if (programCodes != null && programCodes.Count > 0)
+        {
+            foreach (var lst in programCodes)
+            {
+                if (lst == "DAS_MK_PROC")
+                {*@
+                <a class="collapse-item" href="/Report/DashBoard">
+                    <i class="fa fa-file"></i>
+                    Dashboard Milk<br />&nbsp;&nbsp;&nbsp; Procurement
+                </a>
+                @*}
+        if (lst == "COW-LST-RPT")
+        {*@
+                <a class="collapse-item" href="/Report/ListOfCowDCS">
+                    <i class="fa fa-file"></i>
+                    List of Cow DCS
+                </a>
+                @*}
+            }
+
+        }*@
+
+                <a class="collapse-item" href="/Report/DBT_Dashboard">
+                    <i class="fa fa-file"></i>
+                    DBT Dashboard
+                </a>
+                <a class="collapse-item" href="/Report/SalesAndMarkingDashboard">
+                    <i class="fa fa-file"></i>
+                    Sales & Marking <br />Dashboard
+                </a>
+                <a class="collapse-item" href="/Report/JanaadharStatusReport">
+                    <i class="fa fa-file"></i>
+                    Janaadhar Status Report
+                </a>
+                <a class="collapse-item" href="/Report/DailyQtyReport">
+                    <i class="fa fa-file"></i>
+                    Daily Qty Report
+                </a>
+                <a class="collapse-item" href="/Report/PaymentCycleWiseReport">
+                    <i class="fa fa-file"></i>
+                    Payment Cycle Wise<br /> Report
+                </a>
+                <a class="collapse-item" href="/Report/RoutePaymentProcessReport">
+                    <i class="fa fa-file"></i>
+                    Route Payment Process<br /> Report
+                </a> 
+                <a class="collapse-item" href="/Report/MCCMilkRegister">
+                    <i class="fa fa-file"></i>
+                    MCC Milk Register
+                </a>
+
+            </div>
+        </div>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDairy"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Dairy Sales</span>
+        </a>
+        <div id="collapseDairy" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Dairy Sales:</h6>
+
+                <a class="collapse-item" href="/DairySales/DemandBooking">
+                    <i class="fa fa-file"></i>
+                    Demand
+                </a>
+               
+
+                @*<a class="collapse-item" href="/Report/ListOfCowDCS">
+            <i class="fa fa-file"></i>
+            List of Cow DCS
+        </a>
+
+
+        <a class="collapse-item" href="/Report/DBT_Dashboard">
+            <i class="fa fa-file"></i>
+            DBT Dashboard
+        </a>
+        <a class="collapse-item" href="/Report/SalesAndMarkingDashboard">
+            <i class="fa fa-file"></i>
+            Sales & Marking <br />Dashboard
+        </a>
+        <a class="collapse-item" href="/Report/JanaadharStatusReport">
+            <i class="fa fa-file"></i>
+            Janaadhar Status Report
+        </a>*@
+
+            </div>
+        </div>
+    </li>
+</ul>
+}
+

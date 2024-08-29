@@ -1,0 +1,27 @@
+﻿@model DAL.VLC.VLCModel
+@{
+    ViewBag.Title = "VLCList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 mb-4">
+            <div class="row">
+                @for (int i = 0; i < Model.VLCData.Count - 1; i++)
+                {
+                    <div class="col-lg-4 mb-4">
+                        <div class="card bg-primary text-white shadow">
+                            <div class="card-body">
+                                @Model.VLCData[i].VLC_Name
+                                <div class="text-white-50 small">@Model.VLCData[i].VLC_Code_VLC_Uploader</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

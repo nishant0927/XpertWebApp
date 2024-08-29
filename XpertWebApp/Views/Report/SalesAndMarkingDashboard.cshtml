@@ -1,0 +1,1163 @@
+﻿
+@{
+    ViewBag.Title = "Sales & Marketing Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/adminlte/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table thead, tfoot {
+        position: sticky;
+        top: 0;
+        background-color: #1cc8c07a;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    .input-group {
+        margin-bottom: -23px;
+    }
+
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+        font-weight: 400;
+        line-height: 1;
+        color: #555;
+        text-align: center;
+        background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+        border-right: 0;
+        white-space: nowrap;
+
+        border-radius: 0;*/
+    /*vertical-align: top;
+        border-color: #d2d6de;
+        background-color: #fff;
+        border-right: 0;
+        display: table-cell;
+    }*/
+
+    /*table {
+        table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+<div class="content-wrapper" style="margin-top: -23px!important; margin-left:7px!important;">
+    <section class="content-header" style="height: 23px; padding: 0px 15px 0 15px!important; ">
+        <i>@ViewBag.Title</i>
+    </section>
+
+    <section class="content" style="padding: 0px;">
+        <div class="box" style="margin-bottom: -31px!important;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box box-info" style="margin-bottom: 0px!important;">
+                        <div class="box-header with-border" style="padding: 1px; height: 57px;">
+                            <div class="row">
+                                <div class="col-sm-2" style="margin-left:19px;">
+                                    <div class="form-group">
+                                        <label class="control-label">From Date</label>
+                                        <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" style="margin-right:-25px;">
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" class="form-control form-control-sm input" id="txtTodate" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="margin-right:-85px;">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Search" class="btn btn-primary btn-sm search-button" id="btnSearch">Search</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" style="margin-right:-85px;">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Search" class="btn btn-primary btn-sm search-button" id="btnReset">Reset</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary btn-sm dropdown-toggle search-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Export
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#" id="btnExcel">Excel</a>
+                                                <a class="dropdown-item" href="#" id="btnPdf">PDF</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label></label>
+                                        <button type="button" value="Export Analysed Request" class="btn btn-primary btn-sm search-button" id="btnExportAnalysisRequest" style="width: 164px;">Export Analysed Request</button>
+                                        <button type="button" value="Export Analysed Request" class="btn btn-primary btn-sm search-button" id="btnExportOpenRequest" style="width: 164px;"> Export Open Request</button>
+
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="box box-info" style="margin-bottom: 0px!important;">
+                        <div class="box-header" style="margin-top: -7px; height: 44px;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'openRequest')" id="defaultOpen">Union Wise Demand</button>
+                                        <button class="tablinks" onclick="openTab(event,'pendingAnalysed')">Route & Booth Wise Demand</button>
+                                        <button class="tablinks" onclick="openTab(event,'analysedRequest')">Item Wise Details</button>
+                                        @*<button class="tablinks" onclick="openCity(event, 'London')">London</button>
+                                            <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                                            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>*@
+                                    </div>
+                                    @*<ul class="nav nav-tabs" style="margin-top: -13px; margin-bottom:-3px;">
+                                            <li class="active"><a data-toggle="tab" href="#openRequest">Unoin Wise</a></li>
+                                            <li><a data-toggle="tab" href="#pendingAnalysed">Count of Rout</a></li>
+                                            <li><a data-toggle="tab" href="#analysedRequest">Count of DCS</a></li>
+                                        </ul>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box-body-wrapper" style="height: 400px; overflow-y: auto; margin-top: -12px;">
+                        <div class="box-body">
+
+                            @*<div class="tab-content">*@
+                            <div class="tabcontent" id="openRequest">
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblUnionWise">
+                                    <thead>
+
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                            <th>Milk Demand QTY</th>
+                                            <th>Milk FAT KG</th>
+                                            <th>Milk SNF KG</th>
+                                            <th>Product Demand QTY</th>
+                                            <th>Product FAT KG</th>
+                                            <th>Product SNF KG</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="tbodyUnionWise"></tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            <div class="tabcontent" id="pendingAnalysed">
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblRouteWise">
+                                    <thead>
+
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                            <th>No of Routes</th>
+                                            <th>No of Booths</th>
+                                            <th>Milk Demand QTY</th>
+                                            <th>Milk FAT KG</th>
+                                            <th>Milk SNF KG</th>
+                                            <th>Product Demand QTY</th>
+                                            <th>Product FAT KG</th>
+                                            <th>Product SNF KG</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyRouteWise"></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+
+                            </div>
+
+                            <div class="tabcontent" id="analysedRequest">
+                                <table width="100%" class="table table-bordered table-hover table-sm table-striped" style="font-size: 12px; color: #8f2727;" id="tblDCSWise">
+                                    <thead>
+
+                                        <tr>
+                                            <th>SNo</th>
+                                            <th>Union Name</th>
+                                            <th>User Name</th>
+                                            @*<th>To Date</th>*@
+                                            <th>Registered DCS</th>
+                                            <th>QTY</th>
+                                            <th>FATKG</th>
+                                            <th>SNFKG</th>
+                                            <th>PDCS</th>
+                                            <th>QTY</th>
+                                            <th>FATKG</th>
+                                            <th>SNFKG</th>
+                                            <th>Total DCS</th>
+                                            <th>Total Qty</th>
+                                            <th>Total FATKG</th>
+                                            <th>Total SNFKG</th>
+                                            <th>Union Contact Person</th>
+                                            <th>Union Contact PhoneNo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyDCSWise"></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                            @*</div>*@
+
+
+                        </div>
+                    </div>
+                    @*<div class="container">*@
+                    <!--<div class="box-footer">
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Export
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" id="btnExcel">Excel</a>
+                                <a class="dropdown-item" href="#" id="btnPdf">PDF</a>
+                            </div>-->
+                    @*</div>*@
+                    <!--</div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/adminlte/js/adminlte.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var dd = String(today.getDate()).padStart(2, '0');
+        var formattedToday = `${yyyy}-${mm}-${dd}`; // Format as YYYY-MM-DD for date inputs
+        $("#txtFromDate").val(formattedToday);
+        $("#txtTodate").val(formattedToday);
+
+
+
+    })
+    function LoadData(fromDate, toDate) {
+        $('#callaway_popup2').show();
+        $.ajax({
+
+            url: '/Report/GetSalesAndMarketingData',
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            data: { fromDate: fromDate, toDate: toDate },
+            success: function (reponse) {
+                if (reponse.success) {
+                    $('#callaway_popup2').hide();
+                    $('#tblUnionWise').DataTable().clear().destroy();
+                    $('#tblRouteWise').DataTable().clear().destroy();
+                    $('#tblDCSWise').DataTable().clear().destroy();
+                    $('#tblUnionWise tbody').empty();
+                    $('#tblUnionWise tfoot').empty();
+                    $('#tblRouteWise tbody').empty();
+                    $('#tblRouteWise tfoot').empty();
+                    $('#tblDCSWise tbody').empty();
+                    $('#tblDCSWise tfoot').empty();
+
+                    console.log(data)
+                    if (reponse.getUnionWiseDemand) {
+                        var totalDemantQty = 0.00;
+                        var totalFatKg = 0.00;
+                        var totalSNF = 0.00;
+                        var totalProductDemandQty = 0.00;
+                        var totalProductFatKg = 0.00;
+                        var totalProductSNFKg = 0.00;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var data = JSON.parse(reponse.getUnionWiseDemand);
+                        console.log(data);
+                        $.each(data, function (index, item) {
+                            if (item.Union_Contact_Person == null) {
+                                unionContPersion = '';
+                            }
+                            else {
+                                unionContPersion = item.Union_Contact_Person;
+                            }
+                            if (item.Union_Contact_PhoneNo == null) {
+                                unionContPersionNo = '';
+                            }
+                            else {
+                                unionContPersionNo = item.Union_Contact_PhoneNo;
+                            }
+                            var row = '<tr>' +
+                                '<td style="text-align: right;">' + item.SNo + '</td>' +
+                                '<td>' + item.Union_Name + '</td>' +
+                                '<td>' + unionContPersion + '</td>' +
+                                /*'<td>' + formatDate(item.Todate) + '</td>' +*/
+                                '<td style="text-align: right;">' + unionContPersionNo + '</td>' +
+                                '<td style="text-align: right;">' + item.DEMAND_INLTR + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(item.Dis_FATKG).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(item.Dis_SNFKG).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(item.DEMANDQTYKG).toFixed(2) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(item.FATKGPRODUCT).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(item.SNFKGPRODUCT).toFixed(3) + '</td>' +
+                                '</tr>';
+                            $('#tblUnionWise tbody').append(row);
+                            totalDemantQty += parseFloat(item.DEMAND_INLTR).toFixed(3);
+                            totalFatKg += parseFloat(item.Dis_FATKG).toFixed(3);
+                            totalSNF += parseFloat(item.Dis_SNFKG).toFixed(3);
+                            totalProductDemandQty += parseFloat(item.DEMANDQTYKG).toFixed(2);
+                            totalProductFatKg += parseFloat(item.FATKGPRODUCT).toFixed(3);
+                            totalProductSNFKg += parseFloat(item.SNFKGPRODUCT).toFixed(3);
+                        });
+                        var footerRow = '<tr>' +
+                            '<td colspan="4">Total</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalDemantQty).toFixed(2) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalFatKg).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalSNF).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalProductDemandQty).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalProductFatKg).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalProductSNFKg).toFixed(3) + '</td>' +
+                            '</tr>';
+                        $('#tblUnionWise tfoot').append(footerRow);
+                    }
+
+
+
+                    if (reponse.getRouteWiseAndBoothWiseData) {
+                        var totalNoOfRoute = 0.00;
+                        var totalNoOfBooth = 0.00;
+                        var totalMilkDemandQty = 0.00;
+                        var totalMilkFATKG = 0.00;
+                        var totalMilkSNFKG = 0.00;
+                        var totalProductDemandQty = 0.00;
+                        var totalProductFatKg = 0.00;
+                        var totalProductSnfKg = 0.00;
+                        var unionContPersion = '';
+                        var unionContPersionNo = '';
+                        var pendingRequest = JSON.parse(reponse.getRouteWiseAndBoothWiseData);
+                        $.each(pendingRequest, function (index, item) {
+                            if (item.Union_Contact_Person == null) {
+                                unionContPersion = '';
+                            }
+                            else {
+                                unionContPersion = item.Union_Contact_Person;
+                            }
+                            if (item.Union_Contact_PhoneNo == null) {
+                                unionContPersionNo = '';
+                            }
+                            else {
+                                unionContPersionNo = item.Union_Contact_PhoneNo;
+                            }
+                            var tr = '<tr>';
+                            tr += '<td style="text-align: right;">' + item.SNo + '</td>';
+                            tr += '<td>' + item.Union_Name + '</td>';
+                            tr += '<td>' + unionContPersion + '</td>';
+                            tr += '<td style="text-align: right;">' + unionContPersionNo + '</td>';
+                            tr += '<td style="text-align: right;">' + item.route_no + '</td>';
+                            tr += '<td style="text-align: right;">' + item.Booth + '</td>';
+                            /* tr += '<td style="text-align: right;">' + item.FATKGProc + '</td>';*/
+                            tr += '<td style="text-align: right;">' + parseFloat(item.DEMAND_INLTR).toFixed(2) + '</td>';
+                            tr += '<td style="text-align: right;">' + parseFloat(item.Dis_FATKG).toFixed(3) + '</td>';
+                            tr += '<td style="text-align: right;">' + parseFloat(item.Dis_SNFKG).toFixed(3) + '</td>';
+                            tr += '<td style="text-align: right;">' + parseFloat(item.DEMANDQTYKG).toFixed(2) + '</td>';
+                            tr += '<td style="text-align: right;">' + parseFloat(item.FATKGPRODUCT).toFixed(3) + '</td>';
+                            tr += '<td style="text-align: right;">' + parseFloat(item.SNFKGPRODUCT).toFixed(3) + '</td>';
+                            tr += '</tr>';
+                            $("#tblRouteWise tbody").append(tr);
+                            totalNoOfRoute += parseFloat(item.route_no);
+                            totalNoOfBooth += parseFloat(item.Booth);
+                            totalMilkDemandQty += parseFloat(item.DEMAND_INLTR);
+                            totalMilkFATKG += parseFloat(item.Dis_FATKG);
+                            totalMilkSNFKG += parseFloat(item.Dis_SNFKG);
+                            totalProductDemandQty += parseFloat(item.DEMANDQTYKG);
+                            totalProductFatKg += parseFloat(item.FATKGPRODUCT);
+                            totalProductSnfKg += parseFloat(item.SNFKGPRODUCT);
+                        })
+                        var footerRow = '<tr>' +
+                            '<td colspan="4">Total</td>' +
+                            '<td style="text-align: right;">' + totalNoOfRoute + '</td>' +
+                            '<td style="text-align: right;">' + totalNoOfBooth + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalMilkDemandQty).toFixed(2) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalMilkFATKG).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalMilkSNFKG).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalProductDemandQty).toFixed(2) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalProductFatKg).toFixed(3) + '</td>' +
+                            '<td style="text-align: right;">' + parseFloat(totalProductSnfKg).toFixed(3) + '</td>' +
+                            '</tr>';
+                        $('#tblRouteWise tfoot').append(footerRow);
+                    }
+
+                    //if (reponse.getDCSWiseData) {
+                    //    var TfATKG1 = 0;
+                    //    var TsnfG1 = 0;
+                    //    var TfATKG2 = 0;
+                    //    var TsnfG2 = 0;
+                    //    var totalQty = 0;
+                    //    var totalFatkg = 0;
+                    //    var totalsnfkg = 0;
+                    //    var unionContPersion = '';
+                    //    var unionContPersionNo = '';
+                    //    var analysedRequest = JSON.parse(reponse.getDCSWiseData);
+                    //    $.each(analysedRequest, function (index, item) {
+                    //        if (item.Union_Contact_Person == null) {
+                    //            unionContPersion = '';
+                    //        }
+                    //        else {
+                    //            unionContPersion = item.Union_Contact_Person;
+                    //        }
+                    //        if (item.Union_Contact_PhoneNo == null) {
+                    //            unionContPersionNo = '';
+                    //        }
+                    //        else {
+                    //            unionContPersionNo = item.Union_Contact_PhoneNo;
+                    //        }
+                    //        var tr = '<tr>';
+                    //        tr += '<td style="text-align: right;">' + item.SNo + '</td>';
+                    //        tr += '<td>' + item.Union_Name + '</td>';
+                    //        tr += '<td>' + item.username + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.RegisteredDCS + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.DCSQTY1 + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.FATKG1 + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.SNFKG1 + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.PDCS + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.DCSQTY2 + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.FATKG2 + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.SNFKG2 + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.TotalDCS + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.TotalQty + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.TotalFatkg + '</td>';
+                    //        tr += '<td style="text-align: right;">' + item.Totalsnfkg + '</td>';
+                    //        tr += '<td>' + unionContPersion + '</td>';
+                    //        tr += '<td>' + unionContPersionNo + '</td>';
+                    //        tr += '</tr>';
+                    //        $("#tblDCSWise tbody").append(tr);
+                    //        TfATKG1 += parseFloat(item.FATKG1);
+                    //        TsnfG1 += parseFloat(item.SNFKG1);
+                    //        TfATKG2 += parseFloat(item.FATKG2);
+                    //        TsnfG2 += parseFloat(item.SNFKG2);
+                    //        totalQty += parseFloat(item.TotalQty);
+                    //        totalFatkg += parseFloat(item.TotalFatkg);
+                    //        totalsnfkg += parseFloat(item.Totalsnfkg);
+                    //    })
+                    //    var footerRow = '<tr>' +
+                    //        '<td colspan="5">Total</td>' +
+                    //        '<td style="text-align: right;">' + TfATKG1.toFixed(3) + '</td>' +
+                    //        '<td style="text-align: right;">' + TsnfG1.toFixed(3) + '</td>' +
+                    //        '<td></td>' +
+                    //        '<td></td>' +
+                    //        '<td style="text-align: right;">' + TfATKG2.toFixed(3) + '</td>' +
+                    //        '<td style="text-align: right;">' + TsnfG2.toFixed(3) + '</td>' +
+                    //        '<td></td>' +
+                    //        '<td style="text-align: right;">' + totalQty.toFixed(3) + '</td>' +
+                    //        '<td style="text-align: right;">' + totalFatkg.toFixed(3) + '</td>' +
+                    //        '<td style="text-align: right;">' + totalsnfkg.toFixed(3) + '</td>' +
+                    //        '<td></td>' +
+                    //        '<td></td>' +
+                    //        '</tr>';
+                    //    $('#tblDCSWise tfoot').append(footerRow);
+                    //}
+
+
+                    $('#tblUnionWise').DataTable({
+                        'paging': false,
+                        'lengthChange': true,
+                        'searching': true,
+                        'ordering': false,
+                        'info': false,
+                        'autoWidth': true,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var totalDemantQty = 0.00;
+                            var totalFatKg = 0.00;
+                            var totalSNF = 0.00;
+                            var totalProductDemandQty = 0.00;
+                            var totalProductFatKg = 0.00;
+                            var totalProductSNFKg = 0.00;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+                                totalDemantQty += parseFloat(data[4]) || 0;
+                                totalFatKg += parseFloat(data[5]) || 0;
+                                totalSNF += parseFloat(data[6]) || 0;
+                                totalProductDemandQty += parseFloat(data[7]) || 0;
+                                totalProductFatKg += parseFloat(data[8]) || 0;
+                                totalProductSNFKg += parseFloat(data[9]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="4">Total</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalDemantQty).toFixed(2) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalFatKg).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalSNF).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalProductDemandQty).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalProductFatKg).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalProductSNFKg).toFixed(3) + '</td>' +
+                                '</tr>'
+                            );
+                        },
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblUnionWise thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+                    })
+                    $('#tblRouteWise').DataTable({
+                        'paging': false,
+                        'lengthChange': false,
+                        'searching': true,
+                        'ordering': true,
+                        'info': false,
+                        'autoWidth': false,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var totalNoOfRoute = 0.00;
+                            var totalNoOfBooth = 0.00;
+                            var totalMilkDemandQty = 0.00;
+                            var totalMilkFATKG = 0.00;
+                            var totalMilkSNFKG = 0.00;
+                            var totalProductDemandQty = 0.00;
+                            var totalProductFatKg = 0.00;
+                            var totalProductSnfKg = 0.00;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+                                totalNoOfRoute += parseFloat(data[4]) || 0;
+                                totalNoOfBooth += parseFloat(data[5]) || 0;
+                                totalMilkDemandQty += parseFloat(data[6]) || 0;
+                                totalMilkFATKG += parseFloat(data[7]) || 0;
+                                totalMilkSNFKG += parseFloat(data[8]) || 0;
+                                totalProductDemandQty += parseFloat(data[9]) || 0;
+                                totalProductFatKg += parseFloat(data[10]) || 0;
+                                totalProductSnfKg += parseFloat(data[11]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="4">Total</td>' +
+                                '<td style="text-align: right;">' + totalNoOfRoute + '</td>' +
+                                '<td style="text-align: right;">' + totalNoOfBooth + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalMilkDemandQty).toFixed(2) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalMilkFATKG).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalMilkSNFKG).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalProductDemandQty).toFixed(2) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalProductFatKg).toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + parseFloat(totalProductSnfKg).toFixed(3) + '</td>' +
+                                '</tr>'
+                            );
+                        },
+
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblRouteWise thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+                        //"pageLength": 5,
+                        //"order": [[0, "asc"]],
+                        //"aLengthMenu": [5, 10, 25, 50, 100, 200, 300]
+
+                    })
+
+                    $('#tblDCSWise').DataTable({
+                        'paging': false,
+                        'lengthChange': false,
+                        'searching': true,
+                        'ordering': true,
+                        'info': false,
+                        'autoWidth': false,
+                        drawCallback: function (settings) {
+                            var api = this.api();
+                            var TfATKG1 = 0;
+                            var TsnfG1 = 0;
+                            var TfATKG2 = 0;
+                            var TsnfG2 = 0;
+                            var totalQty = 0;
+                            var totalFatkg = 0;
+                            var totalsnfkg = 0;
+
+                            // Calculate the total based on the filtered data
+                            api.rows({ search: 'applied' }).every(function () {
+                                var data = this.data();
+                                TfATKG1 += parseFloat(data[5]) || 0;
+                                TsnfG1 += parseFloat(data[6]) || 0;
+                                TfATKG2 += parseFloat(data[9]) || 0;
+                                TsnfG2 += parseFloat(data[10]) || 0;
+                                totalQty += parseFloat(data[12]) || 0;
+                                totalFatkg += parseFloat(data[13]) || 0;
+                                totalsnfkg += parseFloat(data[14]) || 0;
+                            });
+
+                            // Update the footer
+                            $(api.table().footer()).html(
+                                '<tr>' +
+                                '<td colspan="5">Total</td>' +
+                                '<td style="text-align: right;">' + TfATKG1.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + TsnfG1.toFixed(3) + '</td>' +
+                                '<td></td>' +
+                                '<td></td>' +
+                                '<td style="text-align: right;">' + TfATKG2.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + TsnfG2.toFixed(3) + '</td>' +
+                                '<td></td>' +
+                                '<td style="text-align: right;">' + totalQty.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalFatkg.toFixed(3) + '</td>' +
+                                '<td style="text-align: right;">' + totalsnfkg.toFixed(3) + '</td>' +
+                                '<td></td>' +
+                                '<td></td>' +
+                                '</tr>'
+                            );
+                        },
+                        initComplete: function () {
+                            var table = this.api();
+
+                            // Add a text input to each header cell below the header text
+                            $('#tblDCSWise thead th').each(function () {
+                                var title = $(this).text();
+                                $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                            });
+
+                            // Apply the search
+                            table.columns().every(function () {
+                                var column = this;
+
+                                $('input', column.header()).on('keyup change', function () {
+                                    if (column.search() !== this.value) {
+                                        column
+                                            .search(this.value)
+                                            .draw();
+                                    }
+                                });
+                            });
+                        }
+                        //"pageLength": 5,
+                        //"order": [[0, "asc"]],
+                        //"aLengthMenu": [5, 10, 25, 50, 100, 200, 300]
+
+                    })
+                }
+                else if (reponse.redirect) {
+                    $('#callaway_popup2').hide();
+                    window.location.href = data.redirect;
+                }
+                else {
+                    $('#callaway_popup2').hide();
+                    ShowSweet2Message("warning", "Error1", reponse.responseText);
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#callaway_popup2').hide();
+                var errorMessage = xhr.responseText || "Unknown error occurred.";
+                ShowSweet2Message("warning", "Error2", errorMessage);
+            }
+        })
+
+    }
+
+    function ReloadData() {
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        var dd = String(today.getDate()).padStart(2, '0');
+        var formattedToday = `${yyyy}-${mm}-${dd}`; // Format as YYYY-MM-DD for date inputs
+        $("#txtFromDate").val(formattedToday);
+        $("#txtTodate").val(formattedToday);
+        LoadData(formattedToday, formattedToday);
+    }
+
+    function ChangeformatDate(dateString) {
+        var date = new Date(dateString);
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep",
+            "Oct", "Nov", "Dec"
+        ];
+
+        // Get the day, month, and year
+        var day = date.getDate().toString().padStart(2, '0');
+        var monthIndex = date.getMonth();
+        var month = monthNames[monthIndex];
+        var year = date.getFullYear();
+
+        // Format the date as dd-Mon-yyyy
+        var formattedDate = day + '-' + month + '-' + year;
+
+        return formattedDate;
+
+    }
+    function formatDate(dateString) {
+        // Extract the milliseconds from the date string
+        /* var milliseconds = parseInt(dateString.replace(/[^0-9]/g, ''));*/
+
+        if (dateString == undefined || !dateString.match(/\d+/)) {
+            return console.log("Not Definde", dateString);
+        }
+        var ticks = parseInt(dateString.match(/\d+/)[0]);
+
+        // Convert ticks to milliseconds
+        var milliseconds = ticks - (new Date(1970, 0, 1)).getTimezoneOffset() * 60000;
+        // Create a new Date object using the milliseconds
+        var date = new Date(milliseconds);
+
+        // Define month names
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep",
+            "Oct", "Nov", "Dec"
+        ];
+
+        // Format the date as dd-Mon-yyyy
+        var day = date.getDate().toString().padStart(2, '0');
+        var monthIndex = date.getMonth();
+        var month = monthNames[monthIndex];
+        var year = date.getFullYear();
+
+        return day + '-' + month + '-' + year;
+
+
+    }
+    $('#btnExcel').click(function () {
+        exportData('excel');
+    });
+
+    $('#btnPdf').click(function () {
+        exportData('pdf');
+    });
+
+
+
+    function exportData(format) {
+
+        var activeTab = document.querySelector('.tabcontent[style*="display: block"]');
+        if (activeTab) {
+            var table = activeTab.querySelector('table');
+            if (table) {
+                var tableId = table.getAttribute('id');
+                console.log('Active Tab ID:', tableId);
+
+                // Export logic based on format
+                if (format === 'excel') {
+                    exportTableToExcel(tableId);
+                } else if (format === 'pdf') {
+                    exportTableToPDF(tableId);
+                }
+            } else {
+                alert('No table found in the active tab.');
+            }
+        } else {
+            alert('No active tab found.');
+        }
+
+
+
+        //// Find the active tab content
+        //var activeTab = $('.tabcontent').attr("style", "display: block;");
+        ////var activeTab = $('.tab-pane.active');
+        //var table = activeTab.find('table');
+
+        //if (table.length) {
+        //    var tableId = table.attr('id');
+        //    console.log('Active Tab ID:', tableId);
+
+        //    // Export logic based on format
+        //    if (format === 'excel') {
+        //        exportTableToExcel(tableId);
+        //    } else if (format === 'pdf') {
+        //        exportTableToPDF(tableId);
+        //    }
+        //} else {
+        //    alert('No active tab with table found.');
+        //}
+    }
+
+    function exportTableToExcel(tableId) {
+        var table = document.getElementById(tableId);
+        var workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet JS" });
+
+        // Access the first sheet
+        var sheet = workbook.Sheets["Sheet JS"];
+
+        // Insert title at cell A1
+        // XLSX.utils.sheet_add_aoa(sheet, [["My Table Title"]], { origin: "A1" });
+
+        // Set the range to include the new title row
+        sheet['!ref'] = XLSX.utils.encode_range({
+            s: { c: 0, r: 0 },
+            e: XLSX.utils.decode_range(sheet['!ref']).e
+        });
+
+        // Set column widths
+        sheet['!cols'] = [
+            { wch: 5 }, // Width for "Name" column
+            { wch: 10 }, // Width for "Age" column
+            { wch: 20 },
+            { wch: 20 },
+            { wch: 20 }
+        ];
+
+        // Generate Excel file and prompt user to download it
+        XLSX.writeFile(workbook, 'Dashboard Milk Procurement.xlsx');
+    }
+
+    function exportTableToPDF(tableId) {
+        const { jsPDF } = window.jspdf;
+
+        // Create a new jsPDF instance
+        var doc = new jsPDF('landscape');
+        const logo = '/Content/img/SARALog512.png'; 
+        const logoWidth = 30; // Adjust the width as needed
+        const logoHeight = 10; // Adjust the height as needed
+        doc.addImage(logo, 'PNG', 10, 10, logoWidth, logoHeight);
+        const activeTabButton = document.querySelector('.tablinks.active');
+        const activeTabButtonText = activeTabButton.textContent.trim();
+        // Add a header title
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const headerText = 'Sales & Marketing Dashboard, ' + activeTabButtonText;
+        const fromDate = $("#txtFromDate").val();
+        const toDate = $("#txtTodate").val();
+        const dateText = 'Date: ' + ChangeformatDate(fromDate) + ' to ' + ChangeformatDate(toDate);
+        const headerTextWidth = doc.getTextWidth(headerText);
+        const headerTextX = (pageWidth - headerTextWidth) / 2;
+        // Adjust headerTextX to account for the logo
+        const adjustedHeaderTextX = Math.max(headerTextX, logoWidth + 20); // Ensure it doesn't overlap with the logo
+        doc.setFontSize(12);
+        doc.text(headerText, adjustedHeaderTextX, 22);
+        // Add the date text to the right of the header text
+        doc.setFontSize(12);
+        const dateTextWidth = doc.getTextWidth(dateText);
+        const dateTextX = adjustedHeaderTextX + headerTextWidth +2; // Add an offset of 20 units for spacing
+        doc.text(dateText, dateTextX, 22);
+
+        // Function to get column count
+        function getColumnCount(tableId) {
+            return document.querySelector(`#${tableId} tr`).children.length;
+        }
+        const tableColumnStyle = {
+            'tblUnionWise': {
+                0: { cellWidth: 9, halign: 'right' },
+                1: { cellWidth: 30, halign: 'left' },
+                2: { cellWidth: 40, halign: 'left' },
+                3: { cellWidth: 30, halign: 'right' },
+                4: { cellWidth: 30, halign: 'right' },
+                5: { cellWidth: 30, halign: 'right' },
+                6: { cellWidth: 30, halign: 'right' },
+                7: { cellWidth: 30, halign: 'right' },
+                8: { cellWidth: 30, halign: 'right' },
+                9: { cellWidth: 30, halign: 'right' },
+
+            },
+            'tblRouteWise': {
+                0: { cellWidth: 9, halign: 'right' },
+                1: { cellWidth: 30, halign: 'left' },
+                2: { cellWidth: 30, halign: 'left' },
+                3: { cellWidth: 20, halign: 'right' },
+                4: { cellWidth: 20, halign: 'right' },
+                5: { cellWidth: 20, halign: 'right' },
+                6: { cellWidth: 27, halign: 'right' },
+                7: { cellWidth: 27, halign: 'right' },
+                8: { cellWidth: 27, halign: 'right' },
+                9: { cellWidth: 27, halign: 'right' },
+                10: { cellWidth: 27, halign: 'right' },
+                11: { cellWidth: 27, halign: 'right' },
+            },
+            'tblDCSWise': {
+                0: { cellWidth: 9, halign: 'right' },
+                1: { cellWidth: 18, halign: 'left' },
+                2: { cellWidth: 18, halign: 'left' },
+                3: { cellWidth: 12, halign: 'right' },
+                4: { cellWidth: 18, halign: 'right' },
+                5: { cellWidth: 18, halign: 'right' },
+                6: { cellWidth: 18, halign: 'right' },
+                7: { cellWidth: 11, halign: 'right' },
+                8: { cellWidth: 18, halign: 'right' },
+                9: { cellWidth: 18, halign: 'right' },
+                10: { cellWidth: 18, halign: 'right' },
+                11: { cellWidth: 11, halign: 'right' },
+                12: { cellWidth: 18, halign: 'right' },
+                13: { cellWidth: 18, halign: 'right' },
+                14: { cellWidth: 18, halign: 'right' },
+                15: { cellWidth: 20, halign: 'left' },
+                16: { cellWidth: 20, halign: 'left' },
+            }
+        }
+       
+        const columnCount = getColumnCount(tableId);
+
+        // Calculate available width (excluding margins)
+        const margin = 7; // 10 units margin on each side
+        const availableWidth = pageWidth - (2 * margin);
+        const columnStyles = tableColumnStyle[tableId] || {};
+        const footerStyles = tableColumnStyle[tableId + ' tfoot'] || {};
+        const footerRows = Array.from(document.querySelectorAll(`#${tableId} tfoot tr`));
+      
+        const footerData = footerRows.map(row => {
+            return Array.from(row.cells).map(cell => cell.innerText);
+        });
+       
+        doc.autoTable({
+            startY: 30, // Start the table below the header
+            html: '#' + tableId,
+            headStyles: {
+                //fillColor: [0, 64, 128], // Red header background
+                textColor: [255, 255, 255], // White header text
+                fontSize: 8,
+                cellPadding: 1, // Adjust padding to reduce height
+                minCellHeight: 5, // Minimum height for header cells
+                lineWidth: 0.1, // Border width
+                lineColor: [0, 0, 0]
+            },
+            bodyStyles: {
+                fillColor: [240, 240, 240], // Light grey background for body cells
+                textColor: [0, 0, 0], // Black text for body cells
+                fontSize: 8,
+                cellPadding: 1, // Adjust padding to reduce height
+                minCellHeight: 5, // Minimum height for body cells
+                lineWidth: 0.1, // Border width
+                lineColor: [0, 0, 0] // Border color
+            },
+            styles: {
+                cellPadding: 1, // Cell padding
+                lineWidth: 0.1, // Border width for all cells
+                lineColor: [0, 0, 0]
+            },
+            columnStyles: columnStyles,// Apply generated column styles
+            margin: { top: 30, left: 5, right: 5 },
+            didDrawCell: function (data) {
+                if (data.section === 'foot') {
+                    data.cell.styles.halign = 'right'; // Apply right alignment to all footer cells
+                }
+            },
+            foot: footerData
+        });
+
+        doc.save('Sales & Marketing Dashboard_' + activeTabButtonText + '.pdf');
+    }
+
+    $("#btnSearch").on('click', function () {
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtTodate").val();
+        LoadData(fromDate, toDate);
+    })
+
+    $("#btnReset").on('click', function () {
+        $("#txtFromDate").val('');
+        $("#txtTodate").val('');
+        $('#tblUnionWise tbody').empty();
+        $('#tblUnionWise tfoot').empty();
+        $('#tblRouteWise tbody').empty();
+        $('#tblRouteWise tfoot').empty();
+        $('#tblDCSWise tbody').empty();
+        $('#tblDCSWise tfoot').empty();
+    })
+    function openTab(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+</script>

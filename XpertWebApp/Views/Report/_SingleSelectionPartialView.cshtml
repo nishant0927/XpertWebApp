@@ -1,0 +1,162 @@
+﻿
+
+<style>
+    .modal-body-hight {
+        max-height: calc(100vh - 200px) !important;
+        overflow-y: auto !important;
+    }
+
+    /* .modal-dialog {
+        max-width: 50%;
+    }*/
+
+    .table-fixed thead {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa; /* Background color for the header */
+        z-index: 1;
+    }
+    /*#tblmodal thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;*/ /* Optional: Change background color */
+    /*z-index: 1;
+    }*/
+    /* Optional: Adjust table cell widths to match the content */
+    .table-fixed th,
+    .table-fixed td {
+        width: auto !important;
+        min-width: 100px; /* Minimum width for cells */
+    }
+
+    /*  .dialog {
+        position: absolute;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+    .dialog-header {
+        padding: 10px;
+        background-color: #f0f0f0;
+        cursor: move;
+    }
+
+    .dialog-title {
+        font-weight: bold;
+    }
+
+    .dialog-content {
+        padding: 20px;
+    }
+
+    .close-btn {
+        float: right;
+        cursor: pointer;
+    }*/
+</style>
+<div class="modal fade bd-example-modal-lg" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-lg" style="width:132%">
+            <div class="modal-header" style="padding: 6px !important;border-bottom: 2px solid gray;background-color: darkgray;color:white;">
+                <h5 class="modal-title" id="tblModalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="box-body-wrapper" style="height: 450px; overflow-y: auto;">
+                        <table class="table table-hover table-striped table-condensed table-bordered table-sm" id="tblmodal" width="100%" style="font-size: 12px;">
+                            <thead class="" style="position: sticky; top: 0; background-color: #f9f9f9; z-index: 1; table-layout: auto !important; width: auto !important;">
+                                <tr id="tblheadermodal"></tr>
+                            </thead>
+                            <tbody id="tbodymodal"></tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="padding: 6px !important; border-top: 2px solid gray; background-color: darkgray;">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/Custom.js"></script>
+<script>
+    $('#AddModal').on('shown.bs.modal', function () {
+        // Calculate the width of the scrollbar
+        var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+        // Adjust the width of the table to accommodate the scrollbar
+        $('.table-fixed').css('width', 'calc(100% - ' + scrollbarWidth + 'px)');
+    });
+
+
+    function AddDataModal(modalId, title, header, data, onAnchorClick) {
+        var modalTitle = document.getElementById('tblModalTitle');
+        modalTitle.innerText = title;
+
+        // Update table header
+        var modalHeaderRow = document.getElementById('tblheadermodal');
+        modalHeaderRow.innerHTML = header.map(function (columnName) {
+            return '<th>' + columnName + '<br><input type="text" class="column-search-input"></th>';
+        }).join('');
+
+        // Build table rows
+        var rowsHtml = data.map(function (row) {
+            return '<tr>' + Object.values(row).map(function (cellValue, index) {
+                return '<td>' + cellValue + '</td>';
+            }).join('') + '</tr>';
+        }).join('');
+
+        var modalBody = document.getElementById('tbodymodal');
+        modalBody.innerHTML = rowsHtml;
+
+        // Event delegation for search inputs
+        modalHeaderRow.querySelectorAll('.column-search-input').forEach(function (input, columnIndex) {
+            input.addEventListener('input', function () {
+                var searchText = this.value.trim().toLowerCase();
+                var rows = modalBody.querySelectorAll('tr');
+
+                rows.forEach(function (row) {
+                    var cellText = row.children[columnIndex].textContent.trim().toLowerCase();
+                    row.style.display = cellText.includes(searchText) ? '' : 'none';
+                });
+            });
+        });
+
+        var rowCells = document.querySelectorAll('.modal-content .table tbody tr');
+        rowCells.forEach(function (anchor) {
+            anchor.addEventListener('click', function () {
+                console.log("Anchor clicked!");
+
+                // Retrieve all values from the row
+                var rowValues = [];
+                var rowCells = this.querySelectorAll('td');
+                for (var i = 0; i < rowCells.length; i++) {
+                    rowValues.push(rowCells[i].textContent);
+                }
+
+                // Execute the custom logic when an anchor is clicked
+                onAnchorClick(rowValues);
+
+                // Close the modal if needed
+                $('#' + modalId).modal('hide');
+            });
+        });
+        $('#' + modalId).modal('show');
+    }
+
+</script>
+
+
+
+
+
+
+
+
