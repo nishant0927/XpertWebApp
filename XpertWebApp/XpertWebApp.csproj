@@ -5921,6 +5921,7 @@
     <Content Include="Scripts\adminlte\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Scripts\adminlte\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\CommonDateFormate.js" />
     <Content Include="Scripts\Custom.js" />
     <Content Include="Scripts\Globals.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -5935,12 +5936,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\DailyQuantityReportController.cs" />
     <Compile Include="Controllers\DairySalesController.cs" />
     <Compile Include="Controllers\DBTController.cs" />
     <Compile Include="Controllers\FarmerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MatrixFreshSalesController.cs" />
+    <Compile Include="Controllers\MCCMilkRegisterController.cs" />
+    <Compile Include="Controllers\PaymentCycleWiseReportController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\RoutePaymentProcessController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="CustomPdfPageEventHelper.cs" />
     <Compile Include="ExcelExportHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -6024,6 +6031,13 @@
     <Content Include="Views\Report\RoutePaymentProcessReport.cshtml" />
     <Content Include="Views\Report\_SingleSelectionPartialView.cshtml" />
     <Content Include="Views\Report\MCCMilkRegister.cshtml" />
+    <Content Include="Views\Report\DCSOutStandingReport.cshtml" />
+    <Content Include="Views\Report\MatrixFreshSalesReport.cshtml" />
+    <Content Include="Views\DailyQuantityReport\DailyQtyReport.cshtml" />
+    <Content Include="Views\PaymentCycleWiseReport\PaymentCycleWiseReport.cshtml" />
+    <Content Include="Views\MCCMilkRegister\MCCMilkRegister.cshtml" />
+    <Content Include="Views\RoutePaymentProcess\RoutePaymentProcessReport.cshtml" />
+    <Content Include="Views\MatrixFreshSales\MatrixFreshSalesReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

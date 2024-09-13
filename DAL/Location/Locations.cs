@@ -75,7 +75,7 @@ namespace DAL.Location
             var responseData = string.Empty;
             try
             {
-                string apiUrl = Configuration.MilkUrl.Split(':')[0] + ":" + Configuration.MilkUrl.Split(':')[1] + ":" + Configuration.LCode + Configuration.MilkUrl.Split(':')[2] + "CheckLoginDetails";
+                string apiUrl = Configuration.MilkUrl.Split(':')[0] + ":" + Configuration.MilkUrl.Split(':')[1] + ":" + code + Configuration.MilkUrl.Split(':')[2] + "CheckLoginDetails";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(apiUrl);
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";

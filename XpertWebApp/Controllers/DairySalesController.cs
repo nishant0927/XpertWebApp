@@ -21,7 +21,7 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData = await Demand.GetRout();
+                var responseData = await Demand.GetRout(Session["Port"].ToString());
                 return Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
@@ -35,7 +35,7 @@ namespace XpertWebApp.Controllers
             try
             {
                 bool SeparateDemandMilkandProduct = false;
-                string DocNo = Demand.GetDocNo(routCode, rbtnMorning, fresh, product, both, date, NavType, SeparateDemandMilkandProduct);
+                string DocNo = Demand.GetDocNo(routCode, rbtnMorning, fresh, product, both, date, NavType, SeparateDemandMilkandProduct, Session["Port"].ToString());
                 return Json(new { success = true, DocNo }, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex)
@@ -54,7 +54,7 @@ namespace XpertWebApp.Controllers
                     currentUserLocation = Session["CurrentLocation"].ToString();
                 else
                     currentUserLocation = Session["MCC_Code"].ToString();
-                string responseData = Demand.GetLoadData(strDocumentNo, NavType, currentUserLocation);
+                string responseData = Demand.GetLoadData(strDocumentNo, NavType, currentUserLocation, Session["Port"].ToString());
                 // DemandBookingSaleModel obj = JsonSerializer.Deserialize<DemandBookingSaleModel>(responseData);
                 DemandBookingSaleModel obj = Newtonsoft.Json.JsonConvert.DeserializeObject<DemandBookingSaleModel>(responseData);
                 return Json(new { success = true, obj }, JsonRequestBehavior.AllowGet);

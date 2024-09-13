@@ -97,15 +97,17 @@
 
 
     function AddDataModal(modalId, title, header, data, onAnchorClick) {
+        console.log("AddDataModal function called");
         var modalTitle = document.getElementById('tblModalTitle');
         modalTitle.innerText = title;
-
+        console.log("Header received in AddDataModal:", header);
         // Update table header
         var modalHeaderRow = document.getElementById('tblheadermodal');
         modalHeaderRow.innerHTML = header.map(function (columnName) {
             return '<th>' + columnName + '<br><input type="text" class="column-search-input"></th>';
         }).join('');
-
+        console.log("Updated modalHeaderRow HTML:", modalHeaderRow.innerHTML);
+        console.log("tblheadermodal element:", document.getElementById('tblheadermodal'));
         // Build table rows
         var rowsHtml = data.map(function (row) {
             return '<tr>' + Object.values(row).map(function (cellValue, index) {

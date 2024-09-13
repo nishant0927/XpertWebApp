@@ -58,7 +58,7 @@
                                         <div class="form-group">
                                             <select class="form-control form-control-user" id="ddlLocation">
                                                 <option>Select Location</option>
-                                                @for (int i = 0; i < Model.Loving.Count - 1; i++)
+                                                @for (int i = 0; i < Model.Loving.Count; i++)
                                                 {
                                                     <option value="@Model.Loving[i].Code">@Model.Loving[i].Location_Name</option>
                                                 }

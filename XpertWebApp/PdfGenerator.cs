@@ -4,6 +4,7 @@ using iTextSharp.tool.xml;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace XpertWebApp
@@ -252,12 +253,12 @@ namespace XpertWebApp
 
         public static byte[] GeneratePdfWithHeadersAndColumns(List<string> headers, List<List<(string ColumnName, object Value)>> dataTable)
         {
-           
+
 
             // Determine the page orientation based on the number of rows
             Rectangle pageSize = dataTable.Count > 20 ? PageSize.A4.Rotate() : PageSize.A4;
 
-           
+
 
             using (MemoryStream stream = new MemoryStream())
             {
@@ -319,9 +320,168 @@ namespace XpertWebApp
             //return fileContents;
         }
 
+        public static byte[] GeneratePdf(string companyName, string reportName, string reportDate, List<List<(string ColumnName, object Value)>> rows,int pageheigt)
+        {
+            Rectangle pageSize = rows[0].Count >5 ? PageSize.A4.Rotate() : PageSize.A4;
+            using (MemoryStream stream = new MemoryStream())
+            {
+                Document pdfDoc = new Document(pageSize, 25, 25, pageheigt, 25);
+                PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+
+                // Set the page event helper (we will set it later after creating the header table)
+                pdfDoc.Open();
+
+                // Extract columns dynamically using a loop
+                PdfPTable headerTable = new PdfPTable(rows[0].Count);  // Initialize the table with the number of columns
+                headerTable.WidthPercentage = 100;
+
+                // Loop to set dynamic column widths (here all widths are set to 2f)
+                //float[] columnWidths = new float[rows[0].Count];
+                //for (int i = 0; i < rows[0].Count; i++)
+                //{
+                //    columnWidths[i] = 2f;
+                //}
+                //headerTable.SetWidths(columnWidths);
+
+                // Loop through the first row to get the column names and add them as headers
+                foreach (var column in rows[0])
+                {
+                    headerTable.AddCell(CreateHeaderCell(column.ColumnName));
+                }
+                //PdfPCell emptyCell = new PdfPCell(new Phrase(" "))
+                //{
+                //    Border = PdfPCell.NO_BORDER,
+                //    Colspan = rows[0].Count,
+                //    PaddingTop =1f // Create space between header and data rows
+                //};
+                //headerTable.AddCell(emptyCell);
+                //pdfDoc.Add(headerTable);
+                // Set the page event helper after creating the header table
+                CustomPdfPageEvent pageEventHelper = new CustomPdfPageEvent(companyName, reportName, reportDate, headerTable);
+                writer.PageEvent = pageEventHelper;
+
+                // Create the data table
+                PdfPTable dataTable = new PdfPTable(rows[0].Count);
+                dataTable.WidthPercentage = 100;
+                //dataTable.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 40, writer.DirectContent);
+                //dataTable.SetWidths(columnWidths); // Use the same column widths as the header
+
+                // Add data cells
+                foreach (var row in rows)
+                {
+                    foreach (var cell in row)
+                    {
+                        dataTable.AddCell(CreateCell(cell.Value?.ToString()));
+                    }
+                }
+
+                pdfDoc.Add(dataTable);
+                pdfDoc.Close();
+
+                return stream.ToArray();
+            }
+        }
+
+        private static PdfPCell CreateHeaderCell(string text)
+        {
+            return new PdfPCell(new Phrase(text, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+            {
+                Border =  PdfPCell.TOP_BORDER| PdfPCell.LEFT_BORDER | PdfPCell.RIGHT_BORDER ,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                //FixedHeight = 45f,
+                //PaddingLeft = 5f,
+                //PaddingTop = 8f,
+                PaddingBottom = 8f,
+                //PaddingRight = 35f,
+                //Padding =15f,
+                
+            };
+        }
+
+        private static PdfPCell CreateCell(string text)
+        {
+            return new PdfPCell(new Phrase(text, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA,8)))
+            {
+                Border = PdfPCell.LEFT_BORDER|PdfPCell.RIGHT_BORDER|PdfPCell.BOTTOM_BORDER| PdfPCell.TOP_BORDER,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                //FixedHeight = 45f,
+                //PaddingLeft =5f,   // Adjust as needed
+                //PaddingTop =8f,    // Adjust the top margin here
+                //PaddingBottom = 8f,  // Adjust as needed
+               // PaddingRight =35f
+            };
+        }
+
+        //public class CustomPdfPageEvent : PdfPageEventHelper
+        //{
+        //    private readonly string _companyName;
+        //    private readonly string _reportName;
+        //    private readonly string _reportDate;
+        //    private readonly List<string> _columns;
+
+        //    public CustomPdfPageEvent(string companyName, string reportName, string reportDate, List<string> columns)
+        //    {
+        //        _companyName = companyName;
+        //        _reportName = reportName;
+        //        _reportDate = reportDate;
+        //        _columns = columns;
+        //    }
+
+        //    public override void OnEndPage(PdfWriter writer, Document document)
+        //    {
+        //        PdfPTable headerTable = new PdfPTable(3);
+        //        headerTable.WidthPercentage = 100;
+        //        headerTable.SetWidths(new float[] { 1f, 1f, 1f });
+
+        //        PdfPCell companyCell = new PdfPCell(new Phrase(_companyName, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD)))
+        //        {
+        //            Border = PdfPCell.NO_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_CENTER,
+        //            Colspan = 3,
+        //            PaddingBottom = 5f
+        //        };
+        //        headerTable.AddCell(companyCell);
+
+        //        PdfPCell reportNameCell = new PdfPCell(new Phrase(_reportName, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD)))
+        //        {
+        //            Border = PdfPCell.NO_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_CENTER,
+        //            Colspan = 2,
+        //            PaddingBottom = 5f
+        //        };
+        //        headerTable.AddCell(reportNameCell);
+
+        //        PdfPCell dateCell = new PdfPCell(new Phrase(_reportDate, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12)))
+        //        {
+        //            Border = PdfPCell.NO_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_RIGHT,
+        //            PaddingBottom = 5f
+        //        };
+        //        headerTable.AddCell(dateCell);
+
+        //        headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+        //        headerTable.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 10, writer.DirectContent);
+
+        //        // Add column headers
+        //        PdfPTable columnHeaderTable = new PdfPTable(_columns.Count);
+        //        columnHeaderTable.WidthPercentage = 100;
+        //        columnHeaderTable.SetWidths(Enumerable.Repeat(2f, _columns.Count).ToArray());
+
+        //        foreach (var column in _columns)
+        //        {
+        //            columnHeaderTable.AddCell(CreateHeaderCell(column));
+        //        }
+
+        //        columnHeaderTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
+        //        columnHeaderTable.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 30, writer.DirectContent);
+        //    }
+        //}
 
 
     }
+
 
     public class CustomPdfPageEventHelper : PdfPageEventHelper
     {
@@ -387,5 +547,62 @@ namespace XpertWebApp
             writer.DirectContent.MoveTo(document.LeftMargin, document.PageSize.Height - document.TopMargin + headerTable.TotalHeight + 10);
         }
     }
+
+    public class PdfHeaderFooter : PdfPageEventHelper
+    {
+        private string _companyName;
+        private string _reportDate;
+        private List<string> _columnHeaders;
+
+        public PdfHeaderFooter(string companyName, string reportDate, List<string> columnHeaders)
+        {
+            _companyName = companyName;
+            _reportDate = reportDate;
+            _columnHeaders = columnHeaders;
+        }
+
+        public override void OnEndPage(PdfWriter writer, Document document)
+        {
+            PdfPTable headerTable = new PdfPTable(_columnHeaders.Count); // Dynamic number of columns
+            headerTable.TotalWidth = document.PageSize.Width - 80; // Adjust margins
+            headerTable.HorizontalAlignment = Element.ALIGN_CENTER;
+
+            // Add company name and report date to the header
+            PdfPCell cell = new PdfPCell(new Phrase(_companyName, new Font(Font.FontFamily.HELVETICA, 14f, Font.BOLD)));
+            cell.Colspan = _columnHeaders.Count;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            cell.Border = Rectangle.NO_BORDER;
+            headerTable.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase(_reportDate, new Font(Font.FontFamily.HELVETICA, 12f)));
+            cell.Colspan = _columnHeaders.Count;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            cell.Border = Rectangle.NO_BORDER;
+            headerTable.AddCell(cell);
+
+            // Add dashed line under the header
+            cell = new PdfPCell(new Phrase("--------------------------------------------------------------", new Font(Font.FontFamily.HELVETICA, 12f)));
+            cell.Colspan = _columnHeaders.Count;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            cell.Border = Rectangle.NO_BORDER;
+            headerTable.AddCell(cell);
+
+            // Add the dynamic column headers
+            foreach (var header in _columnHeaders)
+            {
+                cell = new PdfPCell(new Phrase(header, new Font(Font.FontFamily.HELVETICA, 10f, Font.BOLD)));
+                cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                cell.VerticalAlignment = Element.ALIGN_MIDDLE;
+                cell.Border = Rectangle.BOTTOM_BORDER;
+                headerTable.AddCell(cell);
+            }
+
+            // Write the table to the PDF
+            headerTable.WriteSelectedRows(0, -1, 40, document.PageSize.Height - 20, writer.DirectContent);
+        }
+    }
+
+
+
 
 }

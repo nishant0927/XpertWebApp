@@ -12,11 +12,11 @@ namespace DAL.DemandBooking
 {
   public  class Demand
     {
-        public static async Task< string> GetRout()
+        public static async Task< string> GetRout(string code)
         {
             try
             {
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetRout";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetRout";
                 using (var client = new HttpClient())
                 {
                     // Optionally set headers if needed
@@ -43,7 +43,7 @@ namespace DAL.DemandBooking
                 return $"Exception: {ex.Message}";
             }
         }
-        public static string GetDocNo(string routCode, bool rbtnMorning, bool fresh, bool product, bool both, string date, NavigatorType NavType, bool SeparateDemandMilkandProduct)
+        public static string GetDocNo(string routCode, bool rbtnMorning, bool fresh, bool product, bool both, string date, NavigatorType NavType, bool SeparateDemandMilkandProduct,string code)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace DAL.DemandBooking
                                      $"&SeparateDemandMilkandProduct={SeparateDemandMilkandProduct}";
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetDocNo{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetDocNo{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -89,7 +89,7 @@ namespace DAL.DemandBooking
 
 
 
-        public static string GetLoadData(string strDocumentNo, NavigatorType NavType, string currentUserLocation)
+        public static string GetLoadData(string strDocumentNo, NavigatorType NavType, string currentUserLocation,string code)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace DAL.DemandBooking
                                     $"&currentUserLocation={Uri.EscapeDataString(currentUserLocation)}";
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/LoadData{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/LoadData{queryParams}";
 
                 using (var client = new HttpClient())
                 {

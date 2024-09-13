@@ -59,7 +59,7 @@ namespace XpertWebApp.Controllers
                 {
                     Session["AppUserCode"] = UserId;
                     Session["AppPwd"] = Pwd;
-                    var data = clsDashBoard.CheckLoginDetails(UserId, Pwd);
+                    var data = clsDashBoard.CheckLoginDetails(UserId, Pwd, Session["Port"].ToString());
                     JArray jsonArrayl = JArray.Parse(data);
                     Session["CompCode"] = (string)jsonArrayl[0]["Comp_Code"];
                     Session["CompDesc"] = (string)jsonArrayl[0]["Comp_Name"];

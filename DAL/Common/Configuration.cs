@@ -16,14 +16,15 @@ namespace DAL.Common
         public static string strType = "Android MP Master";
         public static string strCode = "Disable Uploader No";
         public static string MilkUrlLocation = "http://103.122.38.34:8093/MilkProcurement.asmx/GetAPPLocation";
-       // public static string MilkUrl = "http://103.122.38.34:/MilkProcurement.asmx/";
-         public static string MilkUrl = "http://localhost:/MilkProcurement.asmx/";
+        public static string MilkUrl = "http://103.122.38.34:/MilkProcurement.asmx/";
+        // public static string MilkUrl = "http://localhost:/MilkProcurement.asmx/";
         //public static string MilkUrl = "http://103.122.38.34:/MilkProcurement.asmx/";
 
-       // public static string DashBoardUrl = "http://103.122.38.34";
+       //public static string DashBoardUrl = "http://103.122.38.34";
         public static string DashBoardUrl = "http://localhost";
         public static string ServiceName = "WebXpertERP.asmx";
-        public static string LCode = "2024";
+        public static string LCode = "2333";
+        public static string UserCode = "Administrator";
        
 
     }

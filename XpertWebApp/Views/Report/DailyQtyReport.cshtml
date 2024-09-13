@@ -417,7 +417,8 @@
 
     </section>
 </div>
-@Html.Partial("~/Views/DairySales/_ListData.cshtml")
+@*@Html.Partial("~/Views/DairySales/_ListData.cshtml")*@
+@Html.Partial("~/Views/Report/_SingleSelectionPartialView.cshtml")
 <script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
 <script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
 <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -425,7 +426,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script>
-    $(document).ready(function (){
+    $(document).ready(function () {
         openTab(null, 'divFilter');
     });
     function openTab(evt, tabId) {
@@ -442,7 +443,7 @@
         }
     }
     $("#defaultOpen").addClass("active");
-  
+
 
     $("#btnLoadMcc").on('click', function () {
         var modalId = "AddModal";
@@ -515,11 +516,11 @@
                     callback(responseData);
                 }
                 else {
-                    ShowSweet2Message("warning", "Warning", result.responseText);
+                    ShowSweet2Message("error", "Error", data.responseText);
                 }
             },
             error: function (errorMessage) {
-                alert(errorMessage.responseText);
+                ShowSweet2Message("error", "Error",errorMessage.responseText);
             }
 
         })
@@ -545,6 +546,10 @@
 
         })
     }
+    var allData = []; // Array to hold all data
+    var pageSize = 1000; // Number of records per page
+    var currentPage = 1; // Current page
+    var totalPages = 0; // Total number of pages
     $("#btnSearch").on('click', function () {
         openTab(null, 'requsetStatus');
         var fromDate = $("#txtFromDate").val();
@@ -572,13 +577,11 @@
         var isPickCLRInsteadOfSNF = false;
         var fndArea = "";
         var formId = "DAILY_QTY_R";
+        $('#callaway_popup2').show();
         GetDailyQty(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection)
 
     })
-    var allData = []; // Array to hold all data
-    var pageSize = 1000; // Number of records per page
-    var currentPage = 1; // Current page
-    var totalPages = 0; // Total number of pages
+   
 
     function GetDailyQty(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection) {
 
@@ -588,7 +591,7 @@
             dataType: 'json',
             data: { rbtnTranpoterGainLoss: rbtnTranpoterGainLoss, rdbSummary: rdbSummary, rbtnDock: rbtnDock, rbtnDockDateWise: rbtnDockDateWise, rbtnDockShiftWise: rbtnDockShiftWise, rbtnBmcSummary: rbtnBmcSummary, rdbDetails: rdbDetails, fromDate: fromDate, toDate: toDate, formId: formId, status: status, fndArea: fndArea, mccCode: mccCode, isPickCLRInsteadOfSNF: isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary: rbtnTranspoterGainlossSummary, allowFat: allowFat, allowsnf: allowsnf, tankerNo: tankerNo, rdbTankerWise: rdbTankerWise, rbtnRouteWise: rbtnRouteWise, rdbCollectionWise: rdbCollectionWise, rdbMultiple: rdbMultiple, rbtnBMCTankerCollection: rbtnBMCTankerCollection },
             success: function (data) {
-                if (data.success) {
+                if (data.success) {                  
                     var responseData = JSON.parse(data.responseData);
                     console.log("Response Data", responseData);
 
@@ -596,7 +599,7 @@
                         $('#divFilter').find('input, select, button').attr('disabled', true);
                         allData = responseData;
                         console.log("Data", allData);
-                        totalPages = Math.ceil(allData.length / pageSize);                      
+                        totalPages = Math.ceil(allData.length / pageSize);
 
                         if ($("#rbDock").is(":checked") || $("#rbDocDateWise").is(":checked") || $("#rbDocShiftWise").is(":checked")) {
                             SetTableFormationOFDock(currentPage);
@@ -610,7 +613,9 @@
                         else {
                             SetTableFormation(currentPage);
                         }
+                        $('#callaway_popup2').hide();
                         renderPagination();
+                       
                         //$('#tblRequestStatus').DataTable({
                         //    'paging': false,
                         //    'lengthChange': true,
@@ -644,17 +649,21 @@
                     }
                     else {
                         ShowSweet2Message("warning", "Warning", data.responseText);
+                        $('#callaway_popup2').hide();
                     }
                 }
                 else {
                     ShowSweet2Message("warning", "Warning", data.responseText);
+                    $('#callaway_popup2').hide();
                 }
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
             }
 
         })
@@ -663,7 +672,7 @@
 
     function SetTableFormationOFDock(page) {
         //console.log(responseData);
-        // $('#tblRequestStatus').DataTable().clear().destroy();
+        //$('#tblRequestStatus').DataTable().clear().destroy();
         $("#theadRequestStatus").empty();
         $("#tbodyRequestStatus").empty();
         var start = (page - 1) * pageSize;
@@ -723,6 +732,36 @@
             //tr += '<td>' + item.RATE+'</td>';
             //tr += '<td>' + item.Amt + '</td>';
             $("#tbodyRequestStatus").append(tr);
+            //$('#tblRequestStatus').DataTable({
+            //                'paging': false,
+            //                'lengthChange': true,
+            //                'searching': true,
+            //                'ordering': true,
+            //                'info': false,
+            //                'autoWidth': false,
+            //                'initComplete': function () {
+            //                    var table = this.api();
+
+            //                    // Add a text input to each header cell below the header text
+            //                    $('#tblRequestStatus thead th').each(function () {
+            //                        var title = $(this).text();
+            //                        $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+            //                    });
+
+            //                    // Apply the search
+            //                    table.columns().every(function () {
+            //                        var column = this;
+
+            //                        $('input', column.header()).on('keyup change', function () {
+            //                            if (column.search() !== this.value) {
+            //                                column
+            //                                    .search(this.value)
+            //                                    .draw();
+            //                            }
+            //                        });
+            //                    });
+            //                }
+            //            });
         })
     }
     function SetTableFormationOFMultiple(page) {
@@ -886,237 +925,237 @@
             header += '<th>Vehicle No</th>';
         }
 
+        if ($("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+            header += '<th>Tanker No</th>';
+        }
+
+        if ($("#rbDetail").is(":checked")) {
+            header += '<th>MCC Code</th>';
+            header += '<th>MCC Name</th>';
+            header += '<th>Uploader No</th>';
+        }
+
+        if ($("#rbBMCSummary").is(":checked")) {
+            header += '<th>MCC Code</th>';
+            header += '<th>MCC Name</th>';
+            header += '<th>Uploader No</th>';
+        }
+
+        if ($("#rbSummary").is(":checked")) {
+            header += '<th>Qty</th>';
+            header += '<th>FAT %</th>';
+            header += '<th>SNF %</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+        }
+
+        if ($("#rbTranpoterGainLoss").is(":checked") == true || $("#rbTranpoterGainLossSummary").is(":checked") == true) {
+            header += '<th>Qty</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+            header += '<th>Qty</th>';
+        }
+        if ($("#rbDock").is(":checked")) {
+            header += '<th>Qty</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+        }
+        if ($("#rbTankerWise").is(":checked")) {
+            header += '<th>Tankerno</th>';
+            header += '<th>Quantity</th>';
+            header += '<th>KGFAT</th>';
+            header += '<th>KGSNF</th>';
+            header += '<th>Quantity</th>';
+            header += '<th>KGFAT</th>';
+            header += '<th>KGSNF</th>';
+            header += '<th>Quantity</th>';
+            header += '<th>KGFAT</th>';
+            header += '<th>KGSNF</th>';
+        }
+        if ($("#rbTranpoterGainLoss").is(":checked") == false && $("#rbTranpoterGainLossSummary").is(":checked") == false && $("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+            header += '<th>Qty</th>';
+            header += '<th>FAT %</th>';
+            header += '<th>SNF %</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+            header += '<th>Qty</th>';
+            header += '<th>FAT %</th>';
+            header += '<th>SNF %</th>';
+            header += '<th>Qty</th>';
+            header += '<th>FAT %</th>';
+            header += '<th>SNF %</th>';
+        }
+
+        if ($("#rbTranpoterGainLoss").is(":checked") || $("#rbTranpoterGainLossSummary").is(":checked")) {
+            header += '<th>Qty</th>';
+            header += '<th>FAT Difference</th>';
+            header += '<th>FAT KG to be Recovered</th>';
+            header += '<th>SNF Difference</th>';
+            header += '<th>SNF KG to be Recovered</th>';
+            header += '<th>Allow FAT Tolerence</th>';
+            header += '<th>FAT Amount Recovered</th>';
+            header += '<th>Allow SNF Tolerence</th>';
+            header += '<th>SNF Amount Recovered</th>';
+            header += '<th>AMOUNT</th>';
+        }
+        if ($("#rbSummary").is(":checked")) {
+            header += '<th>Qty</th>';
+            header += '<th>FAT %</th>';
+            header += '<th>SNF %</th>';
+            header += '<th>FAT KG</th>';
+            header += '<th>SNF KG</th>';
+        }
+
+        if ($("#rbRoutWiseCollection").is(":checked")) {
+            header += '<th>Route Code</th>';
+            header += '<th>Route Name</th>';
+            header += '<th>Quantity</th>';
+            header += '<th>%FAT</th>';
+            header += '<th>%SNF</th>';
+            header += '<th>KGFAT</th>';
+            header += '<th>KGSNF</th>';
+            header += '<th>Quantity</th>';
+            header += '<th>%FAT</th>';
+            header += '<th>%SNF</th>';
+            header += '<th>KGFAT</th>';
+            header += '<th>KGSNF</th>';
+            header += '<th>Quantity</th>';
+            header += '<th>KGFAT</th>';
+            header += '<th>KGSNF</th>';
+        }
+        header += '</tr>';
+        $("#theadRequestStatus").append(header);
+
+        $.each(pagedData, function (index, item) {
+            var row = '<tr>';
+
+            if ($("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
+                row += '<td>' + item.Document_No + '</td>';
+                row += '<td>' + item.Document_Date + '</td>';
+                row += '<td>' + item.Route_Code + '</td>';
+                row += '<td>' + item.ROUTE_NAME + '</td>';
+                row += '<td>' + item.Vehicle_No + '</td>';
+            }
+
             if ($("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
-                header += '<th>Tanker No</th>';
+                row += '<td>' + item.Tanker_No + '</td>';
             }
 
             if ($("#rbDetail").is(":checked")) {
-                header += '<th>MCC Code</th>';
-                header += '<th>MCC Name</th>';
-                header += '<th>Uploader No</th>';
+                row += '<td>' + item.MCC_Code + '</td>';
+                row += '<td>' + item.MCC_NAME + '</td>';
+                row += '<td>' + item.UploaderNo + '</td>';
             }
 
             if ($("#rbBMCSummary").is(":checked")) {
-                header += '<th>MCC Code</th>';
-                header += '<th>MCC Name</th>';
-                header += '<th>Uploader No</th>';
+                row += '<td>' + item.MCC_Code + '</td>';
+                row += '<td>' + item.MCC_NAME + '</td>';
+                row += '<td>' + item.UploaderNo + '</td>';
             }
 
             if ($("#rbSummary").is(":checked")) {
-                header += '<th>Qty</th>';
-                header += '<th>FAT %</th>';
-                header += '<th>SNF %</th>';
-                header += '<th>FAT KG</th>';
-                header += '<th>SNF KG</th>';
+                row += '<td>' + item.Entered_Qty + '</td>';
+                row += '<td>' + item.Entered_FAT + '</td>';
+                row += '<td>' + item.Entered_SNF + '</td>';
+                row += '<td>' + item.Entered_FATKg + '</td>';
+                row += '<td>' + item.Entered_SNFKg + '</td>';
             }
 
-             if ($("#rbTranpoterGainLoss").is(":checked") == true || $("#rbTranpoterGainLossSummary").is(":checked") == true) {
-                header += '<th>Qty</th>';
-                 header += '<th>FAT KG</th>';
-                 header += '<th>SNF KG</th>';
-                 header += '<th>FAT KG</th>';
-                 header += '<th>SNF KG</th>';
-                 header += '<th>Qty</th>';               
+            if ($("#rbTranpoterGainLoss").is(":checked") == true || $("#rbTranpoterGainLossSummary").is(":checked") == true) {
+                row += '<td>' + item.Entered_Qty + '</td>';
+                row += '<td>' + item.Entered_FATKg + '</td>';
+                row += '<td>' + item.Entered_SNFKg + '</td>';
+                row += '<td>' + item.MCC_FATKG + '</td>';
+                row += '<td>' + item.MCC_SNFKG + '</td>';
+                row += '<td>' + item.MCC_Qty + '</td>';
+
             }
             if ($("#rbDock").is(":checked")) {
-                header += '<th>Qty</th>';
-                header += '<th>FAT KG</th>';
-                header += '<th>SNF KG</th>';
+                row += '<td>' + item.Entered_Qty + '</td>';
+                row += '<td>' + item.Entered_FATKg + '</td>';
+                row += '<td>' + item.Entered_SNFKg + '</td>';
+
             }
             if ($("#rbTankerWise").is(":checked")) {
-                header += '<th>Tankerno</th>';
-                header += '<th>Quantity</th>';
-                header += '<th>KGFAT</th>';
-                header += '<th>KGSNF</th>';
-                header += '<th>Quantity</th>';
-                header += '<th>KGFAT</th>';
-                header += '<th>KGSNF</th>';
-                header += '<th>Quantity</th>';
-                header += '<th>KGFAT</th>';
-                header += '<th>KGSNF</th>';
+                row += '<td>' + item.Tanker_No + '</td>';
+                row += '<td>' + item.MCC_Qty + '</td>';
+                row += '<td>' + item.MCC_FATKG + '</td>';
+                row += '<td>' + item.MCC_SNFKG + '</td>';
+                row += '<td>' + item.Entered_Qty + '</td>';
+                row += '<td>' + item.Entered_FATKg + '</td>';
+                row += '<td>' + item.Entered_SNFKg + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
             }
             if ($("#rbTranpoterGainLoss").is(":checked") == false && $("#rbTranpoterGainLossSummary").is(":checked") == false && $("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
-                header += '<th>Qty</th>';
-                header += '<th>FAT %</th>';
-                header += '<th>SNF %</th>';
-                header += '<th>FAT KG</th>';
-                header += '<th>SNF KG</th>';
-                header += '<th>FAT KG</th>';
-                header += '<th>SNF KG</th>';
-                header += '<th>FAT KG</th>';
-                header += '<th>SNF KG</th>';
-                header += '<th>Qty</th>';
-                header += '<th>FAT %</th>';
-                header += '<th>SNF %</th>';
-                header += '<th>Qty</th>';
-                header += '<th>FAT %</th>';
-                header += '<th>SNF %</th>';
+                row += '<td>' + item.MCC_Qty + '</td>';
+                row += '<td>' + item.MCC_FAT + '</td>';
+                row += '<td>' + item.MCC_SNF + '</td>';
+                row += '<td>' + item.MCC_FATKG + '</td>';
+                row += '<td>' + item.MCC_SNFKG + '</td>';
+                row += '<td>' + item.DCS_FATKG + '</td>';
+                row += '<td>' + item.DCS_SNFKG + '</td>';
+                row += '<td>' + item.Diff_FATKG + '</td>';
+                row += '<td>' + item.Diff_SNFKG + '</td>';
+                row += '<td>' + item.DCS_Qty + '</td>';
+                row += '<td>' + item.DCS_FAT + '</td>';
+                row += '<td>' + item.DCS_SNF + '</td>';
+                row += '<td>' + item.Diff_Qty + '</td>';
+                row += '<td>' + item.Diff_FAT + '</td>';
+                row += '<td>' + item.Diff_SNF + '</td>';
             }
 
             if ($("#rbTranpoterGainLoss").is(":checked") || $("#rbTranpoterGainLossSummary").is(":checked")) {
-                header += '<th>Qty</th>';
-                header += '<th>FAT Difference</th>';
-                header += '<th>FAT KG to be Recovered</th>';
-                header += '<th>SNF Difference</th>';
-                header += '<th>SNF KG to be Recovered</th>';
-                header += '<th>Allow FAT Tolerence</th>';
-                header += '<th>FAT Amount Recovered</th>';
-                header += '<th>Allow SNF Tolerence</th>';
-                header += '<th>SNF Amount Recovered</th>';
-                header += '<th>AMOUNT</th>';
+                row += '<td>' + item.DiffMCCVsEntered_Qty + '</td>';
+                row += '<td>' + item.DiffMCCVsEntered_FATKG + '</td>';
+                row += '<td>' + item.FATKG_Recovered + '</td>';
+                row += '<td>' + item.DiffMCCVsEntered_SNFKG + '</td>';
+                row += '<td>' + item.SNFKG_Recovered + '</td>';
+                row += '<td>' + item.FAT_Tolerence + '</td>';
+                row += '<td>' + item.FAT_AMT + '</td>';
+                row += '<td>' + item.SNF_Tolerence + '</td>';
+                row += '<td>' + item.SNF_AMT + '</td>';
+                row += '<td>' + item.AMOUNT + '</td>';
             }
             if ($("#rbSummary").is(":checked")) {
-                header += '<th>Qty</th>';
-                header += '<th>FAT %</th>';
-                header += '<th>SNF %</th>';
-                header += '<th>FAT KG</th>';
-                header += '<th>SNF KG</th>';
+                row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_FATKG + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_SNFKG + '</td>';
             }
 
             if ($("#rbRoutWiseCollection").is(":checked")) {
-                header += '<th>Route Code</th>';
-                header += '<th>Route Name</th>';
-                header += '<th>Quantity</th>';
-                header += '<th>%FAT</th>';
-                header += '<th>%SNF</th>';
-                header += '<th>KGFAT</th>';
-                header += '<th>KGSNF</th>';
-                header += '<th>Quantity</th>';
-                header += '<th>%FAT</th>';
-                header += '<th>%SNF</th>';
-                header += '<th>KGFAT</th>';
-                header += '<th>KGSNF</th>';
-                header += '<th>Quantity</th>';
-                header += '<th>KGFAT</th>';
-                header += '<th>KGSNF</th>';
+                row += '<td>' + item.ROUTE_NO + '</td>';
+                row += '<td>' + item.ROUTE_NAME + '</td>';
+                row += '<td>' + item.MCC_Qty + '</td>';
+                row += '<td>' + item.MCC_FAT_Per + '</td>';
+                row += '<td>' + item.MCC_SNF_Per + '</td>';
+                row += '<td>' + item.MCC_FATKG + '</td>';
+                row += '<td>' + item.MCC_SNFKG + '</td>';
+                row += '<td>' + item.Entered_Qty + '</td>';
+                row += '<td>' + item.Entered_FAT_Per + '</td>';
+                row += '<td>' + item.Entered_SNF_Per + '</td>';
+                row += '<td>' + item.Entered_FATKg + '</td>';
+                row += '<td>' + item.Entered_SNFKg + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
+                row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
             }
-            header += '</tr>';
-            $("#theadRequestStatus").append(header);
 
-            $.each(pagedData, function (index, item) {
-                var row = '<tr>';
+            row += '</tr>';
+            tbody += row;
+        });
 
-                if ($("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
-                    row += '<td>' + item.Document_No + '</td>';
-                    row += '<td>' + item.Document_Date + '</td>';
-                    row += '<td>' + item.Route_Code + '</td>';
-                    row += '<td>' + item.ROUTE_NAME + '</td>';
-                    row += '<td>' + item.Vehicle_No + '</td>';
-                }
+        $("#tbodyRequestStatus").append(tbody);
 
-                if ($("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
-                    row += '<td>' + item.Tanker_No + '</td>';
-                }
-
-                if ($("#rbDetail").is(":checked")) {
-                    row += '<td>' + item.MCC_Code + '</td>';
-                    row += '<td>' + item.MCC_NAME + '</td>';
-                    row += '<td>' + item.UploaderNo + '</td>';
-                }
-
-                if ($("#rbBMCSummary").is(":checked")) {
-                    row += '<td>' + item.MCC_Code + '</td>';
-                    row += '<td>' + item.MCC_NAME + '</td>';
-                    row += '<td>' + item.UploaderNo + '</td>';
-                }
-
-                if ($("#rbSummary").is(":checked")) {
-                    row += '<td>' + item.Entered_Qty + '</td>';
-                    row += '<td>' + item.Entered_FAT + '</td>';
-                    row += '<td>' + item.Entered_SNF + '</td>';
-                    row += '<td>' + item.Entered_FATKg + '</td>';
-                    row += '<td>' + item.Entered_SNFKg + '</td>';
-                }
-
-                if ($("#rbTranpoterGainLoss").is(":checked") == true || $("#rbTranpoterGainLossSummary").is(":checked") == true) {
-                    row += '<td>' + item.Entered_Qty + '</td>';
-                    row += '<td>' + item.Entered_FATKg + '</td>';
-                    row += '<td>' + item.Entered_SNFKg + '</td>';
-                    row += '<td>' + item.MCC_FATKG + '</td>';
-                    row += '<td>' + item.MCC_SNFKG + '</td>';
-                    row += '<td>' + item.MCC_Qty + '</td>';
-
-                }
-                if ($("#rbDock").is(":checked")) {
-                    row += '<td>' + item.Entered_Qty + '</td>';
-                    row += '<td>' + item.Entered_FATKg + '</td>';
-                    row += '<td>' + item.Entered_SNFKg + '</td>';
-
-                }
-                if ($("#rbTankerWise").is(":checked")) {
-                    row += '<td>' + item.Tanker_No + '</td>';
-                    row += '<td>' + item.MCC_Qty + '</td>';
-                    row += '<td>' + item.MCC_FATKG + '</td>';
-                    row += '<td>' + item.MCC_SNFKG + '</td>';
-                    row += '<td>' + item.Entered_Qty + '</td>';
-                    row += '<td>' + item.Entered_FATKg + '</td>';
-                    row += '<td>' + item.Entered_SNFKg + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
-                }
-                if ($("#rbTranpoterGainLoss").is(":checked") == false && $("#rbTranpoterGainLossSummary").is(":checked") == false && $("#rbTankerWise").is(":checked") == false && $("#rbBMCTankerCollection").is(":checked") == false && $("#rbRoutWiseCollection").is(":checked") == false) {
-                    row += '<td>' + item.MCC_Qty + '</td>';
-                    row += '<td>' + item.MCC_FAT + '</td>';
-                    row += '<td>' + item.MCC_SNF + '</td>';
-                    row += '<td>' + item.MCC_FATKG + '</td>';
-                    row += '<td>' + item.MCC_SNFKG + '</td>';
-                    row += '<td>' + item.DCS_FATKG + '</td>';
-                    row += '<td>' + item.DCS_SNFKG + '</td>';
-                    row += '<td>' + item.Diff_FATKG + '</td>';
-                    row += '<td>' + item.Diff_SNFKG + '</td>';
-                    row += '<td>' + item.DCS_Qty + '</td>';
-                    row += '<td>' + item.DCS_FAT + '</td>';
-                    row += '<td>' + item.DCS_SNF + '</td>';
-                    row += '<td>' + item.Diff_Qty + '</td>';
-                    row += '<td>' + item.Diff_FAT + '</td>';
-                    row += '<td>' + item.Diff_SNF + '</td>';
-                }
-
-                if ($("#rbTranpoterGainLoss").is(":checked") || $("#rbTranpoterGainLossSummary").is(":checked")) {
-                    row += '<td>' + item.DiffMCCVsEntered_Qty + '</td>';
-                    row += '<td>' + item.DiffMCCVsEntered_FATKG + '</td>';
-                    row += '<td>' + item.FATKG_Recovered + '</td>';
-                    row += '<td>' + item.DiffMCCVsEntered_SNFKG + '</td>';
-                    row += '<td>' + item.SNFKG_Recovered + '</td>';
-                    row += '<td>' + item.FAT_Tolerence + '</td>';
-                    row += '<td>' + item.FAT_AMT + '</td>';
-                    row += '<td>' + item.SNF_Tolerence + '</td>';
-                    row += '<td>' + item.SNF_AMT + '</td>';
-                    row += '<td>' + item.AMOUNT + '</td>';
-                }
-                if ($("#rbSummary").is(":checked")) {
-                    row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_FATKG + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_SNFKG + '</td>';
-                }
-
-                if ($("#rbRoutWiseCollection").is(":checked")) {
-                    row += '<td>' + item.ROUTE_NO + '</td>';
-                    row += '<td>' + item.ROUTE_NAME + '</td>';
-                    row += '<td>' + item.MCC_Qty + '</td>';
-                    row += '<td>' + item.MCC_FAT_Per + '</td>';
-                    row += '<td>' + item.MCC_SNF_Per + '</td>';
-                    row += '<td>' + item.MCC_FATKG + '</td>';
-                    row += '<td>' + item.MCC_SNFKG + '</td>';
-                    row += '<td>' + item.Entered_Qty + '</td>';
-                    row += '<td>' + item.Entered_FAT_Per + '</td>';
-                    row += '<td>' + item.Entered_SNF_Per + '</td>';
-                    row += '<td>' + item.Entered_FATKg + '</td>';
-                    row += '<td>' + item.Entered_SNFKg + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_Qty + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_FAT + '</td>';
-                    row += '<td>' + item.DiffEnteredVsMCC_SNF + '</td>';
-                }
-
-                row += '</tr>';
-                tbody += row;
-            });
-
-            $("#tbodyRequestStatus").append(tbody);
-        
     }
 
 
@@ -1213,16 +1252,16 @@
 
             // Check if thead exists and has th elements
             if (thead && thead.querySelectorAll('th').length > 0) {
-               
+
                 SendData(pdf, excel);
-               
+
             } else {
                 alert("No headers found in the table.");
             }
         } else {
             alert("No data available to export.");
-        }     
-       
+        }
+
     })
     $("#btnPdf").on('click', function () {
         var pdf = true;
@@ -1243,7 +1282,7 @@
         }
     })
 
-   
+
 
 
     function SendData(pdf, excel) {
@@ -1274,9 +1313,9 @@
         var formId = "DAILY_QTY_R";
         $.ajax({
             url: '/Report/DailyQuantityExportToExcel',
-            type: 'GET',           
+            type: 'GET',
             data: { rbtnTranpoterGainLoss: rbtnTranpoterGainLoss, rdbSummary: rdbSummary, rbtnDock: rbtnDock, rbtnDockDateWise: rbtnDockDateWise, rbtnDockShiftWise: rbtnDockShiftWise, rbtnBmcSummary: rbtnBmcSummary, rdbDetails: rdbDetails, fromDate: fromDate, toDate: toDate, formId: formId, status: status, fndArea: fndArea, mccCode: mccCode, isPickCLRInsteadOfSNF: isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary: rbtnTranspoterGainlossSummary, allowFat: allowFat, allowsnf: allowsnf, tankerNo: tankerNo, rdbTankerWise: rdbTankerWise, rbtnRouteWise: rbtnRouteWise, rdbCollectionWise: rdbCollectionWise, rdbMultiple: rdbMultiple, rbtnBMCTankerCollection: rbtnBMCTankerCollection, pdf: pdf, excel: excel },
-            
+
             xhrFields: {
                 responseType: 'blob' // Ensure response is treated as a Blob
             },
@@ -1296,7 +1335,7 @@
                     var blobUrl = window.URL.createObjectURL(blob);
                     window.open(blobUrl, '_blank');
                 }
-               
+
             },
             error: function (xhr, status, error) {
                 alert("An error occurred while generating the Excel file: " + error);

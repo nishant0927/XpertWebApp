@@ -1,0 +1,1389 @@
+﻿
+@{
+    ViewBag.Title = "Matrix Fresh Sales Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* .col-md-2 {
+        max-width: none;
+    }
+
+    .col-md-3 {
+        flex: 2 5 28% !important;
+        max-width: 41% !important;
+    }*/
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table {
+        table-layout: auto; /* This ensures that the table's layout is fixed */
+        width: 100%; /* Adjust the width as needed */
+    }
+
+    td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+    }
+
+    /*   table thead, tfoot {
+            position: sticky;
+            top: 0;
+            background-color: #1cc8c07a;
+            z-index: 1;
+            table-layout: auto !important;
+            width: auto !important;
+            font-size: 14px;
+            font-weight: bold;
+        }*/
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .ddl {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        /* width: 149px;*/
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    /* .input-group {
+            margin-bottom: -23px;
+        }
+    */
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+            border-right: 0;
+            white-space: nowrap;
+
+            border-radius: 0;*/
+    /*vertical-align: top;
+            border-color: #d2d6de;
+            background-color: #fff;
+            border-right: 0;
+            display: table-cell;
+        }*/
+
+    /*table {
+            table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+            height: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }*/
+
+    th {
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+        color: black;
+    }
+</style>
+
+
+<div class="content-wrapper" style="margin-left:-8px!important;">
+    <section class="content-header">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content">
+        <div class="box">
+            <div class="row" style="margin-top: -18px; max-height: 16px;">
+                <div class="col-sm-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border" style="padding: 1px;margin-top: 14px;">
+                            <div class="row" style="margin-top:-14px;">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'divFilter')" id="defaultOpen">Filter</button>
+                                        <button class="tablinks" onclick="openTab(event,'requsetStatus')">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body-wrapper" style="margin-top: -12px; max-height: 400px;">
+            <div class="tabcontent" id="divFilter">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <div class="box box-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Report Type</label>
+                                                    <select class="form-control form-control-sm ddl" id="ddlReportType">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6" style="margin-top:20px;" id="divRbtShift">
+                                                <div class="form-group">
+                                                    <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:225px;">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtnMrng" style=" margin-left: 2px;">
+                                                        <label class="form-check-label" for="rbtnMrng" style="margin-left: 20px;">Morning</label>
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtnEvng" style=" margin-left: 7px;">
+                                                        <label style=" margin-left: 24px;">Evening</label>
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtnBoths" style=" margin-left: 5px;" checked>
+                                                        <label style=" margin-left: 22px;">Both</label>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:-10px;" id="divDateRange">
+                                            <div class="col-sm-8">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width:332px;">
+                                                    <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Date Range</legend>
+                                                    <div class="row">
+
+                                                        <div class="col-sm-4" style="max-width:170px;">
+                                                            <div class="form-group">
+                                                                <label>From Date</label>
+                                                                <input type="date" class="form-control form-control-sm input" id="fromDate" />
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label>To Date</label>
+                                                                <input type="date" class="form-control form-control-sm input" id="ToDate" />
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-sm-4" style="margin-top: 32px;" id="divFilterByCD">
+                                                <div class="form-group" style="margin-left: -17px; margin-top: 26px;">
+                                                    <div class="form-check">
+                                                        <input type="checkbox" class="form-check-input" id="chkFilterByCreatedDate">
+                                                        <label class="form-check-label" for="chkFilterByCreatedDate">Filter By Created Date</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -14px;">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <div id="divBookingWise" style="">
+                                                            <input type="checkbox" class="form-check-input" id="chkBookingWise">
+                                                            <label class="form-check-label" for="chkBookingWise">Booking Wise</label><br />
+                                                        </div>
+                                                        <div id="divSalesWise">
+                                                            <input type="checkbox" class="form-check-input" id="chkSaleInvoiceWise">
+                                                            <label class="form-check-label" for="chkSaleInvoiceWise">Sale Invoice Wise</label><br />
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+                                                        <div id="divSummary">
+                                                            <input type="checkbox" class="form-check-input" id="chkSummary">
+                                                            <label class="form-check-label" for="chkSummary">Summary</label><br />
+                                                        </div>
+                                                        <div id="divFirstAndSecondSpell">
+                                                            <input type="checkbox" class="form-check-input" id="chkFirstAndSecondSpell">
+                                                            <label class="form-check-label" for="chkFirstAndSecondSpell">First And Second Spell Card Sale Summary</label><br />
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="divddlTCSShift">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Shift</label>
+                                                    <select class="form-control form-control-sm ddl" id="rddlTCSShift">
+                                                        <option value="Morning">Morning</option>
+                                                        <option value="Evening">Evening</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="margin-top: 19px;">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="form-check">
+
+                                                        <input type="checkbox" class="form-check-input MilkPouch" id="chkMilkPouch">
+                                                        <label class="form-check-label MilkPouch" for="chkMilkPouch">Milk Pouch</label>
+
+
+                                                        <input class="form-check-input Ltr" type="radio" name="miklCate" id="rdbLtr" style=" margin-left: 5px;" checked>
+                                                        <label style=" margin-left: 22px;" class="Ltr">Ltr</label>
+
+
+                                                        <input class="form-check-input Create" type="radio" name="miklCate" id="rdbCreate" style=" margin-left: 5px;" checked>
+                                                        <label style=" margin-left: 22px;" class="Create">Crate</label>
+
+
+                                                        <input class="form-check-input AsPerBooking" type="radio" name="miklCate" id="rbtnAsPerBooking" style=" margin-left: 5px;" checked>
+                                                        <label style=" margin-left: 22px;" class="AsPerBooking">As Per Booking</label>
+
+
+                                                    </div>
+                                                    <div class="form-check">
+
+                                                        <input type="checkbox" class="form-check-input Product" id="chkProduct">
+                                                        <label class="form-check-label Product" for="chkProduct">Product</label><br />
+
+
+                                                        <input type="checkbox" class="form-check-input RouteSummary" id="chkRouteSummary">
+                                                        <label class="form-check-label RouteSummary" for="chkRouteSummary">Route Summary Print</label>
+
+
+                                                        <input type="checkbox" class="form-check-input DateWise" id="rbtnDateWise" style="margin-left: 5px;">
+                                                        <label class="form-check-label DateWise" for="rbtnDateWise" style="margin-left: 24px;">Date Wise</label>
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top:-16px;" id="divShift">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Shift</label>
+                                                    <select class="form-control form-control-sm ddl" id="cboShift">
+                                                        <option value="Both">Both</option>
+                                                        <option value="Morning">Morning</option>
+                                                        <option value="Evening">Evening</option>
+                                                        <option value="Shift Wise">Shift Wise</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="row" id="divPrintTruckSheet">
+                                            <div class="col-sm-12">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:500px;">
+                                                    <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Print Truck Sheet</legend>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label>Date</label>
+                                                            <input type="date" class="form-control form-control-sm input" id="txtPTSDateFrom" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Shift</label>
+                                                                <select class="form-control form-control-sm ddl" id="ddlPTSShift">
+                                                                    <option value="Morning">Morning</option>
+                                                                    <option value="Evening">Evening</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6" style="margin-top:-15px;">
+                                                            <div class="form-group">
+                                                                <label>Route</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control form-control-sm input" id="txtMultPTSRoute">
+                                                                    <div class="input-group-append">
+                                                                        <button id="btnloadMultPTSRoute" class="btn btn-sm btn-primary">
+                                                                            <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6" style="margin-top:-15px;">
+                                                            <div class="form-group">
+                                                                <label>Customer</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control form-control-sm input" id="txtCustMultFnd">
+                                                                    <div class="input-group-append">
+                                                                        <button id="btnloadCustMultFnd" class="btn btn-sm btn-primary">
+                                                                            <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6" style="margin-top:-10px">
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input" id="chkIndividualCustomer">
+                                                                    <label class="form-check-label" for="chkIndividualCustomer">Individual Customer</label><br />
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6" style="margin-top:-12px;">
+                                                            <div class="form-group">
+                                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:225px;">
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtnMilk" style=" margin-left: 2px;">
+                                                                    <label class="form-check-label" for="rbtnMrng" style="margin-left: 20px;">Fresh</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtnProduct" style=" margin-left: 7px;">
+                                                                    <label style=" margin-left: 24px;">Ambient</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtnBoth" style=" margin-left: 5px;" checked>
+                                                                    <label style=" margin-left: 22px;">Both</label>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row" style="margin-top:-16px;">
+                                                        <div class="col-sm-12 text-center">
+                                                            <input type="button" value="Print Route Booth" class="btn btn-sm btn-primary search-button" style="width: 136px;" id="btnPrintRouteBooth" />
+                                                            <input type="button" value="Print Truck Sheet" class="btn btn-sm btn-primary search-button" style="width: 136px;" id="btnPrintTruckSheet" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top:-10px;">
+                                                        <div class="col-sm-12 text-center">
+                                                            <input type="button" value="Demand Truck Sheet Summary Route Wise" class="btn btn-sm btn-primary search-button" style="width:311px;" id="btnDemandTruckSheet" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="margin-top:-10px;">
+                                                        <div class="col-sm-12 text-center">
+                                                            <input type="button" value="Gate Pass Summary Route Wise" class="btn btn-sm btn-primary search-button" style="width:311px;" id="btnGatePassSummaryRouteWise" />
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="divCredit">
+                                            <div class="col-sm-12">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:500px;">
+                                                    <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Credit Sale Report</legend>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>From Date</label>
+                                                                <input type="date" class="form-control form-control-sm input" id="txtCreditDateFrom" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>To Date</label>
+                                                                <input type="date" class="form-control form-control-sm input" id="txtCreditDateTo" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label>Customer</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control form-control-sm input" id="fndCustomer" />
+                                                                    <button class="btn btn-primary btn-sm" type="button" id="btnCreditfndCustomer"><i class="fa fa-search"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:225px;">
+                                                                    <input class="form-check-input" type="radio" name="credit" id="rbtnTaxable" style=" margin-left: 2px;">
+                                                                    <label class="form-check-label" for="rbtnMrng" style="margin-left: 20px;">Taxable</label>
+                                                                    <input class="form-check-input" type="radio" name="credit" id="rbtnNonTaxable" style=" margin-left: 7px;">
+                                                                    <label style=" margin-left: 24px;">Non-Taxable</label>
+                                                                </fieldset>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -10px;" id="divCustomerGroup">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Customer Group</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtCustomerGroup">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadCustomerGroup" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top: -18px;" id="divItemCode">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Item Code</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtItemCode">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadItem" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row" style="margin-top: -18px;" id="divLocation">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Location</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtLocation">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadLocation" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="margin-top: -18px;" id="divRoute">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Route</label>
+                                                    <div class="input-group" id="divFndRoute">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtFndRoute" />
+                                                        <button class="btn btn-primary btn-sm" type="button" id="btnfndRoute"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                    <div class="input-group" id="divtxtRoute">
+                                                        <input type="text" class="form-control form-control-sm input" id="TxtRoute">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadRoute" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -18px;" id="divBokkingType">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Booking Type</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtBookingType">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadBookingType" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="divInvoiceType">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Invoice Type</label>
+                                                    <select class="form-control form-control-sm ddl" id="ddlInvocieType">
+                                                        <option value="All">All</option>
+                                                        <option value="All">Taxable</option>
+                                                        <option value="Non Taxable">Non Taxable</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6" style="margin-top: -14px;">
+                                        <div class="row" id="divCustomer">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Customer</label>
+                                                    <div class="input-group" id="divFndCustomer">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtfndCustomer" />
+                                                        <button class="btn btn-primary btn-sm" type="button" id="btnfndCustomer"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                    <div class="input-group" id="divtxtCustomer">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtCustomer">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadCustomer" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -18px;" id="divLorry">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Lorry</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtLorry">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadLorry" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -18px;" id="divZone">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Zone</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtZone">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadZone" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -18px;" id="divUOM">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>UOM</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="TxtUOM">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadUOM" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -18px;" id="divCustomerCategory">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Customer Category</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control form-control-sm input" id="TxtMultiCustomerCategory">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadCustomerCategory" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tabcontent" id="requsetStatus">
+                <div class="table-responsive" style="max-height:400px; overflow-y: auto;">
+                    <table width="100%" class="table table-bordered table-hover no-footer dataTable" style="font-size: 12px;" id="tblRequestStatus">
+                        <thead id="theadRequestStatus">
+                        </thead>
+                        <tbody id="tbodyRequestStatus"></tbody>
+                    </table>
+                </div>
+                <div style="overflow-y: auto; text-align: right; height:52px; margin-top:4px;">
+                    <nav aria-label="Page navigation example" style="display: inline-flex!important;">
+                        <ul class="pagination justify-content-center" id="pagination">
+                        </ul>
+                    </nav>
+                    @*</div>*@
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer" style="margin-top:190px;">
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
+            <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>
+            <button class="btn btn-sm btn-primary search-button" style="width: 139px!important;" id="btnExcel"> <i class="fa fa-download"></i> Generate Excel</button>
+
+        </div>
+
+        @*</div>*@
+        @*</div>*@
+
+    </section>
+</div>
+@Html.Partial("~/Views/Report/_MultipleSelectionPartialView.cshtml")
+@Html.Partial("~/Views/Report/_SingleSelectionPartialView.cshtml")
+
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/adminlte/js/adminlte.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        openTab(null, 'divFilter');
+        BindReportTypeDropdown();
+        var selectedValue = $('#ddlReportType').val();
+        console.log(selectedValue);
+        showFormOnSelectedReportType(selectedValue);
+
+        //LoadPaymentProcess();
+    });
+    function openTab(evt, tabId) {
+        // Hide all tab content
+        $(".tabcontent").hide();
+
+        // Remove "active" class from all tab links
+        $(".tablinks").removeClass("active");
+
+        // Show the current tab content and add "active" class to the clicked tab button
+        $("#" + tabId).show();
+        if (evt) {
+            $(evt.currentTarget).addClass("active");
+        }
+    }
+    $("#defaultOpen").addClass("active");
+
+    function BindReportTypeDropdown(){
+         $.ajax({
+                url: '@Url.Action("GetReportType", "Common")',
+                type: 'GET',
+                dataType: 'json',
+             success: function (data) {
+                 console.log(data.items);
+                    var $dropdown = $('#ddlReportType');
+                    $dropdown.empty();
+                 $.each(data.items, function(index, item) {
+                        $dropdown.append($('<option></option>').attr('value', item.Value).text(item.Text));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("An error occurred: " + error);
+                }
+            });
+    }
+    $('#ddlReportType').on('change', function () {
+        var selectedValue = $(this).val();
+        showFormOnSelectedReportType(selectedValue);
+    });
+    function showFormOnSelectedReportType(selectedValue) {
+        if (selectedValue == "MFS" || selectedValue == null) {
+            $("#divRbtShift").hide();
+            $("#divDateRange").show();
+            $("#divFilterByCD").show();
+            $("#divBookingWise").show();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").show();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").show();
+            $(".Ltr").show();
+            $(".Create").show();
+            $(".AsPerBooking").show();
+            $(".Product").show();
+            $(".RouteSummary").show();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "DW") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").show();
+            $("#divFilterByCD").show();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").show();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").show();
+            $(".Ltr").show();
+            $(".Create").show();
+            $(".AsPerBooking").show();
+            $(".Product").show();
+            $(".RouteSummary").show();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "TS") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").hide();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").show();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").hide();
+            $("#divItemCode").hide();
+            $("#divLocation").hide();
+            $("#divRoute").hide();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").hide();
+            $("#divBokkingType").hide();
+            $("#divCustomer").hide();
+            $("#divtxtCustomer").hide();
+            $("#divFndCustomer").hide();
+            $("#divLorry").hide();
+            $("#divZone").hide();
+            $("#divUOM").hide();
+            $("#divCustomerCategory").hide();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "MGPD") {
+            $("#divRbtShift").show();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "PGPD") {
+            $("#divRbtShift").show();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "DMGPD") {
+            $("#divRbtShift").show();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "DPGPD") {
+            $("#divRbtShift").show();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "MSR") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "PSR") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "CSR") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").hide();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").show();
+            $("#divCustomerGroup").hide();
+            $("#divItemCode").hide();
+            $("#divLocation").hide();
+            $("#divRoute").hide();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").hide();
+            $("#divBokkingType").hide();
+            $("#divCustomer").hide();
+            $("#divtxtCustomer").hide();
+            $("#divFndCustomer").hide();
+            $("#divLorry").hide();
+            $("#divZone").hide();
+            $("#divUOM").hide();
+            $("#divCustomerCategory").hide();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "MPDR") {
+            $("#divRbtShift").show();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").show();
+            $("#divItemCode").show();
+            $("#divLocation").show();
+            $("#divRoute").show();
+            $("#divFndRoute").hide();
+            $("#divtxtRoute").show();
+            $("#divBokkingType").show();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").show();
+            $("#divFndCustomer").hide();
+            $("#divLorry").show();
+            $("#divZone").show();
+            $("#divUOM").show();
+            $("#divCustomerCategory").show();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+        }
+        if (selectedValue == "TCS") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").show();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").hide();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").hide();
+            $("#divItemCode").hide();
+            $("#divLocation").hide();
+            $("#divRoute").show();
+            $("#divFndRoute").show();
+            $("#divtxtRoute").hide();
+            $("#divBokkingType").hide();
+            $("#divCustomer").show();
+            $("#divtxtCustomer").hide();
+            $("#divFndCustomer").show();
+            $("#divLorry").hide();
+            $("#divZone").hide();
+            $("#divUOM").hide();
+            $("#divCustomerCategory").hide();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").show();
+            $("#divInvoiceType").hide();
+        }
+        if (selectedValue == "RBW") {
+            $("#divRbtShift").hide();
+            $("#divDateRange").hide();
+            $("#divFilterByCD").hide();
+            $("#divBookingWise").hide();
+            $("#divSalesWise").hide();
+            $("#divSummary").hide();
+            $("#divFirstAndSecondSpell").hide();
+            $("#divShift").hide();
+            $("#divPrintTruckSheet").show();
+            $("#divCredit").hide();
+            $("#divCustomerGroup").hide();
+            $("#divItemCode").hide();
+            $("#divLocation").hide();
+            $("#divRoute").hide();
+            $("#divFndRoute").show();
+            $("#divtxtRoute").hide();
+            $("#divBokkingType").hide();
+            $("#divCustomer").hide();
+            $("#divtxtCustomer").hide();
+            $("#divFndCustomer").hide();
+            $("#divLorry").hide();
+            $("#divZone").hide();
+            $("#divUOM").hide();
+            $("#divCustomerCategory").hide();
+            $(".MilkPouch").hide();
+            $(".Ltr").hide();
+            $(".Create").hide();
+            $(".AsPerBooking").hide();
+            $(".Product").hide();
+            $(".RouteSummary").hide();
+            $(".DateWise").show();
+            $("#divddlTCSShift").hide();
+            $("#divInvoiceType").hide();
+            $("#btnPrintRouteBooth").show();
+            $("#btnPrintTruckSheet").hide();
+            $("#btnDemandTruckSheet").hide();
+            $("#btnGatePassSummaryRouteWise").show();
+        }
+    }
+
+    $("#btnSearch").on('click', function () {
+        var ddlReportType = $("#ddlReportType").val();
+        var rbtnMrng = $("#rbtnMrng").is(":checked");
+        var rbtnEvng= $("#rbtnEvng").is(":checked");
+        var rbtnBoths = $("#rbtnBoths").is(":checked");
+        var fromDate = $("#fromDate").val();
+        var ToDate = $("#ToDate").val();
+        var chkFilterByCreatedDate = $("#chkFilterByCreatedDate").is(":checked");
+        var rddlTCSShift = $("#rddlTCSShift").val();
+        var chkMilkPouch = $("#chkMilkPouch").is(":checked");
+        var rdbLtr = $("#rdbLtr").is(":checked");
+        var rdbCreate = $("#rdbCreate").is(":checked");
+        var rbtnAsPerBooking = $("#rbtnAsPerBooking").is(":checked");
+        var chkProduct = $("#chkProduct").is(":checked");
+        var chkRouteSummary = $("#chkRouteSummary").is(":checked");
+        var rbtnDateWise = $("#rbtnDateWise").is(":checked");
+        var chkRouteSummary = $("#chkRouteSummary").is(":checked");
+        var rbtnDateWise = $("#rbtnDateWise").is(":checked");
+        var cboShift = $("#cboShift").val();
+        var txtPTSDateFrom = $("#txtPTSDateFrom").val();
+        var ddlPTSShift = $("#ddlPTSShift").val();
+        var txtMultPTSRoute = $("#txtMultPTSRoute").val();
+        var txtCustMultFnd = $("#txtCustMultFnd").val();
+        var chkIndividualCustomer = $("#chkIndividualCustomer").is(":checked");
+        var rbtnMilk = $("#rbtnMilk").is(":checked");
+        var rbtnProduct = $("#rbtnProduct").is(":checked");
+        var rbtnBoth = $("#rbtnBoth").is(":checked");
+        var chkBookingWise = $("#chkBookingWise").is(":checked");
+        var chkSaleInvoiceWise = $("#chkSaleInvoiceWise").is(":checked");
+        var chkSummary = $("#chkSummary").is(":checked");
+        var chkFirstAndSecondSpell = $("#chkFirstAndSecondSpell").is(":checked");
+        var txtCreditDateFrom = $("#txtCreditDateFrom").val();
+        var txtCreditDateTo = $("#txtCreditDateTo").val();
+        var fndCustomer = $("#fndCustomer").val();
+        var rbtnTaxable = $("#rbtnTaxable").is(":checked");
+        var rbtnNonTaxable = $("#rbtnNonTaxable").is(":checked");
+        var txtCustomerGroup = $("#txtCustomerGroup").val();
+        var txtItemCode = $("#txtItemCode").val();
+        var txtLocation = $("#txtLocation").val();
+        var txtfndCustomer = $("#txtfndCustomer").val();
+        var TxtRoute = $("#TxtRoute").val();
+        var txtFndRoute = $("#txtFndRoute").val();
+        var txtBookingType = $("#txtBookingType").val();
+        var ddlInvocieType = $("#ddlInvocieType").val();
+        var txtCustomer = $("#txtCustomer").val();
+        var txtLorry = $("#txtLorry").val();
+        var txtZone = $("#txtZone").val();
+        var TxtUOM = $("#TxtUOM").val();
+        var TxtMultiCustomerCategory = $("#TxtMultiCustomerCategory").val();
+        $.ajax({
+             url: '@Url.Action("GetMatrixFreshSalesReport", "MatrixFreshSales")',
+                type: 'GET',
+            dataType: 'json',
+            data: {
+                chkMilkPouch: chkMilkPouch,
+                rbtnAsPerBooking: rbtnAsPerBooking,
+                ddlReportType: ddlReportType,
+                fromDate: fromDate,
+                ToDate: ToDate,
+                chkFirstAndSecondSpellAbstract: false,
+                chkBookingWise: chkBookingWise,
+                chkSaleInvoiceWise: chkSaleInvoiceWise,
+                chkSummary: chkSummary,
+                chkFirstAndSecondSpell: chkFirstAndSecondSpell,
+                chkRouteBoothWise: false,
+                ChkDayWiseSummary: false,
+                chkFilterByCreatedDate: chkFilterByCreatedDate,
+                chkGatePass: false,
+                txtCustomerGroup: txtCustomerGroup,
+                txtCustomer: txtCustomer,
+                TxtMultiCustomerCategory: TxtMultiCustomerCategory,
+                txtItemCode: txtItemCode,
+                txtLocation:txtLocation,
+                txtZone:txtZone,
+                txtLorry:txtLorry,
+                TxtRoute:TxtRoute,
+                TxtUOM: TxtUOM,
+                txtBookingType:txtBookingType,              
+                cboShift:cboShift,
+                rbtnMrng:rbtnMrng,
+                rbtnEvng: rbtnEvng,
+                rbtnBoths: rbtnEvng,
+                txtfndCustomer: txtfndCustomer,
+                txtFndRoute: txtFndRoute,
+                ddlTCSShift: rddlTCSShift,
+                chkProduct: chkProduct,
+                chkRouteSummary: chkRouteSummary,
+                ddlInvocieType: ddlInvocieType,
+                isSchemeItem: false,
+                rdbLtr: rdbLtr,
+                rbtnDateWise: rbtnDateWise,
+                rdbCreate: rbtnDateWise
+            },
+             success: function (data) {
+                 
+                },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+
+    })
+</script>
+

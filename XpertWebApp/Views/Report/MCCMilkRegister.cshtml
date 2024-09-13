@@ -562,6 +562,8 @@
     var currentPage = 1; // Current page
     var totalPages = 0; // Total number of pages
     $("#btnSearch").on('click', function () {
+        openTab(null, 'requsetStatus');
+       
         var fromDate = $("#txtFromDate").val();
         var toDate = $("#txtToDate").val();
         var fromShift = $("#ddlFrom").val();
@@ -592,6 +594,7 @@
         var includeRejection = $("#chkIncludeRejection").is(":checked");
         var shiftWise = $("#chkShiftWise").is(":checked");
         var onlyRejection = $("#chkOnlyRejection").is(":checked");
+        $('#callaway_popup2').show();
         $.ajax({
             url: '/Report/GetMCCMilkRegister',
             type: 'GET',
@@ -646,51 +649,58 @@
 
                         GetData(currentPage);
                         renderPagination();
-                        $('#tblRequestStatus').DataTable({
-                            'paging': false,
-                            'lengthChange': true,
-                            'searching': true,
-                            'ordering': true,
-                            'info': false,
-                            'autoWidth': false,
-                            'initComplete': function () {
-                                var table = this.api();
+                        $('#callaway_popup2').hide();
+                        //$('#tblRequestStatus').DataTable({
+                        //    'paging': false,
+                        //    'lengthChange': true,
+                        //    'searching': true,
+                        //    'ordering': true,
+                        //    'info': false,
+                        //    'autoWidth': false,
+                        //    'initComplete': function () {
+                        //        var table = this.api();
 
-                                // Add a text input to each header cell below the header text
-                                $('#tblRequestStatus thead th').each(function () {
-                                    var title = $(this).text();
-                                    $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
-                                });
+                        //        // Add a text input to each header cell below the header text
+                        //        $('#tblRequestStatus thead th').each(function () {
+                        //            var title = $(this).text();
+                        //            $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                        //        });
 
-                                // Apply the search
-                                table.columns().every(function () {
-                                    var column = this;
+                        //        // Apply the search
+                        //        table.columns().every(function () {
+                        //            var column = this;
 
-                                    $('input', column.header()).on('keyup change', function () {
-                                        if (column.search() !== this.value) {
-                                            column
-                                                .search(this.value)
-                                                .draw();
-                                        }
-                                    });
-                                });
-                            }
-                        });
+                        //            $('input', column.header()).on('keyup change', function () {
+                        //                if (column.search() !== this.value) {
+                        //                    column
+                        //                        .search(this.value)
+                        //                        .draw();
+                        //                }
+                        //            });
+                        //        });
+                        //    }
+                        //});
                     }
                     else {
                         ShowSweet2Message("warning", "Warning", data.responseText);
+                        $('#callaway_popup2').hide();
                     }
                 }
                 else {
                     ShowSweet2Message("warning", "Warning", data.responseText);
+                    $('#callaway_popup2').hide();
                 }
             },
             error: function (errorMessage) {
-                alert(errorMessage.responseText);
-            },
-            error: function (errorMessage) {
-                alert(errorMessage.responseText);
+                ShowSweet2Message("warning", "Warning", errorMessage.responseText);
+
+                $('#callaway_popup2').hide();
             }
+                //alert(errorMessage.responseText);
+            //},
+            //error: function (errorMessage) {
+            //    alert(errorMessage.responseText);
+            //}
 
         })
        
@@ -751,6 +761,7 @@
         var columns = Object.keys(pagedData[0]).filter(function (key) {
             return key !== "Result";
         });
+        $('#callaway_popup2').show();
         var theadRow = '<tr>';
         $.each(columns, function (index, column) {
             theadRow += '<th>' + column + '</th>';
@@ -767,7 +778,37 @@
             row += '</tr>';
             $('#tbodyRequestStatus').append(row);
         });
+        $('#callaway_popup2').hide();
+        $('#tblRequestStatus').DataTable({
+            'paging': false,
+            'lengthChange': true,
+            'searching': true,
+            'ordering': true,
+            'info': false,
+            'autoWidth': false,
+            'initComplete': function () {
+                var table = this.api();
 
+                // Add a text input to each header cell below the header text
+                $('#tblRequestStatus thead th').each(function () {
+                    var title = $(this).text();
+                    $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                });
+
+                // Apply the search
+                table.columns().every(function () {
+                    var column = this;
+
+                    $('input', column.header()).on('keyup change', function () {
+                        if (column.search() !== this.value) {
+                            column
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            }
+        });
     }
 
 
@@ -884,29 +925,76 @@
             },
 
             xhrFields: {
-                responseType: 'blob' // Ensure response is treated as a Blob
+                responseType: 'blob' // Ensures response is treated as a Blob
             },
-            success: function (response) {
-                if (excel == true) {
-                    var url = URL.createObjectURL(response);
+            //success: function (response) {
+            //    var fileName = '';
+
+            //    if (excel === true) {
+            //        fileName = 'DailyQtyReport.xlsx';
+            //    } else if (pdf === true) {
+            //        fileName = 'DailyQtyReport.pdf';
+            //    }
+
+            //    // Create a blob URL and trigger download
+            //    var url = URL.createObjectURL(response);
+            //    var link = document.createElement('a');
+            //    link.href = url;
+            //    link.download = fileName;
+            //    document.body.appendChild(link);
+            //    link.click();
+            //    document.body.removeChild(link);
+            //    URL.revokeObjectURL(url);
+            //    //if (excel == true) {
+            //    //    var url = URL.createObjectURL(response);
+            //    //    var link = document.createElement('a');
+            //    //    link.href = url;
+            //    //    link.download = 'Daily Qty Report.xlsx';
+            //    //    document.body.appendChild(link);
+            //    //    link.click();
+            //    //    document.body.removeChild(link);
+            //    //    URL.revokeObjectURL(url);
+            //    //}
+            //    //else if (pdf == true) {
+            //    //    var blob = new Blob([response], { type: 'application/pdf' });
+            //    //    var blobUrl = window.URL.createObjectURL(blob);
+            //    //    window.open(blobUrl, '_blank');
+            //    //}
+
+            //},
+
+
+            success: function (response, status, xhr) {
+                // Get the content type from the response header
+                var contentType = xhr.getResponseHeader('Content-Type');
+
+                if (contentType === 'application/json') {
+                    // If the response is JSON, parse it and handle the error
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var jsonResponse = JSON.parse(reader.result);
+                        alert("An error occurred: " + jsonResponse.responseText);
+                    };
+                    reader.readAsText(response);
+                } else {
+                    // If the response is a file, proceed with download
+                    var fileName = (excel === true) ? 'DailyQtyReport.xlsx' : 'DailyQtyReport.pdf';
+                    var blobUrl = window.URL.createObjectURL(response);
                     var link = document.createElement('a');
-                    link.href = url;
-                    link.download = 'Daily Qty Report.xlsx';
+                    link.href = blobUrl;
+                    link.download = fileName;
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
+                    window.URL.revokeObjectURL(blobUrl);
                 }
-                else if (pdf == true) {
-                    var blob = new Blob([response], { type: 'application/pdf' });
-                    var blobUrl = window.URL.createObjectURL(blob);
-                    window.open(blobUrl, '_blank');
-                }
-
             },
             error: function (xhr, status, error) {
-                alert("An error occurred while generating the Excel file: " + error);
+                alert(error);
             }
+            //error: function (xhr, status, error) {
+            //    alert("An error occurred while generating the Excel file: " + error);
+            //}
         })
     }
 </script>

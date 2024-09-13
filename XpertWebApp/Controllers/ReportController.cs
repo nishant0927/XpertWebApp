@@ -19,6 +19,7 @@ using OfficeOpenXml;
 using System.Drawing;
 using System.Threading.Tasks;
 using DAL;
+using Rectangle = System.Drawing.Rectangle;
 
 namespace XpertWebApp.Controllers
 {
@@ -306,6 +307,7 @@ namespace XpertWebApp.Controllers
         {
             try
             {
+
                 string currentUserCOde = Session["AppUserCode"].ToString();
                 string code = Session["Port"].ToString();
                 string methodName = string.Empty;
@@ -532,7 +534,7 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData = await clsDashBoard.GetTankerMaster();
+                var responseData = await clsDashBoard.GetTankerMaster(Session["Port"].ToString());
                 return Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -545,7 +547,7 @@ namespace XpertWebApp.Controllers
 
             try
             {
-                var responseData = clsDashBoard.GetDailyQuantity(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection);
+                var responseData = clsDashBoard.GetDailyQuantity(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection, Session["Port"].ToString());
 
                 var jsonResult = Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = int.MaxValue;
@@ -554,6 +556,7 @@ namespace XpertWebApp.Controllers
             }
             catch (Exception ex)
             {
+                
                 return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -562,7 +565,7 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var jsonData = clsDashBoard.GetDailyQuantity(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection);
+                var jsonData = clsDashBoard.GetDailyQuantity(rbtnTranpoterGainLoss, rdbSummary, rbtnDock, rbtnDockDateWise, rbtnDockShiftWise, rbtnBmcSummary, rdbDetails, fromDate, toDate, formId, status, fndArea, mccCode, isPickCLRInsteadOfSNF, rbtnTranspoterGainlossSummary, allowFat, allowsnf, tankerNo, rdbTankerWise, rbtnRouteWise, rdbCollectionWise, rdbMultiple, rbtnBMCTankerCollection, Session["Port"].ToString());
                 JArray jsonArray = JArray.Parse(jsonData);
                 List<string> arrHeader = new List<string>();
                 var rows = new List<List<(string ColumnName, object Value)>>();
@@ -579,6 +582,9 @@ namespace XpertWebApp.Controllers
                     arrHeader.Add("Document Status : " + "Unposted");
                 else
                     arrHeader.Add("Document Status : " + "All");
+                string companyName = Session["CompDesc"].ToString();
+                string reportDate = "Date : " + Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                string reportName = "Daily Summary Report";
                 if (rbtnDock || rbtnDockDateWise || rbtnDockShiftWise)
                 {
                     foreach (var dr in jsonArray)
@@ -814,7 +820,7 @@ namespace XpertWebApp.Controllers
                 else if (pdf == true)
                 {
 
-                    fileContents = PdfGenerator.GeneratePdfWithHeadersAndColumns(arrHeader, rows);
+                    fileContents = PdfGenerator.GeneratePdf(companyName, reportName, reportDate, rows,85);
                     fileype = "application/pdf";
                     fileName = "DailyQtyReport.pdf";
                     //return File(pdfBytes, "application/pdf", "DailyQtyReport.pdf");
@@ -835,10 +841,7 @@ namespace XpertWebApp.Controllers
         {
             if (Session["AppUserCode"] != null)
             {
-                //string CurrentUser = Session["AppUserCode"].ToString();
-                //string Pwd = Session["AppPwd"].ToString();
-                //var data = clsDashBoard.CheckLoginDetails(CurrentUser, Pwd);
-                //JArray jsonArray = JArray.Parse(data);
+               
                 return View();
             }
             else
@@ -852,7 +855,7 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData = clsDashBoard.GetPaymentCycle(fromDate, toDate, mcc, route, vlc, zone, bank, hold, unhold, all, showData, outStanding, headLoad, paymentsummary, paymentCycleCode, Session["CompCode"].ToString(), Session["CompCode"].ToString(), Session["CompDesc"].ToString(), Session["AppUserCode"].ToString());
+                var responseData = clsDashBoard.GetPaymentCycle(fromDate, toDate, mcc, route, vlc, zone, bank, hold, unhold, all, showData, outStanding, headLoad, paymentsummary, paymentCycleCode, Session["CompCode"].ToString(), Session["CompCode"].ToString(), Session["CompDesc"].ToString(), Session["AppUserCode"].ToString(), Session["Port"].ToString());
                 var jsonResult = Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = int.MaxValue;
                 return jsonResult;
@@ -870,12 +873,15 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData = clsDashBoard.GetPaymentCycle(fromDate, toDate, mcc, route, vlc, zone, bank, hold, unhold, all, showData, outStanding, headLoad, paymentsummary, paymentCycleCode, Session["CompCode"].ToString(), Session["CompCode"].ToString(), Session["CompDesc"].ToString(), Session["AppUserCode"].ToString());
+                var responseData = clsDashBoard.GetPaymentCycle(fromDate, toDate, mcc, route, vlc, zone, bank, hold, unhold, all, showData, outStanding, headLoad, paymentsummary, paymentCycleCode, Session["CompCode"].ToString(), Session["CompCode"].ToString(), Session["CompDesc"].ToString(), Session["AppUserCode"].ToString(), Session["Port"].ToString());
                 JArray jsonArray = JArray.Parse(responseData);
                 List<string> arrHeader = new List<string>();               
                 string sheetName = "Payment Cycle Wise Report";
                 arrHeader.Add("Payment Cycle Wise Report");
                 arrHeader.Add("Date : " + fromDate + " To " + toDate);
+                string companyName = Session["CompDesc"].ToString();
+                string reportDate = "Date : " + Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                string reportName = "Daily Summary Report";
                 if (jsonArray.Count > 0)
                 {
                     // Extract columns excluding "Result"
@@ -900,7 +906,7 @@ namespace XpertWebApp.Controllers
                     }
                     else if (pdf == true)
                     {
-                        fileContents = PdfGenerator.GeneratePdfWithHeadersAndColumns(arrHeader, rows);
+                        fileContents = PdfGenerator.GeneratePdf(companyName, reportName, reportDate, rows,65);
                         fileType = "application/pdf";
                         fileName = "PaymentCycleWiseReport.pdf";
                     }
@@ -936,7 +942,7 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData = clsDashBoard.GetLedgerData(Session["CompCode"].ToString(), fromDate, toDate, Session["CompCode"].ToString(), Session["AppUserCode"].ToString());
+                var responseData = clsDashBoard.GetLedgerData(Session["CompCode"].ToString(), fromDate, toDate, Session["CompCode"].ToString(), Session["AppUserCode"].ToString(), Session["Port"].ToString());
                 JArray jsonArray = JArray.Parse(responseData);
                 List<string> arrHeader = new List<string>();
                // string sheetName = "Payment Cycle Wise Report";
@@ -979,11 +985,358 @@ namespace XpertWebApp.Controllers
         }
 
 
-        public ActionResult ExportDCSSummary(string mont)
+        public ActionResult ExportDCSSummary(string fromDate, string toDate, string month)
         {
+            try
+            {
+                string compCode = Session["CompCode"].ToString();
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                var responseData = clsDashBoard.GeDCSSummary(Session["CompCode"].ToString(), Session["AppUserCode"].ToString(), formattedFromDate, formatttedDateToDate, month, Session["Port"].ToString());
+            JArray jsonArray = JArray.Parse(responseData);               
 
+                string companyName = (string)jsonArray[0]["CompName"];
+                string reportDate = "Date : " + (string)jsonArray[0]["fromDate"] + " To " + (string)jsonArray[0]["todate"];
+                string reportName = "Daily Summary Report";
+                if (jsonArray.Count > 0)
+                {
+                    // Extract columns excluding "Result"
+                    var columns = jsonArray[0].Children<JProperty>()
+                                              .Select(jp => jp.Name)
+                                              .Where(key => key != "Result")
+                                              .ToList();
+                    var rows = jsonArray.Select
+                        (item => columns.Select
+                         (column => (ColumnName: column, Value: (object)(item[column] != null ? item[column].ToString() : string.Empty))).ToList()).ToList();
+
+                    byte[] fileContents = new byte[0];
+                    string fileType = string.Empty;
+                    string fileName = string.Empty;
+
+                    // Check if Excel export is requested
+                    
+                        fileContents = PdfGenerator.GeneratePdf(companyName,reportName, reportDate,rows,65);
+                        fileType = "application/pdf";
+                        fileName = "DCSSummaryReport.pdf";
+                   
+
+                    return File(fileContents, fileType, fileName);
+                }
+                else
+                {
+                    // Handle the case where jsonArray is empty
+                    return Json(new { success = false, responseText = "No data available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
 
+
+        public ActionResult ExportDailySummary(string fromDate, string toDate)
+        {
+            try
+            {
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formattedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                string methodName = "GetDailySummary";
+                var responseData = clsDashBoard.GetDailySummary(Session["AppUserCode"].ToString(), formattedFromDate, formattedDateToDate, methodName, Session["Port"].ToString());
+                JArray jsonArray = JArray.Parse(responseData);
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 70, 25);  // Adjust margins as needed
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    string companyName = (string)jsonArray[0]["Comp_Name"];
+                    string reportDate = DateTime.Now.Date.ToString("dd-MM-yyyy");
+                   string reportName = "Daily Summary Report"; // Replace with your report name
+                   
+                   
+                    // Create the header table
+                    PdfPTable headerTable = new PdfPTable(4);
+                    headerTable.WidthPercentage = 100;
+                    float[] columnWidths = new float[] { 2f, 2f, 2f, 2f }; // Set column widths (adjust as needed)
+                    headerTable.SetWidths(columnWidths);
+                    headerTable.AddCell(CreateHeaderCell("DATE"));
+                    headerTable.AddCell(CreateHeaderCell("QUANTITY"));
+                    headerTable.AddCell(CreateHeaderCell("FAT%"));
+                    headerTable.AddCell(CreateHeaderCell("SNF%"));
+                    //pdfDoc.Add(headerTable);
+                    CustomPdfPageEvent pageEventHelper = new CustomPdfPageEvent(companyName, reportName, reportDate, headerTable);
+                    writer.PageEvent = pageEventHelper;
+                    // Set the page event helper
+                    //CustomPdfPageEvent pageEventHelper = new CustomPdfPageEvent(headerTable);
+                    //writer.PageEvent = pageEventHelper;
+
+                    pdfDoc.Open();
+
+                    // Create the data table
+                    PdfPTable table = new PdfPTable(4);
+                    table.WidthPercentage = 100;
+                    table.SetWidths(columnWidths);  // Ensure the data table columns match header columns
+
+                    foreach (var dr in jsonArray)
+                    {
+                        table.AddCell(CreateCell(dr["Doc_Date"].ToString()));
+                        table.AddCell(CreateCell(dr["Quantity"].ToString()));
+                        table.AddCell(CreateCell(dr["FATPer"].ToString()));
+                        table.AddCell(CreateCell(dr["SNFPer"].ToString()));
+                    }
+
+                    pdfDoc.Add(table);
+                    pdfDoc.Close();
+
+                    byte[] result = stream.ToArray();
+                    return File(result, "application/pdf", "Grid.pdf");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private PdfPCell CreateHeaderCell(string text)
+        {
+            return new PdfPCell(new Phrase(text, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD)))
+            {
+                
+                Border = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                //PaddingLeft = 5f,
+                PaddingTop = 5f,
+                PaddingBottom = 5f,
+                PaddingRight = 35f
+            };
+        }
+
+        private PdfPCell CreateCell(string text)
+        {
+            return new PdfPCell(new Phrase(text, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10)))
+            {
+                Border=PdfPCell.NO_BORDER,
+                //Border = PdfPCell.BOTTOM_BORDER,
+                HorizontalAlignment = Element.ALIGN_LEFT,
+                VerticalAlignment = Element.ALIGN_MIDDLE,
+                PaddingLeft = 35f,
+                PaddingTop = 5f,
+                PaddingBottom = 5f,
+                PaddingRight = 2f
+            };
+        }
+
+
+
+
+
+        //public ActionResult ExportDailySummary(string fromDate, string toDate)
+        //{
+        //    try
+        //    {
+        //        string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+        //        string formattedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+        //        string methodName = "GetDailySummary";
+        //        var responseData = clsDashBoard.GetDailySummary(Session["AppUserCode"].ToString(), formattedFromDate, formattedDateToDate, methodName, Session["Port"].ToString());
+        //        JArray jsonArray = JArray.Parse(responseData);
+        //        byte[] k = null;
+        //        StringBuilder sbr = new StringBuilder();
+
+        //        // Main content with dynamic data (excluding header)
+        //        sbr.Append("<table style='width:100%;'>");
+        //        sbr.Append("<tbody>");
+        //        foreach (var dr in jsonArray)
+        //        {
+        //            sbr.Append("<tr>");
+        //            sbr.Append("<td style='padding-left:25px;padding-top:7px;'>" + dr["Doc_Date"].ToString() + "</td>");
+        //            sbr.Append("<td style='padding-left:75px;'>" + dr["Quantity"].ToString() + "</td>");
+        //            sbr.Append("<td style='padding-left:25px;'>" + dr["FATPer"].ToString() + "</td>");
+        //            sbr.Append("<td style='padding-left:25px;'>" + dr["SNFPer"].ToString() + "</td>");
+        //            sbr.Append("</tr>");
+        //        }
+        //        sbr.Append("</tbody>");
+        //        sbr.Append("</table>");
+
+        //        // Create the table header separately
+        //        PdfPTable headerTable = new PdfPTable(4);
+        //        headerTable.AddCell(new PdfPCell(new Phrase("DATE", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD)))
+        //        {
+        //           // Border = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER,
+        //            Border = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_CENTER,  // Center align
+        //            VerticalAlignment = Element.ALIGN_MIDDLE,
+        //            PaddingLeft =2f,  // 2px padding on the left
+        //            PaddingTop = 2f,   // 2px padding on the top
+        //            PaddingBottom = 2f,  // 2px padding on the bottom
+        //            PaddingRight =50f
+        //        });
+        //        headerTable.AddCell(new PdfPCell(new Phrase("QUANTITY", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD)))
+        //        {
+        //            Border = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_CENTER,
+        //            VerticalAlignment = Element.ALIGN_MIDDLE,
+        //            PaddingLeft = 70f,  // 2px padding on the left
+        //            PaddingTop = 2f,   // 2px padding on the top
+        //            PaddingBottom = 2f,  // 2px padding on the bottom
+        //            PaddingRight =2f
+        //        });
+        //        headerTable.AddCell(new PdfPCell(new Phrase("FAT%", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD)))
+        //        {
+        //            Border = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_CENTER,  // Center align
+        //            //VerticalAlignment = Element.ALIGN_MIDDLE,
+        //            PaddingLeft =80f,  // 2px padding on the left
+        //            PaddingTop = 2f,   // 2px padding on the top
+        //            PaddingBottom = 2f,  // 2px padding on the bottom
+        //            PaddingRight =2f
+        //            //Padding =3f
+        //        });
+        //        headerTable.AddCell(new PdfPCell(new Phrase("SNF%", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 12, iTextSharp.text.Font.BOLD)))
+        //        {
+        //            Border = PdfPCell.BOTTOM_BORDER | PdfPCell.TOP_BORDER,
+        //            HorizontalAlignment = Element.ALIGN_CENTER,
+        //            VerticalAlignment = Element.ALIGN_MIDDLE,
+        //            PaddingLeft = 55f,  // 2px padding on the left
+        //            PaddingTop = 2f,   // 2px padding on the top
+        //            PaddingBottom = 2f,  // 2px padding on the bottom
+        //            //PaddingRight =f
+        //        });
+
+
+        //        using (MemoryStream stream = new System.IO.MemoryStream())
+        //        {
+        //            StringReader sr = new StringReader(sbr.ToString());
+        //            Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+        //            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+        //            CustomPdfPageEvent pageEventHelper = new CustomPdfPageEvent(headerTable);
+        //            writer.PageEvent = pageEventHelper;
+        //            pdfDoc.Open();
+
+        //            XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+        //            pdfDoc.Close();
+        //            k = stream.ToArray();
+        //        }
+        //        return File(k.ToArray(), "application/pdf", "Grid.pdf");
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+
+
+
+        //public ActionResult ExportDailySummary(string fromDate, string toDate)
+        //{
+        //    try
+        //    {
+        //        string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+        //        string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+        //        string methodName = "GetDailySummary";
+        //        var responseData = clsDashBoard.GetDailySummary(Session["AppUserCode"].ToString(), formattedFromDate, formatttedDateToDate, methodName, Session["Port"].ToString());
+        //        JArray jsonArray = JArray.Parse(responseData);
+        //        byte[] k = null;
+        //        StringBuilder sbr = new StringBuilder();
+        //        sbr.Append("<table style='width: 100 %;'>");
+        //        sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'>" + (string)jsonArray[0]["Comp_Name"] + "</td></tr>");
+        //        sbr.Append("<tr><td>" + DateTime.Now.Date.ToString("dd-MM-yyyy") + "</td></tr>");
+        //        sbr.Append("<tr><td style='text-align:center'>Daily Summary</td></tr></table>");
+        //        sbr.Append("<table style='width:100%; font-size:12px; border-collapse:collapse;'>");
+        //        sbr.Append("<thead style='font:bold;'>");
+        //        sbr.Append("<tr><th style='border-top: 1px dotted; border-bottom: 1px dotted'>DATE</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>QUANTITY</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>FAT%</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>SNF%</th></tr>");
+        //        sbr.Append("</thead>");
+        //        sbr.Append("<tbody>");
+        //        foreach (var dr in jsonArray)
+        //        {
+        //            sbr.Append("<tr>");
+        //            sbr.Append("<td style='padding:10px;'>" + dr["Doc_Date"].ToString() + "</td>");
+        //            sbr.Append("<td style='padding:10px;'>" + dr["Quantity"].ToString() + "</td>");
+        //            sbr.Append("<td style='padding:10px;'>" + dr["FATPer"].ToString() + "</td>");
+        //            sbr.Append("<td style='padding:10px;'>" + dr["SNFPer"].ToString() + "</td>");
+        //            sbr.Append("</tr>");
+        //        }
+
+        //        sbr.Append("</tbody>");
+        //        sbr.Append("</table>");
+
+        //        using (MemoryStream stream = new System.IO.MemoryStream())
+        //        {
+        //            StringReader sr = new StringReader(sbr.ToString());
+        //            Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+        //            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+
+        //            pdfDoc.Open();
+
+        //            XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+        //            pdfDoc.Close();
+        //            k = stream.ToArray();
+        //        }
+        //        return File(k.ToArray(), "application/pdf", "Grid.pdf");
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+        public ActionResult ExportPrintDailySummaryRouteWise(string fromDate, string toDate)
+        {
+            try
+            {
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                string methodName = "PrintDailySummaryRouteWise";
+                var responseData = clsDashBoard.GetDailySummary(Session["AppUserCode"].ToString(), formattedFromDate, formatttedDateToDate, methodName, Session["Port"].ToString());
+                JArray jsonArray = JArray.Parse(responseData);
+                byte[] k = null;
+                StringBuilder sbr = new StringBuilder();
+                sbr.Append("<table style='width: 100 %;'>");
+                sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'>" + (string)jsonArray[0]["Comp_Name"] + "</td></tr>");
+                sbr.Append("<tr><td>" + DateTime.Now.Date.ToString("dd-MM-yyyy") + "</td></tr>");
+                sbr.Append("<tr><td style='text-align:center'>Daily Summary Route Wise</td></tr></table>");
+                sbr.Append("<table style='width:100%; font-size:12px; border-collapse:collapse;'>");
+                sbr.Append("<thead style='font:bold;'>");
+                sbr.Append("<tr><th style='border-top: 1px dotted; border-bottom: 1px dotted'>DATE</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>ROUTE CODE</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>ROUTE NAME</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>QUANTITY</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>FAT%</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>SNF%</th></tr>");
+                sbr.Append("</thead>");
+                sbr.Append("<tbody>");
+                foreach (var dr in jsonArray)
+                {
+                    sbr.Append("<tr>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["Doc_Date"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["ROUTE_CODE"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["route_name"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["Quantity"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["FATPer"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["SNFPer"].ToString() + "</td>");
+                    sbr.Append("</tr>");
+                }
+
+                sbr.Append("</tbody>");
+                sbr.Append("</table>");
+
+                using (MemoryStream stream = new System.IO.MemoryStream())
+                {
+                    StringReader sr = new StringReader(sbr.ToString());
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    pdfDoc.Close();
+                    k = stream.ToArray();
+                }
+                return File(k.ToArray(), "application/pdf", "Grid.pdf");
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult MCCMilkRegister()
         {
             if (Session["AppUserCode"] != null)
@@ -997,11 +1350,11 @@ namespace XpertWebApp.Controllers
         }
 
 
-        public JsonResult GetMCCMilkRegister(string fromDate, string todate, string fromShift, string toShift, string cboSRNAmounType, string mcc, string area, string route, string dcs, bool chkDateShift, bool rbtnCollectionSummary, bool chkRejection, bool chkShiftWise, bool chkOnlyRejection, bool AreaWiseBilling, bool ChkDetailWise, bool rbtnVLCWise, bool chkRoutewise, bool ChkMCCWise, bool rbtnPlantWise, bool rbtnZoneWise, bool chkVLCWisePayable, bool rdbPlantWisePaymentSummary, bool rdoVLCWisePaymentSummary, bool chkDairyMilkReportPrint, bool chkRouteShiftWise, bool rbtnBMC, bool rbtnTotal, bool rbtnShiftWiseTotal, bool rbtnDCS, bool rbtnRoute, string cboMilkReceiveUOM, int PricePlan, bool chkShowVLCUploaderData)
+        public  JsonResult GetMCCMilkRegister(string fromDate, string todate, string fromShift, string toShift, string cboSRNAmounType, string mcc, string area, string route, string dcs, bool chkDateShift, bool rbtnCollectionSummary, bool chkRejection, bool chkShiftWise, bool chkOnlyRejection, bool AreaWiseBilling, bool ChkDetailWise, bool rbtnVLCWise, bool chkRoutewise, bool ChkMCCWise, bool rbtnPlantWise, bool rbtnZoneWise, bool chkVLCWisePayable, bool rdbPlantWisePaymentSummary, bool rdoVLCWisePaymentSummary, bool chkDairyMilkReportPrint, bool chkRouteShiftWise, bool rbtnBMC, bool rbtnTotal, bool rbtnShiftWiseTotal, bool rbtnDCS, bool rbtnRoute, string cboMilkReceiveUOM, int PricePlan, bool chkShowVLCUploaderData)
         {
             try
             {
-                var responseData = clsDashBoard.GetMccMilkRegister(fromDate, todate, fromShift, toShift, cboSRNAmounType, mcc, area, route, dcs, chkDateShift, rbtnCollectionSummary, chkRejection, chkShiftWise, chkOnlyRejection, AreaWiseBilling, ChkDetailWise, rbtnVLCWise, chkRoutewise, ChkMCCWise, rbtnPlantWise, rbtnZoneWise, chkVLCWisePayable, rdbPlantWisePaymentSummary, rdoVLCWisePaymentSummary, chkDairyMilkReportPrint, chkRouteShiftWise, rbtnBMC, rbtnTotal, rbtnShiftWiseTotal, rbtnDCS, rbtnRoute, Session["CompCode"].ToString(), cboMilkReceiveUOM, PricePlan, chkShowVLCUploaderData, Session["CompCode"].ToString(), Session["AppUserCode"].ToString());
+                var responseData = clsDashBoard.GetMccMilkRegister(fromDate, todate, fromShift, toShift, cboSRNAmounType, mcc, area, route, dcs, chkDateShift, rbtnCollectionSummary, chkRejection, chkShiftWise, chkOnlyRejection, AreaWiseBilling, ChkDetailWise, rbtnVLCWise, chkRoutewise, ChkMCCWise, rbtnPlantWise, rbtnZoneWise, chkVLCWisePayable, rdbPlantWisePaymentSummary, rdoVLCWisePaymentSummary, chkDairyMilkReportPrint, chkRouteShiftWise, rbtnBMC, rbtnTotal, rbtnShiftWiseTotal, rbtnDCS, rbtnRoute, Session["CompCode"].ToString(), cboMilkReceiveUOM, PricePlan, chkShowVLCUploaderData, Session["CompCode"].ToString(), Session["AppUserCode"].ToString(), Session["Port"].ToString());
                 var jsonResult = Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = int.MaxValue;
                 return jsonResult;
@@ -1018,15 +1371,19 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData = clsDashBoard.GetMccMilkRegister(fromDate, todate, fromShift, toShift, cboSRNAmounType, mcc, area, route, dcs, chkDateShift, rbtnCollectionSummary, chkRejection, chkShiftWise, chkOnlyRejection, AreaWiseBilling, ChkDetailWise, rbtnVLCWise, chkRoutewise, ChkMCCWise, rbtnPlantWise, rbtnZoneWise, chkVLCWisePayable, rdbPlantWisePaymentSummary, rdoVLCWisePaymentSummary, chkDairyMilkReportPrint, chkRouteShiftWise, rbtnBMC, rbtnTotal, rbtnShiftWiseTotal, rbtnDCS, rbtnRoute, Session["CompCode"].ToString(), cboMilkReceiveUOM, PricePlan, chkShowVLCUploaderData, Session["CompCode"].ToString(), Session["AppUserCode"].ToString());
+                
+                var responseData = clsDashBoard.GetMccMilkRegister(fromDate, todate, fromShift, toShift, cboSRNAmounType, mcc, area, route, dcs, chkDateShift, rbtnCollectionSummary, chkRejection, chkShiftWise, chkOnlyRejection, AreaWiseBilling, ChkDetailWise, rbtnVLCWise, chkRoutewise, ChkMCCWise, rbtnPlantWise, rbtnZoneWise, chkVLCWisePayable, rdbPlantWisePaymentSummary, rdoVLCWisePaymentSummary, chkDairyMilkReportPrint, chkRouteShiftWise, rbtnBMC, rbtnTotal, rbtnShiftWiseTotal, rbtnDCS, rbtnRoute, Session["CompCode"].ToString(), cboMilkReceiveUOM, PricePlan, chkShowVLCUploaderData, Session["CompCode"].ToString(), Session["AppUserCode"].ToString(), Session["Port"].ToString());
                 JArray jsonArray = JArray.Parse(responseData);
                 List<string> arrHeader = new List<string>();
                 string sheetName = "MCC Milk Register";
                 arrHeader.Add("MCC Milk Register");
                 arrHeader.Add("Date : " + fromDate + " To " + todate);
+                string companyName = Session["CompDesc"].ToString();
+                string reportDate = "Date : " + Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(todate).ToString("dd-MMM-yyyy");
+                string reportName = "Daily Summary Report";
                 if (jsonArray.Count > 0)
                 {
-                    // Extract columns excluding "Result"
+                   
                     var columns = jsonArray[0].Children<JProperty>()
                                               .Select(jp => jp.Name)
                                               .Where(key => key != "Result")
@@ -1048,7 +1405,7 @@ namespace XpertWebApp.Controllers
                     }
                     else if (pdf == true)
                     {
-                        fileContents = PdfGenerator.GeneratePdfWithHeadersAndColumns(arrHeader, rows);
+                        fileContents = PdfGenerator.GeneratePdf(companyName, reportName, reportDate, rows, 125);
                         fileType = "application/pdf";
                         fileName = "MCCMilkRegister.pdf";
                     }
@@ -1066,6 +1423,253 @@ namespace XpertWebApp.Controllers
                 return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
+
+        public ActionResult DCSWiseAvgFatSnfPrint(string fromDate, string toDate)
+        {
+            try
+            {
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                string methodName = "PrintDailySummaryRouteWise";
+                var responseData = clsDashBoard.DCSWiseAvgFatSnfPrint(Session["CompCode"].ToString(), formattedFromDate, formatttedDateToDate, Session["AppUserCode"].ToString(), Session["Port"].ToString());
+                JArray jsonArray = JArray.Parse(responseData);
+                byte[] k = null;
+                StringBuilder sbr = new StringBuilder();
+                sbr.Append("<table style='width: 100 %;'>");
+                sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'>" + (string)jsonArray[0]["Comp_Name"] + "</td></tr>");
+                sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'> From " + formatttedDateToDate + " TO "+ formatttedDateToDate+ "</td></tr>");
+                sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'>DCS Wise Avg FAT SNF</td></tr></table>");
+                sbr.Append("<table style='width:100%; font-size:12px; border-collapse:collapse;'>");
+                sbr.Append("<thead style='font:bold;'>");
+                sbr.Append("<tr><th style='border-top: 1px dotted; border-bottom: 1px dotted'>VLC COde</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>VLC NAME</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>QTY</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>FAT</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>SNF</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>FAT KG</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>SNF KG</th></tr>");
+                sbr.Append("</thead>");
+                sbr.Append("<tbody>");
+                foreach (var dr in jsonArray)
+                {
+                    sbr.Append("<tr>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["VLC_Code"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["VLC_Name"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["Qty"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["FAT"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["SNF"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["FATKG"].ToString() + "</td>");
+                    sbr.Append("<td style='padding:10px;'>" + dr["SNFKG"].ToString() + "</td>");
+                    sbr.Append("</tr>");
+                }
+
+                sbr.Append("</tbody>");
+                sbr.Append("</table>");
+
+                using (MemoryStream stream = new System.IO.MemoryStream())
+                {
+                    StringReader sr = new StringReader(sbr.ToString());
+                    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                    pdfDoc.Open();
+
+                    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                    pdfDoc.Close();
+                    k = stream.ToArray();
+                }
+                return File(k.ToArray(), "application/pdf", "DCSWiseAvgFATSNF.pdf");
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+        public ActionResult GetDCSLedger(string fromDate, string toDate, string mcc, string area, string route, bool rbtnRoute)
+        {
+            try
+            {
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");               
+                var responseData = clsDashBoard.GetDCSLedger( formattedFromDate, formatttedDateToDate, mcc,area,route, Session["AppUserCode"].ToString(),rbtnRoute, Session["Port"].ToString());
+                JArray jsonArray = JArray.Parse(responseData);
+                List<string> arrHeader = new List<string>();
+                //string sheetName = "MCC Milk Register";
+                arrHeader.Add("MCC Milk Register");
+                arrHeader.Add("Date : " + formattedFromDate + " To " + formatttedDateToDate);
+                if (jsonArray.Count > 0)
+                {
+
+                    var columns = jsonArray[0].Children<JProperty>()
+                                              .Select(jp => jp.Name)
+                                              .Where(key => key != "Result")
+                                              .ToList();
+                    var rows = jsonArray.Select
+                        (item => columns.Select
+                         (column => (ColumnName: column, Value: (object)(item[column] != null ? item[column].ToString() : string.Empty))).ToList()).ToList();
+
+                    byte[] fileContents = new byte[0];
+                    string fileType = string.Empty;
+                    string fileName = string.Empty;
+
+                    // Check if Excel export is requested
+                    //if (excel == true)
+                    //{
+                    //    fileContents = ExcelExportHelper.ExportDataToExcel(rows, sheetName, arrHeader);
+                    //    fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                    //    fileName = "MCCMilkRegister.xlsx";
+                    //}
+                    //else if (pdf == true)
+                    //{
+                        fileContents = PdfGenerator.GeneratePdfWithHeadersAndColumns(arrHeader, rows);
+                        fileType = "application/pdf";
+                        fileName = "MCCMilkRegister.pdf";
+                    //}
+
+                    return File(fileContents, fileType, fileName);
+                }
+                else
+                {
+                    // Handle the case where jsonArray is empty
+                    return Json(new { success = false, responseText = "No data available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+                }
+
+
+
+                //byte[] k = null;
+                //StringBuilder sbr = new StringBuilder();
+                //sbr.Append("<table style='width: 100 %;'>");
+                //sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'>" + (string)jsonArray[0]["Comp_Name"] + "</td></tr>");
+                //sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'> From " + formatttedDateToDate + " TO " + formatttedDateToDate + "</td></tr>");
+                //sbr.Append("<tr><td style='font: bold; font-size: 16px; text-align: center;'>DCS Wise Avg FAT SNF</td></tr></table>");
+                //sbr.Append("<table style='width:100%; font-size:12px; border-collapse:collapse;'>");
+                //sbr.Append("<thead style='font:bold;'>");
+                //sbr.Append("<tr><th style='border-top: 1px dotted; border-bottom: 1px dotted'>VLC COde</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>VLC NAME</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>QTY</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>FAT</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>SNF</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>FAT KG</th><th style='border-top: 1px dotted; border-bottom: 1px dotted'>SNF KG</th></tr>");
+                //sbr.Append("</thead>");
+                //sbr.Append("<tbody>");
+                //foreach (var dr in jsonArray)
+                //{
+                //    sbr.Append("<tr>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["VLC_Code"].ToString() + "</td>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["VLC_Name"].ToString() + "</td>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["Qty"].ToString() + "</td>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["FAT"].ToString() + "</td>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["SNF"].ToString() + "</td>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["FATKG"].ToString() + "</td>");
+                //    sbr.Append("<td style='padding:10px;'>" + dr["SNFKG"].ToString() + "</td>");
+                //    sbr.Append("</tr>");
+                //}
+
+                //sbr.Append("</tbody>");
+                //sbr.Append("</table>");
+
+                //using (MemoryStream stream = new System.IO.MemoryStream())
+                //{
+                //    StringReader sr = new StringReader(sbr.ToString());
+                //    Document pdfDoc = new Document(PageSize.A4, 25, 25, 25, 25);
+                //    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                //    pdfDoc.Open();
+
+                //    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+                //    pdfDoc.Close();
+                //    k = stream.ToArray();
+                //}
+                //return File(k.ToArray(), "application/pdf", "DCSWiseAvgFATSNF.pdf");
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public ActionResult DCSOutStandingReport()
+        {
+            if (Session["AppUserCode"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public JsonResult GetDCSOutStandingReport(string fromDate, string toDate, string mccCode, string deductionCode, bool chkDCSWise, bool rbtOldOutStanding, bool rbtCurrentOpeningDeduction, bool rbtCurrentOutStanding, bool rbtOnlyOpening, bool rbtOnlyReduceDeduction, bool rbtActive, bool rbtInActive, bool rbtAll, bool btnPrint,bool AreaWiseBilling,string fndArea)
+        {
+            try
+            {
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                var responseData = clsDashBoard.GGetDCSOutStanding(formattedFromDate, formatttedDateToDate, rbtInActive, rbtInActive, rbtOldOutStanding,rbtCurrentOpeningDeduction, rbtCurrentOutStanding, rbtOnlyOpening, rbtOnlyReduceDeduction, mccCode,deductionCode,chkDCSWise,btnPrint, Session["AppUserCode"].ToString(), Session["CompCode"].ToString(), AreaWiseBilling,fndArea, Session["Port"].ToString());
+                var jsonResult = Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public ActionResult ExportGetDCSOutStandingReport(string fromDate, string toDate, string mccCode, string deductionCode, bool chkDCSWise, bool rbtOldOutStanding, bool rbtCurrentOpeningDeduction, bool rbtCurrentOutStanding, bool rbtOnlyOpening, bool rbtOnlyReduceDeduction, bool rbtActive, bool rbtInActive, bool rbtAll, bool btnPrint, bool AreaWiseBilling, string fndArea,bool excel, bool pdf)
+        {
+            try
+            {
+                string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy");
+                string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                var responseData = clsDashBoard.GGetDCSOutStanding(formattedFromDate, formatttedDateToDate, rbtInActive, rbtInActive, rbtOldOutStanding, rbtCurrentOpeningDeduction, rbtCurrentOutStanding, rbtOnlyOpening, rbtOnlyReduceDeduction, mccCode, deductionCode, chkDCSWise, btnPrint, Session["AppUserCode"].ToString(), Session["CompCode"].ToString(), AreaWiseBilling, fndArea, Session["Port"].ToString());
+                JArray jsonArray = JArray.Parse(responseData);
+                List<string> arrHeader = new List<string>();
+                string sheetName = "MCC Milk Register";
+                arrHeader.Add("MCC Milk Register");
+                arrHeader.Add("Date : " + formattedFromDate + " To " + formatttedDateToDate);
+                string companyName = Session["CompDesc"].ToString();
+                string reportDate = "Date : " + Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(toDate).ToString("dd-MMM-yyyy");
+                string reportName = "Daily Summary Report";
+                if (jsonArray.Count > 0)
+                {
+
+                    var columns = jsonArray[0].Children<JProperty>()
+                                              .Select(jp => jp.Name)
+                                              .Where(key => key != "Result")
+                                              .ToList();
+                    var rows = jsonArray.Select
+                        (item => columns.Select
+                         (column => (ColumnName: column, Value: (object)(item[column] != null ? item[column].ToString() : string.Empty))).ToList()).ToList();
+
+                    byte[] fileContents = new byte[0];
+                    string fileType = string.Empty;
+                    string fileName = string.Empty;
+
+                    // Check if Excel export is requested
+                    if (excel == true)
+                    {
+                        fileContents = ExcelExportHelper.ExportDataToExcel(rows, sheetName, arrHeader);
+                        fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                        fileName = "MCCMilkRegister.xlsx";
+                    }
+                    else if (pdf == true)
+                    {
+                        fileContents = PdfGenerator.GeneratePdf(companyName, reportName, reportDate, rows, 65);
+                        fileType = "application/pdf";
+                        fileName = "MCCMilkRegister.pdf";
+                    }
+
+                    return File(fileContents, fileType, fileName);
+                }
+                else
+                {
+                    // Handle the case where jsonArray is empty
+                    return Json(new { success = false, responseText = "No data available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+       
 
     }
 }

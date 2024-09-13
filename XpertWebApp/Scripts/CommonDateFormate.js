@@ -1,0 +1,11 @@
+﻿var today = new Date();
+var yyyy = today.getFullYear();
+var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+var dd = String(today.getDate()).padStart(2, '0');
+var formattedToday = `${yyyy}-${mm}-${dd}`;
+var fromDate = new Date();
+fromDate.setMonth(today.getMonth() - 1);
+var fromYear = fromDate.getFullYear();
+var fromMonth = String(fromDate.getMonth() + 1).padStart(2, '0'); 
+var fromDay = String(fromDate.getDate()).padStart(2, '0');
+var formattedFromDate = `${fromYear}-${fromMonth}-${fromDay}`;

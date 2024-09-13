@@ -58,8 +58,77 @@ namespace XpertWebApp
         }
     }
 
+    //public class HeaderFooterPageEvent : PdfPageEventHelper
+    //{
+    //    private readonly string _headerHtml;
+
+    //    public HeaderFooterPageEvent(string headerHtml)
+    //    {
+    //        _headerHtml = headerHtml;
+    //    }
+
+    //    public override void OnEndPage(PdfWriter writer, Document document)
+    //    {
+    //        var cb = writer.DirectContent;
+    //        var pageSize = document.PageSize;
+
+    //        // Set header position
+    //        var headerY = pageSize.Top - 40;
+
+    //        // Create a table for the header, you can use iTextSharp's XMLWorkerHelper to render HTML
+    //        var headerTable = new PdfPTable(1)
+    //        {
+    //            TotalWidth = pageSize.Width - document.LeftMargin - document.RightMargin, // Full width of the page
+    //            LockedWidth = true
+    //        };
+
+    //        // Parse HTML header content to be added in the header of each page
+    //        var headerReader = new StringReader(_headerHtml);
+    //        var htmlWorker = XMLWorkerHelper.GetInstance();  // Use the GetInstance() static method to get an instance
+
+    //        // Use a memory stream to hold the parsed content
+    //        using (var msHeader = new MemoryStream())
+    //        {
+    //            // Create a temporary document for the header content
+    //            using (var docHeader = new Document(PageSize.A4.Rotate()))
+    //            {
+    //                var writerHeader = PdfWriter.GetInstance(docHeader, msHeader);
+    //                docHeader.Open();
+    //                // Parse the header HTML and write it to the temporary document
+    //                htmlWorker.ParseXHtml(writerHeader, docHeader, headerReader);
+    //                docHeader.Close();
+    //            }
+
+    //            // Write the header content to the actual page
+    //            PdfImportedPage headerPage = writer.GetImportedPage(new PdfReader(msHeader.ToArray()), 1);
+    //            cb.AddTemplate(headerPage, document.LeftMargin, headerY);
+    //        }
+    //    }
+
+    //}
 
 
+    public class HeaderFooterPageEvent : PdfPageEventHelper
+    {
+        private readonly string _headerHtml;
+
+        public HeaderFooterPageEvent(string headerHtml)
+        {
+            _headerHtml = headerHtml;
+        }
+
+        public override void OnEndPage(PdfWriter writer, Document document)
+        {
+            var cb = writer.DirectContent;
+            var pageSize = document.PageSize;
+
+            // Parse the HTML header and render it on every page
+            using (var sr = new StringReader(_headerHtml))
+            {
+                XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, sr);
+            }
+        }
+    }
 
 
 }

@@ -8,9 +8,10 @@
 
 
 function AddDataModal(modalId, title, header, data, onAnchorClick) {
+    console.log("AddDataModal function called");
     var modalTitle = document.getElementById('tblModalTitle');
     modalTitle.innerText = title;
-
+  
     // Update table header
     var modalHeaderRow = document.getElementById('tblheadermodal');
     modalHeaderRow.innerHTML = header.map(function (columnName) {

@@ -564,7 +564,7 @@
                     callback(responseData);
                 }
                 else {
-                    ShowSweet2Message("warning", "Warning", result.responseText);
+                    ShowSweet2Message("warning", "Warning", reponse.responseText);
                 }
 
             },
@@ -724,7 +724,7 @@
                     $('#tblPaymentProcess tbody').html(tbody);
                 }
                 else {
-                    ShowSweet2Message("warning", "Warning", result.responseText);
+                    ShowSweet2Message("warning", "Warning", reponse.responseText);
                 }
 
             },
@@ -738,7 +738,7 @@
     var currentPage = 1; // Current page
     var totalPages = 0; // Total number of pages
     $("#btnSearch").on('click', function () {
-       
+        openTab(null, 'requsetStatus');      
         var fromDate = $("#txtFromDate").val();
         var toDate = $("#txtToDate").val();
         var hold = $("#rbtHold").is(":checked");
@@ -754,6 +754,7 @@
         var zone = $("#txtZone").val();
         var bankCode = $("#txtBank").val();
         var paymentcycleCode = AddMultiplePaymentCycle();
+        $('#callaway_popup2').show();
         $.ajax({
             url: '/Report/GetPaymentCycleWiseData',
             type: 'GET',
@@ -777,6 +778,7 @@
             },
             success: function (data) {
                 if (data.success) {
+                    $('#callaway_popup2').hide();
                     var responseData = JSON.parse(data.responseData);
                     console.log("Response Data", responseData);
 
@@ -787,7 +789,8 @@
                         totalPages = Math.ceil(allData.length / pageSize);
                         
                         GetData(currentPage);
-                        renderPagination();
+                        renderPagination();                      
+                        $('#callaway_popup2').hide();
                         $('#tblRequestStatus').DataTable({
                             'paging': false,
                             'lengthChange': true,
@@ -821,17 +824,21 @@
                     }
                     else {
                         ShowSweet2Message("warning", "Warning", data.responseText);
+                       
                     }
                 }
                 else {
                     ShowSweet2Message("warning", "Warning", data.responseText);
+                    $('#callaway_popup2').hide();
                 }
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
             },
             error: function (errorMessage) {
                 alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
             }
 
         })
@@ -1011,7 +1018,8 @@
                 paymentsummary: paymentSummary,
                 paymentCycleCode: paymentcycleCode,
                 pdf: pdf,
-                excel: excel
+                excel: excel               
+
             },
 
             xhrFields: {

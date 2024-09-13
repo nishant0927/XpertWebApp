@@ -279,6 +279,8 @@
 
                                                     <div class="form-group">
                                                         <label>Month</label>
+                                                        <input type="hidden" id="hddFromDate"/>
+                                                        <input type="hidden" id="hddToDate"/>
                                                         <input type="month" class="form-control form-control-sm input" id="txtMonth" />
                                                     </div>
                                                 </div>
@@ -645,38 +647,91 @@
         var fromDate = $("#txtLedgerPrintFromDate").val();
         var toDate = $("#txtLedgerPrintToDate").val();
     });
+
     $("#btnDCSSummary").on('click', function () {
         var month = $("#txtMonth").val();
-        $.ajax({
-            url: '/Report/DailyQuantityExportToExcel',
-            type: 'GET',
-            data: {month:month},
+        var fromDate = $("#hddFromDate").val();
+        var toDate = $("#hddToDate").val();
+      
 
+        $.ajax({
+            url: '/Report/ExportDCSSummary',
+            type: 'GET',
+            //dataType: 'json',
+           
+            data: { fromDate: fromDate, toDate: toDate, month: month },
             xhrFields: {
-                responseType: 'blob' // Ensure response is treated as a Blob
-            },
-            success: function (response) {
-               
+                responseType: 'blob' 
+            },           
+            success: function (response) {              
+                // Check if the response is a blob
+                if (response.size > 0) {
                     var blob = new Blob([response], { type: 'application/pdf' });
                     var blobUrl = window.URL.createObjectURL(blob);
-                    window.open(blobUrl, '_blank');
-                
-
+                    window.open(blobUrl, '_blank'); // Open the PDF in a new tab
+                } else {
+                    ShowSweet2Message("warning", "Warning", "No Data Found");
+                }
             },
-            error: function (xhr, status, error) {
-                alert("An error occurred while generating the Excel file: " + error);
+            error: function (errorMessage) {
+                //var errorResponse = JSON.parse(errorMessage.responseText);
+                //console.log(errorResponse);
+                ShowSweet2Message("warning", "Warning","No Data Found");
             }
-        })
+        });
+
     });
     $("#btnDailySummaryPrint").on('click', function () {
 
         var fromDate = $("#txtDailySummaryFromDate").val();
         var toDate = $("#txtDailySummaryToDate").val();
+        $.ajax({
+            url: '/Report/ExportDailySummary',
+            type: 'GET',
+            data: { fromDate: fromDate, toDate: toDate},
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                // Check if the response is a blob
+                if (response.size > 0) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank'); // Open the PDF in a new tab
+                } else {
+                    alert("No data available for the selected criteria.");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the file: " + error);
+            }
+        });
     });
 
     $("#btnDailySummaryPrint2").on('click', function () {
         var fromDate = $("#txtDailySummaryFromDate").val();
-        var tomDate = $("#txtDailySummaryToDate").val();
+        var toDate = $("#txtDailySummaryToDate").val();
+        $.ajax({
+            url: '/Report/ExportPrintDailySummaryRouteWise',
+            type: 'GET',
+            data: { fromDate: fromDate, toDate: toDate },
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                // Check if the response is a blob
+                if (response.size > 0) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank'); // Open the PDF in a new tab
+                } else {
+                    alert("No data available for the selected criteria.");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the file: " + error);
+            }
+        });
     });
     $("#btnDCSLedgerReport").on('click', function () {
         var fromDate = $("#txtDCSLedgerReportFromDate").val();
@@ -686,6 +741,27 @@
         var routeName = $("#txDCSLedgerReporttRouteCode").val();
         var routeWise = $("#rbtDCSLedgerReportRoute").is(":checked");
         var dcsWise = $("#rbtDCSLedgerReportDCSWise").is(":checked");
+        $.ajax({
+            url: '/Report/GetDCSLedger',
+            type: 'GET',
+            data: { fromDate: fromDate, toDate: toDate, mcc: mcc, area: area, route: routeName, rbtnRoute: routeWise },
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                // Check if the response is a blob
+                if (response.size > 0) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank'); // Open the PDF in a new tab
+                } else {
+                    alert("No data available for the selected criteria.");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the file: " + error);
+            }
+        });
     });
 
     $("#btnYearlyDCSDPrint").on('click', function () {
@@ -703,6 +779,27 @@
     $("#btnDCSWiseAvgFatSnfPrint").on('click', function () {
         var fromDate = $("#txtDCSWiseAvgFatSnfFromDate").val();
         var toDate = $("#txtDCSWiseAvgFatSnfToDate").val();
+        $.ajax({
+            url: '/Report/DCSWiseAvgFatSnfPrint',
+            type: 'GET',
+            data: { fromDate: fromDate, toDate: toDate },
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                // Check if the response is a blob
+                if (response.size > 0) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank'); // Open the PDF in a new tab
+                } else {
+                    alert("No data available for the selected criteria.");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the file: " + error);
+            }
+        });
     });
 
     $("#btnDailyGainLoassExcel").on('click', function () {
@@ -807,5 +904,24 @@
             }
         })
     }
+
+
+    $('#txtMonth').on('change', function () {       
+        var selectedMonth = $(this).val();
+        var year = parseInt(selectedMonth.split('-')[0], 10);
+        var month = parseInt(selectedMonth.split('-')[1], 10);
+        var firstDate = new Date(year, month - 1, 1);
+        var lastDate = new Date(year, month, 0);       
+        var firstDateFormatted = ('0' + firstDate.getDate()).slice(-2) + '/' +
+            ('0' + (firstDate.getMonth() + 1)).slice(-2) + '/' +
+            firstDate.getFullYear();
+        var lastDateFormatted = ('0' + lastDate.getDate()).slice(-2) + '/' +
+            ('0' + (lastDate.getMonth() + 1)).slice(-2) + '/' +
+            lastDate.getFullYear();
+        $("#hddFromDate").val(firstDateFormatted);
+        $("#hddToDate").val(lastDateFormatted);
+    });
+
+
 </script>
 
