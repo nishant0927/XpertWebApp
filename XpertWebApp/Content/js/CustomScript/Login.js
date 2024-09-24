@@ -10,15 +10,17 @@
                 code: $("#ddlLocation").val()
             },
             success: function (data) {
-                
-                if (data.ResponseData != "A" && data.ResponseData !="Error") {
+                //if (data.ResponseData != "A" && data.ResponseData != "Error") {
+                //    document.location.href = "/User/Index?Guid=" + data.ResponseData + "";
+                //}
+                if (data.ResponseData !="Error") {
                     document.location.href = "/User/Index?Guid=" + data.ResponseData + "";
                 }
-                else if (data.ResponseData =="A"){
-                    $('input[type=text]').val('');
-                    $('input[type=password]').val('');
-                    ShowSweet2Message("warning", "Login", "Opp!! Access Denied");
-                }
+                //else if (data.ResponseData =="A"){
+                //    $('input[type=text]').val('');
+                //    $('input[type=password]').val('');
+                //    ShowSweet2Message("warning", "Login", "Opp!! Access Denied");
+                //}
                 else {
                     $('input[type=text]').val('');
                     $('input[type=password]').val('');

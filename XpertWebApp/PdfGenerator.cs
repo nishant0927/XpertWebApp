@@ -323,6 +323,7 @@ namespace XpertWebApp
         public static byte[] GeneratePdf(string companyName, string reportName, string reportDate, List<List<(string ColumnName, object Value)>> rows,int pageheigt)
         {
             Rectangle pageSize = rows[0].Count >5 ? PageSize.A4.Rotate() : PageSize.A4;
+           // Rectangle pageSize= new Rectangle(864, 972);
             using (MemoryStream stream = new MemoryStream())
             {
                 Document pdfDoc = new Document(pageSize, 25, 25, pageheigt, 25);

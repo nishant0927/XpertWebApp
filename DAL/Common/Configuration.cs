@@ -20,11 +20,11 @@ namespace DAL.Common
         // public static string MilkUrl = "http://localhost:/MilkProcurement.asmx/";
         //public static string MilkUrl = "http://103.122.38.34:/MilkProcurement.asmx/";
 
-       //public static string DashBoardUrl = "http://103.122.38.34";
+      // public static string DashBoardUrl = "http://103.122.38.34";
         public static string DashBoardUrl = "http://localhost";
         public static string ServiceName = "WebXpertERP.asmx";
         public static string LCode = "2333";
-        public static string UserCode = "Administrator";
+        //public static string UserCode = "Administrator";
        
 
     }

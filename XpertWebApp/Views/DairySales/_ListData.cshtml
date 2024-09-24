@@ -96,27 +96,91 @@
     });
 
 
+    //function AddDataModal(modalId, title, header, data, onAnchorClick) {
+    //    var modalTitle = document.getElementById('tblModalTitle');
+    //    modalTitle.innerText = title;
+
+    //    // Update table header
+    //    var modalHeaderRow = document.getElementById('tblheadermodal');
+    //    modalHeaderRow.innerHTML = header.map(function (columnName) {
+    //        return '<th>' + columnName + '<br><input type="text" class="column-search-input"></th>';
+    //    }).join('');
+
+    //    // Build table rows
+    //    var rowsHtml = data.map(function (row) {
+    //        return '<tr>' + Object.values(row).map(function (cellValue, index) {
+    //            return '<td>' + cellValue + '</td>';
+    //        }).join('') + '</tr>';
+    //    }).join('');
+
+    //    var modalBody = document.getElementById('tbodymodal');
+    //    modalBody.innerHTML = rowsHtml;
+
+    //    // Event delegation for search inputs
+    //    modalHeaderRow.querySelectorAll('.column-search-input').forEach(function (input, columnIndex) {
+    //        input.addEventListener('input', function () {
+    //            var searchText = this.value.trim().toLowerCase();
+    //            var rows = modalBody.querySelectorAll('tr');
+
+    //            rows.forEach(function (row) {
+    //                var cellText = row.children[columnIndex].textContent.trim().toLowerCase();
+    //                row.style.display = cellText.includes(searchText) ? '' : 'none';
+    //            });
+    //        });
+    //    });
+
+    //    var rowCells = document.querySelectorAll('.modal-content .table tbody tr');
+    //    rowCells.forEach(function (anchor) {
+    //        anchor.addEventListener('click', function () {
+    //            console.log("Anchor clicked!");
+
+    //            // Retrieve all values from the row
+    //            var rowValues = [];
+    //            var rowCells = this.querySelectorAll('td');
+    //            for (var i = 0; i < rowCells.length; i++) {
+    //                rowValues.push(rowCells[i].textContent);
+    //            }
+
+    //            // Execute the custom logic when an anchor is clicked
+    //            onAnchorClick(rowValues);
+
+    //            // Close the modal if needed
+    //            $('#' + modalId).modal('hide');
+    //        });
+    //    });
+    //    $('#' + modalId).modal('show');
+    //}
+
+
+
+
     function AddDataModal(modalId, title, header, data, onAnchorClick) {
+        // Set the modal title
         var modalTitle = document.getElementById('tblModalTitle');
         modalTitle.innerText = title;
 
         // Update table header
         var modalHeaderRow = document.getElementById('tblheadermodal');
-        modalHeaderRow.innerHTML = header.map(function (columnName) {
+        modalHeaderRow.innerHTML = '';  // Clear existing headers, if any
+
+        // Create the header row dynamically
+        var headerHtml = header.map(function (columnName) {
             return '<th>' + columnName + '<br><input type="text" class="column-search-input"></th>';
         }).join('');
 
+        modalHeaderRow.innerHTML = headerHtml; // Set the header row HTML
+
         // Build table rows
         var rowsHtml = data.map(function (row) {
-            return '<tr>' + Object.values(row).map(function (cellValue, index) {
-                return '<td>' + cellValue + '</td>';
+            return '<tr>' + Object.values(row).map(function (cellValue) {
+                return '<td>' + (cellValue !== null ? cellValue : '') + '</td>';  // Ensure null values don't break display
             }).join('') + '</tr>';
         }).join('');
 
         var modalBody = document.getElementById('tbodymodal');
-        modalBody.innerHTML = rowsHtml;
+        modalBody.innerHTML = rowsHtml;  // Update the body with the new rows
 
-        // Event delegation for search inputs
+        // Event delegation for search inputs in the header
         modalHeaderRow.querySelectorAll('.column-search-input').forEach(function (input, columnIndex) {
             input.addEventListener('input', function () {
                 var searchText = this.value.trim().toLowerCase();
@@ -124,11 +188,12 @@
 
                 rows.forEach(function (row) {
                     var cellText = row.children[columnIndex].textContent.trim().toLowerCase();
-                    row.style.display = cellText.includes(searchText) ? '' : 'none';
+                    row.style.display = cellText.includes(searchText) ? '' : 'none';  // Filter rows based on search input
                 });
             });
         });
 
+        // Event delegation for row clicks
         var rowCells = document.querySelectorAll('.modal-content .table tbody tr');
         rowCells.forEach(function (anchor) {
             anchor.addEventListener('click', function () {
@@ -141,15 +206,18 @@
                     rowValues.push(rowCells[i].textContent);
                 }
 
-                // Execute the custom logic when an anchor is clicked
+                // Execute the custom logic when a row is clicked
                 onAnchorClick(rowValues);
 
                 // Close the modal if needed
                 $('#' + modalId).modal('hide');
             });
         });
+
+        // Show the modal
         $('#' + modalId).modal('show');
     }
+
 
 </script>
 

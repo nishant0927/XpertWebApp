@@ -141,15 +141,15 @@
         border: 1px solid #ccc;
         color: #0d0e0d;
         height: 28px;
-        width: 149px;
+        /*width: 149px;*/
         border-radius: 5px;
         padding: 6px 5px;
         border-color: #abc2db;
     }
-
+/*
     .col-sm-2 {
         width: 14% !important;
-    }
+    }*/
 
     .search-button {
         border-radius: 7px;
@@ -235,7 +235,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-body-wrapper" style="height: 350px; margin-top:-12px;">
+        <div class="box-body-wrapper" style="margin-top:-12px;">
             <div class="tabcontent" id="divFilter">
                 <div class="row">
                     <div class="col-sm-12">
@@ -254,17 +254,21 @@
                                             <input type="date" class="form-control form-control-sm input" id="txtToDate" />
                                         </div>
                                     </div>
-                                    <div class="col-sm-4" style="max-width: 203px;margin-top:21px;">
-                                        <div class="form-group">
-                                            <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width: 185px;">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtHold" style=" margin-left: 2px;">
-                                                <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Hold</label>
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtUnHold" style=" margin-left: 7px;">
-                                                <label style=" margin-left: 24px;">UnHold</label>
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtAll" style=" margin-left: 5px;" checked>
-                                                <label style=" margin-left: 22px;">All</label>
-                                            </fieldset>
-                                        </div>
+                                    <div class="col-sm-3" style="max-width: 203px;margin-top:21px;">
+                                      
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px;">
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtHold">
+                                                    <label class="form-check-label" for="rbSummary">Hold</label>
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtUnHold" style=" margin-left: 7px;">
+                                                    <label style=" margin-left: 24px;">UnHold</label>
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtAll" style=" margin-left: 5px;" checked>
+                                                    <label style=" margin-left: 22px;">All</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                       
                                     </div>
                                     <div class="col-sm-2" style="max-width: 106px; margin-top: 26px;">
                                         <div class="form-group">
@@ -274,15 +278,19 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-2" style="margin-top:21px;">
-                                        <div class="form-group">
-                                            <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px; width:210px;">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtOutStanding" style=" margin-left: 2px;">
-                                                <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Outstanding</label>
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtHeadLoad" style=" margin-left: 7px;">
-                                                <label style=" margin-left: 24px;">Head Load</label>
-                                            </fieldset>
-                                        </div>
+                                    <div class="col-sm-3" style="margin-top:21px;">
+                                       
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px;">
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtOutStanding" style=" margin-left: 2px;">
+                                                    <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Outstanding</label>
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtHeadLoad" style=" margin-left: 7px;">
+                                                    <label style=" margin-left: 24px;">Head Load</label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        
                                     </div>
                                 </div>
                                 <div class="row" style=" margin-top: -9px;">
@@ -427,7 +435,7 @@
             </div>
 
         </div>
-        <div class="box-footer" style="margin-top:61px;">
+        <div class="box-footer">
             <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
             <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
             <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>

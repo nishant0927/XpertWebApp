@@ -97,26 +97,26 @@
                     DBT Register
                 </a>
                 @*@if (programCodes != null && programCodes.Count > 0)
-        {
-            foreach (var lst in programCodes)
-            {
-                if (lst == "DAS_MK_PROC")
-                {*@
+                    {
+                        foreach (var lst in programCodes)
+                        {
+                            if (lst == "DAS_MK_PROC")
+                            {*@
                 <a class="collapse-item" href="/Report/DashBoard">
                     <i class="fa fa-file"></i>
                     Dashboard Milk<br />&nbsp;&nbsp;&nbsp; Procurement
                 </a>
                 @*}
-        if (lst == "COW-LST-RPT")
-        {*@
+                    if (lst == "COW-LST-RPT")
+                    {*@
                 <a class="collapse-item" href="/Report/ListOfCowDCS">
                     <i class="fa fa-file"></i>
                     List of Cow DCS
                 </a>
                 @*}
-            }
+                        }
 
-        }*@
+                    }*@
 
                 <a class="collapse-item" href="/Report/DBT_Dashboard">
                     <i class="fa fa-file"></i>
@@ -130,6 +130,25 @@
                     <i class="fa fa-file"></i>
                     Janaadhar Status Report
                 </a>
+               
+               
+
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMilkProcurement"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Milk Procurement</span>
+        </a>
+        <div id="collapseMilkProcurement" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Milk Procurement:</h6>
+
                 <a class="collapse-item" href="/DailyQuantityReport/DailyQtyReport">
                     <i class="fa fa-file"></i>
                     Daily Qty Report
@@ -147,18 +166,58 @@
                     Route Payment Process<br /> Report
                 </a>
 
-                <a class="collapse-item" href="/Report/DCSOutStandingReport">
+                <a class="collapse-item" href="/DCSOutStanding/DCSOutStandingReport">
                     <i class="fa fa-file"></i>
                     DCS Out Standing<br /> Report
-                </a> 
+                </a>
+
+
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsSalesAndMarketing"
+           aria-expanded="true" aria-controls="collapseUtilities">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Sales & Marketing</span>
+        </a>
+        <div id="collapsSalesAndMarketing" class="collapse" aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Sales & Marketing:</h6>
+
                 <a class="collapse-item" href="/MatrixFreshSales/MatrixFreshSalesReport">
                     <i class="fa fa-file"></i>
                     Matrix Fresh Sales<br /> Report
                 </a>
 
+                <a class="collapse-item" href="/SaleRegisterDetail/SalesRegisterDetailReport">
+                    <i class="fa fa-file"></i>
+                    Sales Register Detail
+                </a>
+
+                <a class="collapse-item" href="/SalesSummary/SalesSummaryReport">
+                    <i class="fa fa-file"></i>
+                    Sales Summary
+                </a>
+
+                <a class="collapse-item" href="/DailyStatememt/DailyStatementReport">
+                    <i class="fa fa-file"></i>
+                    Daily Statement Report
+                </a>
+
+
             </div>
         </div>
     </li>
+
+
+
+
+
+
     <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDairy"
@@ -175,26 +234,7 @@
                     <i class="fa fa-file"></i>
                     Demand
                 </a>
-               
 
-                @*<a class="collapse-item" href="/Report/ListOfCowDCS">
-            <i class="fa fa-file"></i>
-            List of Cow DCS
-        </a>
-
-
-        <a class="collapse-item" href="/Report/DBT_Dashboard">
-            <i class="fa fa-file"></i>
-            DBT Dashboard
-        </a>
-        <a class="collapse-item" href="/Report/SalesAndMarkingDashboard">
-            <i class="fa fa-file"></i>
-            Sales & Marking <br />Dashboard
-        </a>
-        <a class="collapse-item" href="/Report/JanaadharStatusReport">
-            <i class="fa fa-file"></i>
-            Janaadhar Status Report
-        </a>*@
 
             </div>
         </div>

@@ -232,158 +232,170 @@
                 </div>
             </div>
         </div>
-        <div class="box-body-wrapper" style="height: 350px; margin-top:-12px;">
+        <div class="box-body-wrapper" style="margin-top:-12px;">
             <div class="tabcontent" id="divFilter">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div class="box box-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>From Date</label>
-                                            <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>To Date</label>
-                                            <input type="date" class="form-control form-control-sm input" id="txtToDate" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <select class="form-control form-control-sm input" id="ddlStatus">
-                                                <option value="ALL">ALL</option>
-                                                <option value="Posted">Posted</option>
-                                                <option value="UnPosted">UnPosted</option>
-                                            </select>
+                    <div class="col-sm-12">
+                        
+                                <div class="box">
+                                    <div class="box box-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>From Date</label>
+                                                            <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>To Date</label>
+                                                            <input type="date" class="form-control form-control-sm input" id="txtToDate" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Status</label>
+                                                            <select class="form-control form-control-sm input" id="ddlStatus">
+                                                                <option value="ALL">ALL</option>
+                                                                <option value="Posted">Posted</option>
+                                                                <option value="UnPosted">UnPosted</option>
+                                                            </select>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2" style="display:none" id="divAllowFat">
-                                        <label>Allow Fat %</label>
-                                        <input type="text" class="form-control form-control-sm input" id="txtAllowFat" />
-                                    </div>
-                                    <div class="col-md-2" style="display:none" id="divAllowSNF">
-                                        <label>Allow SNF %</label>
-                                        <input type="text" class="form-control form-control-sm input" id="txtAllowSnf" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3" id="divMcc" style="display:none">
-                                        <div class="form-group" style="margin-top: -5px;">
-                                            <label>MCC</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control form-control-sm input" id="txtMccCode" />
-                                                <button class="btn btn-sm btn-primary" style="height: 30px; margin-top: -1px;" id="btnLoadMcc">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4" style="display:none" id="divAllowFat">
+                                                        <label>Allow Fat %</label>
+                                                        <input type="text" class="form-control form-control-sm input" id="txtAllowFat" />
+                                                    </div>
+                                                    <div class="col-sm-4" style="display:none" id="divAllowSNF">
+                                                        <label>Allow SNF %</label>
+                                                        <input type="text" class="form-control form-control-sm input" id="txtAllowSnf" />
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6" id="divMcc" style="display:none">
+                                                        <div class="form-group" style="margin-top: -5px;">
+                                                            <label>MCC</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control form-control-sm input" id="txtMccCode" />
+                                                                <button class="btn btn-sm btn-primary" style="height: 30px; margin-top: -1px;" id="btnLoadMcc">
+                                                                    <i class="fa fa-search"></i>
+                                                                </button>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6" id="divTanker" style="display:none">
+                                                        <div class="form-group" style="margin-top: -5px;">
+                                                            <label>Tanker No</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control form-control-sm input" id="txtTankerNo" />
+                                                                <button class="btn btn-sm btn-primary" style="height: 30px; margin-top: -1px;" id="loadTanker">
+                                                                    <i class="fa fa-search"></i>
+                                                                </button>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
+
+                                                            <div class="row">
+                                                                <div class="col-sm-12" style="flex: 1 0 50%; max-width: 100%;">
+                                                                    <div class="form-group">
+                                                                        <div class="form-check">
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbSummary">
+                                                                            <label class="form-check-label" for="rbSummary">Summary</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDetail" style=" margin-left: 7px;" checked>
+                                                                            <label style=" margin-left: 24px;">Details</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDock" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;">Dock</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTranpoterGainLoss" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;"> Tranpoter Gain/Loss</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbBMCSummary" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;">  BMC Summary</label><br />
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTankerWise">
+                                                                            <label  class="form-check-label">  Tanker Wise</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbMultipleCollection" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;"> Multiple Collection</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbCollectionDate" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;">  Collection Data</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbBMCTankerCollection" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;"> BMC/Tanker  Collection</label><br />
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbRoutWiseCollection" >
+                                                                            <label  class="form-check-label"> Route Wise Collection</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDocDateWise" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;"> Dock Date Wise</label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDocShiftWise" style=" margin-left: 5px;">
+                                                                            <label style=" margin-left: 22px;"> Dock Shift Wise</label><br />
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTranpoterGainLossSummary" >
+                                                                            <label  class="form-check-label"> Tranpoter Gain/Loss Summary</label>
+                                                                        </div>
+                                                                    </div> 
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
+                                                            <legend style="font-weight: bold; padding: 0 10px; font-size:12px; width:11px!important;">Print</legend>
+                                                            <input class="form-check-input" type="radio" name="print" id="rbBMCDoc" style=" margin-left: 5px;">
+                                                            <label style=" margin-left: 22px;">BMC Doc</label>
+                                                            <input class="form-check-input" type="radio" name="print" id="rbDCSSummary" style=" margin-left: 5px;">
+                                                            <label style=" margin-left: 22px;">DCS Summary</label>
+                                                            <input class="form-check-input" type="radio" name="print" id="rbDocSummary" style=" margin-left: 5px;">
+                                                            <label style=" margin-left: 22px;">Doc Summary</label>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12" style="display:none" id="divShift">
+                                                        <div class="form-group">
+                                                            <label>Shift</label>
+                                                            <select class="form-control form-control-sm input" id="ddlShift">
+                                                                <option value="Both">Both</option>
+                                                                <option value="Morning">Morning</option>
+                                                                <option value="Evening">Evening</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
-
                                         </div>
-                                    </div>
-                                    <div class="col-md-3" id="divTanker" style="display:none">
-                                        <div class="form-group" style="margin-top: -5px;">
-                                            <label>Tanker No</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control form-control-sm input" id="txtTankerNo" />
-                                                <button class="btn btn-sm btn-primary" style="height: 30px; margin-top: -1px;" id="loadTanker">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-
-                                            </div>
-
-                                        </div>
+                                        
+                                        
+                                       
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            
+                            @*<div class="col-md-6">
+                                <div class="box">
+                                    <div class="box box-body">
+                                       
+                                        <div class="row">
+                                            
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>*@
+                       
                     </div>
-                    <div class="col-md-6">
-                        <div class="box">
-                            <div class="box box-body">
-                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
-
-                                    <div class="row">
-                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbSummary" style=" margin-left: 2px;">
-                                            <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Summary</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDetail" style=" margin-left: 7px;" checked>
-                                            <label style=" margin-left: 24px;">Details</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDock" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">Dock</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTranpoterGainLoss" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> Tranpoter Gain/Loss</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbBMCSummary" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">  BMC Summary</label>
-
-                                        </div>
-
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTankerWise" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">  Tanker Wise</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbMultipleCollection" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> Multiple Collection</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbCollectionDate" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">  Collection Data</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbBMCTankerCollection" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> BMC/Tanker  Collection</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbRoutWiseCollection" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> Route Wise Collection</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDocDateWise" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> Dock Date Wise</label>
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbDocShiftWise" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> Dock Shift Wise</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbTranpoterGainLossSummary" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;"> Tranpoter Gain/Loss Summary</label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <div class="row">
-                                    <div class="col-md-6" style="flex: 1 0 50%; max-width: 100%;">
-                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 10px;">
-                                            <legend style="font-weight: bold; padding: 0 10px; font-size:12px; width:11px!important;">Print</legend>
-                                            <input class="form-check-input" type="radio" name="print" id="rbBMCDoc" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">BMC Doc</label>
-                                            <input class="form-check-input" type="radio" name="print" id="rbDCSSummary" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">DCS Summary</label>
-                                            <input class="form-check-input" type="radio" name="print" id="rbDocSummary" style=" margin-left: 5px;">
-                                            <label style=" margin-left: 22px;">Doc Summary</label>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3" style="display:none" id="divShift">
-                                        <div class="form-group">
-                                            <label>Shift</label>
-                                            <select class="form-control form-control-sm input" id="ddlShift">
-                                                <option value="Both">Both</option>
-                                                <option value="Morning">Morning</option>
-                                                <option value="Evening">Evening</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
             <div class="tabcontent" id="requsetStatus">
@@ -465,7 +477,7 @@
                 console.log("Selected values:", onAnchorClick);
 
                 $("#txtMccCode").val(onAnchorClick[0]);
-                // $("#txtRoutName").val(onAnchorClick[1]);
+                
 
             });
         });

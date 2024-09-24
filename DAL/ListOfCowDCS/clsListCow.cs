@@ -61,7 +61,8 @@ namespace DAL.ListOfCowDCS
         public static string GetMCC( string methodName,string code)
         {
             //string lCode = "767";
-            string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/{methodName}";
+            //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/{methodName}";
+            string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/{methodName}";
             //    string url = "http://192.168.29.250";
             //    string portNo = "800";
             //string apiUrl = Configuration.MilkUrl.Split(':')[0] + ":" + Configuration.MilkUrl.Split(':')[1] + ":" + code + Configuration.MilkUrl.Split(':')[2] + methodName;

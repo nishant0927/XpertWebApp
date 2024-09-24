@@ -54,6 +54,7 @@
     <Compile Include="Common\ReadWriteFile.cs" />
     <Compile Include="DashBoard\clsDashBoard.cs" />
     <Compile Include="DashBoard\clsMasterData.cs" />
+    <Compile Include="DashBoard\clsSalesData.cs" />
     <Compile Include="DashBoard\DocDataModel.cs" />
     <Compile Include="DBT\DBT.cs" />
     <Compile Include="DBT\DBTModel.cs" />

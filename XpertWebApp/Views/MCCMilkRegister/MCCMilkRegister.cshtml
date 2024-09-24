@@ -140,15 +140,15 @@
         border: 1px solid #ccc;
         color: #0d0e0d;
         height: 28px;
-        width: 149px;
+       /* width: 149px;*/
         border-radius: 5px;
         padding: 6px 5px;
         border-color: #abc2db;
     }
 
-    .col-sm-2 {
+   /* .col-sm-2 {
         width: 14% !important;
-    }
+    }*/
 
     .search-button {
         border-radius: 7px;
@@ -234,7 +234,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-body-wrapper" style="margin-top: -12px; max-height: 400px;">
+        <div class="box-body-wrapper" style="margin-top: -12px;">
             <div class="tabcontent" id="divFilter">
                 <div class="row">
                     <div class="col-sm-12">
@@ -244,10 +244,10 @@
                                     <div class="col-sm-6">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width:519px;">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px;">
                                                     <div class="row">
 
-                                                        <div class="col-sm-4" style="max-width:170px;">
+                                                        <div class="col-sm-4" style="max-width:152px;">
                                                             <div class="form-group">
                                                                 <label>From Date</label>
                                                                 <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
@@ -263,7 +263,7 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4" style="max-width:165px;">
+                                                        <div class="col-sm-4" style="max-width:152px;">
                                                             <div class="form-group">
                                                                 <label>To Date</label>
                                                                 <input type="date" class="form-control form-control-sm input" id="txtToDate" />
@@ -287,31 +287,37 @@
                                     <div class="col-sm-6">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width: 519px; height: 79px;">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; ">
                                                     <div class="row">
                                                         <div class="col-sm-12">
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDetail" style=" margin-left: 2px;">
-                                                            <label class="form-check-label" for="rbtDetail" style="margin-left: 20px;">Details</label>
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDCSWise" style=" margin-left: 7px;" checked>
-                                                            <label style=" margin-left: 24px;">DCS Wise</label>
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtPlantWise" style=" margin-left: 5px;">
-                                                            <label style=" margin-left: 22px;">Plant Wise</label>
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDCSWiseCollection" style=" margin-left: 5px;">
-                                                            <label style=" margin-left: 22px;">DCS Wise Collection</label>
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtRouteWise" style=" margin-left: 5px;">
-                                                            <label style=" margin-left: 22px;">Route Wise</label>
+                                                            <div class="form-group">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDetail" style=" margin-left: -12px;">
+                                                                    <label class="form-check-label" for="rbtDetail" style="margin-left: 7px;">Details</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDCSWise" style=" margin-left: 7px;" checked>
+                                                                    <label style=" margin-left: 24px;">DCS Wise</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtPlantWise" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">Plant Wise</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDCSWiseCollection" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">DCS Wise Collection</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtRouteWise" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">Route Wise</label><br />
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtMCCWise" style=" margin-left:-12px;">
+                                                                    <label class="form-check-label" for="rbtDetail" style="margin-left:7px;">MCC Wise</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDCSWisePayable" style=" margin-left: 7px;" checked>
+                                                                    <label style=" margin-left: 24px;">DCS Wise Payable</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtZoneWise" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">Zone Wise</label>
+                                                                </div>
+                                                            </div>
+                                                           
                                                         </div>
                                                     </div>
-                                                    <div class="row">
+                                                    @*<div class="row">
                                                         <div class="col-sm-12">
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtMCCWise" style=" margin-left: 2px;">
-                                                            <label class="form-check-label" for="rbtDetail" style="margin-left: 20px;">MCC Wise</label>
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtDCSWisePayable" style=" margin-left: 7px;" checked>
-                                                            <label style=" margin-left: 24px;">DCS Wise Payable</label>
-                                                            <input class="form-check-input" type="radio" name="flexRadioDefault1" id="rbtZoneWise" style=" margin-left: 5px;">
-                                                            <label style=" margin-left: 22px;">Zone Wise</label>                                                           
+                                                                                                                   
                                                         </div>
-                                                    </div>
+                                                    </div>*@
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -319,7 +325,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width:519px;">
+                                        <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; ">
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
@@ -394,7 +400,7 @@
                                     <div class="col-sm-6">
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width:519px;">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px;">
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <div class="form-group">
@@ -428,7 +434,7 @@
                                        
                                         <div class="row" style="margin-top:-10px;">
                                             <div class="col-sm-12">
-                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width:519px;">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px;">
                                                     <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Print</legend>
                                                     <div class="row">
                                                         <div class="col-sm-12">
@@ -505,7 +511,7 @@
             </div>
 
         </div>
-        <div class="box-footer" style="margin-top:61px;">
+        <div class="box-footer">
                 <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
                 <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
                 <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>

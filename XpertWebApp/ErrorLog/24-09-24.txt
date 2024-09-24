@@ -1,0 +1,450 @@
+
+New Log Entry : 
+09/24/2024 11:10:10
+===========================
+Date              :24 September 2024 11:10:10
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 11:26:50
+===========================
+Date              :24 September 2024 11:26:50
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 11:37:22
+===========================
+Date              :24 September 2024 11:37:22
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 12:33:11
+===========================
+Date              :24 September 2024 12:33:11
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 13:06:02
+===========================
+Date              :24 September 2024 13:06:02
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 13:06:20
+===========================
+Date              :24 September 2024 13:06:20
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 13:50:09
+===========================
+Date              :24 September 2024 13:50:09
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 14:00:47
+===========================
+Date              :24 September 2024 14:00:47
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 14:17:04
+===========================
+Date              :24 September 2024 14:17:04
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 14:30:37
+===========================
+Date              :24 September 2024 14:30:37
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 14:52:23
+===========================
+Date              :24 September 2024 14:52:23
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 15:31:46
+===========================
+Date              :24 September 2024 15:31:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 16:00:50
+===========================
+Date              :24 September 2024 16:00:50
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 16:14:02
+===========================
+Date              :24 September 2024 16:14:02
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 16:35:08
+===========================
+Date              :24 September 2024 16:35:08
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 17:09:40
+===========================
+Date              :24 September 2024 17:09:40
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 17:26:36
+===========================
+Date              :24 September 2024 17:26:36
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 18:04:05
+===========================
+Date              :24 September 2024 18:04:05
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 19:54:46
+===========================
+Date              :24 September 2024 19:54:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 20:26:46
+===========================
+Date              :24 September 2024 20:26:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 20:34:45
+===========================
+Date              :24 September 2024 20:34:45
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 20:52:46
+===========================
+Date              :24 September 2024 20:52:46
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 21:12:01
+===========================
+Date              :24 September 2024 21:12:01
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 21:45:08
+===========================
+Date              :24 September 2024 21:45:08
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code)
+=============================
+
+New Log Entry : 
+09/24/2024 22:24:07
+===========================
+Date              :24 September 2024 22:24:07
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 22:59:52
+===========================
+Date              :24 September 2024 22:59:52
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 23:08:33
+===========================
+Date              :24 September 2024 23:08:33
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 23:39:13
+===========================
+Date              :24 September 2024 23:39:13
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 23:39:22
+===========================
+Date              :24 September 2024 23:39:22
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================
+
+New Log Entry : 
+09/24/2024 23:45:57
+===========================
+Date              :24 September 2024 23:45:57
+User Name         :
+URL               :/Home/Login
+Query String      :
+Req From          :http://localhost:49865/
+HostAddress       :::1
+Error Desc        :An error occurred: One or more errors occurred.
+Source            :DAL
+Line No           :   at DAL.DashBoard.clsDashBoard.GetMenuPermission(String methodName, String currentUserCode, String code) in D:\ERPTecxPert\XpertWebApp\DAL\DashBoard\clsDashBoard.cs:line 126
+   at XpertWebApp.Controllers.HomeController.Login(String UserId, String Pwd, String code) in D:\ERPTecxPert\XpertWebApp\XpertWebApp\Controllers\HomeController.cs:line 68
+=============================

@@ -222,7 +222,32 @@ namespace XpertWebApp.Controllers
                 return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+      public JsonResult GetAllSaleTransactionType(bool DocFinder)
+        {
+            try
+            {
+                var lst = clsMasterData.GetAllSaleTransactionType(DocFinder, Session["Port"].ToString());
+                return Json(new { lst }, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
+
+        public async Task<JsonResult> GetLocationByState(string state)
+        {
+            try
+            {
+                var lst =await clsMasterData.GetLocationByState(state, Session["Port"].ToString());
+                return Json(new { lst }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

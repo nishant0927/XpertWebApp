@@ -424,7 +424,8 @@ namespace DAL.DashBoard
         {
             try
             {
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetTankerMaster";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetTankerMaster";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetTankerMaster";
                 using (var client = new HttpClient())
                 {
                     // Optionally set headers if needed
@@ -582,7 +583,8 @@ namespace DAL.DashBoard
                                      $"&rbtnBMCTankerCollection={rbtnBMCTankerCollection}";
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetDailyQuantity{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetDailyQuantity{queryParams}";
+               // string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetDailyQuantity{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -631,7 +633,8 @@ namespace DAL.DashBoard
         {
             try
             {
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/{methodName}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/{methodName}";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/{methodName}";
                 using (var client = new HttpClient())
                 {
                     // Optionally set headers if needed
@@ -704,7 +707,8 @@ namespace DAL.DashBoard
                                      $"&CurrentUser={CurrentUser}";
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetPaymentCycleWiseData{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetPaymentCycleWiseData{queryParams}";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetPaymentCycleWiseData{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -847,6 +851,7 @@ namespace DAL.DashBoard
                                     
 
                 // Construct the full API URL with the query string
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetLedgerData{queryParams}";
                 string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetLedgerData{queryParams}";
 
                 using (var client = new HttpClient())
@@ -904,7 +909,8 @@ namespace DAL.DashBoard
 
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GeDCSSummary{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GeDCSSummary{queryParams}";
+               // string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GeDCSSummary{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -1161,7 +1167,7 @@ namespace DAL.DashBoard
 
 
 
-        public static string GetMatrixFreshSalesReport(bool chkMilkPouch, bool rbtnAsPerBooking, string ddlReportType, string fromDate, string ToDate, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkFilterByCreatedDate, bool chkGatePass, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, string CurrentUserCode, string cboShift, bool rbtnMrng, bool rbtnEvng, bool rbtnBoths, string txtfndCustomer, string txtFndRoute, string ddlTCSShift, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, bool rdbCreate,string code)
+        public static async Task< string> GetMatrixFreshSalesReport(bool chkMilkPouch, bool rbtnAsPerBooking, string ddlReportType, string fromDate, string ToDate, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkFilterByCreatedDate, bool chkGatePass, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, string CurrentUserCode, string cboShift, bool rbtnMrng, bool rbtnEvng, bool rbtnBoths, string txtfndCustomer, string txtFndRoute, string ddlTCSShift, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, bool rdbCreate,string code)
         {
             try
             {
@@ -1209,31 +1215,36 @@ namespace DAL.DashBoard
 
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetMatrixFreshSalesReport{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetMatrixFreshSalesReport{queryParams}";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetMatrixFreshSalesReport{queryParams}";
 
                 using (var client = new HttpClient())
                 {
+
                     // Optionally set headers if needed
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    // Call the API method using the constructed URL
-                    HttpResponseMessage response = client.GetAsync(apiUrl).GetAwaiter().GetResult();
+                    // Increase timeout if needed
+                    client.Timeout = TimeSpan.FromMinutes(10); // Adjust if required
+
+                    // Call the API method asynchronously
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
 
                     if (response.IsSuccessStatusCode)
                     {
                         // Return the API response content as a string
-                        return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                        return await response.Content.ReadAsStringAsync();
                     }
                     else
                     {
-                        string errorContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                        string errorContent = await response.Content.ReadAsStringAsync();
 
                         // Parse the JSON content
                         JObject errorObject = JObject.Parse(errorContent);
 
                         // Access the "Error" property directly
-                        string errorMessage = errorObject["error"]?.ToString();
+                        string errorMessage = errorObject["Error"]?.ToString();
 
                         if (!string.IsNullOrEmpty(errorMessage))
                         {
@@ -1241,10 +1252,50 @@ namespace DAL.DashBoard
                         }
                         else
                         {
-                            throw new Exception("Error:" + response.StatusCode + "Message:" + errorContent);
+                            throw new Exception("Error: " + response.StatusCode + " Message: " + errorContent);
                         }
                     }
                 }
+
+
+
+
+                //    client.DefaultRequestHeaders.Accept.Clear();
+                //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                //    // Increase timeout if needed
+                //    client.Timeout = TimeSpan.FromMinutes(5);
+                //    // Optionally set headers if needed
+
+
+                //    // Call the API method using the constructed URL
+                //    HttpResponseMessage response = client.GetAsync(apiUrl).GetAwaiter().GetResult();
+
+                //    if (response.IsSuccessStatusCode)
+                //    {
+                //        // Return the API response content as a string
+                //        return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                //    }
+                //    else
+                //    {
+                //        string errorContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                //        // Parse the JSON content
+                //        JObject errorObject = JObject.Parse(errorContent);
+
+                //        // Access the "Error" property directly
+                //        string errorMessage = errorObject["error"]?.ToString();
+
+                //        if (!string.IsNullOrEmpty(errorMessage))
+                //        {
+                //            throw new Exception(errorMessage);
+                //        }
+                //        else
+                //        {
+                //            throw new Exception("Error:" + response.StatusCode + "Message:" + errorContent);
+                //        }
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -1255,7 +1306,7 @@ namespace DAL.DashBoard
 
 
 
-        public static string GetRouteBoothWiseData(string ddlPTSShift, string txtPTSDateFrom, string txtMultPTSRoute, string txtfndBooth, bool rbtnMilk, bool rbtnProduct)
+        public static string GetRouteBoothWiseData(string ddlPTSShift, string txtPTSDateFrom, string txtMultPTSRoute, string txtfndBooth, bool rbtnMilk, bool rbtnProduct,string code)
         {
             try
             {
@@ -1270,7 +1321,8 @@ namespace DAL.DashBoard
 
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetRouteBoothWiseData{queryParams}";
+               // string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetRouteBoothWiseData{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetRouteBoothWiseData{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -1313,7 +1365,7 @@ namespace DAL.DashBoard
             }
         }
 
-        public static async Task<string> GetTruckSheetData(string DocDate, string strShift, string route, string CurrentCompanyCode, bool IsFreshItem, bool IsAmbientItem, bool IsIndividualCustomer)
+        public static async Task<string> GetTruckSheetData(string DocDate, string strShift, string route, string CurrentCompanyCode, bool IsFreshItem, bool IsAmbientItem, bool IsIndividualCustomer,string code)
         {
             try
             {
@@ -1327,7 +1379,8 @@ namespace DAL.DashBoard
                                      $"&IsIndividualCustomer={IsIndividualCustomer}";
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetTruckSheetData{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetTruckSheetData{queryParams}";
+              //  string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetTruckSheetData{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -1375,7 +1428,7 @@ namespace DAL.DashBoard
 
 
 
-        public static async Task<string> GetTruckSheetSummaryRouteWise(string txtPTSDateFrom, string ddlPTSShift, string txtCustMultFnd, string txtMultPTSRoute, bool rbtnMilk, bool rbtnProduct, string CurrComp_Code1)
+        public static async Task<string> GetTruckSheetSummaryRouteWise(string txtPTSDateFrom, string ddlPTSShift, string txtCustMultFnd, string txtMultPTSRoute, bool rbtnMilk, bool rbtnProduct, string CurrComp_Code1,string code)
         {
             try
             {
@@ -1389,7 +1442,7 @@ namespace DAL.DashBoard
                                      $"&CurrComp_Code1={CurrComp_Code1}";
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetTruckSheetSummaryRouteWise{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetTruckSheetSummaryRouteWise{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -1497,7 +1550,7 @@ namespace DAL.DashBoard
        
 
 
-        public static string GatePassSummaryRouteWise(string ddlPTSShift, string txtPTSDateFrom, bool rbtnMilk, bool rbtnProduct, string txtMultPTSRoute)
+        public static string GatePassSummaryRouteWise(string ddlPTSShift, string txtPTSDateFrom, bool rbtnMilk, bool rbtnProduct, string txtMultPTSRoute,string code)
         {
             try
             {
@@ -1512,7 +1565,8 @@ namespace DAL.DashBoard
 
 
                 // Construct the full API URL with the query string
-                string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GatePassSummaryRouteWise{queryParams}";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GatePassSummaryRouteWise{queryParams}";
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GatePassSummaryRouteWise{queryParams}";
 
                 using (var client = new HttpClient())
                 {
@@ -1555,6 +1609,184 @@ namespace DAL.DashBoard
             }
         }
 
+
+
+        public static string RouteSummaryPrint(string fromDate, string ToDate, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkMilkPouch, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool chkFilterByCreatedDate, string CurrentUserCode, bool chkGatePass, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, string cboShift, bool rbtnAsPerBooking, bool rdbCreate,string code)
+        {
+            try
+            {
+                // Construct the query string with parameters
+                string queryParams = $"?chkMilkPouch={(chkMilkPouch)}" +
+                                       $"&rbtnAsPerBooking={(rbtnAsPerBooking)}" +                                   
+                                     $"&fromDate={fromDate}" +
+                                     $"&ToDate={ToDate}" +
+                                     $"&chkFirstAndSecondSpellAbstract={chkFirstAndSecondSpellAbstract}" +
+                                     $"&chkBookingWise={chkBookingWise}" +
+                                     $"&chkSaleInvoiceWise={chkSaleInvoiceWise}" +
+                                     $"&chkSummary={chkSummary}" +
+                                     $"&chkFirstAndSecondSpell={chkFirstAndSecondSpell}" +
+                                     $"&chkRouteBoothWise={chkRouteBoothWise}" +
+                                     $"&ChkDayWiseSummary={ChkDayWiseSummary}" +
+                                     $"&chkFilterByCreatedDate={chkFilterByCreatedDate}" +
+                                     $"&chkGatePass={chkGatePass}" +
+                                     $"&txtCustomerGroup={txtCustomerGroup}" +
+                                     $"&txtCustomer={txtCustomer}" +
+                                     $"&TxtMultiCustomerCategory={TxtMultiCustomerCategory}" +
+                                     $"&txtItemCode={txtItemCode}" +
+                                     $"&txtLocation={txtLocation}" +
+                                     $"&txtZone={txtZone}" +
+                                     $"&txtLorry={txtLorry}" +
+                                     $"&TxtRoute={TxtRoute}" +
+                                     $"&TxtUOM={TxtUOM}" +
+                                     $"&txtBookingType={txtBookingType}" +
+                                     $"&CurrentUserCode={CurrentUserCode}" +
+                                     $"&cboShift={cboShift}" +                                   
+                                     $"&chkProduct={chkProduct}" +
+                                     $"&chkRouteSummary={chkRouteSummary}" +
+                                     $"&ddlInvocieType={ddlInvocieType}" +
+                                     $"&isSchemeItem={isSchemeItem}" +
+                                     $"&rdbLtr={rdbLtr}" +
+                                     $"&rbtnDateWise={rbtnDateWise}" +
+                                     $"&rdbCreate={rdbCreate}";
+
+
+
+                // Construct the full API URL with the query string
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/RouteSummaryPrint{queryParams}";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/RouteSummaryPrint{queryParams}";
+
+                using (var client = new HttpClient())
+                {
+                    // Optionally set headers if needed
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // Call the API method using the constructed URL
+                    HttpResponseMessage response = client.GetAsync(apiUrl).GetAwaiter().GetResult();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Return the API response content as a string
+                        return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    }
+                    else
+                    {
+                        string errorContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+                        // Parse the JSON content
+                        JObject errorObject = JObject.Parse(errorContent);
+
+                        // Access the "Error" property directly
+                        string errorMessage = errorObject["error"]?.ToString();
+
+                        if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            throw new Exception(errorMessage);
+                        }
+                        else
+                        {
+                            throw new Exception("Error:" + response.StatusCode + "Message:" + errorContent);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+
+
+        public static async Task<string> GetSalesRegisterDetail(string fromDate, string ToDate, string ddlReportType, string txtUOM, string txtItem, string txtTransaction, string txtState, string txtLocation, string txtCustomer, string txtItemGroup, string txtCustGroup, string txtRoute, string txtmultSchemeType, string TxtMultiZone, string TxtMultiASM, string TxtMultiRSM, string TxtMultiASO, string TxtMultiCustomerCategory, string CurrentUserCode, string Document_No, bool rbtnCategorySelect, string category, bool btnPosted, bool btnUnposted, bool chk_stockingunit, bool chkIncludeDebitCredit, bool chkQuickLoad, bool chkBatchWise, string itemStructure,string code)
+        {
+            try
+            {
+                // Construct the query string with parameters
+                string queryParams = $"?fromDate={(fromDate)}" +
+                                       $"&ToDate={(ToDate)}" +
+                                     $"&ddlReportType={ddlReportType}" +
+                                     $"&txtUOM={txtUOM}" +
+                                     $"&txtItem={txtItem}" +
+                                     $"&txtTransaction={txtTransaction}" +
+                                     $"&txtState={txtState}" +
+                                     $"&txtLocation={txtLocation}" +
+                                     $"&txtCustomer={txtCustomer}" +
+                                     $"&txtItemGroup={txtItemGroup}" +
+                                     $"&txtCustGroup={txtCustGroup}" +
+                                     $"&txtRoute={txtRoute}" +
+                                     $"&txtmultSchemeType={txtmultSchemeType}" +
+                                     $"&TxtMultiZone={TxtMultiZone}" +
+                                     $"&TxtMultiASM={TxtMultiASM}" +
+                                     $"&TxtMultiRSM={TxtMultiRSM}" +
+                                     $"&TxtMultiASO={TxtMultiASO}" +
+                                     $"&TxtMultiCustomerCategory={TxtMultiCustomerCategory}" +
+                                     $"&CurrentUserCode={CurrentUserCode}" +
+                                     $"&Document_No={Document_No}" +
+                                     $"&rbtnCategorySelect={rbtnCategorySelect}" +
+                                     $"&category={category}" +
+                                     $"&btnPosted={btnPosted}" +
+                                     $"&CurrentUserCode={CurrentUserCode}" +
+                                     $"&btnUnposted={btnUnposted}" +
+                                     $"&chk_stockingunit={chk_stockingunit}" +
+                                     $"&chkIncludeDebitCredit={chkIncludeDebitCredit}" +
+                                     $"&chkQuickLoad={chkQuickLoad}" +
+                                     $"&chkBatchWise={chkBatchWise}" +
+                                     $"&itemStructure={itemStructure}";
+
+
+
+
+                // Construct the full API URL with the query string
+                string apiUrl = $"{Configuration.DashBoardUrl}:{code}/{Configuration.ServiceName}/GetSalesRegisterDetail{queryParams}";
+                //string apiUrl = $"{Configuration.DashBoardUrl}:{Configuration.LCode}/{Configuration.ServiceName}/GetSalesRegisterDetail{queryParams}";
+
+                using (var client = new HttpClient())
+                {
+
+                    // Optionally set headers if needed
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                    // Increase timeout if needed
+                    client.Timeout = TimeSpan.FromMinutes(10); // Adjust if required
+
+                    // Call the API method asynchronously
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Return the API response content as a string
+                        return await response.Content.ReadAsStringAsync();
+                    }
+                    else
+                    {
+                        string errorContent = await response.Content.ReadAsStringAsync();
+
+                        // Parse the JSON content
+                        JObject errorObject = JObject.Parse(errorContent);
+
+                        // Access the "Error" property directly
+                        string errorMessage = errorObject["Error"]?.ToString();
+
+                        if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            throw new Exception(errorMessage);
+                        }
+                        else
+                        {
+                            throw new Exception("Error: " + response.StatusCode + " Message: " + errorContent);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 
     public class clsDCS

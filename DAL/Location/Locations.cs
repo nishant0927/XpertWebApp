@@ -76,6 +76,7 @@ namespace DAL.Location
             try
             {
                 string apiUrl = Configuration.MilkUrl.Split(':')[0] + ":" + Configuration.MilkUrl.Split(':')[1] + ":" + code + Configuration.MilkUrl.Split(':')[2] + "CheckLoginDetails";
+               // string apiUrl = Configuration.MilkUrl.Split(':')[0] + ":" + Configuration.MilkUrl.Split(':')[1] + ":" + Configuration.LCode + Configuration.MilkUrl.Split(':')[2] + "CheckLoginDetails";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(apiUrl);
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
@@ -110,7 +111,7 @@ namespace DAL.Location
                                 else
                                 {
                                     UserModel obj = JsonConvert.DeserializeObject<UserModel>(responseData);
-                                    if (string.Equals(obj.LoginData[0].User_APP_Type, "V"))
+                                    if (string.Equals(obj.LoginData[0].User_APP_Type, "V")|| (string.Equals(obj.LoginData[0].User_APP_Type, "A")))
                                     {
                                         Guid guid = Guid.NewGuid();
                                         ReadWriteFile.SaveFile(HostingEnvironment.MapPath("~/App_Data/User/" + guid + ".json"), responseData);
@@ -118,7 +119,7 @@ namespace DAL.Location
                                     }
                                     else
                                     {
-                                        return "A";
+                                        return "Error";
                                     }
 
                                 }

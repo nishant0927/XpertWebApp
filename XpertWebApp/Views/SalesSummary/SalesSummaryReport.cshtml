@@ -1,0 +1,621 @@
+﻿
+@{
+    ViewBag.Title = "Sales Summary Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* .col-md-2 {
+        max-width: none;
+    }
+
+    .col-md-3 {
+        flex: 2 5 28% !important;
+        max-width: 41% !important;
+    }*/
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table {
+        table-layout: auto; /* This ensures that the table's layout is fixed */
+        width: 100%; /* Adjust the width as needed */
+    }
+
+    td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+    }
+
+    /*   table thead, tfoot {
+            position: sticky;
+            top: 0;
+            background-color: #1cc8c07a;
+            z-index: 1;
+            table-layout: auto !important;
+            width: auto !important;
+            font-size: 14px;
+            font-weight: bold;
+        }*/
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        width: 149px;
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    .col-sm-2 {
+        width: 14% !important;
+    }
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    /* .input-group {
+            margin-bottom: -23px;
+        }
+    */
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+            border-right: 0;
+            white-space: nowrap;
+
+            border-radius: 0;*/
+    /*vertical-align: top;
+            border-color: #d2d6de;
+            background-color: #fff;
+            border-right: 0;
+            display: table-cell;
+        }*/
+
+    /*table {
+            table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+            height: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+
+
+<div class="content-wrapper" style="margin-left:-8px!important;">
+    <section class="content-header">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content">
+        <div class="box">
+            <div class="row" style="margin-top: -18px; max-height: 16px;">
+                <div class="col-sm-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border" style="padding: 1px;margin-top: 14px;">
+                            <div class="row" style="margin-top:-14px;">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'divFilter')" id="defaultOpen">Filter</button>
+                                        <button class="tablinks" onclick="openTab(event,'requsetStatus')">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body-wrapper" style=" margin-top:-12px;">
+            <div class="tabcontent" id="divFilter">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <div class="box box-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>From Date</label>
+                                                    <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>To Date</label>
+                                                    <input type="date" class="form-control form-control-sm input" id="txtToDate" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style=" margin-top: -9px;">
+
+
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Route</label>
+                                                    <div class="input-group" id="divtxtRoute">
+                                                        <input type="text" class="form-control form-control-sm input" id="txtRoute">
+                                                        <div class="input-group-append">
+                                                            <button id="btnloadRoute" class="btn btn-sm btn-primary">
+                                                                <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tabcontent" id="requsetStatus">
+                <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+                    <table width="100%" class="table table-bordered table-hover no-footer dataTable" style="font-size: 12px;" id="tblRequestStatus">
+                        <thead id="theadRequestStatus">
+                        </thead>
+                        <tbody id="tbodyRequestStatus"></tbody>
+                    </table>
+                </div>
+                <div style="overflow-y: auto; text-align: right; height:52px; margin-top:4px;">
+                    <nav aria-label="Page navigation example" style="display: inline-flex!important;">
+                        <ul class="pagination justify-content-center" id="pagination">
+                        </ul>
+                    </nav>
+                    @*</div>*@
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
+            <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>
+            <button class="btn btn-sm btn-primary search-button" style="width: 139px!important;" id="btnExcel"> <i class="fa fa-download"></i> Generate Excel</button>
+
+        </div>
+
+        @*</div>*@
+        @*</div>*@
+
+    </section>
+</div>
+@Html.Partial("~/Views/Report/_MultipleSelectionPartialView.cshtml")
+
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/adminlte/js/adminlte.min.js"></script>
+<script src="~/Scripts/CommonDateFormate.js"></script>
+
+<script>
+    $(document).ready(function () {
+        openTab(null, 'divFilter');       
+        $("#txtToDate").val(formattedToday);
+        $("#txtFromDate").val(formattedFromDate);
+    });
+    function openTab(evt, tabId) {
+        // Hide all tab content
+        $(".tabcontent").hide();
+
+        // Remove "active" class from all tab links
+        $(".tablinks").removeClass("active");
+
+        // Show the current tab content and add "active" class to the clicked tab button
+        $("#" + tabId).show();
+        if (evt) {
+            $(evt.currentTarget).addClass("active");
+        }
+    }
+    $("#defaultOpen").addClass("active");
+    $("#btnloadRoute").on('click', function () {
+        var methodName = 'GetRoute';
+        var modalId = "modalCreate";
+        var title = "Select";
+        var header = ['', 'Route No', 'Route Description'];
+        $("#modalCreate").data('source', 'route');
+        GetMasterData(methodName, function (data) {
+            if (data && Array.isArray(data)) {
+                var filteredData = data.map(function (row) {
+                    return {
+                        'Route No': row.Code,
+                        'Route Description': row.Name
+                    }
+                });
+                AddMasterData(modalId, header, title, filteredData);
+                console.log("datat", filteredData);
+            } else {
+                console.error("Data is undefined or not an array:", data);
+            }
+
+            disable();
+        })
+    })
+
+    function GetMasterData(methodName, callback) {
+        $.ajax({
+            url: '/Common/GetMasterData',
+            type: 'POST',
+            dataType: "json",
+            async: false,
+            data: { methodName: methodName },
+            success: function (reponse) {
+                if (reponse.lst) {
+                    var responseData = JSON.parse(reponse.lst);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", reponse.responseText);
+                }
+
+            },
+            error: function (errorMessage) {
+                ShowSweet2Message("warning", "Warning", errorMessage.responseText);
+            }
+        })
+    }
+
+    $("#btnSave").on('click', function () {
+        var source = $("#modalCreate").data('source');
+        if (source === 'transation') {
+            $("#txtTransaction").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'state') {
+            $("#txtState").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'location') {
+            $("#txtLocation").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'itemGroup') {
+            $("#txtItemGroup").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'item') {
+            $("#txtItem").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'customerGroup') {
+            $("#txtCustomerGroup").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'customer') {
+            $("#txtCustomer").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'route') {
+            $("#txtRoute").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'schemeType') {
+            $("#txtSchemeType").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'customertCategory') {
+            $("#txtCustomerCategory").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'rsm') {
+            $("#txtRSM").val(AddMultipleValueInTextBox());
+        }
+
+        else if (source === 'asm') {
+            $("#txtASM").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'aso') {
+            $("#txtASO").val(AddMultipleValueInTextBox());
+        }
+        else if (source === 'zone') {
+            $("#txtZone").val(AddMultipleValueInTextBox());
+        }
+        $("#modalCreate").modal('hide');
+    })
+
+
+    function AddMultipleValueInTextBox() {
+        var lst = [];
+        $("#tbodyMCCCode>tr").each(function (rowIndex, row) {
+            if ($(row).find('td:eq(0) input[type="checkbox"]').prop("checked")) {
+                var item = $(row).find('td:eq(1)').text();
+                lst.push(item)
+
+            }
+
+        })
+        if (lst.length <= 0) {
+            lst.push("All");
+        }
+        else {
+            lst.join(", ");
+        }
+        console.log('list', lst);
+        return lst;
+    }
+
+    var allData = []; // Array to hold all data
+    var pageSize = 1000; // Number of records per page
+    var currentPage = 1; // Current page
+    var totalPages = 0; // Total number of pages
+    $("#btnSearch").on('click', function () {
+        openTab(null, 'requsetStatus');
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtToDate").val();       
+        var route = $("#txtRoute").val();
+       
+        $('#callaway_popup2').show();
+        $.ajax({
+            url: '/SalesSummary/GetSalesSummary',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                route: route,
+                fromDate: fromDate,
+                todate: toDate    
+            },
+            success: function (data) {
+                if (data.success) {
+                    $('#callaway_popup2').hide();
+                    var responseData = JSON.parse(data.responseData);
+                    console.log("Response Data", responseData);
+
+                    if (responseData) {
+                        $('#divFilter').find('input, select, button').attr('disabled', true);
+                        allData = responseData;
+                        console.log("Data", allData);
+                        totalPages = Math.ceil(allData.length / pageSize);
+
+                        GetData(currentPage);
+                        renderPagination();
+                        $('#callaway_popup2').hide();
+                        $('#tblRequestStatus').DataTable({
+                            'paging': false,
+                            'lengthChange': true,
+                            'searching': true,
+                            'ordering': true,
+                            'info': false,
+                            'autoWidth': false,
+                            'initComplete': function () {
+                                var table = this.api();
+
+                                // Add a text input to each header cell below the header text
+                                $('#tblRequestStatus thead th').each(function () {
+                                    var title = $(this).text();
+                                    $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                                });
+
+                                // Apply the search
+                                table.columns().every(function () {
+                                    var column = this;
+
+                                    $('input', column.header()).on('keyup change', function () {
+                                        if (column.search() !== this.value) {
+                                            column
+                                                .search(this.value)
+                                                .draw();
+                                        }
+                                    });
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        ShowSweet2Message("warning", "Warning", data.responseText);
+
+                    }
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", data.responseText);
+                    $('#callaway_popup2').hide();
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
+            }
+
+        })
+    })
+
+    function GetData(page) {
+        var start = (page - 1) * pageSize;
+        var end = start + pageSize;
+        var pagedData = allData.slice(start, end);
+        if ($.fn.DataTable.isDataTable('#tblRequestStatus')) {
+            $('#tblRequestStatus').DataTable().clear().destroy();
+        }
+        $('#tblRequestStatus thead').empty();
+        $('#tblRequestStatus tbody').empty();
+        var columns = Object.keys(pagedData[0]).filter(function (key) {
+            return key !== "Result";
+        });
+        var theadRow = '<tr>';
+        $.each(columns, function (index, column) {
+            theadRow += '<th>' + column + '</th>';
+        });
+        theadRow += '</tr>';
+        $('#theadRequestStatus').append(theadRow);
+
+        // Create table rows
+        $.each(pagedData, function (index, item) {
+            var row = '<tr>';
+            $.each(columns, function (index, column) {
+                row += '<td>' + (item[column] !== null ? item[column] : '') + '</td>';
+            });
+            row += '</tr>';
+            $('#tbodyRequestStatus').append(row);
+        });
+
+    }
+
+
+    function renderPagination() {
+        var paginationHtml = '';
+
+        paginationHtml += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="changePage(' + (currentPage - 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&laquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHtml += '<li class="page-item ' + (i === currentPage ? 'active' : '') + '">';
+            paginationHtml += '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>';
+            paginationHtml += '</li>';
+        }
+
+        paginationHtml += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="changePage(' + (currentPage + 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&raquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+        $('#pagination').html(paginationHtml);
+    }
+    function changePage(page) {
+        if (page < 1 || page > totalPages || page === currentPage) return;
+        currentPage = page;
+
+        GetData(currentPage);
+
+        /* SetTableFormationOFDock(page);*/
+    }
+
+
+    $(document).on('click', '.page-btn', function () {
+        var page = $(this).data('page');
+        currentPage = page;
+        GetData(page);
+    });
+</script>
+

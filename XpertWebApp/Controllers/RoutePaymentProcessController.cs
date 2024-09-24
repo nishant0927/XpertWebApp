@@ -44,7 +44,7 @@ namespace XpertWebApp.Controllers
             {
                 string formattedFromDate = Convert.ToDateTime(fromDate).ToString("dd/MM/yyyy");
                 string formatttedDateToDate = Convert.ToDateTime(toDate).ToString("dd/MM/yyyy");
-                var responseData = clsDashBoard.GetLedgerData(Session["CompCode"].ToString(), formattedFromDate, formatttedDateToDate, Session["CompCode"].ToString(), Configuration.UserCode, Session["Port"].ToString());
+                var responseData = clsDashBoard.GetLedgerData(Session["CompCode"].ToString(), formattedFromDate, formatttedDateToDate, Session["CompCode"].ToString(), Session["AppUserCode"].ToString(), Session["Port"].ToString());
                 var jsonObject = JsonConvert.DeserializeObject<JObject>(responseData);
                 var mainTable = jsonObject["MainTable"];              
                 List<string> arrHeader = new List<string>();               

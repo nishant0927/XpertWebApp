@@ -1,0 +1,840 @@
+﻿
+@{
+    ViewBag.Title = "DCS Out Standing Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/css/AdminLTE.min.css" rel="stylesheet" />
+<style>
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+        height: 31px;
+    }
+
+        /* .col-md-2 {
+        max-width: none;
+    }
+
+    .col-md-3 {
+        flex: 2 5 28% !important;
+        max-width: 41% !important;
+    }*/
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 6px 16px;
+            transition: 0.3s;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #3f6e8a;
+                color: white;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        /* border: 1px solid #ccc;*/
+        border-top: none;
+    }
+
+    #loadingMessage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        z-index: 1000;
+    }
+
+    .input.error {
+        border-color: red;
+    }
+
+    .dataTables_filter {
+        display: none;
+    }
+
+    tfoot {
+        display: table-header-group;
+    }
+
+    table {
+        table-layout: auto; /* This ensures that the table's layout is fixed */
+        width: 100%; /* Adjust the width as needed */
+    }
+
+    td {
+        height: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f9f9f9;
+        z-index: 1;
+        table-layout: auto !important;
+        width: auto !important;
+    }
+
+    /*   table thead, tfoot {
+            position: sticky;
+            top: 0;
+            background-color: #1cc8c07a;
+            z-index: 1;
+            table-layout: auto !important;
+            width: auto !important;
+            font-size: 14px;
+            font-weight: bold;
+        }*/
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: #337ab7;
+        color: white;
+        height: 26px;
+    }
+
+        .custom-file-upload:hover {
+            background-color: #e9e9e9;
+        }
+
+
+    label {
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        font-size: 12px !important;
+        display: inline;
+    }
+
+    .input {
+        display: flex;
+        flex: 0 1 100px;
+        border: 1px solid #ccc;
+        color: #0d0e0d;
+        height: 28px;
+        /* width: 149px;*/
+        border-radius: 5px;
+        padding: 6px 5px;
+        border-color: #abc2db;
+    }
+
+    /*  .col-sm-2 {
+        width: 14% !important;
+    }*/
+
+    .search-button {
+        border-radius: 7px;
+        width: 93px;
+        height: 32px;
+        background-color: #3f6e8a;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+
+
+    /* .input-group {
+            margin-bottom: -23px;
+        }
+    */
+    .input-group-addon {
+        background-color: #eee !important;
+        border-color: #abc2db !important;
+        width: unset !important;
+    }
+
+    /*.navigater {*/
+    /*font-size: 14px;
+            font-weight: 400;
+            line-height: 1;
+            color: #555;
+            text-align: center;
+            background-color: #eee;*/
+    /* border: 1px solid #ccc;*/
+    /*border-radius: 4px;
+            border-right: 0;
+            white-space: nowrap;
+
+            border-radius: 0;*/
+    /*vertical-align: top;
+            border-color: #d2d6de;
+            background-color: #fff;
+            border-right: 0;
+            display: table-cell;
+        }*/
+
+    /*table {
+            table-layout: auto;*/ /* This ensures that the table's layout is fixed */
+    /*width: 100%;*/ /* Adjust the width as needed */
+    /*}*/
+
+    /*  td {
+            height: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }*/
+
+    th {
+        text-align: center;
+    }
+</style>
+
+
+<div class="content-wrapper" style="margin-left:-8px!important;">
+    <section class="content-header">
+        <i>@ViewBag.Title</i>
+    </section>
+    <section class="content">
+        <div class="box">
+            <div class="row" style="margin-top: -18px; max-height: 16px;">
+                <div class="col-sm-12">
+                    <div class="box box-success">
+                        <div class="box-header with-border" style="padding: 1px;margin-top: 14px;">
+                            <div class="row" style="margin-top:-14px;">
+                                <div class="col-sm-12">
+                                    <div class="tab">
+                                        <button class="tablinks" onclick="openTab(event,'divFilter')" id="defaultOpen">Filter</button>
+                                        <button class="tablinks" onclick="openTab(event,'requsetStatus')">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body-wrapper" style="margin-top: -12px;">
+            <div class="tabcontent" id="divFilter">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="box">
+                            <div class="box box-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px;">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>From Date</label>
+                                                                <input type="date" class="form-control form-control-sm input" id="txtFromDate" />
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>To Date</label>
+                                                                <input type="date" class="form-control form-control-sm input" id="txtToDate" />
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px;">
+                                                    <div class="row">
+
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <div class="form-group">
+                                                                    <input class="form-check-input" type="radio" name="rbtSelectOption" id="rbtOldOutStanding" style=" margin-left: 2px;">
+                                                                    <label class="form-check-label" for="rbtDetail" style="margin-left: 20px;">Old Outstanding</label><br />
+                                                                    <input class="form-check-input" type="radio" name="rbtSelectOption" id="rbtCurrentOpeningDeduction" style=" margin-left: 7px;" checked>
+                                                                    <label style=" margin-left: 24px;">Current Opening + Deduction</label><br />
+                                                                    <input class="form-check-input" type="radio" name="rbtSelectOption" id="rbtCurrentOutStanding" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">Current Outstanding</label><br />
+                                                                    <input class="form-check-input" type="radio" name="rbtSelectOption" id="rbtOnlyOpening" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">Only Opening (Add/Ded)</label><br />
+                                                                    <input class="form-check-input" type="radio" name="rbtSelectOption" id="rbtOnlyReduceDeductionCurrentDeduction" style=" margin-left: 5px;">
+                                                                    <label style=" margin-left: 22px;">Only Reduce Deduction + Current Deduction</label>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                @*<fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width: 519px; height: 79px;">*@
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>MCC</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control form-control-sm input" id="txtMccCode">
+                                                                <div class="input-group-append">
+                                                                    <button id="btnloadMcc" class="btn btn-sm btn-primary">
+                                                                        <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top:-18px;">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Deduction</label>
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control form-control-sm input" id="txtDeduction">
+                                                                <div class="input-group-append">
+                                                                    <button id="btnloadDeduction" class="btn btn-sm btn-primary">
+                                                                        <img src="/Content/img/notebook_1289549.png" style="height: 19px;" />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                @*</fieldset>*@
+                                                <div class="row" style="margin-top:-18px;">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="chkDCSWise">
+                                                                <label class="form-check-label" for="chkMorningGatePass">DCS Wise</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top:-18px;">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding:4px;">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtActive" style=" margin-left: 2px;">
+                                                                    <label class="form-check-label" for="rbSummary" style="margin-left: 20px;">Active</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtInActive" style=" margin-left: 7px;">
+                                                                    <label class="form-check-label" style=" margin-left: 24px;">In-Active</label>
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="rbtAll" style=" margin-left: 5px;" checked>
+                                                                    <label class="form-check-label" style=" margin-left: 22px;">All</label>
+                                                                </div>
+
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tabcontent" id="requsetStatus">
+                <div class="table-responsive" style="max-height:400px; overflow-y: auto;">
+                    <table width="100%" class="table table-bordered table-hover no-footer dataTable" style="font-size: 12px;" id="tblRequestStatus">
+                        <thead id="theadRequestStatus">
+                        </thead>
+                        <tbody id="tbodyRequestStatus"></tbody>
+                    </table>
+                </div>
+                <div style="overflow-y: auto; text-align: right; height:52px; margin-top:4px;">
+                    <nav aria-label="Page navigation example" style="display: inline-flex!important;">
+                        <ul class="pagination justify-content-center" id="pagination">
+                        </ul>
+                    </nav>
+                    @*</div>*@
+                </div>
+            </div>
+
+        </div>
+        <div class="box-footer">
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
+            <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
+            <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>
+            <button class="btn btn-sm btn-primary search-button" style="width: 139px!important;" id="btnExcel"> <i class="fa fa-download"></i> Generate Excel</button>
+
+        </div>
+
+        @*</div>*@
+        @*</div>*@
+
+    </section>
+</div>
+@Html.Partial("~/Views/Report/_MultipleSelectionPartialView.cshtml")
+@Html.Partial("~/Views/DairySales/_ListData.cshtml")
+@*@Html.Partial("~/Views/Report/_SingleSelectionPartialView.cshtml")*@
+
+<script src="~/Scripts/adminlte/components/jquery/dist/jquery.min.js"></script>
+<script src="~/Scripts/adminlte/components/jquery-ui/jquery-ui.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/adminlte/js/adminlte.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        openTab(null, 'divFilter');
+        //LoadPaymentProcess();
+    });
+
+    function openTab(evt, tabId) {
+        // Hide all tab content
+        $(".tabcontent").hide();
+
+        // Remove "active" class from all tab links
+        $(".tablinks").removeClass("active");
+
+        // Show the current tab content and add "active" class to the clicked tab button
+        $("#" + tabId).show();
+        if (evt) {
+            $(evt.currentTarget).addClass("active");
+        }
+    }
+    $("#defaultOpen").addClass("active");
+
+    var allData = []; // Array to hold all data
+    var pageSize = 1000; // Number of records per page
+    var currentPage = 1; // Current page
+    var totalPages = 0; // Total number of pages
+
+    $("#btnSearch").on('click', function () {
+        openTab(null, 'requsetStatus');
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtToDate").val();
+        var mccCode = $("#txtMccCode").val();
+        var deductionCode = $("#txtDeduction").val();
+        var chkDCSWise = $("#chkDCSWise").is(":checked");
+        var rbtOldOutStanding = $("#rbtOldOutStanding").is(":checked");
+        var rbtCurrentOpeningDeduction = $("#rbtCurrentOpeningDeduction").is(":checked");
+        var rbtCurrentOutStanding = $("#rbtCurrentOutStanding").is(":checked");
+        var rbtOnlyOpening = $("#rbtOnlyOpening").is(":checked");
+        var rbtOnlyReduceDeduction = $("#rbtOnlyReduceDeductionCurrentDeduction").is(":checked");
+        var rbtActive = $("#rbtActive").is(":checked");
+        var rbtInActive = $("#rbtInActive").is(":checked");
+        var rbtAll = $("#rbtAll").is(":checked");
+        $('#callaway_popup2').show();
+        $.ajax({
+            url: '/Report/GetDCSOutStandingReport',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                fromDate: fromDate,
+                toDate: toDate,
+                mccCode: mccCode,
+                deductionCode: deductionCode,
+                chkDCSWise: chkDCSWise,
+                rbtOldOutStanding: rbtOldOutStanding,
+                rbtCurrentOpeningDeduction: rbtCurrentOpeningDeduction,
+                rbtCurrentOutStanding: rbtCurrentOutStanding,
+                rbtOnlyOpening: rbtOnlyOpening,
+                rbtOnlyReduceDeduction: rbtOnlyReduceDeduction,
+                rbtActive: rbtActive,
+                rbtInActive: rbtInActive,
+                rbtAll: rbtAll,
+                btnPrint: false,
+                AreaWiseBilling: false,
+                fndArea: ""
+            },
+            success: function (data) {
+                if (data.success) {
+                    $('#callaway_popup2').hide();
+                    var responseData = JSON.parse(data.responseData);
+                    console.log("Response Data", responseData);
+
+                    if (responseData) {
+                        $('#divFilter').find('input, select, button').attr('disabled', true);
+                        allData = responseData;
+                        console.log("Data", allData);
+                        totalPages = Math.ceil(allData.length / pageSize);
+
+                        GetData(currentPage);
+                        renderPagination();
+                        $('#callaway_popup2').hide();
+                        //$('#tblRequestStatus').DataTable({
+                        //    'paging': false,
+                        //    'lengthChange': true,
+                        //    'searching': true,
+                        //    'ordering': true,
+                        //    'info': false,
+                        //    'autoWidth': false,
+                        //    'initComplete': function () {
+                        //        var table = this.api();
+
+                        //        // Add a text input to each header cell below the header text
+                        //        $('#tblRequestStatus thead th').each(function () {
+                        //            var title = $(this).text();
+                        //            $(this).html(title + '<br><input type="text" placeholder="Search ' + title + '" />');
+                        //        });
+
+                        //        // Apply the search
+                        //        table.columns().every(function () {
+                        //            var column = this;
+
+                        //            $('input', column.header()).on('keyup change', function () {
+                        //                if (column.search() !== this.value) {
+                        //                    column
+                        //                        .search(this.value)
+                        //                        .draw();
+                        //                }
+                        //            });
+                        //        });
+                        //    }
+                        //});
+                    }
+                    else {
+                        ShowSweet2Message("warning", "Warning", data.responseText);
+
+                    }
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", data.responseText);
+                    $('#callaway_popup2').hide();
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+                $('#callaway_popup2').hide();
+            }
+
+        })
+
+
+    })
+
+
+    function GetData(page) {
+        var start = (page - 1) * pageSize;
+        var end = start + pageSize;
+        var pagedData = allData.slice(start, end);
+        console.log("start", start);
+        console.log("end", end);
+        console.log("Page Data", pagedData);
+        //if ($.fn.DataTable.isDataTable('#tblRequestStatus')) {
+        //    $('#tblRequestStatus').DataTable().clear().destroy();
+        //}
+        $('#tblRequestStatus thead').empty();
+        $('#tblRequestStatus tbody').empty();
+        var columns = Object.keys(pagedData[0]).filter(function (key) {
+            return key !== "Result";
+        });
+        console.log("columns", columns);
+        var theadRow = '<tr>';
+        $.each(columns, function (index, column) {
+            theadRow += '<th>' + column + '</th>';
+        });
+        theadRow += '</tr>';
+        $('#theadRequestStatus').append(theadRow);
+        console.log("thead", theadRow);
+        // Create table rows
+        $.each(pagedData, function (index, item) {
+            var row = '<tr>';
+            $.each(columns, function (index, column) {
+                row += '<td>' + (item[column] !== null ? item[column] : '') + '</td>';
+            });
+            row += '</tr>';
+            $('#tbodyRequestStatus').append(row);
+        });
+
+    }
+
+
+    function renderPagination() {
+        var paginationHtml = '';
+
+        paginationHtml += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Previous" onclick="changePage(' + (currentPage - 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&laquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+
+        for (var i = 1; i <= totalPages; i++) {
+            paginationHtml += '<li class="page-item ' + (i === currentPage ? 'active' : '') + '">';
+            paginationHtml += '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>';
+            paginationHtml += '</li>';
+        }
+
+        paginationHtml += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">';
+        paginationHtml += '<a class="page-link" href="#" aria-label="Next" onclick="changePage(' + (currentPage + 1) + ')">';
+        paginationHtml += '<span aria-hidden="true">&raquo;</span>';
+        paginationHtml += '</a>';
+        paginationHtml += '</li>';
+        $('#pagination').html(paginationHtml);
+    }
+    function changePage(page) {
+        if (page < 1 || page > totalPages || page === currentPage) return;
+        currentPage = page;
+
+        GetData(currentPage);
+
+        /* SetTableFormationOFDock(page);*/
+    }
+
+
+    $(document).on('click', '.page-btn', function () {
+        var page = $(this).data('page');
+        currentPage = page;
+        GetData(page);
+    });
+
+    
+
+
+
+
+
+
+
+    $("#btnloadMcc").on('click', function () {
+        var modalId = "AddModal";
+        var title = "Select MCC";
+        GetMCC(function (data) {
+            console.log("MCC Data Structure:", data[0]);
+            //data = JSON.parse(data);
+            console.log("Data received:", data);
+            var header = Object.keys(data[0]).filter(function (key) {
+                return key !== "Result";
+            });
+           
+
+            var processedData = data.map(function (row) {
+                var newRow = {};
+                header.forEach(function (key) {
+                    newRow[key] = row[key];
+                });
+                return newRow;
+            });
+            console.log("Header", header);
+            console.log("processedData", processedData);
+            AddDataModal(modalId, title, header, processedData, function (onAnchorClick) {
+
+                console.log("Selected values:", onAnchorClick);
+
+                $("#txtMccCode").val(onAnchorClick[0]);
+
+
+            });
+        });
+    })
+
+
+    $("#btnloadDeduction").on('click', function () {
+        var modalId = "AddModal";
+        var title = "Select Deduction";
+
+        GetDeduction(function (data) {
+            data = JSON.parse(data);
+            var header = Object.keys(data[0]).filter(function (key) {
+                return key !== "Result";
+            });
+
+            var processedData = data.map(function (row) {
+                var newRow = {};
+                header.forEach(function (key) {
+                    newRow[key] = row[key];
+                });
+                return newRow;
+            });
+            console.log("Header", header);
+            console.log("processedData", processedData);
+            AddDataModal(modalId, title, header, processedData, function (onAnchorClick) {
+
+                console.log("Selected values:", onAnchorClick);
+
+                $("#txtDeduction").val(onAnchorClick[0]);
+
+
+            });
+        });
+    })
+
+    function GetMCC(callback) {
+        $.ajax({
+            url: '/Common/GetMccForFiscalYearDCS',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data && data.lst) {
+                    var responseData = JSON.parse(data.lst);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", data.responseText);
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+    }
+
+
+    function GetDeduction(callback) {
+        $.ajax({
+            url: '/Common/GetDeduction',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if (data && data.lst) {
+                    var responseData = JSON.parse(data.lst);
+                    callback(responseData);
+                }
+                else {
+                    ShowSweet2Message("warning", "Warning", data.responseText);
+                }
+            },
+            error: function (errorMessage) {
+                alert(errorMessage.responseText);
+            }
+
+        })
+    }
+
+
+    $("#btnExcel").on('click', function () {
+        var pdf = false;
+        var excel = true;
+        if (allData.length > 0) {
+            const thead = document.getElementById('theadRequestStatus');
+
+            // Check if thead exists and has th elements
+            if (thead && thead.querySelectorAll('th').length > 0) {
+
+                SendData(pdf, excel);
+
+            } else {
+                alert("No headers found in the table.");
+            }
+        } else {
+            alert("No data available to export.");
+        }
+
+    })
+    $("#btnPdf").on('click', function () {
+        var pdf = true;
+        var excel = false;
+        if (allData.length > 0) {
+            const thead = document.getElementById('theadRequestStatus');
+
+            // Check if thead exists and has th elements
+            if (thead && thead.querySelectorAll('th').length > 0) {
+
+                SendData(pdf, excel);
+
+            } else {
+                alert("No headers found in the table.");
+            }
+        } else {
+            alert("No data available to export.");
+        }
+    })
+
+
+
+
+    function SendData(pdf, excel) {
+        var fromDate = $("#txtFromDate").val();
+        var toDate = $("#txtToDate").val();
+        var mccCode = $("#txtMccCode").val();
+        var deductionCode = $("#txtDeduction").val();
+        var chkDCSWise = $("#chkDCSWise").is(":checked");
+        var rbtOldOutStanding = $("#rbtOldOutStanding").is(":checked");
+        var rbtCurrentOpeningDeduction = $("#rbtCurrentOpeningDeduction").is(":checked");
+        var rbtCurrentOutStanding = $("#rbtCurrentOutStanding").is(":checked");
+        var rbtOnlyOpening = $("#rbtOnlyOpening").is(":checked");
+        var rbtOnlyReduceDeduction = $("#rbtOnlyReduceDeductionCurrentDeduction").is(":checked");
+        var rbtActive = $("#rbtActive").is(":checked");
+        var rbtInActive = $("#rbtInActive").is(":checked");
+        var rbtAll = $("#rbtAll").is(":checked");
+        $.ajax({
+            url: '/Report/ExportGetDCSOutStandingReport',
+            type: 'GET',
+            data: {
+                fromDate: fromDate,
+                toDate: toDate,
+                mccCode: mccCode,
+                deductionCode: deductionCode,
+                chkDCSWise: chkDCSWise,
+                rbtOldOutStanding: rbtOldOutStanding,
+                rbtCurrentOpeningDeduction: rbtCurrentOpeningDeduction,
+                rbtCurrentOutStanding: rbtCurrentOutStanding,
+                rbtOnlyOpening: rbtOnlyOpening,
+                rbtOnlyReduceDeduction: rbtOnlyReduceDeduction,
+                rbtActive: rbtActive,
+                rbtInActive: rbtInActive,
+                rbtAll: rbtAll,
+                btnPrint: false,
+                AreaWiseBilling: false,
+                fndArea: "",
+                pdf: pdf, excel: excel
+            },
+
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                if (excel == true) {
+                    var url = URL.createObjectURL(response);
+                    var link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'Daily Qty Report.xlsx';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                }
+                else if (pdf == true) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank');
+                }
+
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the Excel file: " + error);
+            }
+        })
+    }
+</script>
+

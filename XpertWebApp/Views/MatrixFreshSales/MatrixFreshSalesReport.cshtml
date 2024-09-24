@@ -139,7 +139,7 @@
         border: 1px solid #ccc;
         color: #0d0e0d;
         height: 28px;
-        width: 149px;
+     /*   width: 149px;*/
         border-radius: 5px;
         padding: 6px 5px;
         border-color: #abc2db;
@@ -157,9 +157,9 @@
         border-color: #abc2db;
     }
 
-    .col-sm-2 {
+   /* .col-sm-2 {
         width: 14% !important;
-    }
+    }*/
 
     .search-button {
         border-radius: 7px;
@@ -250,7 +250,7 @@
                 </div>
             </div>
         </div>
-        <div class="box-body-wrapper" style="margin-top: -12px; max-height: 400px;">
+        <div class="box-body-wrapper" style="margin-top: -12px;">
             <div class="tabcontent" id="divFilter">
                 <div class="row">
                     <div class="col-sm-12">
@@ -281,7 +281,7 @@
                                         </div>
                                         <div class="row" style="margin-top:-10px;" id="divDateRange">
                                             <div class="col-sm-8">
-                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px; width:332px;">
+                                                <fieldset class="form-group" style="border: 1px solid #b4c7e7; border-radius: 5px; padding: 4px;">
                                                     <legend style="font-weight: bold; padding: 0 10px; font-size: 12px; width: fit-content;">Date Range</legend>
                                                     <div class="row">
 
@@ -306,7 +306,7 @@
                                                 </fieldset>
                                             </div>
                                             <div class="col-sm-4" style="margin-top: 32px;" id="divFilterByCD">
-                                                <div class="form-group" style="margin-left: -17px; margin-top: 26px;">
+                                                <div class="form-group">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input" id="chkFilterByCreatedDate">
                                                         <label class="form-check-label" for="chkFilterByCreatedDate">Filter By Created Date</label>
@@ -761,11 +761,12 @@
             </div>
 
         </div>
-        <div class="box-footer" style="margin-top:190px;">
+        <div class="box-footer">
             <input type="button" class="btn btn-sm btn-primary search-button" value="Search" id="btnSearch" />
             <input type="button" class="btn btn-sm btn-primary search-button" value="Reset" id="btnReset" />
             <button class="btn btn-sm btn-primary search-button" style="width: 130px!important;" id="btnPdf"> <i class="fa fa-download"></i> Generate PDF</button>
             <button class="btn btn-sm btn-primary search-button" style="width: 139px!important;" id="btnExcel"> <i class="fa fa-download"></i> Generate Excel</button>
+            <button class="btn btn-sm btn-primary search-button" style="width: 213px!important;" id="btnRouteSummaryPrint"> <i class="fa fa-download"></i> Route Summary Print</button>
 
         </div>
 
@@ -1438,7 +1439,7 @@
                     }
                     else {
                         ShowSweet2Message("warning", "Warning", data.responseText);
-
+                        $('#callaway_popup2').hide();
                     }
                 }
                 else {
@@ -2130,6 +2131,145 @@
             }
         });
 
+    })
+
+    $("#btnGatePassSummaryRouteWise").on('click', function () {
+        var txtPTSDateFrom = $("#txtPTSDateFrom").val();
+        var ddlPTSShift = $("#ddlPTSShift").val();
+        var txtCustMultFnd = $("#txtCustMultFnd").val();
+        var txtMultPTSRoute = $("#txtMultPTSRoute").val();
+        var rbtnMilk = $("#rbtnMilk").is(":checked");
+        var rbtnProduct = $("#rbtnProduct").is(":checked");
+
+        $.ajax({
+            url: '/MatrixFreshSales/GatePassSummaryRouteWise',
+            type: 'GET',
+            //dataType: 'json',
+
+            data: { ddlPTSShift: ddlPTSShift, txtPTSDateFrom: txtPTSDateFrom, rbtnMilk: rbtnMilk, rbtnProduct: rbtnProduct, txtMultPTSRoute: txtMultPTSRoute },
+            xhrFields: {
+                responseType: 'blob'
+            },
+            success: function (response) {
+                // Check if the response is a blob
+                if (response.size > 0) {
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank'); // Open the PDF in a new tab
+                } else {
+                    ShowSweet2Message("warning", "Warning", "No Data Found");
+                }
+            },
+            error: function (errorMessage) {
+                //var errorResponse = JSON.parse(errorMessage.responseText);
+                //console.log(errorResponse);
+                ShowSweet2Message("warning", "Warning", "No Data Found");
+            }
+        });
+    })
+    $("#btnRouteSummaryPrint").on('click', function () {
+        //var ddlReportType = $("#ddlReportType").val();
+        //var rbtnMrng = $("#rbtnMrng").is(":checked");
+        //var rbtnEvng = $("#rbtnEvng").is(":checked");
+        // var rbtnBoths = $("#rbtnBoths").is(":checked");
+        var fromDate = $("#fromDate").val();
+        var ToDate = $("#ToDate").val();
+        var chkFilterByCreatedDate = $("#chkFilterByCreatedDate").is(":checked");
+        //var rddlTCSShift = $("#rddlTCSShift").val();
+        var chkMilkPouch = $("#chkMilkPouch").is(":checked");
+        var rdbLtr = $("#rdbLtr").is(":checked");
+        var rdbCreate = $("#rdbCreate").is(":checked");
+        var rbtnAsPerBooking = $("#rbtnAsPerBooking").is(":checked");
+        var chkProduct = $("#chkProduct").is(":checked");
+        var chkRouteSummary = $("#chkRouteSummary").is(":checked");
+        var rbtnDateWise = $("#rbtnDateWise").is(":checked");
+        var chkRouteSummary = $("#chkRouteSummary").is(":checked");
+        var rbtnDateWise = $("#rbtnDateWise").is(":checked");
+        var cboShift = $("#cboShift").val();
+        var txtPTSDateFrom = $("#txtPTSDateFrom").val();
+        var ddlPTSShift = $("#ddlPTSShift").val();
+        var txtMultPTSRoute = $("#txtMultPTSRoute").val();
+        var txtCustMultFnd = $("#txtCustMultFnd").val();
+        var chkIndividualCustomer = $("#chkIndividualCustomer").is(":checked");
+        var rbtnMilk = $("#rbtnMilk").is(":checked");
+        var rbtnProduct = $("#rbtnProduct").is(":checked");
+        var rbtnBoth = $("#rbtnBoth").is(":checked");
+        var chkBookingWise = $("#chkBookingWise").is(":checked");
+        var chkSaleInvoiceWise = $("#chkSaleInvoiceWise").is(":checked");
+        var chkSummary = $("#chkSummary").is(":checked");
+        var chkFirstAndSecondSpell = $("#chkFirstAndSecondSpell").is(":checked");
+        var txtCreditDateFrom = $("#txtCreditDateFrom").val();
+        var txtCreditDateTo = $("#txtCreditDateTo").val();
+        var fndCustomer = $("#fndCustomer").val();
+        var rbtnTaxable = $("#rbtnTaxable").is(":checked");
+        var rbtnNonTaxable = $("#rbtnNonTaxable").is(":checked");
+        var txtCustomerGroup = $("#txtCustomerGroup").val();
+        var txtItemCode = $("#txtItemCode").val();
+        var txtLocation = $("#txtLocation").val();
+        //var txtfndCustomer = $("#txtfndCustomer").val();
+        var TxtRoute = $("#TxtRoute").val();
+        //var txtFndRoute = $("#txtFndRoute").val();
+        var txtBookingType = $("#txtBookingType").val();
+        var ddlInvocieType = $("#ddlInvocieType").val();
+        var txtCustomer = $("#txtCustomer").val();
+        var txtLorry = $("#txtLorry").val();
+        var txtZone = $("#txtZone").val();
+        var TxtUOM = $("#TxtUOM").val();
+        var TxtMultiCustomerCategory = $("#TxtMultiCustomerCategory").val();
+        $.ajax({
+            url: '/MatrixFreshSales/RouteSummaryPrint',
+            type: 'GET',
+            data: {
+                chkMilkPouch: chkMilkPouch,
+                rbtnAsPerBooking: rbtnAsPerBooking,
+                fromDate: fromDate,
+                ToDate: ToDate,
+                chkFirstAndSecondSpellAbstract: false,
+                chkBookingWise: chkBookingWise,
+                chkSaleInvoiceWise: chkSaleInvoiceWise,
+                chkSummary: chkSummary,
+                chkFirstAndSecondSpell: chkFirstAndSecondSpell,
+                chkRouteBoothWise: false,
+                ChkDayWiseSummary: false,
+                chkFilterByCreatedDate: chkFilterByCreatedDate,
+                chkGatePass: false,
+                txtCustomerGroup: txtCustomerGroup,
+                txtCustomer: txtCustomer,
+                TxtMultiCustomerCategory: TxtMultiCustomerCategory,
+                txtItemCode: txtItemCode,
+                txtLocation: txtLocation,
+                txtZone: txtZone,
+                txtLorry: txtLorry,
+                TxtRoute: TxtRoute,
+                TxtUOM: TxtUOM,
+                txtBookingType: txtBookingType,
+                cboShift: cboShift,
+                chkProduct: chkProduct,
+                chkRouteSummary: chkRouteSummary,
+                ddlInvocieType: ddlInvocieType,
+                isSchemeItem: false,
+                rdbLtr: rdbLtr,
+                rbtnDateWise: rbtnDateWise,
+                rdbCreate: rbtnDateWise,
+               
+
+            },
+
+            xhrFields: {
+                responseType: 'blob' // Ensure response is treated as a Blob
+            },
+            success: function (response) {
+                
+                    var blob = new Blob([response], { type: 'application/pdf' });
+                    var blobUrl = window.URL.createObjectURL(blob);
+                    window.open(blobUrl, '_blank');
+               
+
+            },
+            error: function (xhr, status, error) {
+                alert("An error occurred while generating the Excel file: " + error);
+            }
+        })
     })
 </script>
 

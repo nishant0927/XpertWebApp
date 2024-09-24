@@ -420,6 +420,8 @@
         var title = "Select Rout";
 
         GetRout(function (data) {
+            console.log("Raw Data", data);
+            console.log("Rout Data Structure:", data[0]);
             var header = Object.keys(data[0]).filter(function (key) {
                 return key !== "Result";
             });

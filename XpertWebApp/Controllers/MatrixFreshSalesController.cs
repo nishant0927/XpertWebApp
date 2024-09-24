@@ -27,11 +27,11 @@ namespace XpertWebApp.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        public JsonResult GetMatrixFreshSalesReport(bool chkMilkPouch, bool rbtnAsPerBooking, string ddlReportType, string fromDate, string ToDate, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkFilterByCreatedDate, bool chkGatePass, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, string cboShift, bool rbtnMrng, bool rbtnEvng, bool rbtnBoths, string txtfndCustomer, string txtFndRoute, string ddlTCSShift, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, bool rdbCreate)
+        public async Task< JsonResult> GetMatrixFreshSalesReport(bool chkMilkPouch, bool rbtnAsPerBooking, string ddlReportType, string fromDate, string ToDate, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkFilterByCreatedDate, bool chkGatePass, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, string cboShift, bool rbtnMrng, bool rbtnEvng, bool rbtnBoths, string txtfndCustomer, string txtFndRoute, string ddlTCSShift, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, bool rdbCreate)
         {
             try
             {
-                var responseData = clsDashBoard.GetMatrixFreshSalesReport(chkMilkPouch, rbtnAsPerBooking, ddlReportType, fromDate, ToDate, chkFirstAndSecondSpellAbstract, chkBookingWise, chkSaleInvoiceWise, chkSummary, chkFirstAndSecondSpell, chkRouteBoothWise, ChkDayWiseSummary, chkFilterByCreatedDate, chkGatePass, txtCustomerGroup, txtCustomer, TxtMultiCustomerCategory, txtItemCode, txtLocation, txtZone, txtLorry, TxtRoute, TxtUOM, txtBookingType, Session["AppUserCode"].ToString(), cboShift, rbtnMrng, rbtnEvng, rbtnBoths, txtfndCustomer, txtFndRoute, ddlTCSShift, chkProduct, chkRouteSummary, ddlInvocieType, isSchemeItem, rdbLtr, rbtnDateWise, rdbCreate, Session["Port"].ToString());
+                var responseData =await clsDashBoard.GetMatrixFreshSalesReport(chkMilkPouch, rbtnAsPerBooking, ddlReportType, fromDate, ToDate, chkFirstAndSecondSpellAbstract, chkBookingWise, chkSaleInvoiceWise, chkSummary, chkFirstAndSecondSpell, chkRouteBoothWise, ChkDayWiseSummary, chkFilterByCreatedDate, chkGatePass, txtCustomerGroup, txtCustomer, TxtMultiCustomerCategory, txtItemCode, txtLocation, txtZone, txtLorry, TxtRoute, TxtUOM, txtBookingType, Session["AppUserCode"].ToString(), cboShift, rbtnMrng, rbtnEvng, rbtnBoths, txtfndCustomer, txtFndRoute, ddlTCSShift, chkProduct, chkRouteSummary, ddlInvocieType, isSchemeItem, rdbLtr, rbtnDateWise, rdbCreate, Session["Port"].ToString());
 
                 var jsonResult = Json(new { success = true, responseData }, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = int.MaxValue;
@@ -43,11 +43,11 @@ namespace XpertWebApp.Controllers
             }
         }
 
-        public ActionResult ExportMatrixFreshSalesReport(bool chkMilkPouch, bool rbtnAsPerBooking, string ddlReportType, string fromDate, string ToDate, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkFilterByCreatedDate, bool chkGatePass, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, string cboShift, bool rbtnMrng, bool rbtnEvng, bool rbtnBoths, string txtfndCustomer, string txtFndRoute, string ddlTCSShift, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, bool rdbCreate,bool excel,bool pdf)
+        public async Task< ActionResult> ExportMatrixFreshSalesReport(bool chkMilkPouch, bool rbtnAsPerBooking, string ddlReportType, string fromDate, string ToDate, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkFilterByCreatedDate, bool chkGatePass, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, string cboShift, bool rbtnMrng, bool rbtnEvng, bool rbtnBoths, string txtfndCustomer, string txtFndRoute, string ddlTCSShift, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, bool rdbCreate,bool excel,bool pdf)
         {
             try
             {
-                var responseData = clsDashBoard.GetMatrixFreshSalesReport(chkMilkPouch, rbtnAsPerBooking, ddlReportType, fromDate, ToDate, chkFirstAndSecondSpellAbstract, chkBookingWise, chkSaleInvoiceWise, chkSummary, chkFirstAndSecondSpell, chkRouteBoothWise, ChkDayWiseSummary, chkFilterByCreatedDate, chkGatePass, txtCustomerGroup, txtCustomer, TxtMultiCustomerCategory, txtItemCode, txtLocation, txtZone, txtLorry, TxtRoute, TxtUOM, txtBookingType, Session["AppUserCode"].ToString(), cboShift, rbtnMrng, rbtnEvng, rbtnBoths, txtfndCustomer, txtFndRoute, ddlTCSShift, chkProduct, chkRouteSummary, ddlInvocieType, isSchemeItem, rdbLtr, rbtnDateWise, rdbCreate, Session["Port"].ToString());
+                var responseData =await clsDashBoard.GetMatrixFreshSalesReport(chkMilkPouch, rbtnAsPerBooking, ddlReportType, fromDate, ToDate, chkFirstAndSecondSpellAbstract, chkBookingWise, chkSaleInvoiceWise, chkSummary, chkFirstAndSecondSpell, chkRouteBoothWise, ChkDayWiseSummary, chkFilterByCreatedDate, chkGatePass, txtCustomerGroup, txtCustomer, TxtMultiCustomerCategory, txtItemCode, txtLocation, txtZone, txtLorry, TxtRoute, TxtUOM, txtBookingType, Session["AppUserCode"].ToString(), cboShift, rbtnMrng, rbtnEvng, rbtnBoths, txtfndCustomer, txtFndRoute, ddlTCSShift, chkProduct, chkRouteSummary, ddlInvocieType, isSchemeItem, rdbLtr, rbtnDateWise, rdbCreate, Session["Port"].ToString());
 
                 JArray jsonArray = JArray.Parse(responseData);
                 List<string> arrHeader = new List<string>();
@@ -106,7 +106,7 @@ namespace XpertWebApp.Controllers
             try
             {
                 string companyName = Session["CompDesc"].ToString();
-                var responseData =await clsDashBoard.GetTruckSheetData(DocDate, strShift, route, Session["CompCode"].ToString(), IsFreshItem, IsAmbientItem, IsIndividualCustomer);
+                var responseData =await clsDashBoard.GetTruckSheetData(DocDate, strShift, route, Session["CompCode"].ToString(), IsFreshItem, IsAmbientItem, IsIndividualCustomer, Session["Port"].ToString());
                 JArray jsonArray = JArray.Parse(responseData);
                 var groupedRecords = jsonArray.GroupBy(record => (string)record["Credit_Customer"]);
                 if (jsonArray.Count > 0)
@@ -167,37 +167,62 @@ namespace XpertWebApp.Controllers
         {
             try
             {
-                var responseData =await clsDashBoard.GetTruckSheetSummaryRouteWise(txtPTSDateFrom, ddlPTSShift, txtCustMultFnd, txtMultPTSRoute, rbtnMilk, rbtnProduct, Session["CompCode"].ToString());
+                var responseData =await clsDashBoard.GetTruckSheetSummaryRouteWise(txtPTSDateFrom, ddlPTSShift, txtCustMultFnd, txtMultPTSRoute, rbtnMilk, rbtnProduct, Session["CompCode"].ToString(), Session["Port"].ToString());
                 JArray jsonArray = JArray.Parse(responseData);
+                string compName = jsonArray[0]["CompanyName"].ToString();
+                string date ="Date: "+ Convert.ToDateTime(jsonArray[0]["Document_Date"]).ToString("dd-MM-yyyy") +"      "+ jsonArray[0]["ShiftType"];
                 if (jsonArray.Count > 0)
                 {
                     var tableHeader = jsonArray.Select(item => new
                     {
                         sorfDec = item["Short_Description"].ToString()
                     }).Distinct().ToList();
+                    PdfPTable headerTable = new PdfPTable(tableHeader.Count + 2); // +2 for Code and Total columns
+                    headerTable.WidthPercentage = 100; 
+                    headerTable.SetWidths(new float[] { 2f }.Concat(Enumerable.Repeat(2f, tableHeader.Count)).Concat(new float[] { 7f }).ToArray()); // Adjust widths
 
-                    // Group by Route_No (remove ToList() here)
-                    var groupedData = jsonArray.GroupBy(item => item["Route_No"].ToString());
+                    // Add the "Code" header
+                    PdfPCell codeHeaderCell = new PdfPCell(new Phrase("Code", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+                    {
+                        Border = PdfPCell.BOX,
+                        Padding = 5f,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    };
+                    headerTable.AddCell(codeHeaderCell);
 
-                    StringBuilder sbr = new StringBuilder();
-                    sbr.Append("<table style='width:100%; border-collapse:collapse;font-size:10px;'>");
-
-                    // Add table headers
-                    sbr.Append("<thead><tr><th>Route No</th>");
+                    // Add dynamic column headers
                     foreach (var header in tableHeader)
                     {
-                        sbr.Append("<th>" + header.sorfDec + "</th>");
-                    }
-                    sbr.Append("<th>Total | Supply | Total Crate | Amount</th>");
-                    sbr.Append("</tr></thead>");
+                        PdfPCell dynamicHeaderCell = new PdfPCell(new Phrase(header.sorfDec, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+                        {
+                            Border = PdfPCell.BOX,
+                            Padding = 5f,
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        };
+                        headerTable.AddCell(dynamicHeaderCell);
+                    }                   
+                    PdfPCell totalHeaderCell = new PdfPCell(new Phrase("Total | Supply | Total Crate | Amount"
+                        , new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+                    {
+                        Border = PdfPCell.BOX,
+                        Padding = 7f,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    };
+                    headerTable.AddCell(totalHeaderCell);
+                    var productTotals = new decimal[tableHeader.Count];
+                    decimal grandtotalSupply = 0;
+                    decimal grandtotalCrate = 0;
+                    decimal grandtotalAmount = 0;
+                    var groupedData = jsonArray.GroupBy(item => item["Route_No"].ToString());
+                    StringBuilder sbr = new StringBuilder();
+                    sbr.Append("<table  width='100%' border='0'cellspacing='0' style=' border-collapse:collapse;font-size:12px;margin-top:20%; text-align:right;'>");
 
-                    // Iterate over each group of Route_No
                     foreach (var group in groupedData)
                     {
                         sbr.Append("<tbody><tr>");
                         // Display Route_No
-                        sbr.Append("<td>" + group.Key + "</td>"); // Route_No
-
+                        sbr.Append("<td style='border-left:1px solid;border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:40px;'>" + group.Key + "</td>"); // Route_No
+                        int columnIndex = 0;
                         // Iterate over the dynamic headers (Short_Description) and find matches
                         foreach (var header in tableHeader)
                         {
@@ -206,36 +231,57 @@ namespace XpertWebApp.Controllers
 
                             if (matchingRecord != null)
                             {
+
+
+                                decimal qtyLtr = (decimal)matchingRecord["QTYLtr"];
+                                sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:39px;'>" + qtyLtr.ToString() + "</td>");
+
+                                // Accumulate total for this column (product)
+                                productTotals[columnIndex] += qtyLtr;
                                 // Add QTYLtr value if a match is found
-                                sbr.Append("<td>" + matchingRecord["QTYLtr"].ToString() + "</td>");
+                                //sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:39px;'>" + matchingRecord["QTYLtr"].ToString() + "</td>");
                             }
                             else
                             {
                                 // No matching record for this header, so add 0 in the cell
-                                sbr.Append("<td>0</td>");
+                                sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:42px;'>0</td>");
                             }
+                            columnIndex++; // Move to the next column
                         }
 
                         // If you want to add totals (Supply, Crate, Amount) here for each Route
                         var totalSupply = group.Sum(item => (decimal)item["QTYLtr"]);
                         var totalCrate = group.Sum(item => (decimal)item["Crate"]);
                         var totalAmount = group.Sum(item => (decimal)item["ItemNetAmount"]);
-
+                        grandtotalSupply += Convert.ToDecimal(totalSupply);
+                        grandtotalCrate += Convert.ToDecimal(totalCrate);
+                        grandtotalAmount += Convert.ToDecimal(totalAmount);
                         // Add totals for the row
-                        sbr.Append("<td>" + totalSupply + " | " + totalCrate + " | " + totalAmount + "</td>");
+                        sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;'>" + totalSupply + " | " + totalCrate + " | " + totalAmount + "</td>");
 
-                        sbr.Append("</tr></tbody>"); // End of the row for this Route_No
+                        sbr.Append("</tr></tbody>");
+                    }
+                    // Add footer row for column-wise product totals
+                    sbr.Append("<tfoot><tr>");
+                    sbr.Append("<td style='border-left:1px solid; border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:18px;'><b>Totals</b></td>");
+
+                    // Loop through each column to display totals in the footer
+                    for (int i = 0; i < productTotals.Length; i++)
+                    {
+                        sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:39px;'><b>" + productTotals[i].ToString() + "</b></td>");
                     }
 
-                    sbr.Append("</table>"); // End of the table
+                    // Leave the last cell for overall totals, if required (optional)
+                    sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;'><b>"+grandtotalSupply+ "|"+  grandtotalCrate +"|"+grandtotalAmount +"</b></td>");
 
-                    // The final HTML string with the table
-                    string tableHtml = sbr.ToString();
-
+                    sbr.Append("</tr></tfoot>");
+                    sbr.Append("</table>");
                     using (MemoryStream stream = new MemoryStream())
                     {
-                        Document pdfDoc = new Document(PageSize.A4.Rotate(), 25, 25, 25, 25);
+                        Document pdfDoc = new Document(PageSize.A4.Rotate(), 25, 25, 100, 25);
                         PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                        CustomPdfPageEvent pageEvent = new CustomPdfPageEvent(compName, "AREAWISE MILK SUPPLY INDENT (ALL)",date, headerTable);
+                        writer.PageEvent = pageEvent;
                         pdfDoc.Open();
                         var bodyReader = new StringReader(sbr.ToString());
                         XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, bodyReader);
@@ -253,6 +299,145 @@ namespace XpertWebApp.Controllers
             {
                 return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult GatePassSummaryRouteWise(string ddlPTSShift, string txtPTSDateFrom, bool rbtnMilk, bool rbtnProduct, string txtMultPTSRoute)
+        {
+            try
+            {
+                var responseData = clsDashBoard.GatePassSummaryRouteWise(ddlPTSShift, txtPTSDateFrom, rbtnMilk, rbtnProduct, txtMultPTSRoute, Session["Port"].ToString());
+                JArray jsonArray = JArray.Parse(responseData);
+                string compName = jsonArray[0]["Comp_Name"].ToString();
+                string date = "Date: " + Convert.ToDateTime(jsonArray[0]["Supply_Date"]).ToString("dd-MM-yyyy") + "   Shift: " + jsonArray[0]["ShiftType"];
+                if (jsonArray.Count > 0)
+                {
+                    var tableHeader = jsonArray.Select(item => new
+                    {
+                        sorfDec = item["Short_Description"].ToString()
+                    }).Distinct().ToList();
+                    PdfPTable headerTable = new PdfPTable(tableHeader.Count + 2); // +2 for Code and Total columns
+                    headerTable.WidthPercentage = 100;
+                    headerTable.SetWidths(new float[] { 1f }.Concat(Enumerable.Repeat(1f, tableHeader.Count)).Concat(new float[] { 1f }).ToArray()); // Adjust widths
+
+                    // Add the "Code" header
+                    PdfPCell codeHeaderCell = new PdfPCell(new Phrase("Code", new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+                    {
+                        Border = PdfPCell.BOX,
+                        Padding = 10f,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    };
+                    headerTable.AddCell(codeHeaderCell);
+
+                    // Add dynamic column headers
+                    foreach (var header in tableHeader)
+                    {
+                        PdfPCell dynamicHeaderCell = new PdfPCell(new Phrase(header.sorfDec, new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+                        {
+                            Border = PdfPCell.BOX,
+                            Padding = 10f,
+                            HorizontalAlignment = Element.ALIGN_CENTER
+                        };
+                        headerTable.AddCell(dynamicHeaderCell);
+                    }
+                    PdfPCell totalHeaderCell = new PdfPCell(new Phrase("Total Ltr"
+                        , new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 10, iTextSharp.text.Font.BOLD)))
+                    {
+                        Border = PdfPCell.BOX,
+                        Padding = 10f,
+                        HorizontalAlignment = Element.ALIGN_CENTER
+                    };
+                    headerTable.AddCell(totalHeaderCell);
+                    var productTotals = new decimal[tableHeader.Count];
+                    decimal grandtotalSupply = 0;
+                    decimal grandtotalCrate = 0;
+                    decimal grandtotalAmount = 0;
+                    var groupedData = jsonArray.GroupBy(item => item["Route_No"].ToString());
+                    StringBuilder sbr = new StringBuilder();
+                    sbr.Append("<table  width='100%' border='0'cellspacing='0' style=' border-collapse:collapse;font-size:12px;margin-top:20%; text-align:right;'>");
+
+                    foreach (var group in groupedData)
+                    {
+                        sbr.Append("<tbody><tr>");
+                        // Display Route_No
+                        sbr.Append("<td style='border-left:1px solid;border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:57px;'>" + group.Key + "</td>"); // Route_No
+                        int columnIndex = 0;
+                        // Iterate over the dynamic headers (Short_Description) and find matches
+                        foreach (var header in tableHeader)
+                        {
+                            // Check if there's a matching record with this Short_Description for this Route_No
+                            var matchingRecord = group.FirstOrDefault(item => item["Short_Description"].ToString() == header.sorfDec);
+
+                            if (matchingRecord != null)
+                            {
+
+
+                                decimal qtyLtr = (decimal)matchingRecord["Qty In LTR/KG"];
+                                sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;width:69px;'>" + qtyLtr.ToString() + "</td>");
+
+                                // Accumulate total for this column (product)
+                                productTotals[columnIndex] += qtyLtr;
+                                // Add QTYLtr value if a match is found
+                                //sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:39px;'>" + matchingRecord["QTYLtr"].ToString() + "</td>");
+                            }
+                            else
+                            {
+                                // No matching record for this header, so add 0 in the cell
+                                sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:58px;'>0</td>");
+                            }
+                            columnIndex++; // Move to the next column
+                        }
+
+                        // If you want to add totals (Supply, Crate, Amount) here for each Route
+                        var totalSupply = group.Sum(item => (decimal)item["Qty In LTR/KG"]);
+                        //var totalCrate = group.Sum(item => (decimal)item["Crate"]);
+                        //var totalAmount = group.Sum(item => (decimal)item["ItemNetAmount"]);
+                        grandtotalSupply += Convert.ToDecimal(totalSupply);
+                        //grandtotalCrate += Convert.ToDecimal(totalCrate);
+                        //grandtotalAmount += Convert.ToDecimal(totalAmount);
+                        // Add totals for the row
+                        sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;'>" + totalSupply + "</td>");
+
+                        sbr.Append("</tr></tbody>");
+                    }
+                    // Add footer row for column-wise product totals
+                    sbr.Append("<tfoot><tr>");
+                    sbr.Append("<td style='border-left:1px solid; border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;width:18px;'><b>Totals</b></td>");
+
+                    // Loop through each column to display totals in the footer
+                    for (int i = 0; i < productTotals.Length; i++)
+                    {
+                        sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;padding:6.67px;'><b>" + productTotals[i].ToString() + "</b></td>");
+                    }
+
+                    // Leave the last cell for overall totals, if required (optional)
+                    sbr.Append("<td style='border-right:1px solid; border-top:1px solid;border-bottom: 1px solid;'><b>" + grandtotalSupply +  "</b></td>");
+
+                    sbr.Append("</tr></tfoot>");
+                    sbr.Append("</table>");
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        Document pdfDoc = new Document(PageSize.A4.Rotate(), 25, 25, 100, 25);
+                        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+                        CustomPdfPageEvent pageEvent = new CustomPdfPageEvent(compName, "Gate Pass Route Wise Summary", date, headerTable);
+                        writer.PageEvent = pageEvent;
+                        pdfDoc.Open();
+                        var bodyReader = new StringReader(sbr.ToString());
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, bodyReader);
+                        pdfDoc.Close();
+                        return File(stream.ToArray(), "application/pdf", "TruckSheetReport.pdf");
+                    }
+                }
+                else
+                {
+                    return Json(new { success = false, responseText = "No data available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch(Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+           
+
         }
 
 
@@ -396,6 +581,60 @@ namespace XpertWebApp.Controllers
                 }
                 sbr.Append("</table>");
                 sbr.Append("<br/><br/>");
+            }
+        }
+
+        public ActionResult RouteSummaryPrint(string fromDate, string ToDate, string txtCustomerGroup, string txtCustomer, string TxtMultiCustomerCategory, string txtItemCode, string txtLocation, string txtZone, string txtLorry, string TxtRoute, string TxtUOM, string txtBookingType, bool chkFirstAndSecondSpellAbstract, bool chkBookingWise, bool chkSaleInvoiceWise, bool chkSummary, bool chkFirstAndSecondSpell, bool chkRouteBoothWise, bool ChkDayWiseSummary, bool chkMilkPouch, bool chkProduct, bool chkRouteSummary, string ddlInvocieType, bool chkFilterByCreatedDate, bool chkGatePass, bool isSchemeItem, bool rdbLtr, bool rbtnDateWise, string cboShift, bool rbtnAsPerBooking, bool rdbCreate)
+        {
+            try
+            {
+                var responseData = clsDashBoard.RouteSummaryPrint(fromDate, ToDate, txtCustomerGroup, txtCustomer, TxtMultiCustomerCategory, txtItemCode, txtLocation, txtZone, txtLorry, TxtRoute, TxtUOM, txtBookingType, chkFirstAndSecondSpellAbstract, chkBookingWise, chkSaleInvoiceWise, chkSummary, chkFirstAndSecondSpell, chkRouteBoothWise, ChkDayWiseSummary, chkMilkPouch, chkProduct, chkRouteSummary, ddlInvocieType, chkFilterByCreatedDate, Session["CompCode"].ToString(), chkGatePass, isSchemeItem, rdbLtr, rbtnDateWise, cboShift, rbtnAsPerBooking, rdbCreate, Session["Port"].ToString());
+
+                JArray jsonArray = JArray.Parse(responseData);
+                List<string> arrHeader = new List<string>();
+                string sheetName = "Payment Cycle Wise Report";
+                arrHeader.Add("Payment Cycle Wise Report");
+                //arrHeader.Add("Date : " + fromDate + " To " + toDate);
+                string companyName = Session["CompDesc"].ToString();
+                string reportDate = "Date : " + Convert.ToDateTime(fromDate).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(ToDate).ToString("dd-MMM-yyyy");
+                string reportName = "Daily Summary Report";
+                if (jsonArray.Count > 0)
+                {
+                    // Extract columns excluding "Result"
+                    var columns = jsonArray[0].Children<JProperty>()
+                                              .Select(jp => jp.Name)
+                                              .Where(key => key != "Result")
+                                              .ToList();
+                    var rows = jsonArray.Select
+                        (item => columns.Select
+                         (column => (ColumnName: column, Value: (object)(item[column] != null ? item[column].ToString() : string.Empty))).ToList()).ToList();
+
+                    byte[] fileContents = new byte[0];
+                    string fileType = string.Empty;
+                    string fileName = string.Empty;
+                   
+
+                    // Check if Excel export is requested
+
+
+                    fileContents = PdfGenerator.GeneratePdf(companyName, reportName, reportDate, rows, 95);
+                        fileType = "application/pdf";
+                        fileName = "RouteSummaryPrint.pdf";
+                    return File(fileContents, fileType, fileName);
+                }
+                else
+                {
+                    // Handle the case where jsonArray is empty
+                    return Json(new { success = false, responseText = "No data available for the selected criteria." }, JsonRequestBehavior.AllowGet);
+                }
+
+               
+              
+               
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, responseText = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
 

@@ -5937,8 +5937,10 @@
     <Compile Include="Common.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\DailyQuantityReportController.cs" />
+    <Compile Include="Controllers\DailyStatememtController.cs" />
     <Compile Include="Controllers\DairySalesController.cs" />
     <Compile Include="Controllers\DBTController.cs" />
+    <Compile Include="Controllers\DCSOutStandingController.cs" />
     <Compile Include="Controllers\FarmerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MatrixFreshSalesController.cs" />
@@ -5946,6 +5948,8 @@
     <Compile Include="Controllers\PaymentCycleWiseReportController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoutePaymentProcessController.cs" />
+    <Compile Include="Controllers\SaleRegisterDetailController.cs" />
+    <Compile Include="Controllers\SalesSummaryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="CustomPdfPageEventHelper.cs" />
     <Compile Include="ExcelExportHelper.cs" />
@@ -6038,6 +6042,10 @@
     <Content Include="Views\MCCMilkRegister\MCCMilkRegister.cshtml" />
     <Content Include="Views\RoutePaymentProcess\RoutePaymentProcessReport.cshtml" />
     <Content Include="Views\MatrixFreshSales\MatrixFreshSalesReport.cshtml" />
+    <Content Include="Views\SaleRegisterDetail\SalesRegisterDetailReport.cshtml" />
+    <Content Include="Views\SalesSummary\SalesSummaryReport.cshtml" />
+    <Content Include="Views\DCSOutStanding\DCSOutStandingReport.cshtml" />
+    <Content Include="Views\DailyStatememt\DailyStatementReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
